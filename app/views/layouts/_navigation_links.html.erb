@@ -1,2 +1,62 @@
 <%# add navigation links to this file %>
-<li class='nav-item'><%= link_to 'About', page_path('about'), class: 'nav-link' %></li>
+<% if user_signed_in? %>
+  <li class='nav-item'>
+    <%= link_to 'About', page_path('about'), class: 'nav-link' %>
+  </li>
+  <li class='nav-item'>
+    <%= link_to 'Background', page_path('background'), class: 'nav-link' %>
+  </li>
+  <li class="nav-item dropdown">
+    <a class="nav-link dropdown-toggle" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      Dropdown link
+    </a>
+    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+      <a class="dropdown-item" href="#">Action</a>
+      <a class="dropdown-item" href="#">Another action</a>
+      <a class="dropdown-item" href="#">Something else here</a>
+    </div>
+  </li>
+
+  <li class="nav-item dropdown">
+    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownProfileLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      <%= fa_icon "user" %>&nbsp;<%= current_user.full_name %>
+    </a>
+    <div class="dropdown-menu" aria-labelledby="navbarDropdownProfileLink">
+      <%= link_to 'My Profile Page',   current_user, class: 'dropdown-item' %>
+      <%= link_to 'Edit My Account', edit_user_registration_path, class: 'dropdown-item' %>
+
+    </div>
+  </li>
+  <li class="nav-item">
+    <%= link_to destroy_user_session_path, :method=>'delete', data: {confirm: "Are you sure?"}, class: 'nav-link' do %>
+    <%= fa_icon "sign-out" %> Sign out
+    <% end %>
+  </li>
+<% else %>
+  <li class='nav-item'>
+    <%= link_to 'Background', page_path('background'), class: 'nav-link' %>
+  </li>
+  <li class='nav-item'>
+    <%= link_to 'About', page_path('about'), class: 'nav-link' %>
+  </li>
+  <li class="nav-item dropdown">
+    <a class="nav-link dropdown-toggle" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      Dropdown link
+    </a>
+    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+      <a class="dropdown-item" href="#">Action</a>
+      <a class="dropdown-item" href="#">Another action</a>
+      <a class="dropdown-item" href="#">Something else here</a>
+    </div>
+  </li>
+  <li class='nav-item'>
+    <%= link_to new_user_session_path, class: 'nav-link' do %>
+      <%= fa_icon "sign-in" %> Sign in
+    <% end %>
+  </li>
+  <li class='nav-item'>
+    <%= link_to new_user_registration_path, class: 'nav-link' do %>
+      <%= fa_icon "magic" %> Sign up
+    <% end %>
+  </li>
+<% end %>
