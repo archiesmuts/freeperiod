@@ -1,0 +1,12 @@
+<div class="container">
+  <h1>Subject</h1>
+  <div class="card" style="width: 20rem;">
+    <div class="card-body">
+      <h4 class="card-title"><%= @subject.name %></h4>
+      <h6 class="card-subtitle mb-2 text-muted">Description</h6>
+      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+      <%= link_to 'Back', subjects_path, class: "btn btn-sm btn-outline-primary" %>
+      <%= link_to 'Edit subject', edit_subject_path(@subject), class: "btn btn-sm btn-primary" %>
+    </div>
+  </div>
+</div>
