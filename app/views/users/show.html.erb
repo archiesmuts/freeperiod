@@ -4,11 +4,11 @@
   <%= current_user.last_name if current_user.last_name %>&nbsp;
   <small>
     <%= fa_icon "envelope" %> <%= current_user.try(:email) %>
-    <% if current_user.has_role?(:admin) %>
-      <span class="badge badge-primary">Admin</span>
-    <% elsif current_user.has_role?(:faculty) %>
-      <span class="badge badge-primary">Faculty</span>
-    <% end %>
+    <%# if current_user.has_role?(:admin) %>
+      <!-- <span class="badge badge-primary">Admin</span> -->
+    <%# elsif current_user.has_role?(:faculty) %>
+      <!-- <span class="badge badge-primary">Faculty</span> -->
+    <%# end %>
     <%= link_to "Change my Sign-in details", edit_user_registration_path,
                 class: "btn btn-sm btn-outline-primary" %>
   </small>
@@ -22,20 +22,20 @@
       <li class="nav-item">
         <a class="nav-link active" data-toggle="pill" href="#home" role="tab">Home&nbsp; </a>
       </li>
-      <% if current_user.has_any_role?(:admin, :faculty) %>
+      <%# if current_user.has_any_role?(:admin, :faculty) %>
       <li class="nav-item">
         <a class="nav-link" data-toggle="pill" href="#assignments" role="tab">My Assignments&nbsp;
-          <span class="badge badge-pill badge-info pull-right"><%= @user.assignments.count %></span>
+          <span class="badge badge-pill badge-info pull-right"></span>
         </a>
       </li>
-      <% end %>
-      <% if current_user.has_role?(:admin) %>
+      <%# end %>
+      <%# if current_user.has_role?(:admin) %>
       <li class="nav-item">
         <a class="nav-link" data-toggle="pill" href="#adminonly" role="tab">Notes
           <span class="badge badge-primary">Admin</span>
         </a>
       </li>
-      <% end %>
+      <%# end %>
       <!--  <li class="nav-item">
         <a class="nav-link" data-toggle="pill" href="#settings" role="tab">Settings</a>
       </li> -->
@@ -48,23 +48,23 @@
         <section>
           <div class="col-md-6">
 
-        <h3>Organisations to which you belong
+        <h3>Schools to which you belong
           <small>
             <a tabindex="0" class="btn btn-link" role="button" data-toggle="popover"
               data-trigger="focus" title="Tip"
-              data-content="If you have any proposals you will find them on your organisation page">
+              data-content="This is a tip">
               <%= fa_icon "info-circle" %>&nbsp;Tip
             </a>
           </small>
         </h3>
 
         <ul id="list_memberships" class="list-group" role="tablist">
-          <% unless current_user.memberships.empty? %>
-            <%= render current_user.memberships%>
-            <% else %>
-            <%= render "nothing_to_list" %>
-            <%= link_to "Click here to add or link to your Organisation.", new_user_membership_path(@user), class: "btn btn-success" %>
-          <% end %>
+          <%# unless current_user.memberships.empty? %>
+            <%#= render current_user.memberships%>
+            <%# else %>
+            <%#= render "nothing_to_list" %>
+            <%#= link_to "Click here to add or link to your Organisation.", new_user_membership_path(@user), class: "btn btn-success" %>
+          <%# end %>
         </ul>
         <p class="text-info">
           Colleagues from other organisations can invite you to collaborate with them.
@@ -73,34 +73,17 @@
       </div>
       </section>
       </div>
-      <% if current_user.has_any_role?(:admin, :faculty) %>
+      <%# if current_user.has_any_role?(:admin, :faculty) %>
         <!-- true -->
       <div class="tab-pane" id="assignments" role="tabpanel">
         <h3>Assignments</h3>
-        <div class="alert alert-info"  role="alert">
-          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-          <strong>Tips: </strong>
-          1. Ensure you accept or decline the assignment. 2. When you have completed
-          the assignment open the assignment form and check <%= fa_icon "check" %> the
-          "completed" checkbox. 3. Click on the Proposal # to go to the Proposal page.
-        </div>
-        <div id="list_assignments" class="row">
-          <% if current_user.assignments.any? %>
-            <%=render current_user.assignments %>
-          <% else %>
-          <p class="lead"> <strong>Heads up!</strong> We couldn't find anything to list ¯\_(ツ)_/¯  </p>
-          <% end %>
-        </div>
-      </div>
-      <% end %>
-      <% if current_user.has_role?(:admin) %>
+
+      <%# if current_user.has_role?(:admin) %>
       <div class="tab-pane" id="adminonly" role="tabpanel">
         <section>
           <div class="col-md-6">
             <p><strong>Tip: </strong> If you want to add a faculty member navigate
-            to <%= link_to 'Memberships', memberships_path %>, also accessible
+            to <%#= link_to 'Memberships', memberships_path %>, also accessible
             via the Admin tools menu, click on "New membership" with "Faculty Member"
             as the person to add and "Faculty Organisation - BMSF" as the organisation. Choose "Faculty"
             as the type of member.
@@ -108,7 +91,7 @@
           </div>
         </section>
       </div>
-      <% end %>
+      <%# end %>
       <!-- <div class="tab-pane" id="settings" role="tabpanel">
         <%# render "nothing_to_list" %>
       </div> -->

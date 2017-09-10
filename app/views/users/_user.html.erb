@@ -1,24 +1,21 @@
 <td>
   <strong><%= user.name %></strong>,
-  <%# if user.has_role?(:faculty) %>
-    <!-- <span class="badge badge-primary">Faculty</span> -->
-  <%# end %>
-   <br>
+  <br>
   <%= user.email %>
 </td>
 <td>
-  <%# unless user.memberships.empty? %>
-    <%#= render user.memberships %>
-  <%# end %>
+  <% unless user.memberships.empty? %>
+    <%= render user.memberships %>
+  <% end %>
 </td>
 <td>
   <ul>
-    <%# unless user.roles.empty? %>
-      <%# user.roles.each do |role| %>
-        <li><%#= role.name %> <%#= role.resource_type %><br> <%#= role.resource_id %></li>
-      <%# end %>
-    <%# else %>
-      <!-- No roles -->
-    <%# end %>
+    <% unless user.roles.empty? %>
+      <% user.roles.each do |role| %>
+        <li><%= role.name %> <%= role.resource_type %><br> <%= role.resource_id %></li>
+      <% end %>
+    <% else %>
+      No roles
+    <% end %>
   </ul>
 </td>

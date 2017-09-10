@@ -11,15 +11,17 @@
       Dropdown link
     </a>
     <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-      <a class="dropdown-item" href="#">Action</a>
-      <a class="dropdown-item" href="#">Another action</a>
+      <%= link_to "Schools", schools_path, class: "dropdown-item" %>
+      <%= link_to "Users", users_path, class: "dropdown-item" %>
+      <%= link_to "School Memberships", memberships_path, class: "dropdown-item" %>
+      <%= link_to 'Invite someone', new_user_invitation_path, class: "dropdown-item" %>
       <a class="dropdown-item" href="#">Something else here</a>
     </div>
   </li>
 
   <li class="nav-item dropdown">
     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownProfileLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-      <%= fa_icon "user" %>&nbsp;<%= current_user.full_name %>
+      <%= fa_icon "user" %>&nbsp;<%= current_user.name %>
     </a>
     <div class="dropdown-menu" aria-labelledby="navbarDropdownProfileLink">
       <%= link_to 'My Profile Page',   current_user, class: 'dropdown-item' %>
@@ -44,8 +46,8 @@
       Dropdown link
     </a>
     <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-      <a class="dropdown-item" href="#">Action</a>
-      <a class="dropdown-item" href="#">Another action</a>
+      <%= link_to "Schools", schools_path, class: "dropdown-item" %>
+      <%= link_to "Users", users_path, class: "dropdown-item" %>
       <a class="dropdown-item" href="#">Something else here</a>
     </div>
   </li>
