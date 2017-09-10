@@ -1,0 +1,17 @@
+<h2>School membership details</h2>
+<div class="row">
+  <div class="col-sm-8">
+    <div class="card">
+      <div class="card-block">
+        <h3 class="card-title"><%= @membership.school.name if @membership.school %></h3>
+        <h4 class="card-title">Me: <%= @membership.user.name %></h4>
+        <p class="card-text">Member: <%= @membership.member.humanize %></p>
+        <%# if current_user.has_role?(:admin) %>
+          <%= link_to "Index", memberships_path, class: "btn btn-outline-primary" %>
+        <%# end %>
+        <%= link_to 'Back to My Page', current_user, class: "btn btn-outline-primary" %>
+        <%= link_to 'Edit', edit_membership_path(@membership), class: "btn btn-primary" %>
+      </div>
+    </div>
+  </div>
+</div>

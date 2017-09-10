@@ -1,0 +1,8 @@
+<h1>Editing Membership</h1>
+
+<%= render 'new_organisation_form', membership: @membership %>
+
+<% if current_user.has_role?(:admin) %>
+<%= link_to 'Back to Index', memberships_path, class: "btn btn-outline-primary" %>
+<% end %>
+<%= link_to 'Back', @membership, class: "btn btn-primary" %>

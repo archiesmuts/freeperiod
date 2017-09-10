@@ -1,0 +1,69 @@
+<!-- from user show or membership index views -->
+<%= form_with(model: [@user, @membership], local: true, id: :new_membership, class: :new_membership) do |f| %>
+<div class="row">
+  <div class="col-md-6">
+
+  <% if @membership.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(membership.errors.count, "error") %> prohibited this project from being saved:</h2>
+
+      <ul>
+        <% @membership.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+    <% if current_user.has_role? :admin %>
+    <div class="form-group">
+      <%= f.text_field :user_name, data: { autocomplete_source: user_members_path },
+        placeholder: "Type the Name of the Person", class: "string required form-control", id: "membership_user_name" %>
+        <small id="userNameHelp" class="form-text text-info">Name of person to add.</small>
+    </div>
+    <% else %>
+    <div class="user-collection-select">
+      <div class="form-group">
+        <%= f.label :user_id, "Your name" %>
+        <%= f.collection_select :user_id, User.where(id: current_user), :id, :name_reversed, { }, {class: "form-control", readonly: "readonly"}%>
+      </div>
+    </div>
+    <% end %>
+      <div class="form-group">
+        <%= f.label :school_name, "Name of your school" %>
+        <%= f.text_field :school_name, data: { autocomplete_source: partner_schools_path },
+          placeholder: "Type Name of your school", class: "string required form-control", id: "membership_school_name"  %>
+      </div>
+      <p class="font-weight-bold">Indicate if you are ?????????</p>
+      <div class="form-group">
+        <% if current_user.has_role?(:admin) %>
+          <% Membership.members.keys.map do |member| %>
+            <label class="custom-control custom-radio">
+              <%= f.radio_button :member, member, class: "custom-control-input" %>
+              <span class="custom-control-indicator"></span>
+              <span class="custom-control-description"><%= member.humanize %></span>
+            </label>
+          <% end %>
+        <% else %>
+          <% Membership.members.except(:faculty).keys.map do |member| %>
+            <label class="custom-control custom-radio">
+              <%= f.radio_button :member, member, class: "custom-control-input" %>
+              <span class="custom-control-indicator"></span>
+              <span class="custom-control-description"><%= member.humanize %></span>
+            </label>
+            <% end %>
+        <% end %>
+      </div>
+
+      <p>
+        <div class="actions">
+          <%= f.submit class: "btn btn-primary" %>
+        </div>
+      </p>
+    </div>
+    <div class="col-md-6">
+        <p>???????</p>
+    </div>
+  </div>
+
+<% end %>

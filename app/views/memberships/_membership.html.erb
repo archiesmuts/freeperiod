@@ -1,0 +1,20 @@
+<% unless controller.controller_name == "users" %>
+  <li  id="membership-<%= membership.id %>" class="list-group-item d-flex justify-content-between list-group-item-secondary">
+      <div class="p-2">
+        <span class="badge badge-primary"><%= membership.member.humanize %> </span>&nbsp;
+        <%= membership.user.name if membership.user %>,&nbsp;
+        <%= membership.user.email if membership.user %>
+      </div>
+      <% if current_user.has_any_role?(:admin, {name: :employee, resource: membership.school}) && current_user != membership.user %>
+        <div class="p-2">
+          <%= link_to membership, method: :delete, remote: true,
+              data: { confirm: 'Are you absolutely sure?' },
+              class: "btn btn-sm btn-danger btn-link delete-membership"  do %>
+              <span class="text-danger"><i class="fa fa-user-times" aria-hidden="true"></i>&nbsp;Remove</span>
+          <% end %>
+        </div>
+      <% end %>
+  </li>
+<% else %>
+    <%= link_to membership.school.name, school_path(membership.school) %>
+<% end %>

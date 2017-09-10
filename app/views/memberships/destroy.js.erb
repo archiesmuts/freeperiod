@@ -1,0 +1,6 @@
+$(".delete-membership").bind('ajax:success', function() {
+  $(this).closest('li').fadeOut(500, function(){
+  	$(this).remove();
+  });
+  $('#membership_organisation_id').focus();
+});
