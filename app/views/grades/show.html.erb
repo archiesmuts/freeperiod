@@ -1,0 +1,12 @@
+<div class="container">
+  <h1>Grade</h1>
+  <div class="card" style="width: 20rem;">
+    <div class="card-body">
+      <h4 class="card-title"><%= @grade.name %></h4>
+      <h6 class="card-subtitle mb-2 text-muted">Description</h6>
+      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+      <%= link_to 'Back', grades_path, class: "btn btn-sm btn-outline-primary" %>
+      <%= link_to 'Edit grade', edit_grade_path(@grade), class: "btn btn-sm btn-primary" %>
+    </div>
+  </div>
+</div>

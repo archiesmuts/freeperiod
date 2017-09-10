@@ -1,0 +1,9 @@
+<div class="container">
+  <h1>New Grade</h1>
+  <%= link_to 'Back', grades_path, class: "btn btn-sm btn-outline-primary" %>
+  <div class="row">
+    <div class="col-md-6">
+      <%= render 'form', grade: @grade %>
+    </div>
+  </div>
+</div>
