@@ -1,7 +1,5 @@
 Rails.application.routes.draw do
 
-  resources :grades
-  resources :subjects
   devise_for :users
 
   resources :users do
@@ -11,5 +9,12 @@ Rails.application.routes.draw do
     resources :memberships, path: :users, module: :schools
   end
   resources :memberships
+  resources :courses
+  resources :grades do
+    resources :courses
+  end
+  resources :subjects do
+    resources :courses
+  end
   root to: 'visitors#index'
 end

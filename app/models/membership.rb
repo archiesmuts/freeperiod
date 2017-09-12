@@ -4,7 +4,7 @@ class Membership < ApplicationRecord
   belongs_to :school
 
   # validates_uniqueness_of :user_id, scope: :school_id, message: "membership already exists"
-  # validates :user_id, :school_id, :member, presence: true
+  validates :user_id, :school_id, :member, presence: true
   attribute :email, :string
   before_validation :set_school_id, if: :email?
 

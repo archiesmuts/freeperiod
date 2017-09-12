@@ -1,0 +1,5 @@
+$(".delete-course").bind('ajax:success', function() {
+  $(this).closest('a').fadeOut(500, function(){
+  	$(this).remove();
+  });
+});
