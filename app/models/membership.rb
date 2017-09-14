@@ -13,9 +13,10 @@ class Membership < ApplicationRecord
   end
   # perhaps add management
   enum member: {
-    staff: 0,
-    student: 1,
-    parent_of: 2
+    not_defined: 0,
+    staff: 1,
+    student: 2,
+    guardian: 3
   }
 
   # enum permission:  {

@@ -5,6 +5,8 @@ class School < ApplicationRecord
 
   has_many :memberships, dependent: :destroy
   has_many :users, through: :memberships
+  has_many :registration_klasses
+  #has_many :registrations, through: :registration_klasses
 
   validates :name, :slug, presence: true
 

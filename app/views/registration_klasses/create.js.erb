@@ -1,0 +1,27 @@
+var el = $('.new_registration_klass');
+
+<% if @registration_klass.errors.any? %>
+
+  // Create a list of errors
+  var errors = $('<ul class="list-group" />');
+
+  <% @registration_klass.errors.full_messages.each do |error| %>
+    errors.append('<li class="list-group-item list-group-item-danger"><%= j error %></li>');
+  <% end %>
+
+  // Display errors on form
+  el.find('.errors').html(errors);
+
+<% else %>
+
+$('#list-registration-klasses').prepend('<%= j render @registration_klass %>');
+$("#registration-klass-<%= @registration_klass.id %>").hide().fadeIn(1000);
+$("#registration-klass-").remove();
+$('.nothing_to_list').detach();
+
+// Clear form
+el.find('input:text,text_area').val('');
+el.find('.errors').empty();
+
+<% end %>
+// Source: www.alfajango.com/blog/rails-3-remote-links-and-forms-data-type-with-jquery/

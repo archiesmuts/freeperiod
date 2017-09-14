@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  school_id: 
+  course_id: 
+  year: 2017-09-12
+
+two:
+  name: MyString
+  school_id: 
+  course_id: 
+  year: 2017-09-12

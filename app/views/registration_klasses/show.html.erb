@@ -1,0 +1,40 @@
+<div class="container">
+  <div class="row">
+    <div class="col-sm">
+      <div class="card mb-3">
+        <h4 class="card-header">
+
+          <%= @registration_klass.school.name.truncate(30) %>
+        </h4>
+        <div class="card-body">
+          <h4 class="card-title">
+            <%= @registration_klass.name %>
+          </h4>
+          <p class="card-text"><%= @registration_klass.course.name %></p>
+          <p class="card-text">
+            <span class="badge badge-info"><%= @registration_klass.year.strftime("%Y") %></span>&nbsp;
+            <small class="text-muted">  <%= @registration_klass.course.name %></small>
+          </p>
+        </div>
+        <div class="card-footer">
+          <%= link_to 'Back', [@registration_klass.school], class: "btn btn-sm btn-outline-primary" %>
+          <%= link_to 'Edit details', edit_school_registration_klass_path(@registration_klass.school, @registration_klass), class: "btn btn-sm btn-primary" %>
+        </div>
+      </div>
+    </div> <!-- .col -->
+
+    <div class="col-sm">
+      <div class="card">
+        <h4 class="card-header">
+          Class List
+          <!-- TODO redesign to view people in cards with their head pics and key demographic details -->
+        </h4>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item">Name 1</li>
+          <li class="list-group-item">Name 2</li>
+          <li class="list-group-item">Name 3</li>
+        </ul>
+      </div>
+    </div> <!-- .col -->
+  </div> <!-- .row -->
+</div> <!-- .container -->

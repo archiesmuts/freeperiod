@@ -1,45 +1,96 @@
-<div class="row">
-  <div class="col-sm-6">
-    <div class="card">
-      <div class="card-body">
-        <h4 class="card-title"><%= @school.name %></h4>
-        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-        <a href="#" class="btn btn-primary">Go somewhere</a>
+<div class="container">
+  <div class="row">
+    <div class="col-sm-6">
+      <div class="card">
+        <div class="card-body">
+          <h4 class="card-title"><%= @school.name %></h4>
+          <p class="card-text">Other school stuff.</p>
+          <%= link_to 'Back', schools_path, class: "card-link" %>
+          <%= link_to 'Edit', edit_school_path(@school), class: "card-link" %>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-6">
+      <div class="card">
+        <div class="card-body">
+          <h4 class="card-title">Special title treatment</h4>
+          <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+
+          <a href="#" class="btn btn-sm btn-primary">Go somewhere</a>
+        </div>
       </div>
     </div>
   </div>
-  <div class="col-sm-6">
-    <div class="card">
-      <div class="card-body">
-        <h4 class="card-title">Special title treatment</h4>
-        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-        <a href="#" class="btn btn-primary">Go somewhere</a>
-      </div>
-    </div>
-  </div>
-</div>
-<div class="">
   <div class="row">
     <div class="col">
-      <h2>Users</h2>
-      <% @school.users.each do |user| %>
-        <div class="">
-          <%= user.email %>, <%= user.try(:invitation_accepted_at) %>
+      <div class="card">
+        <div class="card-body">
+          <h4 class="card-title">Staff and Students</h4>
+          <p class="card-text">Things about staff and  students</p>
+          <% @school.users.each do |user| %>
+            <div class="">
+              <%= user.email %>, <%= user.invitation_accepted_at ? "Confirmed" : "Confirmation Pending" %>
+            </div>
+          <% end %>
+
         </div>
-      <% end %>
+      </div>
     </div>
+      <!-- TODO check why there is this error when resending an invitation to an exisiting unconfirmed user
+        Error performing ActionMailer::DeliveryJob
+        (Job ID: ......) from Async(mailers)
+        NoMethodError (undefined method `email' for nil:NilClass):
+      -->
     <div class="col">
-      <h3>Invite someone</h3>
-      <%= form_with(model: [@school, Membership.new] ) do |f| %>
-        <div class="form-group">
-          <%= f.text_field :email, class: "form-control" %>
+      <div class="card">
+        <div class="card-body">
+          <h4 class="card-title">Invite someone</h4>
+          <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+          <%= form_with(model: [@school, Membership.new] ) do |f| %>
+            <div class="form-group">
+              <%= f.text_field :email, class: "form-control" %>
+            </div>
+            <div class="actions">
+              <%= f.submit "Invite staff or students", class: "btn btn-primary" %>
+            </div>
+          <% end %>
         </div>
-        <div class="actions">
-          <%= f.submit %>
-        </div>
-      <% end %>
-      <%= link_to 'Edit', edit_school_path(@school) %> |
-      <%= link_to 'Back', schools_path %>
+      </div>
     </div>
   </div>
-</div>
+  <div class="row">
+    <div class="col">
+      <div class="card">
+        <div class="card-body">
+          <h4 class="card-title">Classes</h4>
+          <p class="card-text">description about classes.</p>
+          <div id="list-registration-klasses" class="list-group">
+            <% if @school.registration_klasses.any? %>
+              <%= render @school.registration_klasses %>
+            <% else %>
+              <a href="#" class="list-group-item list-group-item-action list-group-item-info nothing-to-list">Nothing to List</a>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col">
+      <div class="card">
+        <div class="card-body">
+          <h4 class="card-title">Classes</h4>
+          <p class="card-text">description about classes.</p>
+          <!-- check if current_user is admin -->
+          <%# if current_user.has_role?(:admin) %>
+              <%= link_to new_school_registration_klass_path(@school), remote: true, class: "btn btn-primary btn-sm" do %>
+                <%= fa_icon "plus-square" %>&nbsp;Create a new class
+              <% end %>
+          <%# end %>
+          <div class="collapse" id="add-registration-klass-form">
+            <p><%= render "registration_klasses/new_form" %></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div> <!-- .container -->
+<%= render "registration_klasses/modal_dialog" %>

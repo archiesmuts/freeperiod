@@ -19,7 +19,7 @@
           <td><%= course.name %></td>
           <td><%= course.grade.name %></td>
           <td><%= course.subject.name %></td>
-          <td><%= course.category.humanize %></td>
+          <td><%= course.subject_type.humanize %></td>
           <td><%= link_to 'Show', course %></td>
           <td><%= link_to 'Edit', edit_course_path(course) %></td>
           <td><%= link_to 'Destroy', course, method: :delete, data: { confirm: 'Are you sure?' } %></td>

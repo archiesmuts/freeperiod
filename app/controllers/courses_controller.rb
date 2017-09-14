@@ -47,9 +47,11 @@ class CoursesController < ApplicationController
       if @course.update(course_params)
         format.html { redirect_to @course, notice: 'Course was successfully updated.' }
         format.json { render :show, status: :ok, location: @course }
+        format.js   {  }
       else
         format.html { render :edit }
         format.json { render json: @course.errors, status: :unprocessable_entity }
+        format.js   { render layout: false, content_type: 'text/javascript' }
       end
     end
   end
@@ -73,6 +75,6 @@ class CoursesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def course_params
-      params.require(:course).permit(:name, :grade_id, :subject_id, :type, :slug)
+      params.require(:course).permit(:name, :grade_id, :subject_id, :subject_type, :slug)
     end
 end

@@ -4,7 +4,7 @@ class CreateCourses < ActiveRecord::Migration[5.1]
       t.string :name
       t.uuid :grade_id, foreign_key: true
       t.uuid :subject_id, foreign_key: true
-      t.integer :category, null: false, default: 0
+      t.integer :subject_type, null: false, default: 0
       t.string :slug, null: false, unique: true
 
       t.timestamps
