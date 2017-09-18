@@ -9,6 +9,8 @@ class User < ApplicationRecord
   friendly_id :slug_candidates, use: :slugged
   has_many :memberships, dependent: :destroy
   has_many :schools, through: :memberships
+  has_many :registrations
+  has_many :registration_klasses, through: :registrations
 
   validates :first_name, :last_name, :slug, presence: true
   validates :terms_of_privacy_statement, acceptance: true
@@ -26,10 +28,14 @@ class User < ApplicationRecord
   end
 
   def name
-   "#{first_name.titleize} #{last_name.titleize}"
+   "#{first_name} #{last_name}"
   end
   def name_reversed
-   "#{last_name.upcase}, #{first_name.titleize}"
+   "#{last_name}, #{first_name}"
+  end
+
+  def full_name
+    "#{last_name}, #{first_name}"
   end
 
 end

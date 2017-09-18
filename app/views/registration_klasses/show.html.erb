@@ -1,40 +1,64 @@
 <div class="container">
   <div class="row">
     <div class="col-sm">
-      <div class="card mb-3">
+      <div class="card border-primary my-3">
         <h4 class="card-header">
-
           <%= @registration_klass.school.name.truncate(30) %>
         </h4>
-        <div class="card-body">
+        <div class="card-body text-primary">
           <h4 class="card-title">
             <%= @registration_klass.name %>
           </h4>
-          <p class="card-text"><%= @registration_klass.course.name %></p>
+          <p class="card-text"><%= @registration_klass.course_name %></p>
           <p class="card-text">
             <span class="badge badge-info"><%= @registration_klass.year.strftime("%Y") %></span>&nbsp;
-            <small class="text-muted">  <%= @registration_klass.course.name %></small>
+            <small class="text-muted">  <%= @registration_klass.course_name %></small>
           </p>
         </div>
         <div class="card-footer">
-          <%= link_to 'Back', [@registration_klass.school], class: "btn btn-sm btn-outline-primary" %>
-          <%= link_to 'Edit details', edit_school_registration_klass_path(@registration_klass.school, @registration_klass), class: "btn btn-sm btn-primary" %>
+          <div class="d-flex justify-content-between">
+            <div>
+              <%= link_to [@registration_klass.school], class: "btn btn-sm btn-outline-secondary" do %>
+                <%= fa_icon "chevron-left" %>&nbsp;Back
+              <% end %>
+            </div>
+            <div>
+              <%= link_to edit_school_registration_klass_path(@registration_klass.school, @registration_klass), class: "btn btn-sm btn-primary" do %>
+                <%= fa_icon "pencil-square" %>&nbsp;Edit details
+              <% end %>
+            </div>
+            <div>
+              <%= link_to new_registration_klass_registration_path(@registration_klass), remote: true, class: "btn btn-primary btn-sm" do %>
+                <%= fa_icon "plus-square" %>&nbsp;Add a Learner/Teacher
+              <% end %>
+            </div>
+          </div>
         </div>
       </div>
     </div> <!-- .col -->
 
     <div class="col-sm">
-      <div class="card">
+      <div class="card border-primary my-3">
         <h4 class="card-header">
           Class List
           <!-- TODO redesign to view people in cards with their head pics and key demographic details -->
         </h4>
-        <ul class="list-group list-group-flush">
-          <li class="list-group-item">Name 1</li>
-          <li class="list-group-item">Name 2</li>
-          <li class="list-group-item">Name 3</li>
-        </ul>
+        <ul id="list-registrations" class="list-group">
+          <% if @registration_klass.registrations.any? %>
+            <%= render @registration_klass.registrations %>
+          <% else %>
+            <li class="list-group-item list-group-item-action list-group-item-info nothing-to-list">
+              Nothing to List
+            </li>
+          <% end %>
+      </ul>
       </div>
     </div> <!-- .col -->
   </div> <!-- .row -->
 </div> <!-- .container -->
+
+<!-- modal forms-->
+<div class="collapse" id="add-registration-form">
+  <p><%= render "registrations/new_form" %></p>
+</div>
+<%= render "registrations/modal_dialog" %>

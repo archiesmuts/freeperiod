@@ -1,0 +1,43 @@
+<%= form_with(model: [@registration.registration_klass, @registration], method: :patch, id: :edit_registration, class: :edit_registration) do |form| %>
+
+  <p> <strong><%= @registration.registration_klass.name %></strong> </p>
+
+  <div class="errors"></div>
+
+  <div class="form-group row">
+    <%= form.label :user_id, "Name of Student/Teacher", class: "col-4 col-form-label" %>
+    <div class="col">
+      <%= form.collection_select :user_id, User.all, :id, :full_name, {prompt: "Select a person"}, {class: "form-control", id: "registration_user_select"}%>
+      <!-- TODO create a scope to select users who are members of this school -->
+    </div>
+  </div>
+  <div class="form-group">
+    <%= form.label :user_type, "Is this person a Learner or a Teacher?" %><br>
+    <% Registration.user_types.keys.map do |user_type| %>
+      <label class="custom-control custom-radio">
+        <%= form.radio_button :user_type, user_type, class: "custom-control-input" %>
+        <span class="custom-control-indicator"></span>
+        <span class="custom-control-description"><%= user_type.humanize %></span>
+      </label>
+    <% end %>
+  </div>
+
+  <div class="form-group">
+    <label class="custom-control custom-checkbox">
+      <%= form.check_box :completed, class: "custom-control-input" %>
+      <span class="custom-control-indicator"></span>
+      <span class="custom-control-description">
+        <p class="text-primary">
+          Check to mark student/teacher as completed for the current year&nbsp;
+          <i class="fa fa-check" aria-hidden="true"></i>
+        </p>
+      </span>
+    </label>
+  </div>
+
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-primary" data-dismiss="modal" id="createRegistration">Cancel</button>
+    <%= form.submit "Save registration", class: "btn btn-primary" %>
+  </div>
+
+<% end %>

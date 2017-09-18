@@ -5,6 +5,8 @@ class RegistrationKlass < ApplicationRecord
 
   belongs_to :school
   belongs_to :course
+  has_many :registrations
+  has_many :users, through: :registrations
 
   validates :school_id, :course_id, :name, :klass_type, :year, :slug, presence: true
   # TODO add completed_at date and completed boolean that will update completed_at
@@ -18,4 +20,7 @@ class RegistrationKlass < ApplicationRecord
     name_changed?
   end
 
+  def course_name
+    self.course.name
+  end
 end

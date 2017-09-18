@@ -4,20 +4,31 @@ Rails.application.routes.draw do
 
   resources :users do
     resources :memberships
+    resources :registrations
   end
+
   resources :schools do
     resources :memberships, path: :users, module: :schools
     resources :registration_klasses
   end
+
   resources :memberships
+
   resources :courses do
     resources :registration_klasses
   end
+
   resources :grades do
     resources :courses
   end
+
   resources :subjects do
     resources :courses
   end
+
+  resources :registration_klasses do
+    resources :registrations
+  end
+
   root to: 'visitors#index'
 end
