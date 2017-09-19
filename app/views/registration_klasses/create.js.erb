@@ -16,7 +16,7 @@ var el = $('.new_registration_klass');
 
 $('#list-registration-klasses').prepend('<%= j render @registration_klass %>');
 $("#registration-klass-<%= @registration_klass.id %>").hide().fadeIn(1000);
-$("#registration-klass-").remove();
+$('#registration-klass-dialog').modal("hide");
 $('.nothing_to_list').detach();
 
 // Clear form

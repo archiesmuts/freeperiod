@@ -1,0 +1,6 @@
+<h1>Editing Lesson Plan</h1>
+
+<%= render 'edit_form', lesson_plan: @lesson_plan %>
+
+<%= link_to 'Show', [@lesson_plan.registration_klass, @lesson_plan] %>
+<%= link_to 'Back', registration_klass_lesson_plans_path(@lesson_plan.registration_klass) %>

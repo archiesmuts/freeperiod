@@ -1,0 +1,36 @@
+var el = $('.new_lesson_plan');
+
+<% if @lesson_plan.errors.any? %>
+
+  // Create a list of errors
+  var errors = $('<ul class="list-group" />');
+
+  <% @lesson_plan.errors.full_messages.each do |error| %>
+    errors.append('<li class="list-group-item list-group-item-danger"><%= j error %></li>');
+  <% end %>
+
+  // Display errors on form
+  el.find('.errors').html(errors);
+
+<% else %>
+
+$('#list-lesson-plans').append('<%= j render @lesson_plan %>');
+$("#lesson-plan-<%= @lesson_plan.id %>").hide().fadeIn(1000);
+$('#lesson-plan-dialog').modal('hide');
+$('.no-lesson-plans-to-list').detach();
+<% if @lesson_plan.four? %>
+  $('#show-school-term').html("<span class='badge badge-info'>Term 4</span>");
+<% elsif @lesson_plan.three? %>
+  $('#show-school-term').html("<span class='badge badge-info'>Term 3</span>");
+<% elsif @lesson_plan.two? %>
+  $('#show-school-term').html("<span class='badge badge-info'>Term 2</span>");
+<% else %>
+  $('#show-school-term').html("<span class='badge badge-info'>Term 1</span>");
+<% end %>
+
+// Clear form
+el.find('input:text,text_area').val('');
+el.find('.errors').empty();
+
+<% end %>
+// Source: www.alfajango.com/blog/rails-3-remote-links-and-forms-data-type-with-jquery/

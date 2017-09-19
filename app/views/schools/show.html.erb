@@ -25,7 +25,8 @@
     <div class="col">
       <div class="card">
         <div class="card-body">
-          <h4 class="card-title">Staff and Students</h4>
+          <h4 class="card-title">Staff and Students TODO move list to memberships#index</h4>
+          <!--  TODO move list to memberships#index  to clean up schools#show view -->
           <p class="card-text">Things about staff and  students</p>
           <% @school.users.each do |user| %>
             <div class="">
@@ -62,7 +63,8 @@
     <div class="col">
       <div class="card">
         <div class="card-body">
-          <h4 class="card-title">Classes</h4>
+          <h4 class="card-title">Classes TODO Move this to registration_klasses/#index</h4>
+          <!--  TODO Move list of classes to registration_klasses/#index to clean up schools/#show view -->
           <p class="card-text">description about classes.</p>
           <div id="list-registration-klasses" class="list-group">
             <% if @school.registration_klasses.any? %>

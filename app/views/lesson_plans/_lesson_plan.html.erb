@@ -1,0 +1,16 @@
+<li id="lesson-plan-<%= lesson_plan.id %>" class="list-group-item d-flex justify-content-between" >
+  <div class="">
+
+      <%= term_label lesson_plan.term %>
+      <!-- https://rails.devcamp.com/rails-bdd-tdd-course/advanced-features-rails/creating-custom-view-helper-rails -->
+    <!-- TODO write a helper to display lesson_plan enum term strings as numbers e.g. one should be 1 etc. -->
+    &nbsp;<%= link_to lesson_plan.name, [lesson_plan.registration_klass, lesson_plan] %>
+  </div>
+  <div class="">
+    <%= link_to [lesson_plan.registration_klass, lesson_plan], method: :delete,
+      data: { confirm: 'Are you absolutely sure? This will be gone forever!' },
+      remote: true, class: "btn btn-sm btn-danger btn-link delete-lesson-plan" do %>
+      <span class="text-danger"><i class="fa fa-trash" aria-hidden="true"></i>&nbsp;Delete</span>
+    <% end %>
+  </div>
+</li>

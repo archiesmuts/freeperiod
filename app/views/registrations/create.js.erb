@@ -16,7 +16,8 @@ var el = $('.new_registration');
 
 $('#list-registrations').prepend('<%= j render @registration %>');
 $("#registration-<%= @registration.id %>").hide().fadeIn(1000);
-$('.nothing_to_list').detach();
+$('#registration-dialog').modal('hide');
+$('.no-registrations-to-list').detach();
 
 // Clear form
 el.find('input:text,text_area').val('');

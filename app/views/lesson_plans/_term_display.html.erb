@@ -1,0 +1,9 @@
+<% if @lesson_plan.four? %>
+  <span class='badge badge-dark'>Term 4</span>
+<% elsif @lesson_plan.three? %>
+  <span class='badge badge-success'>Term 3</span>
+<% elsif @lesson_plan.two? %>
+  <span class='badge badge-secondary'>Term 2</span>
+<% else %>
+  <span class='badge badge-primary'>Term 1</span>
+<% end %>

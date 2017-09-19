@@ -7,6 +7,7 @@ class RegistrationKlass < ApplicationRecord
   belongs_to :course
   has_many :registrations
   has_many :users, through: :registrations
+  has_many :lesson_plans
 
   validates :school_id, :course_id, :name, :klass_type, :year, :slug, presence: true
   # TODO add completed_at date and completed boolean that will update completed_at

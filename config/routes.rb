@@ -28,6 +28,7 @@ Rails.application.routes.draw do
 
   resources :registration_klasses do
     resources :registrations
+    resources :lesson_plans
   end
 
   root to: 'visitors#index'

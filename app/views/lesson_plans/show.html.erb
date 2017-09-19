@@ -1,0 +1,20 @@
+<div class="container">
+  <div id="show-lesson-plan-card-<%= @lesson_plan.id %>">
+    <div id="lesson-plan-card-<%= @lesson_plan.id %>" class="card border-primary my-3" style="max-width: 30rem;">
+      <div class="card-header"><%= @lesson_plan.registration_klass.name %></div>
+      <div class="card-body text-primary">
+        <h4 class="card-title"><%= @lesson_plan.name %></h4>
+        <p class="card-text">
+           <span id="school-term">
+             <%= render "term_display" %>
+          </span>
+        </p>
+        <%= link_to 'Back', school_registration_klass_path(@registration_klass.school, @registration_klass), class: "btn btn-sm btn-outline-primary" %>
+        <%= link_to 'Edit', edit_registration_klass_lesson_plan_path(@lesson_plan.registration_klass, @lesson_plan), remote: true, class: "btn btn-sm btn-primary" %>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<%= render "lesson_plans/modal_dialog" %>

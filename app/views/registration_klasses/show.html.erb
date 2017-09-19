@@ -17,19 +17,14 @@
         </div>
         <div class="card-footer">
           <div class="d-flex justify-content-between">
-            <div>
-              <%= link_to [@registration_klass.school], class: "btn btn-sm btn-outline-secondary" do %>
+            <div class="p-1">
+              <%= link_to [@registration_klass.school], class: "btn btn-sm btn-outline-primary" do %>
                 <%= fa_icon "chevron-left" %>&nbsp;Back
               <% end %>
             </div>
-            <div>
+            <div class="p-1">
               <%= link_to edit_school_registration_klass_path(@registration_klass.school, @registration_klass), class: "btn btn-sm btn-primary" do %>
                 <%= fa_icon "pencil-square" %>&nbsp;Edit details
-              <% end %>
-            </div>
-            <div>
-              <%= link_to new_registration_klass_registration_path(@registration_klass), remote: true, class: "btn btn-primary btn-sm" do %>
-                <%= fa_icon "plus-square" %>&nbsp;Add a Learner/Teacher
               <% end %>
             </div>
           </div>
@@ -40,21 +35,59 @@
     <div class="col-sm">
       <div class="card border-primary my-3">
         <h4 class="card-header">
-          Class List
+          <div class="d-flex justify-content-between">
+          <div>
+            Class List
+          </div>
+          <div>
+            <%= link_to new_registration_klass_registration_path(@registration_klass), remote: true, class: "btn btn-sm btn-primary" do %>
+              <%= fa_icon "user-plus" %>&nbsp;Add a Learner/Teacher
+            <% end %>
+          </div>
+        </div>
           <!-- TODO redesign to view people in cards with their head pics and key demographic details -->
         </h4>
         <ul id="list-registrations" class="list-group">
           <% if @registration_klass.registrations.any? %>
             <%= render @registration_klass.registrations %>
           <% else %>
-            <li class="list-group-item list-group-item-action list-group-item-info nothing-to-list">
-              Nothing to List
+            <li class="list-group-item list-group-item-action list-group-item-info no-registrations-to-list">
+              No people to list
             </li>
           <% end %>
-      </ul>
+        </ul>
       </div>
     </div> <!-- .col -->
   </div> <!-- .row -->
+
+  <div class="row">
+    <div class="col-md-6">
+      <div class="card border-primary my-3">
+        <h4 class="card-header">
+          <div class="d-flex justify-content-between">
+            <div>
+              Lesson Plans
+            </div>
+            <div>
+              <%= link_to new_registration_klass_lesson_plan_path(@registration_klass), remote: true, class: "btn btn-primary btn-sm" do %>
+                <%= fa_icon "plus-square" %>&nbsp;Add a Lesson plan
+              <% end %>
+            </div>
+          </div>
+          <!-- TODO redesign to view people in cards with their head pics and key demographic details -->
+        </h4>
+        <ul id="list-lesson-plans" class="list-group">
+          <% if @registration_klass.lesson_plans.any? %>
+            <%= render @registration_klass.lesson_plans %>
+          <% else %>
+            <li class="list-group-item list-group-item-action list-group-item-info no-lessons-to-list">
+              No lesson plans to list
+            </li>
+          <% end %>
+        </ul>
+      </div>
+    </div>
+  </div>
 </div> <!-- .container -->
 
 <!-- modal forms-->
@@ -62,3 +95,8 @@
   <p><%= render "registrations/new_form" %></p>
 </div>
 <%= render "registrations/modal_dialog" %>
+
+<div class="collapse" id="add-lesson-plan-form">
+  <p><%= render "lesson_plans/new_form" %></p>
+</div>
+<%= render "lesson_plans/modal_dialog" %>
