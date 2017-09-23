@@ -1,22 +1,27 @@
 class Membership < ApplicationRecord
   resourcify
+  before_validation :set_school_id, if: :email?
   belongs_to :user
   belongs_to :school
 
   # validates_uniqueness_of :user_id, scope: :school_id, message: "membership already exists"
   validates :user_id, :school_id, :member, presence: true
   attribute :email, :string
-  before_validation :set_school_id, if: :email?
+  attribute :slug, :string
+
 
   def set_school_id
-    self.user = User.invite!(email: email, slug: "first_name-last_name")
+    self.user = User.invite!(email: email, slug: slug)
   end
+
   # perhaps add management
   enum member: {
     not_defined: 0,
-    staff: 1,
-    student: 2,
-    guardian: 3
+    account_owner: 1,
+    educator: 2,
+    learner: 3,
+    parent_or_guardian: 4,
+    general: 5
   }
 
   # enum permission:  {
@@ -30,7 +35,7 @@ class Membership < ApplicationRecord
   end
 
   def school_name=(name)
-    self.school = School.where(name: name).take if name.present?
+    self.school = School.create(name: name)
   end
 
   def user_name

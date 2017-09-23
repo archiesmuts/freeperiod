@@ -5,8 +5,16 @@
         <div class="card-body">
           <h4 class="card-title"><%= @school.name %></h4>
           <p class="card-text">Other school stuff.</p>
-          <%= link_to 'Back', schools_path, class: "card-link" %>
-          <%= link_to 'Edit', edit_school_path(@school), class: "card-link" %>
+          <div class="d-flex justify-content-between">
+            <div>
+              <%= link_to current_user, class: "btn btn-sm btn-outline-primary" do %>
+                <%= fa_icon "smile-o" %>&nbsp;Back to my page
+              <% end %>
+            </div>
+            <div>
+              <%= link_to 'Edit details', edit_school_path(@school), class: "btn btn-sm btn-primary" %>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -27,12 +35,7 @@
         <div class="card-body">
           <h4 class="card-title">Staff and Students TODO move list to memberships#index</h4>
           <!--  TODO move list to memberships#index  to clean up schools#show view -->
-          <p class="card-text">Things about staff and  students</p>
-          <% @school.users.each do |user| %>
-            <div class="">
-              <%= user.email %>, <%= user.invitation_accepted_at ? "Confirmed" : "Confirmation Pending" %>
-            </div>
-          <% end %>
+          <%= link_to "View all registered users", school_memberships_path(@school), class: "btn btn-primary btn-sm" %>
 
         </div>
       </div>
@@ -46,15 +49,7 @@
       <div class="card">
         <div class="card-body">
           <h4 class="card-title">Invite someone</h4>
-          <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-          <%= form_with(model: [@school, Membership.new] ) do |f| %>
-            <div class="form-group">
-              <%= f.text_field :email, class: "form-control" %>
-            </div>
-            <div class="actions">
-              <%= f.submit "Invite staff or students", class: "btn btn-primary" %>
-            </div>
-          <% end %>
+
         </div>
       </div>
     </div>

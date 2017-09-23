@@ -1,0 +1,51 @@
+<div class="container">
+  <div class="card-deck py-2">
+    <div class="card border-primary">
+      <div class="card-body text-dark">
+        <h4 class="card-title">School Memberships </h4>
+        <h6 class="card-subtitle mb-2 text-muted">People invited and confirmed</h6>
+        <%= link_to "Back to school page", @school, class: "btn btn-sm btn-outline-primary" %>
+        <p class="card-text">Some quick example text to build on the card title and
+          make up the bulk of the card's content.
+        </p>
+
+        <%= form_with(model: [@school, Membership.new], local: true, id: :new_membership, class: :new_membership ) do |f| %>
+
+          <div class="form-group">
+            <%= f.label :email, "Email address" %>
+            <%= f.email_field :email, id: :membership_email, class: "form-control", required: true, placeholder: "Type the email of the person you want to invite" %>
+          </div>
+          <div class="actions">
+            <%= f.submit "Send invitation", class: "btn btn-primary btn-sm" %>
+          </div>
+      <% end %>
+      </div>
+    </div>
+    <div class="card border-primary">
+      <div class="card-body text-dark">
+        <h4 class="card-title">invitations</h4>
+        <h6 class="card-subtitle mb-2 text-muted">People invited and confirmed</h6>
+        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+
+      </div>
+    </div>
+  </div>
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Confirmed</th>
+        <th>Date confirmed</th>
+        <th></th>
+      </tr>
+    </thead>
+
+    <tbody id="list-members">
+        <%= render @school.memberships %>
+    </tbody>
+  </table>
+</div>
+<%#= render "modal_dialog" %>

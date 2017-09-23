@@ -14,13 +14,11 @@ var el = $('.new_membership');
 
 <% else %>
 
-$('#list_memberships').prepend('<%= j render @membership %>');
+$('#list-members').prepend('<%= j render @membership %>');
 $("#membership-<%= @membership.id %>").hide().fadeIn(1000);
-$("#membership-").remove();
 $('#nothing_to_list').detach();
-$('#membership_user_name').val("");
-$('#membership_user_name').focus();
-
+$('#membership_email').val("");
+$("user-invitation-dialog").modal("hide")
 // Clear form
 el.find('input:text,text_area').val('');
 el.find('.errors').empty();

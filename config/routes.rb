@@ -11,8 +11,8 @@ Rails.application.routes.draw do
     resources :memberships, path: :users, module: :schools
     resources :registration_klasses
   end
-
   resources :memberships
+
 
   resources :courses do
     resources :registration_klasses

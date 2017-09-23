@@ -1,3 +1,4 @@
+require "securerandom"
 class User < ApplicationRecord
   rolify
   # Include default devise modules. Others available are:
@@ -5,6 +6,7 @@ class User < ApplicationRecord
   devise  :database_authenticatable, :registerable, :recoverable, :rememberable,
           :trackable, :validatable, :confirmable, :lockable, :timeoutable, :invitable
 
+  before_create :generate_uuid, unless: :slug?
   extend FriendlyId
   friendly_id :slug_candidates, use: :slugged
   has_many :memberships, dependent: :destroy
@@ -37,5 +39,8 @@ class User < ApplicationRecord
   def full_name
     "#{last_name}, #{first_name}"
   end
-
+  private
+  def generate_uuid
+    self.slug = SecureRandom.uuid
+  end
 end

@@ -1,8 +1,14 @@
-<h1>Editing Membership</h1>
+<div class="container">
+  <div class="row">
+    <div class="col-md-6">
+      <h1>Editing School Membership</h1>
 
-<%= render 'new_organisation_form', membership: @membership %>
+      <%= render 'form', membership: @membership %>
 
-<% if current_user.has_role?(:admin) %>
-<%= link_to 'Back to Index', memberships_path, class: "btn btn-outline-primary" %>
-<% end %>
-<%= link_to 'Back', @membership, class: "btn btn-primary" %>
+
+      <%= link_to 'Back to my page', current_user, class: "btn btn-outline-primary" %>
+
+      <%= link_to 'Back', @membership, class: "btn btn-primary" %>
+    </div>
+  </div>
+</div>

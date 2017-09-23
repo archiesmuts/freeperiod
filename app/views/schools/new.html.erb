@@ -1,5 +1,9 @@
-<h1>New School</h1>
-
-<%= render 'form', school: @school %>
-
-<%= link_to 'Back', schools_path %>
+<div class="container">
+  <div class="row pt-2">
+    <div class="col-sm-8">
+      <h1>New School</h1>
+      <%= link_to 'Back', schools_path, class: "btn btn-outline-primary"  %>
+      <%= render 'form', school: @school, class: "btn btn-primary" %>
+    </div>
+  </div>
+</div>

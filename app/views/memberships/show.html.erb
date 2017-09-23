@@ -11,6 +11,8 @@
         <%# end %>
         <%= link_to 'Back to My Page', current_user, class: "btn btn-outline-primary" %>
         <%= link_to 'Edit', edit_membership_path(@membership), class: "btn btn-primary" %>
+        <%= link_to "Continue", school_path(@membership.school), class: "btn btn-primary" %>
+
       </div>
     </div>
   </div>

@@ -1,6 +1,5 @@
-<h1>New Membership</h1>
+<h1>New School Membership</h1>
 
-<%= render 'new_user_form', membership: @membership %>
-<%#if current_user.has_role?(:admin) %>
-  <%= link_to 'Back to Index', memberships_path, class: "btn btn-link" %>
-<%# end %>
+<%= render 'form', membership: @membership %>
+
+  <%= link_to 'Cancel', current_user, class: "btn btn-primary" %>

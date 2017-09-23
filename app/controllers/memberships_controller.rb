@@ -29,7 +29,12 @@ class MembershipsController < ApplicationController
 
     respond_to do |format|
       if @membership.save
-        format.html { redirect_to @membership, notice: 'Membership was successfully created.' }
+        user = @membership.user
+        school = @membership.school
+        if @membership.account_owner?
+          user.add_role(:account_owner, school)
+        end
+        format.html { redirect_to @membership, notice: 'School Account was successfully created.' }
         format.json { render :show, status: :created, location: @membership }
       else
         format.html { render :new }
@@ -57,7 +62,7 @@ class MembershipsController < ApplicationController
   def destroy
     @membership.destroy
     respond_to do |format|
-      format.html { redirect_to memberships_url, notice: 'Membership was successfully destroyed.' }
+      format.html { redirect_to current_user, notice: 'Membership was successfully destroyed.' }
       format.json { head :no_content }
     end
   end

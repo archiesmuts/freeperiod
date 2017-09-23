@@ -1,0 +1,9 @@
+<%= form_with(model: [@school, Membership.new], id: :new_membership, class: :new_membership ) do |f| %>
+  <div class="form-group">
+    <%= f.label :email, "Type email of invitee" %>
+    <%= f.text_field :email, class: "form-control" %>
+  </div>
+  <div class="actions">
+    <%= f.submit "Invite staff or students", class: "btn btn-primary" %>
+  </div>
+<% end %>

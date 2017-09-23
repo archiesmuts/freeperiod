@@ -1,20 +1,22 @@
-<h1><%= fa_icon "home" %>&nbsp;My Page</h1>
-<p class="h4">
-  <%= current_user.first_name if current_user.first_name %>
-  <%= current_user.last_name if current_user.last_name %>&nbsp;
-  <small>
-    <%= fa_icon "envelope" %> <%= current_user.try(:email) %>
-    <%# if current_user.has_role?(:admin) %>
-      <!-- <span class="badge badge-primary">Admin</span> -->
-    <%# elsif current_user.has_role?(:faculty) %>
-      <!-- <span class="badge badge-primary">Faculty</span> -->
-    <%# end %>
-    <%= link_to "Change my Sign-in details", edit_user_registration_path,
-                class: "btn btn-sm btn-outline-primary" %>
-  </small>
-</p>
+<div class="container">
 
-<hr>
+  <h1><%= fa_icon "home" %>&nbsp;My Page</h1>
+  <p class="h4">
+    <%= current_user.first_name if current_user.first_name %>
+    <%= current_user.last_name if current_user.last_name %>&nbsp;
+    <small>
+      <%= fa_icon "envelope" %> <%= current_user.try(:email) %>
+      <%# if current_user.has_role?(:admin) %>
+        <!-- <span class="badge badge-primary">Admin</span> -->
+      <%# elsif current_user.has_role?(:faculty) %>
+        <!-- <span class="badge badge-primary">Faculty</span> -->
+      <%# end %>
+      <%= link_to "Change my Sign-in details", edit_user_registration_path,
+                  class: "btn btn-sm btn-outline-primary" %>
+    </small>
+  </p>
+
+  <hr>
 
   <!-- Nav Pills -->
   <p>
@@ -24,16 +26,14 @@
       </li>
       <%# if current_user.has_any_role?(:admin, :faculty) %>
       <li class="nav-item">
-        <a class="nav-link" data-toggle="pill" href="#assignments" role="tab">My Assignments&nbsp;
+        <a class="nav-link" data-toggle="pill" href="#user-registration-klasses" role="tab">My Classes&nbsp;
           <span class="badge badge-pill badge-info pull-right"></span>
         </a>
       </li>
       <%# end %>
       <%# if current_user.has_role?(:admin) %>
       <li class="nav-item">
-        <a class="nav-link" data-toggle="pill" href="#adminonly" role="tab">Notes
-          <span class="badge badge-primary">Admin</span>
-        </a>
+        <a class="nav-link" data-toggle="pill" href="#roles" role="tab">Access Permissions </a>
       </li>
       <%# end %>
       <!--  <li class="nav-item">
@@ -45,7 +45,7 @@
     <!-- Tab panes -->
     <div class="tab-content">
       <div class="tab-pane active" id="home" role="tabpanel">
-        <section>
+        <div class="row">
           <div class="col-md-6">
 
         <h3>Schools to which you belong
@@ -58,45 +58,54 @@
           </small>
         </h3>
 
-        <ul id="list_memberships" class="list-group" role="tablist">
-          <%# unless current_user.memberships.empty? %>
-            <%#= render current_user.memberships%>
-            <%# else %>
-            <%#= render "nothing_to_list" %>
-            <%#= link_to "Click here to add or link to your Organisation.", new_user_membership_path(@user), class: "btn btn-success" %>
-          <%# end %>
-        </ul>
-        <p class="text-info">
-          Colleagues from other organisations can invite you to collaborate with them.
-          These organisations will be listed here along with your own.
-        </p>
+        <div id="list-memberships" class="list-group" role="tablist">
+          <% unless current_user.memberships.empty? %>
+            <%= render current_user.memberships%>
+          <% else %>
+            <%= link_to "Create your School Account", new_user_membership_path(current_user), class: "btn btn-success" %>
+            <%= render "nothing_to_list" %>
+          <% end %>
+        </div>
       </div>
-      </section>
+      </div>
       </div>
       <%# if current_user.has_any_role?(:admin, :faculty) %>
         <!-- true -->
-      <div class="tab-pane" id="assignments" role="tabpanel">
-        <h3>Assignments</h3>
-
+      <div class="tab-pane" id="user-registration-klasses" role="tabpanel">
+        <h3>My Classes</h3>
+        <ul class="list-group" role="tablist">
+          <% unless current_user.registration_klasses.empty? %>
+            <% current_user.registration_klasses.each do |registration_klass| %>
+              <li class="list-group-item list-group-item-primary">
+                "<%= registration_klass.name %>" for <%= role.registration_klass.klass_type.humanize %>
+              </li>
+            <% end %>
+            <% else %>
+            <%= render "nothing_to_list" %>
+          <% end %>
+        </ul>
+      </div>
       <%# if current_user.has_role?(:admin) %>
-      <div class="tab-pane" id="adminonly" role="tabpanel">
-        <section>
+      <div class="tab-pane" id="roles" role="tabpanel">
+        <div class="row">
           <div class="col-md-6">
-            <p><strong>Tip: </strong> If you want to add a faculty member navigate
-            to <%#= link_to 'Memberships', memberships_path %>, also accessible
-            via the Admin tools menu, click on "New membership" with "Faculty Member"
-            as the person to add and "Faculty Organisation - BMSF" as the organisation. Choose "Faculty"
-            as the type of member.
-            </p>
+            <h3>Access Permissions</h3>
+            <ul class="list-group" role="tablist">
+              <% current_user.roles.each do |role| %>
+                <li class="list-group-item list-group-item-primary">
+                  "<%= role.name.humanize %>" for <%= role.resource_type %>
+                </li>
+              <% end %>
+            </ul>
           </div>
-        </section>
+        </div>
       </div>
       <%# end %>
       <!-- <div class="tab-pane" id="settings" role="tabpanel">
         <%# render "nothing_to_list" %>
       </div> -->
     </div>
-
+</div>
 
 <!-- modal assignments edit action -->
 <%# render "assignments/modal_dialog" %>
