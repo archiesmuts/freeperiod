@@ -1,3 +1,9 @@
-<%= link_to [registration_klass.school, registration_klass], class: "list-group-item list-group-item-action list-group-item-primary"  do %>
-  <%= fa_icon "address-book" %> <%= registration_klass.name %>
-<% end %>
+<tr id="registration-klass-<%= registration_klass.id %>">
+  <td><%= registration_klass.name %></td>
+  <td><%= registration_klass.klass_type.humanize %></td>
+  <td><%= registration_klass.course.name %></td>
+  <td><%= registration_klass.year.strftime("%Y") %></td>
+  <td><%= link_to 'Show', [registration_klass.school, registration_klass] %></td>
+  <td><%= link_to 'Edit', edit_school_registration_klass_path(registration_klass.school, registration_klass) %></td>
+  <td><%= link_to 'Destroy', [registration_klass.school, registration_klass], method: :delete, data: { confirm: 'Are you sure?' } %></td>
+</tr>

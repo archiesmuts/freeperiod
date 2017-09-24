@@ -1,12 +1,12 @@
 class RegistrationKlassesController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_school, only: [:new, :create, :show, :edit, :update]
+  before_action :set_school, only: [:index, :new, :create, :show, :edit, :update, :destroy]
   before_action :set_registration_klass, only: [:show, :edit, :update, :destroy]
 
   # GET /registration_klasses
   # GET /registration_klasses.json
   def index
-    @registration_klasses = RegistrationKlass.all
+    @registration_klasses = @school.registration_klasses.all
   end
 
   # GET /registration_klasses/1
@@ -62,7 +62,7 @@ class RegistrationKlassesController < ApplicationController
   def destroy
     @registration_klass.destroy
     respond_to do |format|
-      format.html { redirect_to registration_klasses_url, notice: 'Class was successfully destroyed.' }
+      format.html { redirect_to school_registration_klasses_path(@school), notice: 'Class was successfully destroyed.' }
       format.json { head :no_content }
       format.js   { }
     end

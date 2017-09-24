@@ -1,33 +1,27 @@
-<p id="notice"><%= notice %></p>
-
-<h1>Registration Klasses</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>School</th>
-      <th>Course</th>
-      <th>Year</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @registration_klasses.each do |registration_klass| %>
+<div class="container pt-3">
+  <h1>Registration and Subject Classes </h1>
+  <div class="py-2">
+    <%= link_to "School page", @school, class: "btn btn-sm btn-outline-primary" %>&nbsp;
+    <%= link_to 'Create a new Registration or Subject Class', new_school_registration_klass_path(@school),
+      remote: true, class: "btn btn-sm btn-primary" %>
+  </div>
+  <!-- TODO change subject/course looup to autocomplete search -->
+  <table class="table">
+    <thead>
       <tr>
-        <td><%= registration_klass.name %></td>
-        <td><%= registration_klass.school_id %></td>
-        <td><%= registration_klass.course_id %></td>
-        <td><%= registration_klass.year %></td>
-        <td><%= link_to 'Show', registration_klass %></td>
-        <td><%= link_to 'Edit', edit_registration_klass_path(registration_klass) %></td>
-        <td><%= link_to 'Destroy', registration_klass, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <th>Class Name</th>
+        <th>Class Type</th>
+        <th>Course</th>
+        <th>Year</th>
+        <th colspan="3"></th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
 
-<br>
+    <tbody id="list-registration-klasses">
+      <%= render @school.registration_klasses %>
+    </tbody>
 
-<%= link_to 'New Registration Klass', new_registration_klass_path %>
+  </table>
+</div>
+<!-- modal dialog for creating registration classes -->
+<%= render "modal_dialog" %>

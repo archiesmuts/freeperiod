@@ -21,6 +21,7 @@
               <%= link_to [@registration_klass.school], class: "btn btn-sm btn-outline-primary" do %>
                 <%= fa_icon "chevron-left" %>&nbsp;Back
               <% end %>
+              <%= link_to "View classes index", school_registration_klasses_path(@school), class: "btn btn-sm btn-outline-dark" %>
             </div>
             <div class="p-1">
               <%= link_to edit_school_registration_klass_path(@registration_klass.school, @registration_klass), class: "btn btn-sm btn-primary" do %>

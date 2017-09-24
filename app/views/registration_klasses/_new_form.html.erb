@@ -16,15 +16,14 @@
   </div>
 
   <div class="form-group">
-    <%= form.label :name, "Give your class a unique name" %>
-    <%= form.text_field :name, id: :registration_klass_name, class: "form-control" %>
-  </div>
-
-
-  <div class="form-group">
     <%= form.label :course_id %>
     <%= form.collection_select :course_id, Course.order(:name), :id, :name, { }, {class: "form-control"} %>
     <!-- TODO add autocomplete to find course_name with course_selection_controller -->
+  </div>
+
+  <div class="form-group">
+    <%= form.label :name, "Give your class a unique name" %>
+    <%= form.text_field :name, id: :registration_klass_name, class: "form-control" %>
   </div>
 
   <div class="form-group">
@@ -37,7 +36,7 @@
         class: "form-control" %>
   </div>
   <div class="modal-footer">
-    <button type="button" class="btn btn-default" data-dismiss="modal" id="createRegistrationKlass">Cancel</button>
+    <button type="button" class="btn btn-outline-secondary" data-dismiss="modal" id="createRegistrationKlass">Cancel</button>
     <%= form.submit "Save class", class: "btn btn-primary" %>
   </div>
 
