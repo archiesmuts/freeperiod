@@ -1,0 +1,13 @@
+// Add the dialog title
+$('#assessment-dialog h4').html("Create an Assessment");
+
+// Render the new form
+$('.modal-body').html('<%= j render "assessments/new_form" %>');
+
+// Show the dynamic dialog
+$('#assessment-dialog').modal("show");
+
+// Set focus to the first element
+$('#assessment-dialog').on('shown.bs.modal', function () {
+  $('#assessment_name').focus();
+});

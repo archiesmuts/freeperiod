@@ -1,7 +1,20 @@
 <%= form_with(model: [@registration_klass.school, @registration_klass], method: :patch, id: :edit_registration_klass, class: :edit_registration_klass, local: true) do |form| %>
+
+  <% if registration_klass.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(registration_klass.errors.count, "error") %> prohibited this assessment from being saved:</h2>
+
+      <ul>
+      <% registration_klass.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+
   <h4><%= @registration_klass.school.name %></h4>
 
-  <div class="errors"></div>
 
   <div class="form-group">
     <%= form.label :klass_type, "Is this a Subject Class or a Registration Class?" %><br>

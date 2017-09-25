@@ -1,0 +1,13 @@
+<span class='badge badge-info'>
+  <% if @assessment.exam? %>
+      Examination
+    <% elsif @assessment.practical_task? %>
+      Practical task
+    <% elsif @assessment.investigation? %>
+      Investigation
+    <% elsif @assessment.project? %>
+      Project
+    <% else %>
+      Test
+  <% end %>
+</span>

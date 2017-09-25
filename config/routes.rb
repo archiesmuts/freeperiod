@@ -31,5 +31,9 @@ Rails.application.routes.draw do
     resources :lesson_plans
   end
 
+  resources :lesson_plans do
+    resources :assessments
+  end
+
   root to: 'visitors#index'
 end

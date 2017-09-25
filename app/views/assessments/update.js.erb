@@ -1,0 +1,39 @@
+var el = $('.edit_assessment');
+
+<% if @assessment.errors.any? %>
+
+  // Create a list of errors
+  var errors = $('<ul class="list-group" />');
+
+  <% @assessment.errors.full_messages.each do |error| %>
+    errors.append('<li class="list-group-item list-group-item-danger"><%= j error %></li>');
+  <% end %>
+
+  // Display errors on form
+  el.find('.errors').html(errors);
+
+<% else %>
+
+$('#list-assessments').append('<%= j render @assessment %>');
+$("#assessment-<%= @assessment.id %>").hide().fadeIn(1000);
+$("#show-assessment-card-<%= @assessment.id %>").hide().fadeIn(1000);
+$('#assessment-dialog').modal("hide");
+
+<% if @assessment.exam? %>
+    $('#assessment-type').html("<span class='badge badge-info'>Examination</span>");
+  <% elsif @assessment.practical_task? %>
+    $('#assessment-type').html("<span class='badge badge-info'>Practical task</span>");
+  <% elsif @assessment.investigation? %>
+    $('#assessment-type').html("<span class='badge badge-info'>Investigation</span>");
+  <% elsif @assessment.project? %>
+    $('#assessment-type').html("<span class='badge badge-info'>Project</span>");
+  <% else %>
+    $('#assessment-type').html("<span class='badge badge-info'>Test</span>");
+<% end %>
+
+// Clear form
+el.find('input:text,text_area').val('');
+el.find('.errors').empty();
+
+<% end %>
+// Source: www.alfajango.com/blog/rails-3-remote-links-and-forms-data-type-with-jquery/

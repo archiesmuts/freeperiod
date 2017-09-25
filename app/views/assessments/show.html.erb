@@ -1,0 +1,56 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md">
+      <div id="show-assessment-card-<%= @assessment.id %>">
+        <div id="assessment-card-<%= @assessment.id %>" class="card border-primary my-3">
+          <h5 class="card-header"><%= fa_icon "check" %>&nbsp;Assessment</h5>
+          <div class="card-body text-primary">
+            <h4 class="card-title"><%= @assessment.name %></h4>
+            <h6 class="card-subtitle mb-2 text-muted">Lesson Plan: <%= @assessment.lesson_plan_name %></h6>
+            <p class="card-text">
+               <span id="assessment-type">
+                 <%= render "assessment_type_display" %>
+              </span>
+            </p>
+          </div>
+          <div class="card-footer">
+            <div class="d-flex justify-content-between">
+              <%= link_to [@lesson_plan.registration_klass, @assessment.lesson_plan], class: "btn btn-sm btn-outline-primary" do %>
+                <%= fa_icon "arrow-left" %>&nbsp;Lesson plan
+              <% end %>
+              <%= link_to 'Edit assessment', edit_lesson_plan_assessment_path(@assessment.lesson_plan, @assessment), remote: true, class: "btn btn-sm btn-primary" %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- .col-md-8 -->
+    <div class="col-md">
+      <div class="card border-primary my-3">
+        <h6 class="card-header">
+          <div class="d-flex justify-content-between">
+            <div>
+              <%= fa_icon "check-circle-o " %>&nbsp;<strong>Assessment parts</strong>
+            </div>
+            <div>
+              <%#= link_to new_registration_klass_registration_path(@registration_klass), remote: true, class: "btn btn-sm btn-primary" do %>
+                <%#= fa_icon "user-plus" %>&nbsp;Add an Assessment part
+              <%# end %>
+            </div>
+          </div>
+        </h6>
+        <ul id="list-assessment-parts" class="list-group">
+          <%# if @registration_klass.registrations.any? %>
+            <%#= render @registration_klass.registrations %>
+          <%# else %>
+            <li class="list-group-item list-group-item-info no-assessment-parts-to-list">
+              No assessment parts to list
+            </li>
+          <%# end %>
+        </ul>
+      </div>
+    </div>
+  </div> <!-- .row -->
+
+</div>
+<%= render "assessments/modal_dialog" %>

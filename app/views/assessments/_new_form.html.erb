@@ -1,0 +1,26 @@
+<%= form_with(model: [@lesson_plan, Assessment.new], id: :new_assessment, class: :new_assessment) do |form| %>
+
+  <p><strong> <%= @lesson_plan.klass_name %>: <%= @lesson_plan.name %></strong></p>
+  <div class="errors"></div>
+
+  <div class="form-group">
+    <%= form.label :name %>
+    <%= form.text_field :name, id: :assessment_name, class: "form-control", required: true, placeholder: "Name of the assessment" %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :user_type, "Indicate the type of assessment" %><br>
+    <% Assessment.assessment_types.keys.map do |assessment_type| %>
+      <label class="custom-control custom-radio">
+        <%= form.radio_button :assessment_type, assessment_type, class: "custom-control-input" %>
+        <span class="custom-control-indicator"></span>
+        <span class="custom-control-description"><%= assessment_type.humanize %></span>
+      </label>
+    <% end %>
+  </div>
+
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-primary" data-dismiss="modal" id="createRegistration">Cancel</button>
+    <%= form.submit class: "btn btn-primary" %>
+  </div>
+<% end %>

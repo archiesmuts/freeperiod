@@ -1,20 +1,59 @@
 <div class="container">
-  <div id="show-lesson-plan-card-<%= @lesson_plan.id %>">
-    <div id="lesson-plan-card-<%= @lesson_plan.id %>" class="card border-primary my-3" style="max-width: 30rem;">
-      <div class="card-header"><%= @lesson_plan.registration_klass.name %></div>
-      <div class="card-body text-primary">
-        <h4 class="card-title"><%= @lesson_plan.name %></h4>
-        <p class="card-text">
-           <span id="school-term">
-             <%= render "term_display" %>
-          </span>
-        </p>
-        <%= link_to 'Back', school_registration_klass_path(@registration_klass.school, @registration_klass), class: "btn btn-sm btn-outline-primary" %>
-        <%= link_to 'Edit', edit_registration_klass_lesson_plan_path(@lesson_plan.registration_klass, @lesson_plan), remote: true, class: "btn btn-sm btn-primary" %>
+  <div class="row">
+    <div class="col-md">
+      <div id="lesson-plan-card-<%= @lesson_plan.id %>">
+        <div class="card border-primary my-3">
+          <h5 class="card-header"><%= fa_icon "file-text-o" %> Lesson Plan</h5>
+            <div class="card-body text-primary">
+            <h4 class="card-title"><%= @lesson_plan.name %></h4>
+            <h6 class="card-subtitle mb-2 text-muted">Class: <%= @lesson_plan.registration_klass.name %></h6>
+            <p class="card-text">
+               <span id="school-term">
+                 <%= render "term_display" %>
+              </span>
+            </p>
+            <div class="d-flex justify-content-between">
+              <%= link_to school_registration_klass_path(@registration_klass.school, @registration_klass), class: "btn btn-sm btn-outline-primary" do %>
+                <%= fa_icon "arrow-left" %>&nbsp;Back to class
+              <% end %>
+              <%= link_to  edit_registration_klass_lesson_plan_path(@lesson_plan.registration_klass, @lesson_plan), remote: true, class: "btn btn-sm btn-primary" do %>
+                <%= fa_icon "pencil-square-o" %>&nbsp;Edit Lesson Plan
+              <% end %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md">
+      <div class="card border-primary my-3">
+        <h5 class="card-header">
+          <div class="d-flex justify-content-between">
+            <div class="">
+              <%= fa_icon "check" %>&nbsp;Assessments
+            </div>
+            <%= link_to new_lesson_plan_assessment_path(@lesson_plan), remote: true, class: "btn btn-sm btn-primary" do %>
+              <%= fa_icon "plus-square" %>&nbsp;Add an Assessment
+            <% end %>
+          </div>
+        </h5>
+        <ul id="list-assessments" class="list-group">
+          <% if @lesson_plan.assessments.any? %>
+            <%= render @lesson_plan.assessments %>
+          <% else %>
+            <li class="list-group-item list-group-item-info no-assessments-to-list">
+              No assessments to list
+            </li>
+          <% end %>
+        </ul>
       </div>
     </div>
   </div>
 </div>
 
-
 <%= render "lesson_plans/modal_dialog" %>
+
+<!-- modal forms-->
+<div class="collapse" id="add-assessment-form">
+  <p><%= render "assessments/new_form" %></p>
+</div>
+<%= render "assessments/modal_dialog" %>

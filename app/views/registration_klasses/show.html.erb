@@ -63,30 +63,9 @@
 
   <div class="row">
     <div class="col-md-6">
-      <div class="card border-primary my-3">
-        <h4 class="card-header">
-          <div class="d-flex justify-content-between">
-            <div>
-              Lesson Plans
-            </div>
-            <div>
-              <%= link_to new_registration_klass_lesson_plan_path(@registration_klass), remote: true, class: "btn btn-primary btn-sm" do %>
-                <%= fa_icon "plus-square" %>&nbsp;Add a Lesson plan
-              <% end %>
-            </div>
-          </div>
-          <!-- TODO redesign to view people in cards with their head pics and key demographic details -->
-        </h4>
-        <ul id="list-lesson-plans" class="list-group">
-          <% if @registration_klass.lesson_plans.any? %>
-            <%= render @registration_klass.lesson_plans %>
-          <% else %>
-            <li class="list-group-item list-group-item-action list-group-item-info no-lessons-to-list">
-              No lesson plans to list
-            </li>
-          <% end %>
-        </ul>
-      </div>
+      <% if @registration_klass.subject_class? %>
+        <%= render "registration_klasses/lesson_plans_card" %>
+      <% end %>
     </div>
   </div>
 </div> <!-- .container -->
