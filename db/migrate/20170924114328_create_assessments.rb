@@ -2,8 +2,10 @@ class CreateAssessments < ActiveRecord::Migration[5.1]
   def change
     create_table :assessments, id: :uuid do |t|
       t.string :name
+      t.decimal :value, default: 0 
       t.uuid :lesson_plan_id, foreign_key: true
-      t.integer :assessment_type, null: false, default: 0
+      t.uuid :assessment_type_id, foreign_key: true
+      t.uuid :assessment_task_id, foreign_key: true
       t.string :slug, null: false, unique: true
 
       t.timestamps

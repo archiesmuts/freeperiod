@@ -7,16 +7,22 @@
       <%= form.label :name %>
       <%= form.text_field :name, id: :assessment_name, class: "form-control", required: true, placeholder: "Name of the assessment" %>
     </div>
+    <div class="row">
+      <div class="col-sm-3">
+        <div class="form-group">
+          <%= form.label :value %>
+          <%= form.number_field :value, id: :assessment_value, class: "form-control", required: true %>
+        </div>
+      </div>
+    </div>
 
     <div class="form-group">
-      <%= form.label :user_type, "Indicate the type of assessment" %><br>
-      <% Assessment.assessment_types.keys.map do |assessment_type| %>
-        <label class="custom-control custom-radio">
-          <%= form.radio_button :assessment_type, assessment_type, class: "custom-control-input" %>
-          <span class="custom-control-indicator"></span>
-          <span class="custom-control-description"><%= assessment_type.humanize %></span>
-        </label>
-      <% end %>
+      <%= form.label :assessment_type_id%>
+      <%= form.collection_select :assessment_type_id, AssessmentType.order(:name), :id, :name, { include_blank: true  }, {class: "form-control"} %>
+    </div>
+    <div class="form-group">
+      <%= form.label :assessment_task_id%>
+      <%= form.grouped_collection_select :assessment_task_id, AssessmentType.order(:name), :assessment_tasks, :name, :id, :name, { include_blank: true  }, {class: "form-control"} %>
     </div>
 
 

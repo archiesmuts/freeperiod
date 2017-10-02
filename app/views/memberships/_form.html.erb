@@ -1,7 +1,5 @@
 <!-- from user show or membership index views -->
-<%= form_with(model: [@user, @membership], local: true, id: :new_membership, class: :new_membership) do |f| %>
-<div class="row">
-  <div class="col-md-6">
+<%= form_with(model: [@user, @membership], local: true) do |f| %>
 
     <% if @membership.errors.any? %>
       <div id="error_explanation">
@@ -18,12 +16,13 @@
     <div class="form-group">
       <%= f.label :user_id, "Your name" %>
       <%= f.collection_select :user_id, User.where(id: current_user), :id, :name_reversed, { }, {class: "form-control", readonly: "readonly"}%>
+      <%#= f.text_field :user_id, :id, :membership_user_name, {class: "form-control", readonly: "readonly"}%>
     </div>
     <div class="form-group">
-      <%= f.label :school_id, "Name of your school" %>
-      <%= f.text_field :school_name, id: :membership_school_name  %>
+      <%= f.label :school_name, "Name of your school" %>
+      <%= f.text_field :school_name, id: :membership_school_name, class: "form-control", readonly: "readonly"  %>
     </div>
-    <p class="font-weight-bold">Indicate that the account owner.</p>
+    <p class="font-weight-bold">Indicate the type of member for this person .</p>
     <% Membership.members.keys.map do |member| %>
       <label class="custom-control custom-radio">
         <%= f.radio_button :member, member, class: "custom-control-input" %>
@@ -32,15 +31,9 @@
       </label>
     <% end %>
 
-    <div class="actions">
-      <%= f.submit "Save School Account", class: "btn btn-primary" %>
+    <div class="actions py-2">
+      <%= link_to 'Cancel', @membership, class: "btn btn-outline-primary" %>
+      <%= f.submit "Update School Registration", class: "btn btn-primary" %>
     </div>
-
-
-    </div>
-    <div class="col-md-6">
-      <p> Information</p>
-    </div>
-  </div>
 
 <% end %>

@@ -9,13 +9,15 @@ class User < ApplicationRecord
   before_create :generate_uuid, unless: :slug?
   extend FriendlyId
   friendly_id :slug_candidates, use: :slugged
-  has_many :memberships, dependent: :destroy
+  has_many :memberships, inverse_of: :user, dependent: :destroy
   has_many :schools, through: :memberships
-  has_many :registrations
-  has_many :registration_klasses, through: :registrations
+  has_many :user_registrations
+  has_many :registration_klasses, through: :user_registrations
 
   validates :first_name, :last_name, :slug, presence: true
   validates :terms_of_privacy_statement, acceptance: true
+  validates_associated :memberships
+  validates_associated :registration_klasses
   # scope :faculty, -> { includes(:roles).where(roles: { name: "faculty"}).order("users.last_name ASC, users.first_name ASC")}
 
   def slug_candidates

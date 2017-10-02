@@ -1,10 +1,11 @@
 class Membership < ApplicationRecord
+  include ActiveModel::Dirty
   resourcify
   before_validation :set_school_id, if: :email?
-  belongs_to :user
-  belongs_to :school
+  belongs_to :user, inverse_of: :memberships
+  belongs_to :school, inverse_of: :memberships
 
-  # validates_uniqueness_of :user_id, scope: :school_id, message: "membership already exists"
+  validates_uniqueness_of :user_id, scope: :school_id, message: "membership already exists"
   validates :user_id, :school_id, :member, presence: true
   attribute :email, :string
   attribute :slug, :string
@@ -35,7 +36,7 @@ class Membership < ApplicationRecord
   end
 
   def school_name=(name)
-    self.school = School.create(name: name)
+    self.school = School.find_or_create_by(name: name)
   end
 
   def user_name

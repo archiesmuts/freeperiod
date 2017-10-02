@@ -4,7 +4,7 @@ class UsersController < ApplicationController
     @users = User.order("last_name, first_name")
   end
   def new
-    @user - User.new
+    @user = User.new
     # @user.memberships.build
     #code
   end

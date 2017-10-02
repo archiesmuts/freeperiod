@@ -1,18 +1,50 @@
-<h2>School membership details</h2>
-<div class="row">
-  <div class="col-sm-8">
-    <div class="card">
-      <div class="card-block">
-        <h3 class="card-title"><%= @membership.school.name if @membership.school %></h3>
-        <h4 class="card-title">Me: <%= @membership.user.name %></h4>
-        <p class="card-text">Member: <%= @membership.member.humanize %></p>
-        <%# if current_user.has_role?(:admin) %>
-          <%= link_to "Index", memberships_path, class: "btn btn-outline-primary" %>
-        <%# end %>
-        <%= link_to 'Back to My Page', current_user, class: "btn btn-outline-primary" %>
-        <%= link_to 'Edit', edit_membership_path(@membership), class: "btn btn-primary" %>
-        <%= link_to "Continue", school_path(@membership.school), class: "btn btn-primary" %>
+<div class="container">
+  <div class="row d-flex justify-content-md-center">
+    <div class="col-md-8 p-3">
+      <h2>School registration details</h2>
+      <p>School Id: <%= @membership.school.id  %></p>
+      <div class="card p-2">
+        <div class="card-block">
+          <h3 class="card-title">
+            <%= fa_icon "university" %>&nbsp;<%= @membership.school.name if @membership.school %><br>
+          </h3>
+          <h4 class="card-title"><%= fa_icon "user" %>&nbsp;<%= @membership.user.name %></h4>
+          <p class="card-text"><span class="badge badge-info"> <%= @membership.member.humanize %></span></p>
+          <p>
+            <div class="card-text d-flex justify-content-start">
+              <div class="p-2">Roles:</div>
+              <% unless current_user.roles.empty? %>
+                <% current_user.roles.each do |role| %>
+                <div class="p-2">
+                  <span class="badge badge-info">
+                    <%= role.name %>
+                    <%= role.resource_type %> (<%= role.resource_id %>)
+                  </span>
+                </div>
+                <% end %>
+                <% else %>
+                No roles
+              <% end %>
+            </div>
+          </p>
+          <%# if current_user.has_role?(:account_owner, @membership.school) %>
+            <%= link_to  school_memberships_path(@membership.school),
+                class: "btn btn-outline-primary" do %>
+                  <%= fa_icon "users" %>&nbsp;School Registration List
+                <% end %>
+          <%# end %>
+          <%= link_to current_user, class: "btn btn-outline-primary" do %>
+            <%= fa_icon "user" %>&nbsp;My page
+          <% end %>
+          <%= link_to school_path(@membership.school),
+              class: "btn btn-outline-success" do %>
+                <%= fa_icon "university" %>&nbsp;Go to School page
+              <% end %>
+          <%= link_to edit_membership_path(@membership), class: "btn btn-primary" do %>
+            <%= fa_icon "pencil-square" %>&nbsp;Edit registration
+          <% end %>
 
+        </div>
       </div>
     </div>
   </div>

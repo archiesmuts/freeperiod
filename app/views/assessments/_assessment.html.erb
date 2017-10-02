@@ -1,13 +1,11 @@
 <li id="assessment-<%= assessment.id %>" class="list-group-item d-flex justify-content-between" >
   <div>
-    <span class="badge badge-primary"><%= assessment.assessment_type.humanize %></span>
+    <span class="badge badge-primary"><%= assessment.assessment_type.name %></span>
     <%= link_to assessment.name, [assessment.lesson_plan, assessment] %>
   </div>
-
-    <%= link_to [assessment.lesson_plan, assessment], method: :delete, remote: true,
-        data: { confirm: 'Are you absolutely sure?' },
-        class: "btn btn-sm btn-danger btn-link delete-assessment" do %>
-        <span class="text-danger"><i class="fa fa-trash" aria-hidden="true"></i>&nbsp;Destroy</span>
-    <% end %>
-
+  <%= link_to [assessment.lesson_plan, assessment], method: :delete, remote: true,
+      data: { confirm: 'Are you absolutely sure?' },
+      class: "btn btn-sm btn-danger btn-link delete-assessment" do %>
+      <span class="text-danger"><i class="fa fa-trash" aria-hidden="true"></i>&nbsp;Destroy</span>
+  <% end %>
 </li>

@@ -83,6 +83,6 @@ class AssessmentsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def assessment_params
-      params.require(:assessment).permit(:name, :lesson_plan_id, :assessment_type, :slug)
+      params.require(:assessment).permit(:name, :value, :lesson_plan_id, :assessment_type_id, :assessment_task_id, :slug)
     end
 end

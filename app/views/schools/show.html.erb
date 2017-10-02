@@ -2,7 +2,7 @@
   <div class="col-sm">
     <div class="card"> <!-- card 1/3 -->
       <div class="card-body">
-        <h4 class="card-title">Special title treatment</h4>
+        <h4 class="card-title">School ID: <%= @school.id %></h4>
         <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
 
         <a href="#" class="btn btn-sm btn-primary">Go somewhere</a>
@@ -13,7 +13,7 @@
   <div class="col-sm-6">
     <div class="card"> <!-- card 2/3  -->
       <div class="card-body">
-        <h4 class="card-title"><%= @school.name %></h4>
+        <h4 class="card-title"><%= fa_icon "university" %>&nbsp;<%= @school.name %></h4>
         <p class="card-text">Other school stuff.</p>
         <div class="d-flex justify-content-between">
           <div>
@@ -44,7 +44,7 @@
   <div class="col">
     <div class="card">
       <div class="card-body">
-        <h4 class="card-title">Staff and Students</h4>
+        <h4 class="card-title"><%= fa_icon "users" %>&nbsp;Staff and Students</h4>
         <p class="card-text">Number of users: <span class="badge badge-info"><%= @school.users.size %></span></p>
 
         <%= link_to "View all registered users", school_memberships_path(@school), class: "btn btn-primary btn-sm" %>
@@ -60,7 +60,7 @@
     <div class="col">
       <div class="card">
         <div class="card-body">
-          <h4 class="card-title">Registration and Subject Classes</h4>
+          <h4 class="card-title"><%= fa_icon "graduation-cap" %>&nbsp;Registration and Subject Classes</h4>
           <p class="card-text">Number of classes: <span class="badge badge-info"><%= @school.registration_klasses.size %></span></p>
             <%= link_to "View all Registration and Subject Classes", school_registration_klasses_path(@school),
                 class: "btn btn-sm btn-primary" %>

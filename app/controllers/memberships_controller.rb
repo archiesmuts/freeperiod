@@ -26,15 +26,9 @@ class MembershipsController < ApplicationController
   # POST /memberships.json
   def create
     @membership = Membership.new(membership_params)
-
     respond_to do |format|
       if @membership.save
-        user = @membership.user
-        school = @membership.school
-        if @membership.account_owner?
-          user.add_role(:account_owner, school)
-        end
-        format.html { redirect_to @membership, notice: 'School Account was successfully created.' }
+        format.html { redirect_to @membership.school, notice: 'School Account was successfully created.' }
         format.json { render :show, status: :created, location: @membership }
       else
         format.html { render :new }
@@ -48,7 +42,7 @@ class MembershipsController < ApplicationController
   def update
     respond_to do |format|
       if @membership.update(membership_params)
-        format.html { redirect_to @membership, notice: 'Membership was successfully updated.' }
+        format.html { redirect_to @membership, notice: 'School registration was successfully updated.' }
         format.json { render :show, status: :ok, location: @membership }
       else
         format.html { render :edit }
@@ -60,9 +54,14 @@ class MembershipsController < ApplicationController
   # DELETE /memberships/1
   # DELETE /memberships/1.json
   def destroy
+    # TODO check how to remove roles when membership is deleted
+    # user = @membership.user
+    # school = @membership.school
+    # roles = user.roles
     @membership.destroy
+    # roles.delete_all
     respond_to do |format|
-      format.html { redirect_to current_user, notice: 'Membership was successfully destroyed.' }
+      format.html { redirect_to current_user, notice: 'Scool registration was successfully destroyed.' }
       format.json { head :no_content }
     end
   end

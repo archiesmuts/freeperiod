@@ -1,0 +1,40 @@
+<%= form_with(model: [@assessment, Result.new], id: :new_result, class: :new_result) do |form| %>
+
+  <p>
+    <strong>
+      <%= @assessment.lesson_plan.name %> <br>
+      <%= @assessment.name %>
+    </strong>
+  </p>
+
+  <div class="errors"></div>
+
+  <div class="form-group">
+    <%= form.label :registration_id %>
+    <%= form.collection_select :registration_id, Registration.all, :id, :name, { }, { id: :result_registration_id, class: "form-control" } %>
+    <!-- TODO ensure that the correct registration class is selected for this assessment/result-->
+  </div>
+  <!-- Apply chosen multi select for new, These are the steps i followed with chosen select:
+    What changes are to be made in the controller and collection select to take multiple values in rails?
+    -->
+  <%#= f.select :product_ids, Product.all.collect { |u| [u.product_name_code, u.id] }, {}, {:multiple => true, :class => "chosen-select"} %>
+  <!-- Controller -->
+    <!-- params[:spare].permit(:id,:product_ids => [])  -->
+  <!-- TODO implement multi select to select all kids in the class  -->
+
+  <div class="form-group">
+    <%= form.label :student_score %>
+    <%= form.number_field :student_score, id: :result_student_score, class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :teacher_comment %>
+    <%= form.text_area :teacher_comment, id: :result_teacher_comment, class: "form-control" %>
+  </div>
+
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-primary" data-dismiss="modal" id="createPart">Cancel</button>
+    <%= form.submit class: "btn btn-primary" %>
+  </div>
+
+<% end %>

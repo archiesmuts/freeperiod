@@ -28,10 +28,10 @@ class SchoolsController < ApplicationController
   # POST /schools.json
   def create
     @school = School.new(school_params)
-    @school.memberships.new(user: current_user, member: 0)
     respond_to do |format|
       if @school.save
-        current_user.add_role(:manager, @school)
+        @school.memberships.create(school_id: @school, user: current_user, member: 1)
+        current_user.add_role(:account_owner, @school)
         format.html { redirect_to @school, notice: 'School was successfully created.' }
         format.json { render :show, status: :created, location: @school }
       else

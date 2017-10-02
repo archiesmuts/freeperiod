@@ -1,0 +1,13 @@
+<li id="user_registration-<%= user_registration.id %>" class="list-group-item d-flex justify-content-between" >
+  <div class="">
+    <span class="badge badge-primary"><%= user_registration.user_type.humanize %></span>
+    &nbsp;<%= fa_icon "user" %>&nbsp;<%= link_to user_registration.user_name, [user_registration.registration_klass, user_registration] %>
+  </div>
+  <div class="">
+    <%= link_to [user_registration.registration_klass, user_registration], method: :delete, remote: true,
+        data: { confirm: 'Are you absolutely sure?' },
+        class: "btn btn-sm btn-danger btn-link delete-user_registration" do %>
+        <span class="text-danger"><i class="fa fa-user-times" aria-hidden="true"></i>&nbsp;Remove</span>
+    <% end %>
+  </div>
+</li>

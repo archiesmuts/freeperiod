@@ -1,0 +1,6 @@
+user_registration$(".delete-user_registration").bind('ajax:success', function() {
+  $(this).closest('li').fadeOut(500, function(){
+  	$(this).remove();
+  });
+  $('#user_registration_registration_klass_id').focus();
+});

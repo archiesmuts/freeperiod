@@ -6,16 +6,25 @@
     <%= current_user.last_name if current_user.last_name %>&nbsp;
     <small>
       <%= fa_icon "envelope" %> <%= current_user.try(:email) %>
-      <%# if current_user.has_role?(:admin) %>
-        <!-- <span class="badge badge-primary">Admin</span> -->
-      <%# elsif current_user.has_role?(:faculty) %>
-        <!-- <span class="badge badge-primary">Faculty</span> -->
-      <%# end %>
       <%= link_to "Change my Sign-in details", edit_user_registration_path,
                   class: "btn btn-sm btn-outline-primary" %>
     </small>
+    <br> <%= current_user.id %>
   </p>
-
+  <p>
+    <div class="d-flex flex-column">
+      <div class="p-2">Roles:</div>
+      <% unless current_user.roles.empty? %>
+        <% current_user.roles.each do |role| %>
+        <div class="p-2">
+          <span class="badge badge-info"><%= role.name %> <%= role.resource_type %></span>
+        </div>
+        <% end %>
+        <% else %>
+        No roles
+      <% end %>
+    </div>
+  </p>
   <hr>
 
   <!-- Nav Pills -->
@@ -60,12 +69,16 @@
 
         <div id="list-memberships" class="list-group" role="tablist">
           <% unless current_user.memberships.empty? %>
-            <%= render current_user.memberships%>
+            <%= render current_user.memberships %>
           <% else %>
-            <%= link_to "Create your School Account", new_user_membership_path(current_user), class: "btn btn-success" %>
+            <%= link_to "Create your School Account", new_membership_path(current_user), class: "btn btn-success" %>
             <%= render "nothing_to_list" %>
+            <%= link_to 'New School', new_school_path, class: "btn btn-primary" %>
           <% end %>
         </div>
+        <ul class="list-group" role="tablist">
+          <%= render current_user.schools %>
+        </ul>
       </div>
       </div>
       </div>
@@ -77,7 +90,7 @@
           <% unless current_user.registration_klasses.empty? %>
             <% current_user.registration_klasses.each do |registration_klass| %>
               <li class="list-group-item list-group-item-primary">
-                "<%= registration_klass.name %>" for <%= role.registration_klass.klass_type.humanize %>
+                "<%= registration_klass.name %>" for <%= registration_klass.klass_type.humanize %>
               </li>
             <% end %>
             <% else %>

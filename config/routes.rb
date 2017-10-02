@@ -4,7 +4,7 @@ Rails.application.routes.draw do
 
   resources :users do
     resources :memberships
-    resources :registrations
+    resources :user_registrations
   end
 
   resources :schools do
@@ -12,7 +12,6 @@ Rails.application.routes.draw do
     resources :registration_klasses
   end
   resources :memberships
-
 
   resources :courses do
     resources :registration_klasses
@@ -27,13 +26,29 @@ Rails.application.routes.draw do
   end
 
   resources :registration_klasses do
-    resources :registrations
+    resources :assessment_tasks
+    resources :user_registrations
     resources :lesson_plans
   end
 
   resources :lesson_plans do
     resources :assessments
   end
+  resources :assessment_tasks
+
+  resources :assessments do
+    resources :results
+    resources :parts
+  end
+
+  resources :user_registrations do
+    resources :results
+  end
+
+  resources :assessment_types do
+    resources :assessment_tasks
+  end
+  resources :assessment_tasks
 
   root to: 'visitors#index'
 end

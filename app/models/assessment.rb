@@ -3,15 +3,25 @@ class Assessment < ApplicationRecord
   extend FriendlyId
   friendly_id :name, use: :slugged
   belongs_to :lesson_plan
-  validates :lesson_plan_id, :name, :assessment_type, presence: true
+  belongs_to :assessment_type
+  belongs_to :assessment_task
+  has_many :parts, dependent: :destroy
+  has_many :results, dependent: :destroy
+  has_many :user_registrations, through: :results
 
-  enum assessment_type: {
-    test: 0,
-    exam: 1,
-    practical_task: 2,
-    investigation: 3,
-    project: 4
-  }
+  validates :lesson_plan_id, :name, :value, :assessment_type_id, :assessment_task_id, presence: true
+  validates :value, numericality: true
+  validates :value, numericality: { greater_than_or_equal_to: 0 }
+
+
+
+   def total_value
+     parts.sum(:value)
+   end
+  #  def total_mark
+  #    parts.sum(:student_mark)
+  #  end
+
   def lesson_plan_name
     self.lesson_plan.name
   end

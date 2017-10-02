@@ -1,0 +1,33 @@
+<%= form_with(model: [@result.assessment, @part], method: :patch, id: :edit_result, class: :edit_result) do |form| %>
+
+  <p>
+    <strong>
+      <%= @assessment.lesson_plan.name %> <br>
+      <%= @assessment.name %>
+    </strong>
+  </p>
+
+  <div class="errors"></div>
+
+  <div class="form-group">
+    <%= form.label :registration_id %>
+    <%= form.collection_select :registration_id, Registration.all, :id, :name, { }, { id: :result_registration_id, class: "form-control" } %>
+    <!-- TODO ensure that the correct registration class is selected for this assessment/result-->
+  </div>
+
+  <div class="form-group">
+    <%= form.label :student_score %>
+    <%= form.number_field :student_score, id: :result_student_score, class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :teacher_comment %>
+    <%= form.text_area :teacher_comment, id: :result_teacher_comment, class: "form-control" %>
+  </div>
+
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-primary" data-dismiss="modal" id="createPart">Cancel</button>
+    <%= form.submit class: "btn btn-primary" %>
+  </div>
+
+<% end %>

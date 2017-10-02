@@ -1,0 +1,40 @@
+<!-- memberships new user form from school show view -->
+<%= form_with(model: [@user, Membership.new], local: true, id: :new_membership, class: :new_membership) do |f| %>
+<div class="row">
+  <div class="col-md-8">
+    <% if @membership.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(membership.errors.count, "error") %> prohibited this account from being saved:</h2>
+
+        <ul>
+          <% @membership.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+    <div class="form-group">
+      <%= f.label :user_id, "Your name" %>
+      <%= f.collection_select :user_id, User.where(id: current_user), :id, :name_reversed, { }, {class: "form-control", readonly: "readonly"}%>
+      <%#= f.text_field :user_id, :id, :membership_user_name, {class: "form-control", readonly: "readonly"}%>
+    </div>
+    <div class="form-group">
+      <%= f.label :school_id, "Name of your school" %>
+      <%= f.text_field :school_name, id: :membership_school_name, class: "form-control" %>
+    </div>
+      <div class="form-group">
+        <%# if current_user.has_role?(:admin) %>
+        <% Membership.members.keys.map do |member| %>
+          <label class="custom-control custom-radio">
+            <%= f.radio_button :member, member, class: "custom-control-input" %>
+            <span class="custom-control-indicator"></span>
+            <span class="custom-control-description"><%= member.humanize %></span>
+          </label>
+        <% end %>
+      </div>
+      <div class="actions">
+        <%= f.submit "Save details", class: "btn btn-sm btn-outline-primary" %>
+      </div>
+    </div>
+  </div>
+<% end %>

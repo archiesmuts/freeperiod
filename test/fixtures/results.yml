@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  student_score: 9.99
+  teacher_comment: MyText
+  registration_id: 
+  assessment_id: 
+
+two:
+  student_score: 9.99
+  teacher_comment: MyText
+  registration_id: 
+  assessment_id: 

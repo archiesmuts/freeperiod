@@ -10,16 +10,33 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170924114328) do
+ActiveRecord::Schema.define(version: 20170927164342) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
   enable_extension "pgcrypto"
 
+  create_table "assessment_tasks", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.uuid "assessment_type_id"
+    t.string "name"
+    t.string "slug", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "assessment_types", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.string "name"
+    t.string "slug", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "assessments", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "name"
+    t.decimal "value", default: "0.0"
     t.uuid "lesson_plan_id"
-    t.integer "assessment_type", default: 0, null: false
+    t.uuid "assessment_type_id"
+    t.uuid "assessment_task_id"
     t.string "slug", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -59,6 +76,15 @@ ActiveRecord::Schema.define(version: 20170924114328) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "parts", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.uuid "assessment_id"
+    t.string "name"
+    t.text "description"
+    t.decimal "value", default: "0.0"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "registration_klasses", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "name"
     t.uuid "school_id"
@@ -70,13 +96,11 @@ ActiveRecord::Schema.define(version: 20170924114328) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "registrations", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
-    t.uuid "registration_klass_id"
-    t.uuid "user_id"
-    t.integer "user_type", default: 0, null: false
-    t.boolean "completed", default: false, null: false
-    t.datetime "completed_at"
-    t.string "slug", null: false
+  create_table "results", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.uuid "user_registration_id"
+    t.uuid "assessment_id"
+    t.decimal "student_score", default: "0.0"
+    t.text "teacher_comment"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -99,6 +123,17 @@ ActiveRecord::Schema.define(version: 20170924114328) do
 
   create_table "subjects", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "name"
+    t.string "slug", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "user_registrations", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.uuid "registration_klass_id"
+    t.uuid "user_id"
+    t.integer "user_type", default: 0, null: false
+    t.boolean "completed", default: false, null: false
+    t.datetime "completed_at"
     t.string "slug", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

@@ -14,8 +14,12 @@
     </td>
   </tr>
 <% else %>
+
   <%= link_to school_path(membership.school),
-      class: "list-group-item list-group-item-action list-group-item-primary"  do %>
-      <%= fa_icon "building" %> <%=  membership.school.name %>
+      class: "list-group-item list-group-item-action list-group-item-primary  d-flex justify-content-between"  do %>
+      <div><%= fa_icon "building" %> <%=  membership.school.name %> <br>
+        <%=  membership.school.id %>
+      </div>
+      <div><span class="badge badge-info"><%= membership.member.humanize %></span></div>
   <% end %>
 <% end %>

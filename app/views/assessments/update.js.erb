@@ -16,20 +16,8 @@ var el = $('.edit_assessment');
 
 $('#list-assessments').append('<%= j render @assessment %>');
 $("#assessment-<%= @assessment.id %>").hide().fadeIn(1000);
-$("#show-assessment-card-<%= @assessment.id %>").hide().fadeIn(1000);
+$("#assessment-card-<%= @assessment.id %>").hide().fadeIn(1000);
 $('#assessment-dialog').modal("hide");
-
-<% if @assessment.exam? %>
-    $('#assessment-type').html("<span class='badge badge-info'>Examination</span>");
-  <% elsif @assessment.practical_task? %>
-    $('#assessment-type').html("<span class='badge badge-info'>Practical task</span>");
-  <% elsif @assessment.investigation? %>
-    $('#assessment-type').html("<span class='badge badge-info'>Investigation</span>");
-  <% elsif @assessment.project? %>
-    $('#assessment-type').html("<span class='badge badge-info'>Project</span>");
-  <% else %>
-    $('#assessment-type').html("<span class='badge badge-info'>Test</span>");
-<% end %>
 
 // Clear form
 el.find('input:text,text_area').val('');

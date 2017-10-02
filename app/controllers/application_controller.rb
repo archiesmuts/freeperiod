@@ -9,7 +9,7 @@ class ApplicationController < ActionController::Base
   before_action :store_current_location, :unless => :devise_controller?
 
   private
-  # 
+  #
   # def current_account
   #   @current_account ||= School.friendly.find_by(name: request.name)
   # end
@@ -23,6 +23,10 @@ class ApplicationController < ActionController::Base
   def after_sign_in_path_for(resource)
     user_path(resource)
   end
+  # def after_sign_up_path_for(resource)
+  #   user_path(resource)
+  # end
+
   def after_invite_path_for(resource)
     school_memberships_path(resource)
   end

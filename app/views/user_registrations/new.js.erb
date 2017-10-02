@@ -1,0 +1,13 @@
+// Add the dialog title
+$('#user-registration-dialog h4').html("Add a Learner or Teacher");
+
+// Render the new form
+$('.modal-body').html('<%= j render "user_user-registrations/new_form" %>');
+
+// Show the dynamic dialog
+$('#user-registration-dialog').modal("show");
+
+// Set focus to the first element
+$('#user-registration-dialog').on('shown.bs.modal', function () {
+  $('#user_registration_user_select').focus();
+});

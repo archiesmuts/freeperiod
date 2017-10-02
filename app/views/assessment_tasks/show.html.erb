@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @assessment_task.name %>
+</p>
+
+<p>
+  <strong>Slug:</strong>
+  <%= @assessment_task.slug %>
+</p>
+
+<p>
+  <strong>Assessment type:</strong>
+  <%= @assessment_task.assessment_type_id %>
+</p>
+
+<%= link_to 'Edit', edit_assessment_task_path(@assessment_task) %> |
+<%= link_to 'Back', assessment_tasks_path %>

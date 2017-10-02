@@ -1,0 +1,13 @@
+// Add the dialog title
+$('#part-dialog h4').html("Create an assessment part");
+
+// Render the new form
+$('.modal-body').html('<%= j render "parts/new_form" %>');
+
+// Show the dynamic dialog
+$('#part-dialog').modal("show");
+
+// Set focus to the first element
+$('#part-dialog').on('shown.bs.modal', function () {
+  $('#part_name').focus();
+});
