@@ -1,5 +1,8 @@
 <td>
-  <strong><%= user.name %></strong>,
+  <strong><%= user.name %></strong>, <br>
+  <%= user.id %> <br>
+  <%= user.confirmed_at.strftime("%d%b%y") %>
+
   <br>
   <%= user.email %>
   <br>

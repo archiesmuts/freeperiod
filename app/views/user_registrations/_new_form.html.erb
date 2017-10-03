@@ -1,4 +1,4 @@
-<%= form_with(model: [@registration_klass, user_registration.new], id: :new_user_registration, class: :new_user_registration) do |form| %>
+<%= form_with(model: [@registration_klass, UserRegistration.new], id: :new_user_registration, class: :new_user_registration) do |form| %>
 
   <p><strong><%= @registration_klass.name %></strong> </p>
   <div class="errors"></div>
@@ -12,7 +12,7 @@
   </div>
   <div class="form-group">
     <%= form.label :user_type, "Is this person a Learner or a Teacher?" %><br>
-    <% user_registration.user_types.keys.map do |user_type| %>
+    <% UserRegistration.user_types.keys.map do |user_type| %>
       <label class="custom-control custom-radio">
         <%= form.radio_button :user_type, user_type, class: "custom-control-input" %>
         <span class="custom-control-indicator"></span>

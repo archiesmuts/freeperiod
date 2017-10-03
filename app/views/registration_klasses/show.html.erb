@@ -49,7 +49,7 @@
             <%= fa_icon "users" %>&nbsp;Class List
           </div>
           <div>
-            <%= link_to new_registration_klass_registration_path(@registration_klass), remote: true, class: "btn btn-sm btn-primary" do %>
+            <%= link_to new_registration_klass_user_registration_path(@registration_klass), remote: true, class: "btn btn-sm btn-primary" do %>
               <%= fa_icon "user-plus" %>&nbsp;Add a Learner/Teacher
             <% end %>
           </div>
@@ -57,8 +57,8 @@
           <!-- TODO redesign to view people in cards with their head pics and key demographic details -->
         </h4>
         <ul id="list-registrations" class="list-group">
-          <% if @registration_klass.registrations.any? %>
-            <%= render @registration_klass.registrations %>
+          <% if @registration_klass.user_registrations.any? %>
+            <%= render @registration_klass.user_registrations %>
           <% else %>
             <li class="list-group-item list-group-item-action list-group-item-info no-registrations-to-list">
               No people to list
@@ -80,9 +80,9 @@
 
 <!-- modal forms-->
 <div class="collapse" id="add-registration-form">
-  <p><%= render "registrations/new_form" %></p>
+  <p><%= render "user_registrations/new_form" %></p>
 </div>
-<%= render "registrations/modal_dialog" %>
+<%= render "user_registrations/modal_dialog" %>
 
 <div class="collapse" id="add-lesson-plan-form">
   <p><%= render "lesson_plans/new_form" %></p>

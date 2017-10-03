@@ -17,7 +17,7 @@
 
   <div class="form-group">
     <%= form.label :course_id %>
-    <%= form.collection_select :course_id, Course.order(:name), :id, :name, { }, {class: "form-control"} %>
+    <%= form.collection_select :course_id, Course.order(:name), :id, :course_description, { }, {class: "form-control"} %>
     <!-- TODO add autocomplete to find course_name with course_selection_controller -->
   </div>
 
