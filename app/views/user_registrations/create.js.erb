@@ -14,10 +14,10 @@ var el = $('.new_user_registration');
 
 <% else %>
 
-$('#list-user_registrations').prepend('<%= j render @user_registration %>');
-$("#user_registration-<%= @user_registration.id %>").hide().fadeIn(1000);
-$('#user_registration-dialog').modal('hide');
-$('.no-user_registrations-to-list').detach();
+$('#list-user-registrations').prepend('<%= j render @user_registration %>');
+$("#user-registration-<%= @user_registration.id %>").hide().fadeIn(1000);
+$('#user-registration-dialog').modal('hide');
+$('.no-user-registrations-to-list').detach();
 
 // Clear form
 el.find('input:text,text_area').val('');

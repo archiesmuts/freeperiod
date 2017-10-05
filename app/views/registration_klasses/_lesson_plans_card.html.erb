@@ -1,11 +1,11 @@
-<div class="card border-primary my-3">
-  <h4 class="card-header">
+
+  <h4 class="card-body">
     <div class="d-flex justify-content-between">
       <div>
         <%= fa_icon "file-text-o" %>&nbsp;Lesson Plans
       </div>
       <div>
-        <%= link_to new_registration_klass_lesson_plan_path(@registration_klass), remote: true, class: "btn btn-primary btn-sm" do %>
+        <%= link_to new_registration_klass_lesson_plan_path(@registration_klass), remote: true, class: "btn btn-success btn-sm" do %>
           <%= fa_icon "plus-square" %>&nbsp;Add a Lesson plan
         <% end %>
       </div>
@@ -21,4 +21,3 @@
       </li>
     <% end %>
   </ul>
-</div>

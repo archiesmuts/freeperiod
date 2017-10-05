@@ -18,7 +18,9 @@ class User < ApplicationRecord
   validates :terms_of_privacy_statement, acceptance: true
   validates_associated :memberships
   validates_associated :registration_klasses
-  # scope :faculty, -> { includes(:roles).where(roles: { name: "faculty"}).order("users.last_name ASC, users.first_name ASC")}
+  scope :registered_for_klass, -> { includes(:memberships)
+    .where(memberships: {member: ["learner", "educator"]} )
+    .order("users.last_name ASC, users.first_name ASC")}
 
   def slug_candidates
     [

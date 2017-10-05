@@ -2,22 +2,21 @@
   <div class="row">
     <div class="col-sm">
       <div class="card border-primary my-3">
-        <h4 class="card-header">
+        <h5 class="card-header">
           <div class="d-flex justify-content-between">
             <div>
-              <%= fa_icon "graduation-cap" %>&nbsp;<%= @registration_klass.subject_class? ? "Subject: " : "" %>
-              <%= @registration_klass.course_name %>
+              <%= fa_icon "graduation-cap" %>&nbsp;<%= @registration_klass.subject_class? ? "Subject " : "" %>
+              <br> <small> <%= @registration_klass.course_name %></small>
             </div>
             <span class="badge badge-light"><%= @registration_klass.year.strftime("%Y") %></span>
           </div>
-        </h4>
+        </h5>
         <div class="card-body text-primary">
           <h4 class="card-title">
             <%= @registration_klass.name %>
           </h4>
           <h6 class="card-subtitle text-muted"><%= @registration_klass.school.name.truncate(50) %></h6>
           <p class="card-text">
-
             <small class="text-muted"><%= @registration_klass.course_name %></small>
           </p>
         </div>
@@ -38,6 +37,9 @@
             </div>
           </div>
         </div>
+        <% if @registration_klass.subject_class? %>
+          <%= render "registration_klasses/lesson_plans_card" %>
+        <% end %>
       </div>
     </div> <!-- .col -->
 
@@ -56,11 +58,11 @@
         </div>
           <!-- TODO redesign to view people in cards with their head pics and key demographic details -->
         </h4>
-        <ul id="list-registrations" class="list-group">
+        <ul id="list-user-registrations" class="list-group">
           <% if @registration_klass.user_registrations.any? %>
             <%= render @registration_klass.user_registrations %>
           <% else %>
-            <li class="list-group-item list-group-item-action list-group-item-info no-registrations-to-list">
+            <li class="list-group-item list-group-item-action list-group-item-info no-user-registrations-to-list">
               No people to list
             </li>
           <% end %>
@@ -71,9 +73,7 @@
 
   <div class="row">
     <div class="col-md-6">
-      <% if @registration_klass.subject_class? %>
-        <%= render "registration_klasses/lesson_plans_card" %>
-      <% end %>
+
     </div>
   </div>
 </div> <!-- .container -->
