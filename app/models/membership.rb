@@ -22,7 +22,7 @@ class Membership < ApplicationRecord
     educator: 2,
     learner: 3,
     parent_or_guardian: 4,
-    general: 5
+    friend_of_school: 5
   }
 
   # enum permission:  {

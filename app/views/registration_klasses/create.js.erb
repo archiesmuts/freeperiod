@@ -18,6 +18,7 @@ $('#list-registration-klasses').prepend('<%= j render @registration_klass %>');
 $("#registration-klass-<%= @registration_klass.id %>").hide().fadeIn(1000);
 $('#registration-klass-dialog').modal("hide");
 $('.nothing_to_list').detach();
+$('#registration_klass_name').focus();
 
 // Clear form
 el.find('input:text,text_area').val('');

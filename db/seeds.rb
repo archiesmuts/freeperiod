@@ -92,7 +92,9 @@
 # school.users << account_owner
 # account_owner.add_role(:account_owner, school)
 #
-# # Seeding invitable model without sending invitation emails
+# adding users to existing school.
+# school = School.friendly.find("school-of-space-travel")
+# Seeding invitable model without sending invitation emails
 # def adduser(email, password, first_name, last_name, slug)
 #   @user = User.invite!(:email => email, :slug => slug) do |u|
 #     u.skip_invitation = true
@@ -112,20 +114,27 @@
 #
 # 30.times do
 #   User.create do
-#   user =  adduser(
-#       Faker::Internet.safe_email,
-#       "password1234",
-#       Faker::Name.first_name,
-#       Faker::Name.last_name,
-#       Faker::Internet.slug
-#       )
-#     school.users << user
-#   end
+#     user =  adduser(
+#         Faker::Internet.safe_email,
+#         "password1234",
+#         Faker::Name.first_name,
+#         Faker::Name.last_name,
+#         Faker::Internet.slug
+#         )
+#       school.users << user
+#     end
 # end
- subjects = Subject.all
- grade_10 = Grade.friendly.find("grade-10")
- grade_11 = Grade.friendly.find("grade-11")
- grade_12 = Grade.friendly.find("grade-12")
+
+# school  = School.friendly.find("school-of-space-travel")
+# Role.where(name: "account_owner")
+# users = User.joins(:roles).where(roles: {name: "account_owner"})
+# users.each do |user|
+#   user.remove_role("account_owner", school)
+# end
+ # subjects = Subject.all
+ # grade_10 = Grade.friendly.find("grade-10")
+ # grade_11 = Grade.friendly.find("grade-11")
+ # grade_12 = Grade.friendly.find("grade-12")
  # subjects.each do |subject|
  #   subject.courses.create(name: Faker::Lorem.sentence, grade_id: grade_10.id, subject_type: 0)
  #   puts "Created Course "

@@ -1,6 +1,6 @@
 class ResultsController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_assesment, only: [:new, :create]
+  before_action :set_assessment, only: [:new, :create]
   before_action :set_result, only: [:show, :edit, :update, :destroy]
 
   # GET /results
@@ -70,7 +70,7 @@ class ResultsController < ApplicationController
 
   private
     # Use callbacks to share common setup or constraints between actions.
-    def method
+    def set_assessment
       @assessment = Assessment.friendly.find(params[:assessment_id])
     end
     def set_result

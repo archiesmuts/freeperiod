@@ -2,8 +2,9 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://coffeescript.org/
 $(document).on "turbolinks:load", ->
+  $('#assessment_name').focus()
   $('#assessment_assessment_task_id').parent().hide()
-  assessment_tasks = $('#assessment_assessment_assessment_task_id').html()
+  assessment_tasks = $('#assessment_assessment_task_id').html()
   $('#assessment_assessment_type_id').change ->
     assessment_type = $('#assessment_assessment_type_id :selected').text()
     options = $(assessment_tasks).filter("optgroup[label='#{assessment_type}']").html()

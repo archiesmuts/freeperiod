@@ -30,8 +30,8 @@ class SchoolsController < ApplicationController
     @school = School.new(school_params)
     respond_to do |format|
       if @school.save
-        @school.memberships.create(school_id: @school, user: current_user, member: 1)
         current_user.add_role(:account_owner, @school)
+        @school.memberships.create(school_id: @school, user: current_user, member: 1)
         format.html { redirect_to @school, notice: 'School was successfully created.' }
         format.json { render :show, status: :created, location: @school }
       else

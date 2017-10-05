@@ -80,6 +80,7 @@ class RegistrationKlassesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def registration_klass_params
-      params.require(:registration_klass).permit(:name, :school_id, :course_id, :year, :klass_type, :slug)
+      params.require(:registration_klass).permit(:name, :school_id, :course_id, :year, :klass_type,
+                      :course_name, :slug)
     end
 end

@@ -11,7 +11,7 @@
 
   <div class="form-group">
     <%= form.label :registration_id %>
-    <%= form.collection_select :registration_id, Registration.all, :id, :name, { }, { id: :result_registration_id, class: "form-control" } %>
+    <%= form.collection_select :user_registration_id, UserRegistration.all, :id, :name, { }, { id: :result_user_registration_id, class: "form-control" } %>
     <!-- TODO ensure that the correct registration class is selected for this assessment/result-->
   </div>
   <!-- Apply chosen multi select for new, These are the steps i followed with chosen select:

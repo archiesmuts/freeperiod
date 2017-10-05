@@ -10,4 +10,5 @@ $('#assessment-dialog').modal("show");
 // Set focus to the first element
 $('#assessment-dialog').on('shown.bs.modal', function () {
   $('#assessment_name').focus();
+  $('#assessment_assessment_task_id').parent().hide();
 });

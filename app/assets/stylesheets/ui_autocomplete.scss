@@ -1,0 +1,96 @@
+.ui-autocomplete {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  z-index: 1090; // 1000
+  float: left;
+  display: none;
+  min-width: 160px;
+  _width: 160px;
+  padding: 4px 0;
+  margin: 2px 0 0 0;
+  list-style: none;
+  background-color: #ffffff;
+  border-color: #ccc;
+  border-color: rgba(0, 0, 0, 0.2);
+  border-style: solid;
+  border-width: 1px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  -webkit-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+  -moz-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+  -webkit-background-clip: padding-box;
+  -moz-background-clip: padding;
+  background-clip: padding-box;
+  *border-right-width: 2px;
+  *border-bottom-width: 2px;
+
+	.ui-menu-item {
+	    display: block;
+	    padding: 3px 15px;
+	    clear: both;
+	    font-weight: normal;
+	    line-height: 18px;
+	    color: #555555;
+	    white-space: nowrap;
+
+	    .ui-state-active, .ui-state-hover {
+	      color: #ffffff;
+	      text-decoration: none;
+	      background-color: #0088cc;
+	      border-radius: 0;
+	      -webkit-border-radius: 0;
+	      -moz-border-radius: 0;
+	      background-image: none;
+	    }
+
+	  }
+}
+// .ui-autocomplete{
+//     z-index:1080;
+// }
+// ul.ui-autocomplete {
+//   position: absolute;
+//   list-style: none;
+//   margin: 0;
+//   padding: 0;
+//   border: solid 1px #999;
+//   cursor: default;
+//   li {
+//     background-color: #FFF;
+//     border-top: solid 1px #DDD;
+//     margin: 0;
+//     padding: 0;
+//     a {
+//       color: #000;
+//       display: block;
+//       padding: 3px;
+//     }
+//     a.ui-state-hover, a.ui-state-active {
+//       background-color: #FFFCB2;
+//     }
+//   }
+// }
+
+// CSS hack to hide Chrome default date picker styles and number spinner
+input[type=date]::-webkit-inner-spin-button,
+input[type=date]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+input::-webkit-calendar-picker-indicator {
+	display: none;
+}
+input[type=date]::-webkit-input-placeholder {
+	visibility: hidden !important;
+}
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+input[type=number] {
+	-moz-appearance: textfield;
+}

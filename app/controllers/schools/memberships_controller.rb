@@ -6,6 +6,7 @@ class Schools::MembershipsController < ApplicationController
   def index
     memberships = @school.memberships.all
     membership = Membership.new
+    # TODO add slug containing user.last_name_reversed for orderinf the index view
   end
   # def edit
   # end

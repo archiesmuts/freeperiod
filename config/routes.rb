@@ -49,6 +49,7 @@ Rails.application.routes.draw do
     resources :assessment_tasks
   end
   resources :assessment_tasks
+  resources :school_courses, only: :index
 
   root to: 'visitors#index'
 end

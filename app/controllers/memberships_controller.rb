@@ -40,8 +40,24 @@ class MembershipsController < ApplicationController
   # PATCH/PUT /memberships/1
   # PATCH/PUT /memberships/1.json
   def update
+    user = @membership.user
+    school = @membership.school
+    current_member = @membership.member.to_sym
     respond_to do |format|
       if @membership.update(membership_params)
+        user.remove_role(current_member, school)
+        case @membership.member.to_sym
+          when :account_owner
+            user.add_role("account_owner", school)
+          when :educator
+            user.add_role("educator", school)
+          when :learner
+            user.add_role("learner", school)
+          when :parent_or_guardian
+            user.add_role("parent_or_guardian", school)
+          when :friend_of_school
+            user.add_role("friend_of_school", school)
+        end
         format.html { redirect_to @membership, notice: 'School registration was successfully updated.' }
         format.json { render :show, status: :ok, location: @membership }
       else
@@ -55,13 +71,13 @@ class MembershipsController < ApplicationController
   # DELETE /memberships/1.json
   def destroy
     # TODO check how to remove roles when membership is deleted
-    # user = @membership.user
-    # school = @membership.school
-    # roles = user.roles
+    user = @membership.user
+    school = @membership.school
+    user_roles = user.roles
     @membership.destroy
-    # roles.delete_all
+    user_roles.delete_all
     respond_to do |format|
-      format.html { redirect_to current_user, notice: 'Scool registration was successfully destroyed.' }
+      format.html { redirect_to school_memberships_path(@membership.school), notice: 'Scool registration was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -77,3 +93,12 @@ class MembershipsController < ApplicationController
       params.require(:membership).permit(:user_id, :school_id, :member, :school_name, :user_name,)
     end
 end
+# if @membership.account_owner?
+# user.add_role("account_owner", school)
+# elsif @membership.educator?
+# user.add_role("educator", school)
+# elsif @membership.parent_or_guardian?
+# user.add_role("parent_or_guardian", school)
+# elsif @membership.friend_of_school?
+# user.add_role("friend_of_school, school")
+# end

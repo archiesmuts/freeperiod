@@ -1,0 +1,37 @@
+<%= form_with(model: [@lesson_plan, Assessment.new], id: :new_assessment, class: :new_assessment) do |form| %>
+  <div class="card">
+    <div class="card-body">
+      <h4 class="card-title">Create an Assessment</h4>
+      <p class="card-text"><strong> <%= @lesson_plan.klass_name %>: <%= @lesson_plan.name %></strong></p>
+      <div class="form-group row">
+        <%= form.label :name, class: "col-sm-2 col-form-label" %>
+        <div class="col-sm-10">
+          <%= form.text_field :name, id: :assessment_name, class: "form-control", required: true, placeholder: "Name of the assessment", autofocus: true %>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-3">
+          <div class="form-group">
+            <%= form.label :value %>
+            <%= form.number_field :value, id: :assessment_value, class: "form-control", required: true %>
+          </div>
+        </div>
+        <div class="col-sm-9">
+          <div class="form-group">
+            <%= form.label :assessment_type_id%>
+            <%= form.collection_select :assessment_type_id, AssessmentType.order(:name), :id, :name, { include_blank: true  }, {id: :assessment_assessment_type_id, class: "form-control"} %>
+          </div>
+          <div class="form-group">
+            <%= form.label :assessment_task_id%>
+            <%= form.grouped_collection_select :assessment_task_id, AssessmentType.order(:name), :assessment_tasks, :name, :id, :name, { include_blank: true  }, {id: :assessment_assessment_task_id, class: "form-control"} %>
+          </div>
+        </div>
+      </div>
+
+      <div class="actions">
+        <%= form.submit class: "btn btn-sm btn-primary" %>
+      </div>
+    </div>
+  </div>
+
+<% end %>

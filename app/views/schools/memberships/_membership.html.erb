@@ -1,7 +1,7 @@
 <% unless controller.controller_name == "users" %>
   <tr id="membership-<%= membership.id %>">
     <td><span class="badge badge-primary"><%= membership.member.humanize %> </span></td>
-    <td><%= membership.user.name if membership.user %></td>
+    <td><%= membership.user.name_reversed if membership.user %></td>
     <td><%= membership.user.email if membership.user %></td>
     <td>
         <%= user_status(membership) %>

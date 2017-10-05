@@ -20,7 +20,8 @@ $('#assessment-dialog').modal('hide');
 $('.no-assessments-to-list').detach();
 
 // Clear form
-el.find('input:text,text_area').val('');
+el.find('input:text,text_area,number,select').val('');
+el.find("#assessment_value").val('');
 el.find('.errors').empty();
 
 <% end %>

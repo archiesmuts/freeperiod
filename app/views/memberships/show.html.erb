@@ -13,8 +13,8 @@
           <p>
             <div class="card-text d-flex justify-content-start">
               <div class="p-2">Roles:</div>
-              <% unless current_user.roles.empty? %>
-                <% current_user.roles.each do |role| %>
+              <% unless @membership.user.roles.empty? %>
+                <% @membership.user.roles.each do |role| %>
                 <div class="p-2">
                   <span class="badge badge-info">
                     <%= role.name %>

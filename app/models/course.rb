@@ -3,7 +3,7 @@ class Course < ApplicationRecord
   extend FriendlyId
   friendly_id :name, use: :slugged
   has_many :registration_klasses
-  #has_many :registrations, through: :registration_klasses
+  #has_many :user_registrations, through: :registration_klasses
   belongs_to :grade
   belongs_to :subject
 

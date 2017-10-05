@@ -22,6 +22,10 @@ class RegistrationKlass < ApplicationRecord
   end
 
   def course_name
-    self.course.name
+    course.try(:name)
+  end
+
+  def course_name=(name)
+    self.course = Course.where(name: name).take if name.present?
   end
 end
