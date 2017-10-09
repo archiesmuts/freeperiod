@@ -5,8 +5,8 @@
         <h5 class="card-header">
           <div class="d-flex justify-content-between">
             <div>
-              <%= fa_icon "graduation-cap" %>&nbsp;<%= @registration_klass.subject_class? ? "Subject " : "" %>
-              <br> <small> <%= @registration_klass.course_name %></small>
+              <%= fa_icon "graduation-cap" %>&nbsp;<%= @registration_klass.subject_class? ? "Subject " : "Registration " %>
+              <small> <%= @registration_klass.course_name %></small>
             </div>
             <span class="badge badge-light"><%= @registration_klass.year.strftime("%Y") %></span>
           </div>
@@ -37,37 +37,13 @@
             </div>
           </div>
         </div>
-        <% if @registration_klass.subject_class? %>
-          <%= render "registration_klasses/lesson_plans_card" %>
-        <% end %>
-      </div>
+          <%= render "registration_klasses/user_registrations_card" %>
+
+      </div><!-- .card for registration_klass -->
     </div> <!-- .col -->
 
     <div class="col-sm">
-      <div class="card border-primary my-3">
-        <h4 class="card-header">
-          <div class="d-flex justify-content-between">
-          <div>
-            <%= fa_icon "users" %>&nbsp;Class List
-          </div>
-          <div>
-            <%= link_to new_registration_klass_user_registration_path(@registration_klass), remote: true, class: "btn btn-sm btn-primary" do %>
-              <%= fa_icon "user-plus" %>&nbsp;Add a Learner/Teacher
-            <% end %>
-          </div>
-        </div>
-          <!-- TODO redesign to view people in cards with their head pics and key demographic details -->
-        </h4>
-        <ul id="list-user-registrations" class="list-group">
-          <% if @registration_klass.user_registrations.any? %>
-            <%= render @registration_klass.user_registrations %>
-          <% else %>
-            <li class="list-group-item list-group-item-action list-group-item-info no-user-registrations-to-list">
-              No people to list
-            </li>
-          <% end %>
-        </ul>
-      </div>
+      <%= render "registration_klasses/lesson_plans_card" %>
     </div> <!-- .col -->
   </div> <!-- .row -->
 
@@ -79,10 +55,10 @@
 </div> <!-- .container -->
 
 <!-- modal forms-->
-<div class="collapse" id="add-registration-form">
-  <p><%= render "user_registrations/new_form" %></p>
-</div>
-<%= render "user_registrations/modal_dialog" %>
+<!-- <div class="collapse" id="add-registration-form">
+  <p><%#= render "user_registrations/new_form" %></p>
+</div> -->
+<%#= render "user_registrations/modal_dialog" %>
 
 <div class="collapse" id="add-lesson-plan-form">
   <p><%= render "lesson_plans/new_form" %></p>

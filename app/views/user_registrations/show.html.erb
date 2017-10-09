@@ -10,8 +10,8 @@
           </span>
           <%= @user_registration.completed ? "Completed on" : "Active" %> <%= @user_registration.try(:completed_at) %>
         </p>
-        <%= link_to 'Back', school_user_registration_klass_path(@registration_klass.school, @registration_klass), class: "btn btn-sm btn-outline-primary" %>
-        <%= link_to 'Edit', edit_registration_klass_user-registration_path(@user_registration.registration_klass, @user_registration), remote: true, class: "btn btn-sm btn-primary" %>
+        <%= link_to 'Back', school_registration_klass_path(@registration_klass.school, @registration_klass), class: "btn btn-sm btn-outline-primary" %>
+        <%= link_to 'Edit', edit_registration_klass_user_registration_path(@user_registration.registration_klass, @user_registration), remote: true, class: "btn btn-sm btn-primary" %>
       </div>
     </div>
   </div>

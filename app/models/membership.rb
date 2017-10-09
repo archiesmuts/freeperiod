@@ -9,7 +9,7 @@ class Membership < ApplicationRecord
   validates :user_id, :school_id, :member, presence: true
   attribute :email, :string
   attribute :slug, :string
-
+  # TODO add an option to help filter users for lookup when user registrations are created
 
   def set_school_id
     self.user = User.invite!(email: email, slug: slug)

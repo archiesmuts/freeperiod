@@ -7,7 +7,7 @@ class UserRegistration < ApplicationRecord
   belongs_to :registration_klass
   has_many :results
   has_many :assessments, through: :results
-
+  # scope :for_this_klass, -> { where(field: true)   }
   validates :user_id, :registration_klass_id, :user_type, presence: true
   validates :completed, inclusion: { in: [true, false] }
 
@@ -17,6 +17,9 @@ class UserRegistration < ApplicationRecord
     substitute_teacher: 2
   }
 
+  # def self.registered_user
+  #   user
+  # end
   def user_name
     self.user.try(:full_name)
   end

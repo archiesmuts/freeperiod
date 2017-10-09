@@ -9,6 +9,19 @@ $('#assessment-dialog').modal("show");
 
 // Set focus to the first element
 $('#assessment-dialog').on('shown.bs.modal', function () {
-  $('#assessment_name').focus();
-  $('#assessment_assessment_task_id').parent().hide();
+  $('.assessment_name').focus();
+  $('.assessment_assessment_task_id').parent().hide();
+  const assessment_tasks = $('.assessment_assessment_task_id').html();
+    $('.assessment_assessment_type_id').change(function() {
+      const assessment_type = $('.assessment_assessment_type_id :selected').text();
+      const options = $(assessment_tasks).filter(`optgroup[label='${assessment_type}']`).html();
+      if (options) {
+        $('.assessment_assessment_task_id').html(options);
+        return $('.assessment_assessment_task_id').parent().show();
+      } else {
+        $('.assessment_assessment_task_id').empty();
+        return $('.assessment_assessment_task_id').parent().hide();
+      }
+    });
+
 });

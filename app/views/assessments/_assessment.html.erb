@@ -3,9 +3,12 @@
     <span class="badge badge-primary"><%= assessment.assessment_type.name %></span>
     <%= link_to assessment.name, [assessment.lesson_plan, assessment] %>
   </div>
-  <%= link_to [assessment.lesson_plan, assessment], method: :delete, remote: true,
+  <div>
+    <span  class="badge badge-secondary"><%= assessment.value %></span>
+    <%= link_to [assessment.lesson_plan, assessment], method: :delete, remote: true,
       data: { confirm: 'Are you absolutely sure?' },
       class: "btn btn-sm btn-danger btn-link delete-assessment" do %>
       <span class="text-danger"><i class="fa fa-trash" aria-hidden="true"></i>&nbsp;Destroy</span>
-  <% end %>
+      <% end %>
+  </div>
 </li>

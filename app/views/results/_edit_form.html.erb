@@ -1,23 +1,20 @@
-<%= form_with(model: [@result.assessment, @part], method: :patch, id: :edit_result, class: :edit_result) do |form| %>
+<%= form_with(model: [@result.assessment, @result], method: :patch, id: :edit_result, class: :edit_result) do |form| %>
 
   <p>
     <strong>
-      <%= @assessment.lesson_plan.name %> <br>
-      <%= @assessment.name %>
+      <%= @result.assessment.name %>
     </strong>
   </p>
 
   <div class="errors"></div>
 
-  <div class="form-group">
-    <%= form.label :registration_id %>
-    <%= form.collection_select :registration_id, Registration.all, :id, :name, { }, { id: :result_registration_id, class: "form-control" } %>
-    <!-- TODO ensure that the correct registration class is selected for this assessment/result-->
+  <div class="form-group user-registration-id">
+    <%= form.label :user_registration_id, "Names of Learners", class: "form-label" %>
+    <%= form.text_field :user_registration_id, id: :user_name, class: "form-control" %>
   </div>
-
   <div class="form-group">
     <%= form.label :student_score %>
-    <%= form.number_field :student_score, id: :result_student_score, class: "form-control" %>
+    <%= form.number_field :student_score, id: :result_student_score, class: "form-control result_student_score " %>
   </div>
 
   <div class="form-group">

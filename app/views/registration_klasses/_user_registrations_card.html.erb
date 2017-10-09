@@ -1,0 +1,25 @@
+
+  <h5 class="card-body">
+    <div class="d-flex justify-content-between">
+      <div> <%= fa_icon "users" %>&nbsp;Class List</div>
+      <div class="">
+        <small>Size: <span class="badge badge-info"><%= @registration_klass.users.size %> </span></small>
+      </div>
+
+    </div>
+    <!-- TODO redesign to view people in cards with their head pics and key demographic details -->
+  </h5>
+  <ul id="list-user-registrations" class="list-group">
+    <% if @registration_klass.user_registrations.any? %>
+      <%= render @registration_klass.user_registrations %>
+    <% else %>
+      <li class="list-group-item list-group-item-action list-group-item-info no-user-registrations-to-list">
+        <%= render "no_people_to_list" %>
+      </li>
+    <% end %>
+  </ul>
+  <!-- <div>
+    <%#= link_to new_registration_klass_user_registration_path(@registration_klass), remote: true, class: "btn btn-sm btn-primary" do %>
+      <%#= fa_icon "user-plus" %>&nbsp;Add a Learner/Teacher
+    <%# end %>
+  </div> -->

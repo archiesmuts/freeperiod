@@ -17,7 +17,7 @@
               <%= fa_icon "arrow-left" %>&nbsp;Lesson plan
             <% end %>
             <%= link_to edit_lesson_plan_assessment_path(@assessment.lesson_plan, @assessment),
-              remote: true, class: "btn btn-sm btn-primary" do %>
+               class: "btn btn-sm btn-primary" do %>
               <%= fa_icon "edit" %>&nbsp;Edit assessment
             <% end %>
           </div>
@@ -59,12 +59,11 @@
               <%= fa_icon "check-circle-o" %>&nbsp;<strong>Results</strong>
             </div>
             <div>
-              <%= link_to new_assessment_result_path(@assessment), remote: true, class: "btn btn-sm btn-primary" do %>
-                <%= fa_icon "plus-square" %>&nbsp;Add a Student's result
-              <% end %>
+              <small> <a href="#" data-toggle="tooltip" data-placement="left" title="Click on a name to edit a result" class="card-link"><i class="fa fa-info-circle"></i></small></a>
             </div>
           </div>
         </h5>
+
         <ul id="list-results" class="list-group">
           <% if @assessment.results.any? %>
             <%= render @assessment.results %>

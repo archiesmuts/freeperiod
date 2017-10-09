@@ -24,21 +24,6 @@
             </div>
           </div>
         </div>
-          <div class="assessment-form py-2">
-            <%= link_to "#", class: "btn btn-sm btn-success",
-                  data: {toggle: "collapse",
-                          target: "#add-assessment-form"},
-                  aria: {expanded: false,
-                         controls: "addAssessmentForm"} do  %>
-              <%= fa_icon "graduation-cap" %> Add an Assessment&nbsp;
-            <% end %>
-
-            <div class="collapse" id="add-assessment-form">
-              <div class="py-2">
-                <%= render "assessments/new_inline_form" %>
-              </div>
-            </div>
-          </div> <!-- .assessment-form -->
       </div><!-- #lesson-plan-card -->
     </div> <!-- .col-md -->
 

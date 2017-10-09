@@ -5,12 +5,20 @@
 
     <div class="form-group row">
     <%= form.label :user_id, "Name of Student/Teacher", class: "col-4 col-form-label" %>
-    <div class="col">
-      <%= form.collection_select :user_id, User.registered_for_klass,
-              :id, :full_name, {prompt: "Select a person"}, {class: "form-control", id: "user_registration_user_select"}%>
-      <!-- TODO create a scope to select users who are members of this school -->
+      <div class="col">
+        <%#= form.collection_select :user_ids, User.registered_for_klass,
+                :id, :full_name, {prompt: "Select a person"},
+                {class: "form-control", id: "user_registration_user_select", multiple: true}%>
+        <!-- TODO create a scope to select users who are members of this school -->
+
+        <%= form.collection_check_boxes :user_registrations_ids, User.registered_for_klass, :id, :full_name do |b| %>
+          <div class="collection-check-box">
+            <%= b.check_box %>
+            <%= b.label %>
+          </div>
+        <% end %>
+      </div>
     </div>
-  </div>
   <div class="form-group">
     <%= form.label :user_type, "Is this person a Learner or a Teacher?" %><br>
     <% UserRegistration.user_types.keys.map do |user_type| %>
