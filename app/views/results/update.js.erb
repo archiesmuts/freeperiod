@@ -14,9 +14,11 @@ var el = $('.edit_result');
 
 <% else %>
 
-$('#list-results').append('<%= j render @result %>');
-$("#result-<%= @result.id %>").hide().fadeIn(1000);
 $('#result-dialog').modal("hide");
+$("#result-<%= @result.id %>").fadeOut(700, function() {
+  this.remove();
+  $('#list-results').append('<%= j render @result %>');
+})
 
 // Clear form
 el.find('input:text,text_area').val('');

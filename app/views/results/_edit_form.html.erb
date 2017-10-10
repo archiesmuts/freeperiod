@@ -2,7 +2,7 @@
 
   <p>
     <strong>
-      <%= @result.assessment.name %>
+      <%= @result.assessment.name %>. Value: <%=  @result.assessment.value  %>
     </strong>
   </p>
 
@@ -12,11 +12,18 @@
     <%= form.label :user_registration_id, "Names of Learners", class: "form-label" %>
     <%= form.text_field :user_registration_id, id: :user_name, class: "form-control" %>
   </div>
-  <div class="form-group">
-    <%= form.label :student_score %>
-    <%= form.number_field :student_score, id: :result_student_score, class: "form-control result_student_score " %>
+  <div class="form-group row">
+    <%= form.label :student_score, class: "col-sm-5 col-form-label" %>
+    <div class="col-sm-3">
+      <%= form.number_field :student_score, id: :result_student_score, class: "form-control result_student_score " %>
+    </div>
   </div>
-
+  <div class="form-group row">
+    <label for="goalValue" class="col-sm-5 col-form-label">My Goal - "dummy data"</label>
+    <div class="col-sm-3">
+      <input type="number" class="form-control" id="inputGoalValue" placeholder="15">
+    </div>
+  </div>
   <div class="form-group">
     <%= form.label :teacher_comment %>
     <%= form.text_area :teacher_comment, id: :result_teacher_comment, class: "form-control" %>

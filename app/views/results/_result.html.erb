@@ -1,20 +1,11 @@
-<li id="result-<%= result.id %>" class="list-group-item d-flex justify-content-between" >
-  <div>
+<li id="result-<%= result.id %>" class="list-group-item" >
+  <div class="d-flex justify-content-between">
     <%= link_to edit_assessment_result_path(result.assessment, result), remote: true do %>
       <%= fa_icon "edit" %>&nbsp;<%= result.user_registration.user_name %>
     <% end %>
-    <br>
-    <small>
-      <% if result.teacher_comment %>
-        <%= fa_icon "comment" %>
-      <% else %>
-        <%= fa_icon "comment-o" %>
-      <% end %>
-      <%= result.teacher_comment %>
-     </small>
-  </div>
+
   <div>
-    <span class="badge badge-info"><%= result.student_score %>/ <%= result.assessment.value %></span>
+  <span class="badge badge-secondary">Goal: 15</span> <span class="badge badge-info"><%= result.student_score %>/ <%= result.assessment.value %></span>
 
     <%= link_to [result.assessment, result], method: :delete, remote: true,
         data: { confirm: 'Delete! Are you absolutely sure?' },
@@ -22,4 +13,13 @@
           <span class="text-danger"><i class="fa fa-trash" aria-hidden="true"></i>&nbsp;Remove</span>
         <% end %>
   </div>
+</div>
+<small>
+  <% if result.teacher_comment %>
+    <%= fa_icon "comment" %>
+  <% else %>
+    <%= fa_icon "comment-o" %>
+  <% end %>
+  <%= result.teacher_comment %>
+ </small>
 </li>

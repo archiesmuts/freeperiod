@@ -61,7 +61,8 @@
       <div class="card">
         <div class="card-body">
           <h4 class="card-title"><%= fa_icon "graduation-cap" %>&nbsp;Registration and Subject Classes</h4>
-          <p class="card-text">Number of classes: <span class="badge badge-info"><%= @school.registration_klasses.size %></span></p>
+          <p class="card-text">Number of Registration Classes: <span class="badge badge-info"><%= @school.registration_klasses.registration_class.size %></span></p>
+          <p class="card-text">Number of Subject Classes: <span class="badge badge-info"><%= @school.registration_klasses.subject_class.size %></span></p>
             <%= link_to "View all Registration and Subject Classes", school_registration_klasses_path(@school),
                 class: "btn btn-sm btn-primary" %>
         </div>
