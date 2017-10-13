@@ -1,0 +1,82 @@
+<div class="container">
+  <div class="row">
+    <div class="col-sm">
+      <div class="card border-primary my-3">
+        <h5 class="card-header">
+          <div class="d-flex justify-content-between">
+            <div>
+              <%= fa_icon "money" %>
+              <small>School Fee</small>
+            </div>
+            <span class="badge badge-light"><%= @fee.year.strftime("%Y") %></span>
+          </div>
+        </h5>
+        <div class="card-body text-primary">
+          <h4 class="card-title">
+            <%= @fee.name %>
+          </h4>
+          <h6 class="card-subtitle text-muted"><%= @fee.school.name.truncate(50) %></h6>
+          <h5 class="card-subtitle py-2">R<%= @fee.amount %></h5>
+          <p class="card-text"><%= fa_icon "comment" %></p>
+        </div>
+        <div class="card-footer">
+          <div class="d-flex justify-content-between">
+            <div class="p-1">
+              <%= link_to @fee.school, class: "btn btn-sm btn-outline-primary" do %>
+                <%= fa_icon "chevron-left" %>&nbsp;School page
+              <% end %>
+              <%= link_to school_fees_path(@school), class: "btn btn-sm btn-outline-dark" do %>
+                <%= fa_icon "list" %>&nbsp;View List of School Fees
+              <% end %>
+            </div>
+            <div class="p-1">
+              <%= link_to edit_school_fee_path(@fee.school, @fee), class: "btn btn-sm btn-primary" do %>
+                <%= fa_icon "pencil-square" %>&nbsp;Edit details
+              <% end %>
+            </div>
+          </div>
+        </div>
+          <%#= render "registration_klasses/user_registrations_card" %>
+
+      </div><!-- .card for registration_klass -->
+    </div> <!-- .col -->
+
+    <div class="col-sm">
+      <!-- list fee pay_agreements here -->
+      <div class="card border-primary my-3">
+        <h5 class="card-header">
+          <div class="d-flex justify-content-between">
+            <div>
+              <%= fa_icon "check-circle-o" %>&nbsp;<strong>Pay Agreements</strong>
+            </div>
+            <div>
+              <small> <a href="#" data-toggle="tooltip" data-placement="left" title="Click on a name to edit an agreement" class="card-link"><i class="fa fa-info-circle"></i></small></a>
+            </div>
+          </div>
+        </h5>
+
+        <ul id="list-pay-agreements" class="list-group">
+          <% if @fee.pay_agreements.any? %>
+            <%= render @fee.pay_agreements %>
+          <% else %>
+            <li class="list-group-item list-group-item-info no-pay-agreements-to-list">
+              No pay agreements to list
+            </li>
+          <% end %>
+        </ul>
+      </div>
+    </div> <!-- .col -->
+  </div> <!-- .row -->
+
+  <div class="row">
+    <div class="col-md-6">
+
+    </div>
+  </div>
+</div> <!-- .container -->
+
+<!-- modal forms-->
+
+
+
+<%= render "pay_agreements/modal_dialog" %>

@@ -10,6 +10,8 @@ Rails.application.routes.draw do
   resources :schools do
     resources :memberships, path: :users, module: :schools
     resources :registration_klasses
+    resources :fees
+    resources :events
   end
   resources :memberships
 
@@ -43,10 +45,14 @@ Rails.application.routes.draw do
 
   resources :user_registrations do
     resources :results
+    resources :pay_agreements
   end
 
   resources :assessment_types do
     resources :assessment_tasks
+  end
+  resources :fees do
+    resources :pay_agreements
   end
   resources :assessment_tasks
   resources :school_courses, only: :index

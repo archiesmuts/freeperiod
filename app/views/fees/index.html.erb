@@ -1,0 +1,38 @@
+<div class="container">
+
+  <h1>Fees</h1>
+  <div class="py-2">
+    <%= link_to@school, class: "btn btn-sm btn-outline-primary" do %>
+      <%= fa_icon "university" %> Back to School page
+    <% end %>
+    <%= link_to 'Create a new School Fee', new_school_fee_path(@school),
+      remote: true, class: "btn btn-sm btn-primary" %>
+  </div>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Year</th>
+        <th>Amount</th>
+        <th colspan="3"></th>
+      </tr>
+    </thead>
+
+    <tbody id="list-fees">
+
+      <% if @school.fees.any? %>
+        <% @fees.each do |fee| %>
+          <%= render @school.fees %>
+        <% end %>
+        <% else %>
+        <tr id="no-fees-to-list">
+          <td>No fees to list</td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+</div>
+<!-- modal dialog for creating school fees -->
+<!-- form via modal_dialog  -->
+<%= render "modal_dialog" %>

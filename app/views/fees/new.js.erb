@@ -1,0 +1,8 @@
+// Add the dialog title
+$('#fee-dialog h4').html("Add a school fee");
+
+// Render the new form
+$('.modal-body').html('<%= j render "fees/new_form" %>');
+
+// Show the dynamic dialog
+$('#fee-dialog').modal("show");

@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  year: 2017-10-10
+  amount: 9.99
+  school_id: 
+
+two:
+  name: MyString
+  year: 2017-10-10
+  amount: 9.99
+  school_id: 

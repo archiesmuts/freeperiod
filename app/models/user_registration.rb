@@ -7,6 +7,8 @@ class UserRegistration < ApplicationRecord
   belongs_to :registration_klass
   has_many :results
   has_many :assessments, through: :results
+  has_many :pay_agreements, inverse_of: :user_registration
+  has_many :fees, through: :pay_agreements
   # scope :for_this_klass, -> { where(field: true)   }
   validates :user_id, :registration_klass_id, :user_type, presence: true
   validates :completed, inclusion: { in: [true, false] }

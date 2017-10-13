@@ -1,0 +1,53 @@
+<%= form_with(model: [@school, Fee.new], id: :new_fee, class: :new_fee) do |form| %>
+
+  <h4><%= @school.name %></h4>
+  <div class="errors"></div>
+
+  <div class="form-group">
+    <%= form.label :name %>
+    <%= form.text_field :name, id: :fee_name, class: "form-control fee_name", required: true  %>
+  </div>
+  <div class="row">
+    <div class="col-sm-5">
+      <div class="form-group row">
+        <%= form.label :year, class: "col-sm-3 col-form-label"  %>
+        <div class="col-sm-8">
+          <%= form.date_select :year,
+            {selected: Date.today,
+            discard_day: true, discard_month: true,
+            end_year: Date.today.year},
+            {class: "form-control"} %>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-7">
+      <div class="form-group row">
+        <%= form.label :amount, class: "col-sm-3 col-form-label" %>
+        <div class="col-sm-8">
+          <div class="input-group mb-2 mb-sm-0">
+             <div class="input-group-addon">R</div>
+              <%= form.number_field :amount, id: :fee_amount, class: "form-control", required: true %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-primary" data-dismiss="modal" id="createFee">Cancel</button>
+    <%= form.submit class: "btn btn-primary" %>
+  </div>
+<% end %>
+<!--
+<%# if fee.errors.any? %>
+  <div id="error_explanation">
+    <h2><%#= pluralize(fee.errors.count, "error") %> prohibited this fee from being saved:</h2>
+
+    <ul>
+    <%# fee.errors.full_messages.each do |message| %>
+      <li><%#= message %></li>
+    <%# end %>
+    </ul>
+  </div>
+<%# end %>
+-->

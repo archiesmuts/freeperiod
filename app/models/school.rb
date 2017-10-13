@@ -7,6 +7,8 @@ class School < ApplicationRecord
   has_many :users, -> { order("last_name, first_name")}, through: :memberships
   has_many :registration_klasses
   has_many :user_registrations, through: :registration_klasses
+  has_many :fees, inverse_of: :school
+  has_many :events, inverse_of: :school
 
   validates :name, :slug, presence: true
   validates_associated :memberships

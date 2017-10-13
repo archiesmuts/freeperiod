@@ -1,0 +1,7 @@
+<tr id="fee-<%= fee.id %>">
+  <td><%= link_to fee.name, [fee.school, fee] %></td>
+  <td><%= fee.year.strftime("%Y") %></td>
+  <td><%= fee.amount %></td>
+  <td><%= fee.year.strftime("%Y") %></td>
+  <td><%= link_to 'Destroy', [fee.school, fee], method: :delete, data: { confirm: 'Are you sure?' } %></td>
+</tr>

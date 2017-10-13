@@ -1,0 +1,67 @@
+<%= form_with(model: [@school, @fee], local: true, id: :edit_fee, class: :edit_fee) do |form| %>
+<div class="row">
+
+  <div class="col-md">
+    <h4><%= @school.name %></h4>
+
+    <% if @fee.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(fee.errors.count, "error") %> prohibited this fee from being saved:</h2>
+
+        <ul>
+        <% fee.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <div class="form-group">
+      <%= form.label :name %>
+      <%= form.text_field :name, id: :fee_name, class: "form-control fee_name", required: true  %>
+    </div>
+    <div class="row">
+      <div class="col-sm-5">
+        <div class="form-group row">
+          <%= form.label :year, class: "col-sm-3 col-form-label"  %>
+          <div class="col-sm-8">
+            <%= form.date_select :year,
+              {selected: Date.today,
+              discard_day: true, discard_month: true,
+              end_year: Date.today.year},
+              {class: "form-control"} %>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-7">
+        <div class="form-group row">
+          <%= form.label :amount, class: "col-sm-3 col-form-label" %>
+          <div class="col-sm-8">
+            <div class="input-group mb-2 mb-sm-0">
+               <div class="input-group-addon">R</div>
+                <%= form.number_field :amount, id: :fee_amount, class: "form-control", required: true %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="actions">
+      <%= link_to 'Cancel', [@school, @fee], class: "btn btn-outline-primary" %>
+      <%= form.submit class: "btn btn-primary" %>
+    </div>
+  </div>
+
+  <div class="col-md">
+    <h4>Select Learners for this school fee</h4>
+    <div class="form-group">
+    <%= form.label :user_registration_id, "Names of Learners", class: "form-label" %>
+          <!-- TODO create a scope to select users who are members of this school -->
+          <!-- TODO how to filter users to shorten the lookup list on checkbox -->
+          <%= form.collection_select :user_registration_ids, UserRegistration.all,
+              :id, :user_name, {selected: @fee.user_registration_ids, include_blank: true}, { multiple: true}  %>
+    </div>
+  </div>
+</div>
+
+<% end %>

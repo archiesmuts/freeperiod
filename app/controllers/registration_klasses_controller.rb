@@ -30,7 +30,7 @@ class RegistrationKlassesController < ApplicationController
 
     respond_to do |format|
       if @registration_klass.save
-        format.html { redirect_to @registration_klass, notice: 'Class was successfully created.' }
+        format.html { redirect_to [@school, @registration_klass], notice: 'Class was successfully created.' }
         format.json { render :show, status: :created, location: @registration_klass }
         format.js   { }
       else

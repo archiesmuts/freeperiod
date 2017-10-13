@@ -1,0 +1,14 @@
+// Add the dialog title
+$('#result-dialog h4').html("Edit assessment result");
+
+// Render the new form
+$('.modal-body').html('<%= j render "results/edit_form" %>');
+
+// Show the dynamic dialog
+$('#result-dialog').modal("show");
+
+// Set focus to the first element
+$('#result-dialog').on('shown.bs.modal', function () {
+  $('.user-registration-id').hide();
+  $('.result_student_score').focus();
+});
