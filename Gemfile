@@ -28,7 +28,9 @@ gem 'friendly_id', '~> 5.2', '>= 5.2.1'
 gem 'pundit', '~> 1.1'
 gem 'rolify', '~> 5.1'
 gem 'sequenced', '~> 3.1', '>= 3.1.1'
-
+gem 'fullcalendar-rails', '~> 3.4'
+gem 'momentjs-rails', '~> 2.17', '>= 2.17.1'
+gem 'bootstrap3-datetimepicker-rails', '~> 4.17.47'
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'capybara', '~> 2.13'

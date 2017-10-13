@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  school_id: 
+  name: MyString
+  description: MyText
+  start_time: 2017-10-10 15:49:28
+  end_time: 2017-10-10 15:49:28
+
+two:
+  school_id: 
+  name: MyString
+  description: MyText
+  start_time: 2017-10-10 15:49:28
+  end_time: 2017-10-10 15:49:28

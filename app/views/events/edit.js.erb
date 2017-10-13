@@ -1,0 +1,13 @@
+// Add the dialog title
+$('#event-dialog  h4').html("Edit event");
+
+// Render the new form
+$('.modal-body').html('<%= j render "events/edit_form" %>');
+
+// Show the dynamic dialog
+$('#event-dialog').modal("show");
+
+// Set focus to the first element
+$('#event-dialog').on('shown.bs.modal', function () {
+  $('.event_title').focus();
+});

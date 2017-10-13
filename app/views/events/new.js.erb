@@ -1,0 +1,8 @@
+// Add the dialog title
+$('#event-dialog h4').html("Create an Event");
+
+// Render the new form
+$('.modal-body').html('<%= j render "events/new_form" %>');
+
+// Show the dynamic dialog
+$('#event-dialog').modal("show");

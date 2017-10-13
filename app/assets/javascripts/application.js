@@ -9,13 +9,17 @@
 //
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
+// require fullcalendar/gcal for google calendar integration
 //
 //= require jquery3
 //= require jquery-ui
 //= require rails-ujs
 //= require popper
 //= require cocoon
+//= require moment
+//= require fullcalendar
 //= require bootstrap-sprockets
+//= require jquery-ui-timepicker-addon
 //= require trix
 //= require turbolinks
 //= require_tree .
