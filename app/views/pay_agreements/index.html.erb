@@ -1,0 +1,33 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Pay Agreements</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Fee</th>
+      <th>User registration</th>
+      <th>Discount</th>
+      <th>Comment</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @pay_agreements.each do |pay_agreement| %>
+      <tr>
+        <td><%= pay_agreement.fee_id %></td>
+        <td><%= pay_agreement.user_registration_id %></td>
+        <td><%= pay_agreement.discount %></td>
+        <td><%= pay_agreement.comment %></td>
+        <td><%= link_to 'Show', pay_agreement %></td>
+        <td><%= link_to 'Edit', edit_pay_agreement_path(pay_agreement) %></td>
+        <td><%= link_to 'Destroy', pay_agreement, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Pay Agreement', new_pay_agreement_path %>

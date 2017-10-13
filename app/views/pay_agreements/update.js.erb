@@ -1,0 +1,28 @@
+var el = $('.edit_pay_agreement');
+
+<% if @pay_agreement.errors.any? %>
+
+  // Create a list of errors
+  var errors = $('<ul class="list-group" />');
+
+  <% @pay_agreement.errors.full_messages.each do |error| %>
+    errors.append('<li class="list-group-item list-group-item-danger"><%= j error %></li>');
+  <% end %>
+
+  // Display errors on form
+  el.find('.errors').html(errors);
+
+<% else %>
+
+$('#pay-agreement-dialog').modal("hide");
+$("#pay_agreement-<%= @pay_agreement.id %>").fadeOut(700, function() {
+  this.remove();
+  $('#list-pay-agreements').append('<%= j render @pay_agreement %>');
+})
+
+// Clear form
+el.find('input:text,text_area').val('');
+el.find('.errors').empty();
+
+<% end %>
+// Source: www.alfajango.com/blog/rails-3-remote-links-and-forms-data-type-with-jquery/

@@ -1,0 +1,28 @@
+<%= form_with(model: [@pay_agreement.fee, @pay_agreement], method: :patch, id: :edit_pay_agreement, class: :edit_pay_agreement) do |form| %>
+
+  <p>
+    <strong>
+      <%= @pay_agreement.fee.name %>. Amount: <%=  @pay_agreement.fee.amount  %>
+    </strong>
+  </p>
+
+  <div class="errors"></div>
+
+  <div class="form-group fee-user-registration-id">
+    <%= form.label :user_registration_id %>
+    <%= form.text_field :user_registration_id, id: :pay_agreement_user_registration_id, class: "form-control" %>
+  </div>
+  <div class="form-group">
+    <%= form.label :discount_in_percent%>
+    <%= form.number_field :discount_in_percent, id: :pay_agreement_discount, class: "form-control pay_agreement_discount" %>
+  </div>
+  <div class="form-group">
+    <%= form.label :comment %>
+    <%= form.text_area :comment, id: :pay_agreement_comment, class: "form-control ." %>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-primary" data-dismiss="modal" id="editPayAgreement">Cancel</button>
+    <%= form.submit class: "btn btn-primary" %>
+  </div>
+
+<% end %>

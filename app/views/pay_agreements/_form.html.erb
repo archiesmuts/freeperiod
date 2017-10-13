@@ -1,0 +1,37 @@
+<%= form_with(model: pay_agreement, local: true) do |form| %>
+  <% if pay_agreement.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(pay_agreement.errors.count, "error") %> prohibited this pay_agreement from being saved:</h2>
+
+      <ul>
+      <% pay_agreement.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :fee_id %>
+    <%= form.text_field :fee_id, id: :pay_agreement_fee_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :user_registration_id %>
+    <%= form.text_field :user_registration_id, id: :pay_agreement_user_registration_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :discount %>
+    <%= form.text_field :discount, id: :pay_agreement_discount %>
+  </div>
+
+  <div class="field">
+    <%= form.label :comment %>
+    <%= form.text_area :comment, id: :pay_agreement_comment %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

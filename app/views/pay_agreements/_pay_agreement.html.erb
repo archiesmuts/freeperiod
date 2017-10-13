@@ -1,0 +1,27 @@
+<li id="pay_agreement-<%= pay_agreement.id %>" class="list-group-item" >
+  <div class="d-flex justify-content-between">
+    <%= link_to edit_fee_pay_agreement_path(pay_agreement.fee, pay_agreement), remote: true do %>
+      <%= fa_icon "edit" %>&nbsp;<%= pay_agreement.user_registration.user_name %>
+    <% end %>
+
+  <div>
+
+    <%= link_to [pay_agreement.fee, pay_agreement], method: :delete, remote: true,
+        data: { confirm: 'Delete! Are you absolutely sure?' },
+        class: "btn btn-sm btn-danger btn-link delete-pay-agreement" do %>
+          <span class="text-danger"><i class="fa fa-trash" aria-hidden="true"></i>&nbsp;Remove</span>
+        <% end %>
+  </div>
+</div>
+<small>
+  <strong>Approved School Fee:</strong> <%= number_to_currency(pay_agreement.approved_school_fee, precision: 2, unit: "R") %><br>
+  <strong>Discount:</strong> <%= number_to_percentage(pay_agreement.discount_in_percent, precision: 2) %><br>
+  <strong>Agreed Amount after Discount:</strong> <%= number_to_currency(pay_agreement.agreed_school_fee, precision: 2, unit: "R") %><br>
+  <% if pay_agreement.comment %>
+    <%= fa_icon "comment" %>
+  <% else %>
+    <%= fa_icon "comment-o" %> No comment
+  <% end %>
+  <%= pay_agreement.comment %>
+ </small>
+</li>

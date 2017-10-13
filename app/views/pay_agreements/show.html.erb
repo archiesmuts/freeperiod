@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Fee:</strong>
+  <%= @pay_agreement.fee_id %>
+</p>
+
+<p>
+  <strong>User registration:</strong>
+  <%= @pay_agreement.user_registration_id %>
+</p>
+
+<p>
+  <strong>Discount:</strong>
+  <%= @pay_agreement.discount %>
+</p>
+
+<p>
+  <strong>Comment:</strong>
+  <%= @pay_agreement.comment %>
+</p>
+
+<%= link_to 'Edit', edit_pay_agreement_path(@pay_agreement) %> |
+<%= link_to 'Back', pay_agreements_path %>

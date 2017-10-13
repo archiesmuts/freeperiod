@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  fee_id: 
+  user_registration_id: 
+  discount: 9.99
+  comment: MyText
+
+two:
+  fee_id: 
+  user_registration_id: 
+  discount: 9.99
+  comment: MyText
