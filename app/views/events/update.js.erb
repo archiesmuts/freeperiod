@@ -18,8 +18,8 @@ $('#event-dialog').modal("hide");
 $("#event-<%= @event.id %>").fadeOut(700, function() {
   this.remove();
   $('#list-events').append('<%= j render @event %>');
-})
-$("#event_calendar").hide().fadeIn(200);
+});
+
 // Clear form
 el.find('input:text,text_area').val('');
 el.find('.errors').empty();

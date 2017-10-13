@@ -4,7 +4,7 @@ class Event < ApplicationRecord
   friendly_id :title, use: :slugged
   belongs_to :school, inverse_of: :events
 
-  scope :newer_than, ->(date) { where('start_time > ?', date) }
+  scope :newer_than, ->(date) { where('start_time > ?', date).order("start_time") }
 
   validates :school_id, :title, :description, :start_time, :end_time, :slug, presence: true
   validate :start_time_cannot_be_in_the_past, :end_time_must_be_greater_than_start_time

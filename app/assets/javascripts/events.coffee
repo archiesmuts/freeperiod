@@ -23,8 +23,8 @@ eventCalendar = ->
         $('.modal-title').html event.title
         $('.modal-body').html moment(event.start).format('MMM Do h:mm A') + ' to ' + moment(event.end).format('MMM Do h:mm A') + '<br />' + event.description
         # changed the attr replacement with the following
-        # $('#eventLink').click ->
-        #   window.location = event.url
+        $('#eventLink').click ->
+          window.location = event.url
         $('#fullCalModal').modal()
 
 clearCalendar = ->
