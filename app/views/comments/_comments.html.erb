@@ -1,0 +1,6 @@
+<% commentable.comments.each do |comment| %>
+  <li class="list-group-item">
+      <%= comment.comment %><br>
+      <small> <%= fa_icon "comment" %>&nbsp;<em>...<%= comment.user.name %></em></small>
+  </li>
+<% end %>

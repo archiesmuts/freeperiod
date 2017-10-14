@@ -3,6 +3,7 @@ class Event < ApplicationRecord
   extend FriendlyId
   friendly_id :title, use: :slugged
   belongs_to :school, inverse_of: :events
+  has_many :comments, as: :commentable
 
   scope :newer_than, ->(date) { where('start_time > ?', date).order("start_time") }
 

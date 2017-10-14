@@ -21,5 +21,23 @@
         </div>
       </div><!-- #event-card -->
     </div> <!-- .col-md -->
+    <div class="col-md-6">
+      <div class="card border-primary my-3">
+        <h5 class="card-header">
+          <%= fa_icon "comment-o" %>&nbsp;Comments on the event
+        </h5>
+      <!-- list comments here -->
+      <ul id="list-comments" class="list-group">
+        <% if @event.comments.any? %>
+          <%= render "comments/comments", commentable: @event%>
+        <% else %>
+          <li class="list-group-item list-group-item-info no-comments-to-list">
+            Nobody has commented yet.
+          </li>
+        <% end %>
+      </ul>
+      </div>
+      <%= render "comments/form", commentable: @event %>
+    </div
   </div>
 </div>

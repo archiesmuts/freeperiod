@@ -3,8 +3,8 @@ class RegistrationKlass < ApplicationRecord
   extend FriendlyId
   friendly_id :name, use: :slugged
 
-  belongs_to :school
-  belongs_to :course
+  belongs_to :school, inverse_of: :registration_klasses
+  belongs_to :course, inverse_of: :registration_klasses
   has_many :user_registrations
   has_many :users, through: :user_registrations
   has_many :lesson_plans

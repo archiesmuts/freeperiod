@@ -4,22 +4,24 @@
       <%= fa_icon "edit" %>&nbsp;<%= result.user_registration.user_name %>
     <% end %>
 
-  <div>
-  <span class="badge badge-secondary">Goal: 15</span> <span class="badge badge-info"><%= result.student_score %>/ <%= result.assessment.value %></span>
-
-    <%= link_to [result.assessment, result], method: :delete, remote: true,
+    <div>
+      <span class="badge badge-secondary">Goal: 15</span> <span class="badge badge-info"><%= result.student_score %>/ <%= result.assessment.value %></span>
+      <%= link_to [result.assessment, result], class: "btn btn-sm btn-link" do %>
+        <span class="badge badge-primary"><%= fa_icon "eye" %></span>
+      <% end %>
+      <%= link_to [result.assessment, result], method: :delete, remote: true,
         data: { confirm: 'Delete! Are you absolutely sure?' },
         class: "btn btn-sm btn-danger btn-link delete-result" do %>
           <span class="text-danger"><i class="fa fa-trash" aria-hidden="true"></i>&nbsp;Remove</span>
         <% end %>
+      </div>
   </div>
-</div>
-<small>
-  <% if result.teacher_comment %>
-    <%= fa_icon "comment" %>
-  <% else %>
-    <%= fa_icon "comment-o" %>
-  <% end %>
-  <%= result.teacher_comment %>
- </small>
+  <small>
+    <% if result.teacher_comment %>
+      <%= fa_icon "comment" %>
+    <% else %>
+      <%= fa_icon "comment-o" %>
+    <% end %>
+    <%= result.teacher_comment %>
+   </small>
 </li>

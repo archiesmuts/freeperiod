@@ -1,24 +1,44 @@
-<p id="notice"><%= notice %></p>
-
-<p>
-  <strong>Student score:</strong>
-  <%= @result.student_score %>
-</p>
-
-<p>
-  <strong>Teacher comment:</strong>
-  <%= @result.teacher_comment %>
-</p>
-
-<p>
-  <strong>Registration:</strong>
-  <%= @result.registration_id %>
-</p>
-
-<p>
-  <strong>Assessment:</strong>
-  <%= @result.assessment_id %>
-</p>
-
-<%= link_to 'Edit', edit_result_path(@result) %> |
-<%= link_to 'Back', results_path %>
+<!-- result show page -->
+<div class="container">
+  <div class="row">
+  <div class="col-md-5">
+      <div id="result-card-<%= @result.id %>">
+        <div class="card border-secondary my-3">
+          <h5 class="card-header"><%= fa_icon "check" %>&nbsp;Assessment Result</h5>
+            <div class="card-body text-primary">
+            <h4 class="card-title"><%= @result.assessment.name%></h4>
+            <h6 class="card-subtitle mb-2 text-muted"> <%= @result.user_registration.user_name %></h6>
+            <p class="card-text">
+              <%= @result.student_score %> / <%= @result.assessment.value %>
+            </p>
+            <p class="card-text">
+              Teacher Comment: <br><%= @result.teacher_comment %>
+            </p>
+          </div>
+          <div class="card-footer">
+            <%= link_to 'Back to assessment', [@assessment.lesson_plan, @result.assessment], class: "btn btn-sm btn-outkine-primary" %>
+          </div>
+        </div>
+      </div><!-- #result-card -->
+    </div> <!-- .col-md -->
+    <div class="col-md-7">
+      <div class="card border-primary my-3">
+        <h5 class="card-header">
+          <%= fa_icon "comment-o" %>&nbsp;Comments
+        </h5>
+      <!-- list comments here -->
+      <ul id="list-comments" class="list-group">
+        <% if @result.comments.any? %>
+          <%= render "comments/comments", commentable: @result %>
+        <% else %>
+          <li class="list-group-item list-group-item-info no-comments-to-list">
+            Nobody has commented yet.
+          </li>
+        <% end %>
+      </ul>
+      </div>
+      <%= render "comments/form", commentable: @result %>
+    </div>
+    </div>
+  </div>
+</div>

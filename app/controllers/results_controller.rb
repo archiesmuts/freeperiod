@@ -1,6 +1,6 @@
 class ResultsController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_assessment, only: [:new, :create]
+  before_action :set_assessment, only: [:new, :create, :show]
   before_action :set_result, only: [:show, :edit, :update, :destroy]
 
   # GET /results

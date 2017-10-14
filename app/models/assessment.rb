@@ -5,8 +5,8 @@ class Assessment < ApplicationRecord
   belongs_to :lesson_plan
   belongs_to :assessment_type
   belongs_to :assessment_task
-  has_many :parts, dependent: :destroy
-  has_many :results, dependent: :destroy
+  has_many :parts, inverse_of: :assessment, dependent: :destroy
+  has_many :results, inverse_of: :assessment, dependent: :destroy
   has_many :user_registrations, through: :results
 
   validates :lesson_plan_id, :name, :value, :assessment_type_id, :assessment_task_id, presence: true

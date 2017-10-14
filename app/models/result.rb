@@ -1,8 +1,8 @@
 class Result < ApplicationRecord
   resourcify
-
-  belongs_to :assessment
-  belongs_to :user_registration
+  belongs_to :assessment, inverse_of: :results
+  belongs_to :user_registration, inverse_of: :results
+  has_many :comments, as: :commentable
 
   validates :assessment_id, :user_registration_id, :student_score, presence: true
   validates :teacher_comment, presence: true, on: :update

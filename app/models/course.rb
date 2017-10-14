@@ -2,10 +2,9 @@ class Course < ApplicationRecord
   resourcify
   extend FriendlyId
   friendly_id :name, use: :slugged
-  has_many :registration_klasses
-  #has_many :user_registrations, through: :registration_klasses
-  belongs_to :grade
-  belongs_to :subject
+  has_many :registration_klasses, inverse_of: :course
+  belongs_to :grade, inverse_of: :courses
+  belongs_to :subject, inverse_of: :subjects
 
   validates :subject_id, :grade_id, :name, :subject_type, :slug, presence: true
 

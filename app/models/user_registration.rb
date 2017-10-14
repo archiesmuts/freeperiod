@@ -5,7 +5,7 @@ class UserRegistration < ApplicationRecord
   after_update :set_completed_at
   belongs_to :user
   belongs_to :registration_klass
-  has_many :results
+  has_many :results, inverse_of: :user_registration
   has_many :assessments, through: :results
   has_many :pay_agreements, inverse_of: :user_registration
   has_many :fees, through: :pay_agreements

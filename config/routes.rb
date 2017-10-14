@@ -36,7 +36,6 @@ Rails.application.routes.draw do
   resources :lesson_plans do
     resources :assessments
   end
-  resources :assessment_tasks
 
   resources :assessments do
     resources :results
@@ -51,10 +50,21 @@ Rails.application.routes.draw do
   resources :assessment_types do
     resources :assessment_tasks
   end
+
+  resources :assessment_tasks
+
   resources :fees do
     resources :pay_agreements
   end
-  resources :assessment_tasks
+
+  resources :results do
+    resources :comments, module: :results
+  end
+
+  resources :events do
+    resources :comments, module: :events
+  end
+
   resources :school_courses, only: :index
 
   root to: 'visitors#index'
