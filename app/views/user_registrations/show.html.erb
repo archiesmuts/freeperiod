@@ -1,19 +1,62 @@
 <div class="container">
-  <div id="show-user-registration-card-<%= @user_registration.id %>">
-    <div id="user-registration-card-<%= @user_registration.id %>" class="card border-primary my-3" style="max-width: 20rem;">
-      <div class="card-header"><%= @user_registration.registration_klass.name %></div>
-      <div class="card-body text-primary">
-        <h4 class="card-title"><%= @user_registration.user_name %></h4>
-        <p class="card-text">
-           <span id="user-type">
-             <%= render "user_type_display" %>
-          </span>
-          <%= @user_registration.completed ? "Completed on" : "Active" %> <%= @user_registration.try(:completed_at) %>
-        </p>
-        <%= link_to 'Back', school_registration_klass_path(@registration_klass.school, @registration_klass), class: "btn btn-sm btn-outline-primary" %>
-        <%= link_to 'Edit', edit_registration_klass_user_registration_path(@user_registration.registration_klass, @user_registration), remote: true, class: "btn btn-sm btn-primary" %>
+  <div class="row">
+    <div class="col-md-6">
+      <div id="show-user-registration-card-<%= @user_registration.id %>">
+        <div id="user-registration-card-<%= @user_registration.id %>" class="card border-primary my-3">
+          <div class="card-header">
+            <%= fa_icon("graduation-cap") %>&nbsp;<%= @user_registration.registration_klass.name %>
+          </div>
+          <div class="card-body text-primary">
+            <h4 class="card-title">
+              <%= fa_icon("user") %>&nbsp;<%= @user_registration.user_name %>
+            </h4>
+            <p class="card-text">
+               <span id="user-type">
+                 <%= render "user_type_display" %>
+              </span>
+              <%= @user_registration.completed ? "Completed on" : "Active" %> <%= @user_registration.try(:completed_at) %>
+            </p>
+
+          </div>
+          <div class="card-footer d-flex justify-content-between">
+            <span>
+              <%= link_to school_registration_klass_path(@registration_klass.school, @registration_klass),
+                  class: "btn btn-sm btn-outline-primary" do %>
+                      <%= fa_icon("arrow-left", text: "Back") %>
+                  <% end %>
+              <%= link_to edit_registration_klass_user_registration_path(@user_registration.registration_klass, @user_registration),
+                  remote: true, class: "btn btn-sm btn-primary" do %>
+                    <%= fa_icon("pencil", text: "Edit registration") %>
+                  <% end %>
+            </span>
+            <%= link_to new_user_registration_attendance_path(@user_registration),
+                remote: true, class: "btn btn-sm btn-success"  do %>
+                  <%= fa_icon("plus", text: "Record Day Absent") %>
+                <% end %>
+          </div>
+        </div>
       </div>
+    </div> <!-- .col-md-6 -->
+    <div class="col-md-6">
+      <div class="card border-primary my-3">
+        <h5 class="card-header d-flex justify-content-between">
+          <div><%= fa_icon "comment-o" %>&nbsp;Attendance record</div>
+          <small>&nbsp;Days absent:&nbsp;<span class="badge badge-info" id="days-absent"></span></small>
+        </h5>
+      <!-- list comments here -->
+      <ul id="list-attendances" class="list-group">
+        <% if @user_registration.attendances.any? %>
+          <%= render "attendances/attendances", attendable: @user_registration %>
+        <% else %>
+          <li class="list-group-item list-group-item-info no-attendances-to-list">
+            No attendance recorded yet
+          </li>
+        <% end %>
+      </ul>
+      </div>
+      <%#= render "attendances/form", attendable: @user_registration %>
     </div>
   </div>
 </div>
 <%= render "user_registrations/modal_dialog" %>
+<%= render "attendances/modal_dialog" %>

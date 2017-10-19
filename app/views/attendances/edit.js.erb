@@ -1,0 +1,13 @@
+// Add the dialog title
+$('#attendance-dialog  h4').html("Edit attendance");
+
+// Render the new form
+$('.modal-body').html('<%= j render "attendances/edit_form", attendable: @user_registration %>');
+
+// Show the dynamic dialog
+$('#attendance-dialog').modal("show");
+
+// Set focus to the first element
+$('#attendance-dialog').on('shown.bs.modal', function () {
+  $('.attendance-date').focus();
+});

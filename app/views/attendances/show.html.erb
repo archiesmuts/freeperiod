@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Comment:</strong>
+  <%= @attendance.comment %>
+</p>
+
+<p>
+  <strong>Date:</strong>
+  <%= @attendance.date %>
+</p>
+
+<p>
+  <strong>Attendable:</strong>
+  <%= @attendance.attendable_id %>
+</p>
+
+<p>
+  <strong>Attendable type:</strong>
+  <%= @attendance.attendable_type %>
+</p>
+
+<%= link_to 'Edit', edit_attendance_path(@attendance) %> |
+<%= link_to 'Back', attendances_path %>

@@ -1,0 +1,7 @@
+$(".delete-attendance").bind('ajax:success', function() {
+  $(this).closest('li').fadeOut(500, function(){
+  	$(this).remove();
+    var number_days = $( ".attendance" ).length;
+    $('#list-attendances').countDaysAbsent();
+  });
+});
