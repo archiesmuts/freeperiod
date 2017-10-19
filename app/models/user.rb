@@ -19,10 +19,19 @@ class User < ApplicationRecord
   validates :terms_of_privacy_statement, acceptance: true
   validates_associated :memberships
   validates_associated :registration_klasses
-  scope :registered_for_klass, -> { includes(:memberships)
+  scope :registered_for_klass, -> {joins(schools: [:registration_klasses])
     .where(memberships: {member: ["learner", "educator"]} )
+    .distinct
     .order("users.last_name ASC, users.first_name ASC")}
 
+  scope :registered_teachers, -> { joins(schools: [:registration_klasses])
+    .where(memberships: {member: "educator"})
+    .distinct
+    .order("users.last_name ASC, users.first_name ASC")}
+
+  # def school_id
+  #   school_ids.first
+  # end
   def slug_candidates
     [
       [:name ],

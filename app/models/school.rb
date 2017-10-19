@@ -11,6 +11,7 @@ class School < ApplicationRecord
   has_many :events, inverse_of: :school
 
   validates :name, :slug, presence: true
+  validates :name, uniqueness: true
   validates_associated :memberships
   validates_associated :registration_klasses
   # validates :name, unique: true

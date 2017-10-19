@@ -4,7 +4,7 @@ class Course < ApplicationRecord
   friendly_id :name, use: :slugged
   has_many :registration_klasses, inverse_of: :course
   belongs_to :grade, inverse_of: :courses
-  belongs_to :subject, inverse_of: :subjects
+  belongs_to :subject, inverse_of: :courses
 
   validates :subject_id, :grade_id, :name, :subject_type, :slug, presence: true
 

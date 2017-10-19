@@ -31,19 +31,26 @@
               <% end %>
             </div>
             <div class="p-1">
-              <%= link_to edit_school_registration_klass_path(@registration_klass.school, @registration_klass), class: "btn btn-sm btn-primary" do %>
-                <%= fa_icon "pencil-square" %>&nbsp;Edit details
+              <% unless @registration_klass.school_faculty? %>
+                <%= link_to edit_school_registration_klass_path(@registration_klass.school, @registration_klass), class: "btn btn-sm btn-primary" do %>
+                  <%= fa_icon "pencil-square" %>&nbsp;Edit details
+                  <% end %>
+                <% else %>
+                <%= link_to select_faculty_school_registration_klass_path(@registration_klass.school, @registration_klass), class: "btn btn-sm btn-primary" do %>
+                <%= fa_icon "pencil-square" %>&nbsp;Edit/Select Faculty
+                <% end %>
               <% end %>
             </div>
           </div>
         </div>
           <%= render "registration_klasses/user_registrations_card" %>
-
       </div><!-- .card for registration_klass -->
     </div> <!-- .col -->
 
     <div class="col-sm">
-      <%= render "registration_klasses/lesson_plans_card" %>
+      <% if @registration_klass.subject_class? %>
+        <%= render "registration_klasses/lesson_plans_card" %>
+      <% end %>
     </div> <!-- .col -->
   </div> <!-- .row -->
 
@@ -60,7 +67,5 @@
 </div> -->
 <%#= render "user_registrations/modal_dialog" %>
 
-<div class="collapse" id="add-lesson-plan-form">
-  <p><%= render "lesson_plans/new_form" %></p>
-</div>
+
 <%= render "lesson_plans/modal_dialog" %>

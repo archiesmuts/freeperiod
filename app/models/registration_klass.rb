@@ -14,7 +14,8 @@ class RegistrationKlass < ApplicationRecord
 
   enum klass_type: {
     subject_class: 0,
-    registration_class: 1
+    registration_class: 1,
+    school_faculty: 2
   }
 
   def should_generate_new_friendly_id?

@@ -1,7 +1,7 @@
 class RegistrationKlassesController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_school, only: [:index, :new, :create, :show, :edit, :update, :destroy]
-  before_action :set_registration_klass, only: [:show, :edit, :update, :destroy]
+  before_action :set_school, only: [:index, :new, :create, :show, :edit, :update, :destroy, :select_faculty]
+  before_action :set_registration_klass, only: [:show, :edit, :update, :destroy, :select_faculty]
 
   # GET /registration_klasses
   # GET /registration_klasses.json
@@ -22,7 +22,8 @@ class RegistrationKlassesController < ApplicationController
   # GET /registration_klasses/1/edit
   def edit
   end
-
+  def select_faculty
+  end
   # POST /registration_klasses
   # POST /registration_klasses.json
   def create
