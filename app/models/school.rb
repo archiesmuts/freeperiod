@@ -9,6 +9,7 @@ class School < ApplicationRecord
   has_many :user_registrations, through: :registration_klasses
   has_many :fees, inverse_of: :school
   has_many :events, inverse_of: :school
+  has_many :addresses, as: :addressable
 
   validates :name, :slug, presence: true
   validates :name, uniqueness: true

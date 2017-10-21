@@ -5,10 +5,12 @@ Rails.application.routes.draw do
   resources :users do
     resources :memberships
     resources :user_registrations
+    resources :addresses, module: :users
   end
 
   resources :schools do
     resources :memberships, path: :users, module: :schools
+    resources :addresses, module: :school
     resources :registration_klasses do
       member do
         get :select_faculty
@@ -68,6 +70,7 @@ Rails.application.routes.draw do
 
   resources :events do
     resources :comments, module: :events
+    resources :addresses, module: :events
   end
 
   resources :school_courses, only: :index

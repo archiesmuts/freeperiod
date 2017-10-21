@@ -13,7 +13,8 @@ class User < ApplicationRecord
   has_many :schools, through: :memberships
   has_many :user_registrations
   has_many :registration_klasses, through: :user_registrations
-  has_many :comments, inverse_of: :user
+  has_many :comments, as: :commentable
+  has_many :addresses, as: :addressable
 
   validates :first_name, :last_name, :slug, presence: true
   validates :terms_of_privacy_statement, acceptance: true

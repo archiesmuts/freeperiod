@@ -4,6 +4,7 @@ class Event < ApplicationRecord
   friendly_id :title, use: :slugged
   belongs_to :school, inverse_of: :events
   has_many :comments, as: :commentable
+  has_many :addresses, as: :addressable
 
   scope :newer_than, ->(date) { where('start_time > ?', date).order("start_time") }
 
