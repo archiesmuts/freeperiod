@@ -10,7 +10,7 @@ Rails.application.routes.draw do
 
   resources :schools do
     resources :memberships, path: :users, module: :schools
-    resources :addresses, module: :school
+    resources :addresses, module: :schools
     resources :registration_klasses do
       member do
         get :select_faculty

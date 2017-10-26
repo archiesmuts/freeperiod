@@ -1,0 +1,11 @@
+<% addressable.addresses.each do |address| %>
+  <div class="col-sm-3">
+    <div class="card" id="address-<%= address.id %>">
+      <div class="card-body">
+        <h4 class="card-title"><%= address.address_type.humanize %> Address</h4>
+        <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
+        <p class="card-text"><%= address.address %></p>
+      </div>
+    </div>
+  </div>
+<% end %>

@@ -1,0 +1,13 @@
+<div class="container d-flex justify-content-center pt-3">
+  <div class="card border-dark mb-3" style="width: 50rem;">
+    <div class="card-body text-dark">
+      <h4 class="card-title"><%= @address.address_type.humanize %> Address</h4>
+      <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
+      <p class="card-text"><%= @address.address %></p>
+    </div>
+    <div class="card-footer">
+      <%= link_to 'Back', polymorphic_path([@addressable, Address]), class: "card-link"  %>&nbsp;
+      <%= link_to 'Edit', edit_polymorphic_path([@addressable, @address]), class: "card-link" %>
+    </div>
+  </div>
+</div>

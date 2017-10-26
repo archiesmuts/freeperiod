@@ -45,9 +45,9 @@
         <a class="nav-link" data-toggle="pill" href="#roles" role="tab">Access Permissions </a>
       </li>
       <%# end %>
-      <!--  <li class="nav-item">
-        <a class="nav-link" data-toggle="pill" href="#settings" role="tab">Settings</a>
-      </li> -->
+       <li class="nav-item">
+        <a class="nav-link" data-toggle="pill" href="#addresses" role="tab">Addresses</a>
+      </li>
     </ul>
   </p>
 
@@ -67,7 +67,7 @@
           </small>
         </h3>
 
-        <div id="list-memberships" class="list-group" role="tablist">
+        <div id="list-memberships">
           <% unless current_user.memberships.empty? %>
             <%= render current_user.memberships %>
           <% else %>
@@ -76,9 +76,6 @@
             <%= link_to 'New School', new_school_path, class: "btn btn-primary" %>
           <% end %>
         </div>
-        <ul class="list-group" role="tablist">
-          <%= render current_user.schools %>
-        </ul>
       </div>
       </div>
       </div>
@@ -114,11 +111,23 @@
         </div>
       </div>
       <%# end %>
-      <!-- <div class="tab-pane" id="settings" role="tabpanel">
+      <div class="tab-pane" id="addresses" role="tabpanel">
+        <%= link_to "Manage addresses", user_addresses_path(current_user), class: "btn btn-sm btn-primary" %>
+      <div id="list-addresses" class="row py-2">
+        <% if current_user.addresses.any? %>
+
+          <%= render "addresses/addresses", addressable: @user %>
+        <% else %>
+          <li class="list-group-item list-group-item-info no-addresses-to-list">
+            No addresses recorded yet
+            <%= link_to 'New Address', new_user_address_path(current_user), class: "btn btn-primary" %>
+          </li>
+        <% end %>
+      </div>
         <%# render "nothing_to_list" %>
-      </div> -->
+      </div>
     </div>
 </div>
 
-<!-- modal assignments edit action -->
-<%# render "assignments/modal_dialog" %>
+<!-- modal adresses edit action -->
+<%# render "addresses/modal_dialog" %>
