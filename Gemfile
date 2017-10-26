@@ -46,4 +46,4 @@ group :development do
   gem 'faker', '~> 1.6', '>= 1.6.3'
   gem 'letter_opener', '~> 1.4', '>= 1.4.1'
 end
-ruby '2.4.1'
+ruby '2.4.2'

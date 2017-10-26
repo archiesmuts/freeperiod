@@ -22,14 +22,20 @@
   <!-- </div> -->
   <div class="form-group">
     <%= form.text_field :course_name, data: { autocomplete_source: school_courses_path },
-      placeholder: "Type the name of subject or course",
+      placeholder: "Type the name of subject or grade",
       class: "string required form-control ui-front regklass_course_name",
       id: "registration_klass_course_name" %>
-      <small id="courseNameHelp" class="form-text text-info">Name of subject or course to add.</small>
+      <small id="courseNameHelp" class="form-text text-info">
+        Name of subject/grade combination. For a registration class type "registration".
+      </small>
   </div>
   <div class="form-group">
     <%= form.label :name, "Give your class a unique name" %>
-    <%= form.text_field :name, id: :registration_klass_name, class: "form-control", placeholder: "Give your class a unique name", required: true %>
+    <%= form.text_field :name, id: :registration_klass_name, class: "form-control",
+        placeholder: "Give your class a unique name", required: true %>
+        <small id="courseNameHelp" class="form-text text-info">
+          Example: Ms. Parker's Grade 11 Mathematics or Mr. Ndlovu's Creative Grade 11 Arts etc.
+        </small>
   </div>
 
   <div class="form-group">
