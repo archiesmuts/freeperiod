@@ -1,0 +1,55 @@
+<div class="container">
+  <h1>Goals</h1>
+    <p>
+      <%= link_to 'Back', polymorphic_path([@goalable]), class: "btn btn-outline-primary" %>
+      <%= link_to "Add a goal", "#collapseExample", data: {toggle: "collapse"},
+                aria: {"controls": "collapseExample", "expanded": false, },
+                class: "btn btn-primary" %>
+    </p>
+<div class="collapse" id="collapseExample">
+  <div class="row d-flex justify-content-center">
+    <div class="col-sm-6">
+      <div class="card py-2">
+        <div class="card-body">
+          <h4 class="card-title">Adding a new goal ...</h4>
+          <%= render 'new_form', goal: @goal %>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div> <!-- .collapse new_form -->
+
+
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Deadline</th>
+          <th>Achievable</th>
+          <th>Measurement</th>
+          <th>Person responsible</th>
+          <th>Achieved</th>
+          <th>Completed at</th>
+          <th colspan="3"></th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% @goalable.goals.each do |goal| %>
+          <tr>
+            <td><%= goal.name %></td>
+            <td><%= goal.deadline.strftime("%d %b %Y") if goal.deadline %></td>
+            <td><%= goal.achievability.humanize %></td>
+            <td><%= goal.measurement %></td>
+            <td><%= goal.person_responsible %></td>
+            <td><%= goal.achieved.humanize %></td>
+            <td><%= goal.completed_at.strftime("%d %b %Y") if goal.completed_at %></td>
+            <td><%= link_to 'Show', [goal.goalable, goal], class: "btn btn-sm btn-info" %>&nbsp;</td>
+            <td><%= link_to 'Edit', edit_polymorphic_path([goal.goalable, goal]), class: "btn btn-sm btn-primary" %>&nbsp;</td>
+            <td><%= link_to 'Destroy', [goal.goalable, goal], method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-sm btn-danger" %>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+</div>

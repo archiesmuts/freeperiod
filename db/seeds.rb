@@ -9,6 +9,7 @@
 Grade.destroy_all
 Subject.destroy_all
 Course.destroy_all
+Event.destroy_all
 Membership.destroy_all
 School.destroy_all
 User.destroy_all

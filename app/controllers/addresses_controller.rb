@@ -60,7 +60,7 @@ class AddressesController < ApplicationController
   # DELETE /addresses/1
   # DELETE /addresses/1.json
   def destroy
-    @address = @address.addressable
+    @addressable = @address.addressable
     @address.destroy
     respond_to do |format|
       format.html { redirect_to @addressable, notice: 'Address was successfully destroyed.' }
@@ -72,11 +72,11 @@ class AddressesController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_address
-      @address = Address.find(params[:id])
+      @address = Address.friendly.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def address_params
-      params.require(:address).permit(:address, :address_type)
+      params.require(:address).permit(:address, :address_type, :slug)
     end
 end

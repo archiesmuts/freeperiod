@@ -1,6 +1,6 @@
 <div class="container">
-<div class="row d-flex justify-content-center">
-  <div class="col-md-8">
+  <div class="row d-flex justify-content-center">
+    <div class="col-md-8">
     <h1>Addresses</h1>
 
     <table class="table table-striped">
@@ -30,7 +30,6 @@
 
     <br>
     <%= link_to 'Back', polymorphic_path([@addressable]), class: "btn btn-outline-primary" %>
-
     <%= link_to 'Add an Address', new_polymorphic_path([@addressable, Address.new]), class: "btn btn-primary" %>
     </div>
   </div>

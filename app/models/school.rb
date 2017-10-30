@@ -10,7 +10,8 @@ class School < ApplicationRecord
   has_many :fees, inverse_of: :school
   has_many :events, inverse_of: :school
   has_many :addresses, as: :addressable
-
+  has_many :goals, as: :goalable
+  
   validates :name, :slug, presence: true
   validates :name, uniqueness: true
   validates_associated :memberships

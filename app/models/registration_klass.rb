@@ -8,6 +8,8 @@ class RegistrationKlass < ApplicationRecord
   has_many :user_registrations
   has_many :users, through: :user_registrations
   has_many :lesson_plans
+  has_many :goals, as: :goalable
+
 
   validates :school_id, :course_id, :name, :klass_type, :year, :slug, presence: true
   # TODO add completed_at date and completed boolean that will update completed_at

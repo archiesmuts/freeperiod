@@ -10,6 +10,9 @@ class UserRegistration < ApplicationRecord
   has_many :pay_agreements, inverse_of: :user_registration
   has_many :fees, through: :pay_agreements
   has_many :attendances, -> { order "date" }, as: :attendable
+  has_many :goals, as: :goalable
+  
+
   # scope :for_this_klass, -> { where(field: true)   }
   validates :user_id, :registration_klass_id, :user_type, presence: true
   validates :completed, inclusion: { in: [true, false] }

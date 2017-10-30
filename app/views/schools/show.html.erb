@@ -49,7 +49,22 @@
               class: "btn btn-sm btn-primary" %>
       </div>
     </div> <!-- .card Classes-->
-
+    <div class="card mt-2">
+      <div class="card-body">
+        <h4 class="card-title"><%= fa_icon "graduation-cap" %>&nbsp;School Goals</h4>
+        <p class="card-text">Number of Goals <span class="badge badge-info"><%= @school.goals.size %></span></p>
+          <%= link_to "View List of School Goals", school_goals_path(@school),
+              class: "btn btn-sm btn-primary" %>
+      </div>
+    </div> <!-- .card Goals-->
+    <div class="card mt-2">
+      <div class="card-body">
+        <h4 class="card-title"><%= fa_icon "graduation-cap" %>&nbsp;School Adresses</h4>
+        <p class="card-text">Number of Addresses <span class="badge badge-info"><%= @school.addresses.size %></span></p>
+          <%= link_to "View List of School Addresses", school_addresses_path(@school),
+              class: "btn btn-sm btn-primary" %>
+      </div>
+    </div> <!-- .card Goals-->
   </div> <!-- .col-sm-6 -->
 
   <div class="col-sm-6">

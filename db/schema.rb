@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171019131555) do
+ActiveRecord::Schema.define(version: 20171026142229) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -21,6 +21,7 @@ ActiveRecord::Schema.define(version: 20171019131555) do
     t.integer "address_type", default: 0, null: false
     t.uuid "addressable_id"
     t.string "addressable_type"
+    t.string "slug", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["address"], name: "index_addresses_on_address"
@@ -107,6 +108,23 @@ ActiveRecord::Schema.define(version: 20171019131555) do
     t.string "slug", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "goals", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.string "name"
+    t.date "deadline"
+    t.integer "achievability", default: 0, null: false
+    t.string "measurement"
+    t.string "person_responsible"
+    t.integer "achieved", default: 0, null: false
+    t.date "completed_at"
+    t.uuid "goalable_id"
+    t.string "goalable_type"
+    t.string "slug", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["goalable_id"], name: "index_goals_on_goalable_id"
+    t.index ["goalable_type"], name: "index_goals_on_goalable_type"
   end
 
   create_table "grades", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|

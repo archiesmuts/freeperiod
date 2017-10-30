@@ -48,6 +48,10 @@
        <li class="nav-item">
         <a class="nav-link" data-toggle="pill" href="#addresses" role="tab">Addresses</a>
       </li>
+      <li class="nav-item">
+       <a class="nav-link" data-toggle="pill" href="#goals" role="tab">Goals and Action Plans</a>
+     </li>
+
     </ul>
   </p>
 
@@ -112,21 +116,35 @@
       </div>
       <%# end %>
       <div class="tab-pane" id="addresses" role="tabpanel">
+        <h2>Addresses</h2>
         <%= link_to "Manage addresses", user_addresses_path(current_user), class: "btn btn-sm btn-primary" %>
+        <div id="list-addresses" class="row py-2">
+          <% if current_user.addresses.any? %>
+            <%= render "addresses/addresses", addressable: @user %>
+          <% else %>
+            <li class="list-group-item list-group-item-info no-addresses-to-list">
+              No addresses recorded yet.&nbsp;
+              <%= link_to 'Add an Address', new_user_address_path(current_user),
+                  class: "btn btn-sm btn-outline-primary" %>
+            </li>
+          <% end %>
+        </div>
+      </div>
+      <div class="tab-pane" id="goals" role="tabpanel">
+        <h2>Goals and Action Plans</h2>
+        <%= link_to "Manage your goals", user_goals_path(current_user), class: "btn btn-sm btn-primary" %>
       <div id="list-addresses" class="row py-2">
-        <% if current_user.addresses.any? %>
-
-          <%= render "addresses/addresses", addressable: @user %>
+        <% if current_user.goals.any? %>
+          <%= render "goals/goals", goalable: @user %>
         <% else %>
           <li class="list-group-item list-group-item-info no-addresses-to-list">
-            No addresses recorded yet
-            <%= link_to 'New Address', new_user_address_path(current_user), class: "btn btn-primary" %>
+            No Goals Recorded yet
           </li>
+          <%= link_to 'Create a New Goal', new_user_goal_path(current_user), class: "btn btn-primary" %>
         <% end %>
+        </div>
       </div>
-        <%# render "nothing_to_list" %>
-      </div>
-    </div>
+    </div> <!-- .tab-content -->
 </div>
 
 <!-- modal adresses edit action -->

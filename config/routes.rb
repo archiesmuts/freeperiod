@@ -6,11 +6,13 @@ Rails.application.routes.draw do
     resources :memberships
     resources :user_registrations
     resources :addresses, module: :users
+    resources :goals, module: :users
   end
 
   resources :schools do
     resources :memberships, path: :users, module: :schools
     resources :addresses, module: :schools
+    resources :goals, module: :schools
     resources :registration_klasses do
       member do
         get :select_faculty
@@ -37,6 +39,7 @@ Rails.application.routes.draw do
     resources :assessment_tasks
     resources :user_registrations
     resources :lesson_plans
+    resources :goals, module: :registration_klasses
   end
 
   resources :lesson_plans do
@@ -52,6 +55,7 @@ Rails.application.routes.draw do
     resources :results
     resources :pay_agreements
     resources :attendances, module: :user_registrations
+    resources :goals, module: :user_registrations
   end
 
   resources :assessment_types do
@@ -67,6 +71,7 @@ Rails.application.routes.draw do
   resources :results do
     resources :comments, module: :results
   end
+
 
   resources :events do
     resources :comments, module: :events
