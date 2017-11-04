@@ -1,0 +1,17 @@
+<%= form_with(model: [@goal, ActionPlan.new], id: :new_action_plan, class: :new_action_plan) do |form| %>
+
+  <p><strong> <%= @goal.name %></strong></p>
+  <div class="errors">
+
+  </div>
+  <div class="form-group">
+    <%= form.label :what, "What needs to be done?" %>
+    <%= form.text_field :what, id: :action_plan_what, class: "form-control",
+        placeholder: "Describe what needs to be done", required: true %>
+  </div>
+
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-primary" data-dismiss="modal" id="createRegistration">Cancel</button>
+    <%= form.submit class: "btn btn-primary" %>
+  </div>
+<% end %>

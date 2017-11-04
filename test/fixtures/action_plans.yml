@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  goal_id: 
+  what: MyString
+  who: MyString
+  when: 2017-10-30
+  priority: 1
+
+two:
+  goal_id: 
+  what: MyString
+  who: MyString
+  when: 2017-10-30
+  priority: 1

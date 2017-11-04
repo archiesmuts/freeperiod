@@ -1,0 +1,5 @@
+<% if @action_plan.completed? %>
+  $('#<%= dom_id(action_plan) %>').appendTo('#list-action-plans').removeClass("list-group-item-info").addClass("list-group-item-success");
+<% else %>
+  $('#<%= dom_id(action_plan) %>').appendTo('#list-action-plans').removeClass("list-group-item-success").addClass("list-group-item-info");
+<% end %>

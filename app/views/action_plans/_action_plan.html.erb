@@ -1,0 +1,40 @@
+<li id="<%= dom_id(action_plan) %>" class="list-group-item list-group-item-<%= action_plan.completed? ? "success" : "info" %>">
+  <div class="row">
+    <div class="col-sm-1">
+      <% if action_plan.when_date %>
+        <!-- display only if a date is present -->
+        <%= form_with(model: [@goal, action_plan], method: :patch, class: :edit_action_plan) do |f| %>
+          <div class="form-check">
+            <label class="form-check-label">
+              <%= f.check_box :completed, class: "form-check-input position-static",
+                  data: {toggle: "tooltip", placement: "top" }, title: "Check to complete action plan",
+                  aria: {label: "completed"} %>
+            </label>
+          </div>
+        <% end %>
+      <% end %>
+    </div>
+    <div class="col-sm-9">
+      <%= action_to_do_span(action_plan) %>&nbsp;
+      <%= action_plan.what %>
+      <br>
+      <small>
+        <%= fa_icon("calendar") %>&nbsp;<em>Complete by&nbsp;
+        <%= action_plan.when_date ? action_plan.when_date.strftime("%d %b %Y") : "-" %></em>&nbsp;
+        <%= fa_icon("user") %>&nbsp;<em><%= action_plan.who ? action_plan.who : "-"  %></em>
+      </small>
+    </div>
+    <div class="col-sm-2">
+      <%= link_to edit_goal_action_plan_path(action_plan.goal, action_plan),
+          class: "badge badge-primary",
+          data: {toggle: "tooltip", placement: "left" }, title: "Edit" do %>
+        <%= fa_icon("pencil") %>
+      <% end %>
+      <%= link_to [action_plan.goal, action_plan], method: :delete, remote: true,
+        data: {toggle: "tooltip", placement: "left", confirm: 'Are you sure?' },
+        title: "Delete", class: "badge badge-danger delete-action-plan" do %>
+          <%= fa_icon("trash") %>
+        <% end %>
+    </div>
+  </div>
+</li>

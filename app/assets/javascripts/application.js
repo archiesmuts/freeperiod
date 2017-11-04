@@ -19,7 +19,6 @@
 //= require moment
 //= require fullcalendar
 //= require bootstrap-sprockets
-//= require jquery-ui-timepicker-addon
 //= require trix
 //= require turbolinks
 //= require_tree .

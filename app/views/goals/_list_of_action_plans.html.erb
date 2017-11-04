@@ -1,0 +1,9 @@
+<ul id="list-action-plans" class="list-group list-group-flush" data-url="<%= sort_goal_action_plans_path(@goal) %>">
+  <% if @goal.action_plans.any? %>
+    <%= render @goal.action_plans %>
+  <% else %>
+    <li class="list-group-item list-group-item-info no-action-plans-to-list">
+      <%= fa_icon("minus-square", text: "No to do's or action plans to list") %>
+    </li>
+  <% end %>
+</ul>

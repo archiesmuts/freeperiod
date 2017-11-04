@@ -1,0 +1,40 @@
+<div class="card border-primary mb-3">
+  <div class="card-body text-primary">
+    <h4 class="card-title"><%= @goal.name %></h4>
+    <h6 class="card-subtitle mb-2 text-muted">Goal</h6>
+    <dl class="row">
+      <dt class="col-sm-5">Deadline:</dt>
+      <dd class="col-sm-7"><%= @goal.deadline.strftime("%d %b %Y") if @goal.deadline %></dd>
+
+      <dt class="col-sm-5">Is this goal achievable?</dt>
+      <dd class="col-sm-7"><%= @goal.achievability.humanize %></dd>
+
+      <dt class="col-sm-5">How will you know if you succeeded?</dt>
+      <dd class="col-sm-7"><%= @goal.measurement ? @goal.measurement : "¯\\_(ツ)_/¯ " %></dd>
+
+      <dt class="col-sm-5">Who is reponsible?</dt>
+      <dd class="col-sm-7"><%= @goal.person_responsible ? @goal.person_responsible : " (Ͼ˳Ͽ)..!!! "%></dd>
+
+      <dt class="col-sm-5">Was this goal achieved?</dt>
+      <dd class="col-sm-7"><%= @goal.achieved.humanize %></dd>
+
+      <dt class="col-sm-5">Date completed:</dt>
+      <dd class="col-sm-7"><%= @goal.completed_at ? @goal.completed_at.strftime("%d %b %Y") : "Working on it... (-.-)Zzz..."  %></dd>
+    </dl>
+  </div>
+  <div class="card-footer d-flex justify-content-between">
+    <div>
+      <%= link_to polymorphic_path([@goalable, Goal]), class: "btn btn-sm btn-outline-primary" do %>
+      <%= fa_icon("arrow-left", text: "Back") %>
+      <% end %>
+      <%= link_to edit_polymorphic_path([@goalable, @goal]), class: "btn btn-sm btn-primary" do %>
+      <%= fa_icon("pencil", text: "Edit goal") %>
+      <% end %>
+    </div>
+    <div>
+      <%= link_to "#", class: "btn btn-sm btn-outline-success" do %>
+      <%= fa_icon("comment", text: "Add a comment") %>
+      <% end %>
+    </div>
+  </div>
+</div> <!-- .card -->

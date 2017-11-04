@@ -72,10 +72,17 @@ Rails.application.routes.draw do
     resources :comments, module: :results
   end
 
-
   resources :events do
     resources :comments, module: :events
     resources :addresses, module: :events
+  end
+
+  resources :goals do
+    resources :action_plans do
+      collection do
+        patch :sort
+      end
+    end
   end
 
   resources :school_courses, only: :index

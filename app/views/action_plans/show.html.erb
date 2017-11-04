@@ -1,0 +1,26 @@
+<div class="container">
+
+  <p>
+    <strong>What:</strong>
+    <%= @action_plan.what %>
+  </p>
+
+  <p>
+    <strong>Who:</strong>
+    <%= @action_plan.who %>
+  </p>
+
+  <p>
+    <strong>When:</strong>
+    <%= @action_plan.when_date %>
+  </p>
+
+  <p>
+    <strong>Priority:</strong>
+    <%= @action_plan.priority %>
+  </p>
+
+  <%= link_to 'Edit', edit_action_plan_path(@action_plan) %> |
+  <%= link_to 'Back', action_plans_path %>
+
+</div>
