@@ -4,6 +4,7 @@ class Goal < ApplicationRecord
   friendly_id :name, use: :slugged
   belongs_to :goalable, polymorphic: true
   has_many :action_plans, -> { order('position ASC') }, inverse_of: :goal
+  has_many :comments, as: :commentable
 
   validates :name, :deadline, :slug, :achievability, :achieved, presence: true
   validates :measurement, :person_responsible, presence: true, on: :update

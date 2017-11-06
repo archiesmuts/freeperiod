@@ -10,23 +10,21 @@
               <%= fa_icon("check-square-o", text: "To Do list and Action Plans") %>
             </h4>
             <div>
-              <%= link_to "#collapseSteps",
-                  data: {toggle: "collapse"},
-                  aria: {"controls": "collapseSteps", "expanded": false, } do %>
+              <%= link_to "#how-to-action-plan-dialog", data: {toggle: "modal"},
+                  class: "btn btn-sm btn-outline-primary" do %>
                     <%= fa_icon("question-circle", text: "How to?") %>
                   <% end %>
             </div>
           </div>
-          <div class="collapse" id="collapseSteps">
-            <!-- .card-body -->
-            <%= render "action_plans/how_to_action_plan" %>
-          </div>
+
           <div class="card-footer">
             <div class="card-title d-flex justify-content-between">
               <div>
                 <%= fa_icon "check-square-o", text: "To Dos" %>&nbsp;
+                    <span class="badge badge-info"><%= @goal.action_plans.todo_items.size %></span>&nbsp;
                 <%= fa_icon("arrow-right") %>&nbsp;
-                <%= fa_icon("calendar-check-o", text: "Action Plans") %> &nbsp;
+                <%= fa_icon("calendar-check-o", text: "Action Plans") %>&nbsp;
+                    <span class="badge badge-success"><%= @goal.action_plans.action_items.size %></span>&nbsp;
                 <button type="button" class="btn btn-sm btn-light" data-toggle="tooltip" data-placement="top" title="Turn ToDos into Action Plans!">
                   <%= fa_icon("info-circle") %>
                 </button>
@@ -50,3 +48,4 @@
   <p><%#= render "action_plans/new_todo_form" %></p>
 </div> -->
 <%= render "action_plans/modal_dialog" %>
+<%= render "action_plans/how_to_action_plan" %>

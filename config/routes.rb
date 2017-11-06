@@ -83,6 +83,7 @@ Rails.application.routes.draw do
         patch :sort
       end
     end
+  resources :comments, module: :goals 
   end
 
   resources :school_courses, only: :index

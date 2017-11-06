@@ -1,55 +1,102 @@
-<div class="container">
-  <h1>Goals</h1>
-    <p>
-      <%= link_to 'Back', polymorphic_path([@goalable]), class: "btn btn-outline-primary" %>
-      <%= link_to "Add a goal", "#collapseForm", data: {toggle: "collapse"},
-                aria: {"controls": "collapseForm", "expanded": false, },
-                class: "btn btn-primary" %>
-    </p>
-<div class="collapse" id="collapseForm">
-  <div class="row d-flex justify-content-center">
-    <div class="col-sm-6">
-      <div class="card py-2">
-        <div class="card-body">
-          <h4 class="card-title">Adding a new goal ...</h4>
-          <%= render 'new_form', goal: @goal %>
-        </div>
-
-      </div>
-    </div>
+<div class="container pt-2">
+  <div class="card border-primary pb-2">
+      <h3 class="card-header bg-light text-dark">
+        <div class="row">
+          <div class="col-sm-4">
+            Goals <small>and Action Plans</small>
+          </div>
+          <div class="col-sm-8">
+            <div class="btn-toolbar" role="toolbar" aria-label="Goal Toolbar with button groups">
+              <div class="btn-group mr-2" role="group" aria-label="First group">
+                <%= link_to polymorphic_path([@goalable]),
+                    class: "btn btn-sm btn-outline-primary" do %>
+                      <%= fa_icon("arrow-left", text: "Back") %>
+                    <% end %>
+                <%= link_to "#collapseForm", data: {toggle: "collapse"},
+                  aria: {"controls": "collapseForm", "expanded": false, },
+                  class: "btn btn-sm btn-primary" do %>
+                    <%= fa_icon("plus-square", text: "Add a goal") %>
+                  <% end %>
+              </div><!-- .btn-group 2 -->
+              <div class="btn-group mr-2" role="group" aria-label="Second group">
+                <%= link_to "#define-goal-dialog", data: {toggle: "modal"},
+                  class: "btn btn-sm btn-outline-info" do %>
+                    <%= fa_icon("question-circle", text: "Defining your goals") %>
+                  <% end %>
+                  <%= link_to "#set-goal-dialog", data: {toggle: "modal"},
+                    class: "btn btn-sm btn-outline-info" do %>
+                      <%= fa_icon("question-circle", text: "Setting SMART goals") %>
+                    <% end %>
+              </div> <!-- .btn-group 1 -->
+            </div> <!-- .btn-toolbar -->
+          </div> <!-- .row -->
+        </div> <!-- .card -->
+      </h3>
+        <div class="collapse" id="collapseForm">
+          <div class="card-body text-primary">
+            <h5 class="card-title">Adding a new goal ...</h5>
+              <%= render 'new_form', goal: @goal %>
+          </div>
+        </div> <!-- .collapse new_form -->
   </div>
-</div> <!-- .collapse new_form -->
 
+  <table class="table table-bordered">
+    <thead class="thead-light">
+      <tr>
+        <th class="col-sm-5 text-primary">
+          Goal Description <br>
+          <%= fa_icon("calendar", text: "Deadline") %>,
+          &nbsp;<%= fa_icon("list-ol", text: "Action plans") %>
+          &amp;&nbsp;<%= fa_icon("comments", text: "Comments") %>
+        </th>
+        <th class="col-sm-4 text-primary">
+          <%= fa_icon("check-circle-o", text: "Goal achievable?") %><br>
+          <%= fa_icon("thumbs-o-up", text: "How will you measure success?") %><br>
+          <%= fa_icon("user-o", text: "Who is responsible?") %>
+        </th>
+        <th class="col-sm-2 text-primary">
+          <%= fa_icon("check-square-o", text: "Was this goal achieved?") %>
+        </th>
+        <th class="col-sm-1"></th>
+      </tr>
+    </thead>
 
-    <table class="table table-striped">
-      <thead>
+    <tbody>
+      <% @goalable.goals.each do |goal| %>
         <tr>
-          <th>Name</th>
-          <th>Deadline</th>
-          <th>Achievable</th>
-          <th>Measurement</th>
-          <th>Person responsible</th>
-          <th>Achieved</th>
-          <th>Completed at</th>
-          <th colspan="3"></th>
+          <td>
+            <%= goal.name %> <br>
+            <%= fa_icon("calendar") %>&nbsp;<span class="badge badge-primary"><%= goal.deadline.strftime("%d %b %Y") if goal.deadline %>&nbsp;</span>
+            <%= fa_icon("list-ol") %>&nbsp;<span class="badge badge-info"><%= goal.action_plans.size %></span>&nbsp;
+            <%= fa_icon("comments") %>&nbsp;<span class="badge badge-success"><%= goal.comments.size %></span>
+          </td>
+          <td>
+            <%= fa_icon("check-circle-o") %>&nbsp;<%= goal.achievability.humanize %><br>
+            <%= fa_icon("thumbs-o-up") %>&nbsp;<%= goal.measurement ? goal.measurement : "Working on measurement" %><br>
+            <%= fa_icon("user-o") %>&nbsp;<%= goal.person_responsible ? goal.person_responsible : "Thinking about it" %>
+          </td>
+          <td>
+            <%= fa_icon("check-square-o") %>&nbsp;<%= goal.achieved.humanize %> <br>
+            <%= fa_icon("calendar-check-o") %>&nbsp;<%= goal.completed_at ? goal.completed_at.strftime("%d %b %Y") : "Sometime soon .." %>
+          </td>
+          <td>
+            <%= link_to [goal.goalable, goal], class: "badge badge-primary",
+                data: {toggle: "tooltip", placement: "top" },
+                title: "Show goal details and action plans" do %>
+              <%= fa_icon("expand", text: "Show") %>
+            <% end %>
+            <%#= link_to 'Edit', edit_polymorphic_path([goal.goalable, goal]), class: "btn btn-sm btn-primary" %>&nbsp;
+            <%= link_to [goal.goalable, goal], method: :delete,
+                data: { confirm: 'Are you sure? Action plans will also be deleted', toggle: "tooltip", placement: "top"  }, class: "badge badge-danger",
+                title: "Delete goal"  do %>
+                  <%= fa_icon("trash", text: "Delete") %>
+                <% end %>
+          </td>
         </tr>
-      </thead>
-
-      <tbody>
-        <% @goalable.goals.each do |goal| %>
-          <tr>
-            <td><%= goal.name %></td>
-            <td><%= goal.deadline.strftime("%d %b %Y") if goal.deadline %></td>
-            <td><%= goal.achievability.humanize %></td>
-            <td><%= goal.measurement %></td>
-            <td><%= goal.person_responsible %></td>
-            <td><%= goal.achieved.humanize %></td>
-            <td><%= goal.completed_at.strftime("%d %b %Y") if goal.completed_at %></td>
-            <td><%= link_to 'Show', [goal.goalable, goal], class: "btn btn-sm btn-info" %>&nbsp;</td>
-            <td><%= link_to 'Edit', edit_polymorphic_path([goal.goalable, goal]), class: "btn btn-sm btn-primary" %>&nbsp;</td>
-            <td><%= link_to 'Destroy', [goal.goalable, goal], method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-sm btn-danger" %>
-          </tr>
-        <% end %>
-      </tbody>
-    </table>
+      <% end %>
+    </tbody>
+  </table>
 </div>
+<%#= render "modal_dialog" %>
+<%= render "defining_goals" %>
+<%= render "setting_goals" %>

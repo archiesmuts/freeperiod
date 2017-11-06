@@ -1,0 +1,13 @@
+// Add the dialog title
+$('#goal-dialog h4').html("Create a Goal");
+
+// Render the new form
+$('.modal-body').html('<%= j render "goals/new_form" %>');
+
+// Show the dynamic dialog
+$('#goal-dialog').modal("show");
+
+// Set focus to the first element
+$('#goal-dialog').on('shown.bs.modal', function () {
+  $('.goal_what').focus();
+});

@@ -2,5 +2,5 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://coffeescript.org/
 jQuery(document).on "turbolinks:load", ->
-  $("#comment_body").focus()
-  $("#comment_body").val("")
+  $("#comment_comment").focus()
+  $("#comment_comment").val("")
