@@ -1,0 +1,25 @@
+<%= form_with(model: [achievable, Achievement.new], id: :new_achievement, class: :new_achievement) do |form| %>
+
+  <div class="errors"> </div>
+  <div class="form-group">
+    <%= form.label :title %>
+    <%= form.text_field :title, id: :achievement_title, class: "form-control", placeholder: "A headline title" %>
+  </div>
+  <div class="row">
+    <div class="col-sm-8">
+      <div class="form-group">
+        <%= form.label :description %>
+        <%= form.text_area :description, id: :achievement_description, class: "form-control", placeholder: "Provide more details" %>
+      </div>
+    </div>
+    <div class="col-sm-4">
+      <div class="form-group">
+        <%= form.label :date %>
+        <%= form.text_field :date, id: :achievement_date, class: "form-control datepicker", placeholder: "When dit it happen?" %>
+      </div>
+    </div>
+  </div>
+  <div class="actions">
+    <%= form.submit "Save", class: "btn btn-sm btn-primary"  %>
+  </div>
+<% end %>

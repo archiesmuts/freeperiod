@@ -1,0 +1,13 @@
+<li id="achievement-<%= achievement.id %>" class="list-group-item list-group-flush list-group-item-success" >
+  <h4><%= achievement.date.strftime("%d %b %Y") %>: <%= achievement.title %></h4>
+  <p><%= achievement.description %></p>
+
+  <%= link_to edit_achievement_path(achievement) do %>
+  <%# <%= link_to edit_achievement_path(achievement), data: {remote: true, toggle: "modal", target: "#achievementModal"} do %1> %>
+      <%= fa_icon("pencil", text: "Edit") %>
+    <% end %>
+    <%= link_to achievement, remote: true, method: :delete, data: { confirm: 'Are you sure?' },
+      class: "delete-achievement" do %>
+      <%= fa_icon("trash", text: "Delete") %>
+    <% end %>
+</li>

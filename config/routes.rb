@@ -20,6 +20,7 @@ Rails.application.routes.draw do
     end
     resources :fees
     resources :events
+    resources :achievements, module: :schools
   end
   resources :memberships
 
@@ -56,6 +57,7 @@ Rails.application.routes.draw do
     resources :pay_agreements
     resources :attendances, module: :user_registrations
     resources :goals, module: :user_registrations
+    resources :achievements, module: :user_registrations
   end
 
   resources :assessment_types do
@@ -83,7 +85,7 @@ Rails.application.routes.draw do
         patch :sort
       end
     end
-  resources :comments, module: :goals 
+    resources :comments, module: :goals
   end
 
   resources :school_courses, only: :index

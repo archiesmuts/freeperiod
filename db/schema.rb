@@ -10,11 +10,24 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171030175045) do
+ActiveRecord::Schema.define(version: 20171106140826) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
   enable_extension "pgcrypto"
+
+  create_table "achievements", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.string "title"
+    t.text "description"
+    t.date "date"
+    t.string "slug", null: false
+    t.uuid "achievable_id"
+    t.string "achievable_type"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["achievable_id"], name: "index_achievements_on_achievable_id"
+    t.index ["achievable_type"], name: "index_achievements_on_achievable_type"
+  end
 
   create_table "action_plans", force: :cascade do |t|
     t.uuid "goal_id"

@@ -1,0 +1,17 @@
+<% achievable.achievements.each do |achievement| %>
+  <li id="achievement-<%= achievement.id %>" class="list-group-item list-group-flush list-group-item-success">
+    <p class="h5"><%= achievement.date.strftime("%d %b %Y") %>: <%= achievement.title %></p>
+    <p><%= achievement.description %></p>
+    <div class="d-flex justify-content-between">
+      <%= link_to edit_polymorphic_path([achievement.achievable, achievement]),
+          class: "btn btn-sm btn-outline-success" do %>
+          <%= fa_icon("pencil", text: "Edit") %>
+        <% end %>
+        <%= link_to [achievement.achievable, achievement], remote: true, method: :delete,
+            data: { confirm: 'Are you sure?', toggle: "tooltip" },
+            class: "delete-achievement btn btn-sm btn-outline-danger", title: "Delete" do %>
+          <%= fa_icon("trash") %>
+        <% end %>
+    </div>
+  </li>
+<% end %>

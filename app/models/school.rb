@@ -11,7 +11,8 @@ class School < ApplicationRecord
   has_many :events, inverse_of: :school
   has_many :addresses, as: :addressable
   has_many :goals, as: :goalable
-  
+  has_many :achievements, -> { order('date DESC') }, as: :achievable
+
   validates :name, :slug, presence: true
   validates :name, uniqueness: true
   validates_associated :memberships

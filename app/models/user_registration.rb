@@ -11,7 +11,9 @@ class UserRegistration < ApplicationRecord
   has_many :fees, through: :pay_agreements
   has_many :attendances, -> { order "date" }, as: :attendable
   has_many :goals, as: :goalable
-  
+  has_many :achievements, -> { order('date DESC') }, as: :achievable
+
+
 
   # scope :for_this_klass, -> { where(field: true)   }
   validates :user_id, :registration_klass_id, :user_type, presence: true
