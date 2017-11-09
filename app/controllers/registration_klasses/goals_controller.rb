@@ -1,4 +1,4 @@
-class RegistrationKlasses::GoalsController < AddressesController
+class RegistrationKlasses::GoalsController < GoalsController
   before_action :set_goalable
 
   private

@@ -5,6 +5,7 @@ class GoalsController < ApplicationController
   # GET /goals
   # GET /goals.json
   def index
+
     @goals = @goalable.goals.order("deadline ASC")
     @goal = Goal.new
   end

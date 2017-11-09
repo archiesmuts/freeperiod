@@ -1,10 +1,21 @@
 <div class="container">
   <div class="row">
-    <div class="col-md-6">
+    <div class="col-md-7">
       <div id="show-user-registration-card-<%= @user_registration.id %>">
         <div id="user-registration-card-<%= @user_registration.id %>" class="card border-primary my-3">
           <div class="card-header">
-            <%= fa_icon("graduation-cap") %>&nbsp;<%= @user_registration.registration_klass.name %>
+            <div class="row">
+              <div class="col-sm">
+                <%= link_to school_registration_klass_path(@registration_klass.school, @registration_klass),
+                    class: "btn btn-sm btn-outline-primary btn-block-xs" do %>
+                        <%= fa_icon("arrow-left", text: "Back") %>
+                    <% end %>
+              </div>
+              <div class="col-sm">
+                <%= fa_icon("graduation-cap") %>&nbsp;<%= @user_registration.registration_klass.name %>
+              </div>
+
+            </div>
           </div>
           <div class="card-body text-primary">
             <h4 class="card-title">
@@ -16,47 +27,86 @@
               </span>
               <%= @user_registration.completed ? "Completed on" : "Active" %> <%= @user_registration.try(:completed_at) %>
             </p>
-
           </div>
-          <div class="card-footer d-flex justify-content-between">
-            <span>
-              <%= link_to school_registration_klass_path(@registration_klass.school, @registration_klass),
-                  class: "btn btn-sm btn-outline-primary" do %>
-                      <%= fa_icon("arrow-left", text: "Back") %>
+          <div class="card-footer">
+            <div class="row">
+              <div class="col-sm">
+
+                <%= link_to edit_registration_klass_user_registration_path(@user_registration.registration_klass, @user_registration),
+                    remote: true, class: "btn btn-sm btn-primary btn-block mb-1" do %>
+                      <%= fa_icon("pencil", text: "Edit registration") %>
+                    <% end %>
+              </div>
+              <div class="col-sm">
+                <%= link_to user_registration_goals_path(@user_registration),
+                    class: "btn btn-sm btn-outline-primary btn-block mb-1" do %>
+                    <%= fa_icon("star", text: "My goals for this subject") %>&nbsp;
+                    <span class="badge badge-info"><%= @user_registration.goals.size %></span>
+                    <% end %>
+              </div>
+              <div class="col-sm">
+                  <%= link_to "#collapseAchievements", class: "btn btn-sm btn-outline-success btn-block",
+                      data: { toggle: "collapse" }, aria: {expanded: false} do %>
+                      <%= fa_icon("trophy", text: "My Achievements") %>&nbsp;
+                      <span class="badge badge-success"><%= @user_registration.achievements.size %></span>
                   <% end %>
-              <%= link_to edit_registration_klass_user_registration_path(@user_registration.registration_klass, @user_registration),
-                  remote: true, class: "btn btn-sm btn-primary" do %>
-                    <%= fa_icon("pencil", text: "Edit registration") %>
+              </div>
+            </div>
+              <!-- list achievements here -->
+                <div class="collapse" id="collapseAchievements">
+                  <ul id="list-achievements" class="list-group py-2">
+                    <% if @user_registration.achievements.any? %>
+                      <%= render "achievements/achievements", achievable: @user_registration %>
+                    <% else %>
+                      <li class="list-group-item list-group-item-info no-achievements-to-list">
+                        Nothing to list. Complete the form below
+                      </li>
+                    <% end %>
+                  </ul>
+                  <%= link_to "#collapseAchievementForm", class: "btn btn-sm btn-success btn-block py-1",
+                      data: { toggle: "collapse" }, aria: {expanded: false} do %>
+                  <%= fa_icon("plus-square", text: "Add an Achievement") %>
                   <% end %>
-            </span>
-            <%= link_to new_user_registration_attendance_path(@user_registration),
-                remote: true, class: "btn btn-sm btn-success"  do %>
-                  <%= fa_icon("plus", text: "Record Day Absent") %>
-                <% end %>
-            <%= link_to "View my Subject Goals", user_registration_goals_path(@user_registration) class: "btn btn-primary" %>
+                  <div class="collapse py-2" id="collapseAchievementForm">
+                    <%= render "achievements/new_form", achievable: @user_registration %>
+                  </div>
+                </div>
+
           </div>
         </div>
       </div>
     </div> <!-- .col-md-6 -->
-    <div class="col-md-6">
+    <div class="col-md-5">
       <div class="card border-primary my-3">
         <h5 class="card-header d-flex justify-content-between">
           <div><%= fa_icon "comment-o" %>&nbsp;Attendance record</div>
-          <small>&nbsp;Days absent:&nbsp;<span class="badge badge-info" id="days-absent"></span></small>
+          <small>
+            &nbsp;Days absent:&nbsp;
+            <span class="badge badge-info" id="days-absent"></span>
+          </small>
         </h5>
-      <!-- list comments here -->
-      <ul id="list-attendances" class="list-group">
-        <% if @user_registration.attendances.any? %>
-          <%= render "attendances/attendances", attendable: @user_registration %>
-        <% else %>
-          <li class="list-group-item list-group-item-info no-attendances-to-list">
-            No attendance recorded yet
-          </li>
-        <% end %>
-      </ul>
+        <div class="p-1 d-flex justify-content-end">
+          <%= link_to new_user_registration_attendance_path(@user_registration),
+              remote: true, class: "btn btn-sm btn-outline-danger"  do %>
+                <%= fa_icon("plus", text: "Record Day Absent") %>
+              <% end %>
+        </div>
+          <!-- list comments here -->
+          <% if @user_registration.attendances.any? %>
+            <ul id="list-attendances" class="list-group">
+              <%= render "attendances/attendances", attendable: @user_registration %>
+            </ul>
+          <% else %>
+            <ul class="list-group">
+              <li class="list-group-item list-group-item-info no-attendances-to-list">
+                No attendance recorded yet
+              </li>
+            </ul>
+
+          <% end %>
       </div>
       <%#= render "attendances/form", attendable: @user_registration %>
-    </div>
+    </div><!-- .col-md-5 -->
   </div>
 </div>
 <%= render "user_registrations/modal_dialog" %>

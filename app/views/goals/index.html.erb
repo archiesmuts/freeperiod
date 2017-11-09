@@ -8,10 +8,22 @@
           <div class="col-sm-8">
             <div class="btn-toolbar" role="toolbar" aria-label="Goal Toolbar with button groups">
               <div class="btn-group mr-2" role="group" aria-label="First group">
-                <%= link_to polymorphic_path([@goalable]),
-                    class: "btn btn-sm btn-outline-primary" do %>
-                      <%= fa_icon("arrow-left", text: "Back") %>
-                    <% end %>
+                <% if @goalable.class == UserRegistration %>
+                  <%= link_to [@goalable.registration_klass, @goalable],
+                      class: "btn btn-sm btn-outline-primary" do %>
+                        <%= fa_icon("arrow-left", text: "Back") %>
+                      <% end %>
+                <% elsif @goalable.class == RegistrationKlass %>
+                  <%= link_to [@goalable.school, @goalable],
+                      class: "btn btn-sm btn-outline-primary" do %>
+                        <%= fa_icon("arrow-left", text: "Back") %>
+                      <% end %>
+                <% elsif @goalable.class == School || @goalable.class == User %>
+                  <%= link_to [@goalable],
+                      class: "btn btn-sm btn-outline-primary" do %>
+                        <%= fa_icon("arrow-left", text: "Back") %>
+                      <% end %>
+                <% end %>
                 <%= link_to "#collapseForm", data: {toggle: "collapse"},
                   aria: {"controls": "collapseForm", "expanded": false, },
                   class: "btn btn-sm btn-primary" do %>

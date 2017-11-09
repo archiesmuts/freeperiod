@@ -1,19 +1,17 @@
 <% attendable.attendances.each do |attendance| %>
-  <li id="attendance-<%= attendance.id %>" class="list-group-item attendance">
-    <div class="row">
-      <div class="col-sm-4">
-        <%= link_to edit_polymorphic_path([attendance.attendable, attendance]), remote: true do %>
-        <%= fa_icon "calendar-minus-o" %>&nbsp;<%= attendance.date.strftime("%d %b %Y") %>
-        <% end %>
-      </div>
-      <div class="col-sm-7">
+  <li id="attendance-<%= attendance.id %>" class="list-group-item">
+    <div class="d-flex justify-content-between">
+      <div class="">
+        <%= link_to edit_polymorphic_path([attendance.attendable, attendance]), remote: true, class: "btn" do %>
+          <%= fa_icon "calendar-minus-o" %>&nbsp;<span class="badge badge-primary"><%= attendance.date.strftime("%d %b %Y") %></span>
+          <% end %>
+        <br>
         <%= attendance.comment %>
       </div>
-      <div class="col-sm-1">
+      <div class="">
         <%= link_to [attendance.attendable, attendance], method: :delete, remote: true,
-          data: { confirm: 'Are you sure?' },
-          class: "btn btn-danger btn-link delete-attendance" do %>
-            <span class="text-danger"><i class="fa fa-trash" aria-hidden="true"></i></span>
+          data: { confirm: 'Deleting! Are you sure?' }, class: "btn delete-attendance" do %>
+            <span class="badge badge-danger"><%= fa_icon("trash") %></span>
           <% end %>
       </div>
     </div>

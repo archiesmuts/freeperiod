@@ -19,5 +19,6 @@ document.addEventListener 'turbolinks:load', ->
 $(document).on "turbolinks:load", ->
   $('#list-action-plans').sortable
     placeholder: "list-group-item list-group-item-warning"
+    handle: '.handle'
 
   $('.edit_action_plan').submitOnCheck()

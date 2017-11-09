@@ -16,7 +16,7 @@ var el = $('.new_comment');
 
 $('#list-comments').append('<%= j render @comment %>');
 $("#comment-<%= @comment.id %>").hide().fadeIn(1000);
-$(".no-comments-to-list").detach();
+$(".no-attendances-to-list").detach();
 $("#comment_comment").val('');
 $("#comment_comment").focus();
 

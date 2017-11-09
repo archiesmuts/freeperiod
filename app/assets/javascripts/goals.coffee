@@ -7,6 +7,8 @@ jQuery(document).on "turbolinks:load", ->
     changeYear: true
     dateFormat: "yy-mm-dd"
 
+
+
   # $('#goal-dialog').on 'shown.bs.modal', ->
   #   $('.datepicker').datepicker beforeShow: (textbox, instance) ->
   #     $('#datepicker').append $('#ui-datepicker-div')
