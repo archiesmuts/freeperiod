@@ -1,5 +1,4 @@
 module UsersHelper
-
   def user_type(user)
     user_roles = user.roles
     case role_name_for_school = user_roles.find { |value| value['resource_type'] == 'School'}['name']

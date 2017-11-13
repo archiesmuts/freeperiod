@@ -10,7 +10,12 @@ Rails.application.routes.draw do
   end
 
   resources :schools do
-    resources :memberships, path: :users, module: :schools
+    resources :memberships, path: :users, module: :schools do
+      collection do
+        get :edit_multiple
+        put :update_multiple
+      end
+    end
     resources :addresses, module: :schools
     resources :goals, module: :schools
     resources :registration_klasses do

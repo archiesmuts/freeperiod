@@ -1,15 +1,29 @@
-<div class="container">
+<div class="container py-2">
   <div class="card-deck py-2">
     <div class="card border-primary">
       <div class="card-body text-dark">
-        <h4 class="card-title">School Memberships </h4>
-        <h6 class="card-subtitle mb-2 text-muted">People invited and confirmed</h6>
-        <%= link_to "Back to school page", @school, class: "btn btn-sm btn-outline-primary" %>
+        <h4 class="card-title">
+          Registered School Members&nbsp;<span class="badge badge-info"><%= @school.users.size %></span>
+        </h4>
+        <h6 class="card-subtitle mb-2 text-muted">
+          This list includes all the people that were invited and confirmed. It should
+          comprise of all Educators, Learners, Parents/Guardians and Other (e.g. SGB members) people that will have
+          some sort of role in the school.
+        </h6>
+        <%= link_to @school, class: "btn btn-sm btn-outline-primary" do %>
+          <%= fa_icon("arrow-left", text: "Back") %>
+        <% end %>
+        <a class="btn btn-sm btn-info" data-toggle="collapse" href="#collapseRegistrationHelp" aria-expanded="false" aria-controls="collapseRegistrationHelp">
+          <%= fa_icon("info-circle", text: "Managing registered school members") %>
+        </a>
       </div>
     </div>
     <div class="card border-primary">
       <div class="card-body text-dark">
         <%= form_with(model: [@school, Membership.new], local: true, id: :new_membership, class: :new_membership ) do |f| %>
+        <h4 class="card-title">
+          Invitation to register
+        </h4>
           <div class="form-group">
             <%= f.label :email, "Email address" %>
             <%= f.email_field :email, id: :membership_email, class: "form-control", required: true, placeholder: "Type the email of the person you want to invite" %>
@@ -21,22 +35,46 @@
       </div>
     </div>
   </div>
-
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Email</th>
-        <th>Confirmed</th>
-        <th>Date confirmed</th>
-        <th></th>
-      </tr>
-    </thead>
-
-    <tbody id="list-members">
-        <%= render @school.memberships %>
-    </tbody>
-  </table>
+  <div class="collapse" id="collapseRegistrationHelp">
+    <div class="card">
+      <div class="card-header">
+        Assigning roles to school members.
+      </div>
+      <div class="card-body text-primary">
+        <p class="card-text">
+          The primary role of a person will determine his/her
+          access privileges.
+      </p>
+      <p class="card-text">
+        Thus, educators will have accees to their assigned classes only and learners
+        will only have access to their own subject registration details.
+      </p>
+      <p class="card-text">
+        You can edit multiple records at once. Use the check boxes to select the records
+        you wan to edit. Scroll down to the bottom and click on "Edit selected records" button.
+      </p>
+      </div>
+    </div>
+  </div>
+  <%= form_with scope: :membership, url: edit_multiple_school_memberships_path(@school), method: :get,  local: true  do %>
+    <table class="table">
+      <thead>
+        <tr>
+          <th></th>
+          <th>Role</th>
+          <th>Name and Email</th>
+          <th>Confirmed</th>
+          <th>Date confirmed</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody id="list-members">
+          <%= render @school.memberships %>
+      </tbody>
+    </table>
+    <div class="actions">
+      <%= submit_tag "Edit selected records ", class: "btn btn-primary" %>
+    </div>
+  <% end %>
 </div>
 <%#= render "modal_dialog" %>

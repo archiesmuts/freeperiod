@@ -81,7 +81,19 @@ class MembershipsController < ApplicationController
       format.json { head :no_content }
     end
   end
-
+  # def edit_multiple
+  #   @memberships = Membership.find(params[:membership_ids])
+  # end
+  #
+  # def update_multiple
+  #   @memberships = membership.update(params[:memberships].keys, params[:memberships].values)
+  #   @memberships.reject! { |p| p.errors.empty? }
+  #   if @memberships.empty?
+  #     redirect_to school_memberships_path(@school)
+  #   else
+  #     render "edit_multiple"
+  #   end
+  # end
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_membership

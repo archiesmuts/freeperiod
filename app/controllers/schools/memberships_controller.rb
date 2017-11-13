@@ -31,7 +31,22 @@ class Schools::MembershipsController < ApplicationController
       end
     end
   end
+  def edit_multiple
+    @memberships = @school.memberships.where(id: params[:membership_ids])
+  end
 
+  def update_multiple
+    @memberships = @school.memberships.update(params[:memberships].keys, params[:memberships].values)
+    respond_to do |format|
+      format.html { redirect_to school_memberships_path(@school), notice: 'School registrations were successfully updated.' }
+      @memberships.reject! { |m| m.errors.empty? }
+      if @memberships.empty?
+        format.html { redirect_to school_memberships_path(@school), notice: 'Nothing was changed.' }
+      else
+        format.html { render "edit_multiple" }
+      end
+    end
+  end
 
   private
 

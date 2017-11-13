@@ -1,27 +1,32 @@
 <% unless controller.controller_name == "users" %>
   <tr id="membership-<%= membership.id %>">
-    <td><span class="badge badge-primary"><%= membership.member.humanize %> </span></td>
-    <td><%= membership.user.name_reversed if membership.user %></td>
-    <td><%= membership.user.email if membership.user %></td>
+
+    <td>
+      <%= hidden_field_tag "school[membership_ids][]", nil %>
+      <%= check_box_tag "membership_ids[]", membership.id %>
+    </td>
+    <td><span class="badge badge-info"><%= membership.member.humanize %> </span></td>
+    <td>
+      <%= membership.user.name_reversed if membership.user %><br>
+      <%= membership.user.email if membership.user %>
+    </td>
     <td>
         <%= user_status(membership) %>
     </td>
-    <td><%= membership.user.confirmed_at ? membership.user.invitation_accepted_at : "Not Confirmed" %></td>
+    <td><small><%= membership.user.confirmed_at ? membership.user.invitation_accepted_at : "Not Confirmed" %></small></td>
     <td>
       <%= link_to membership, class: "btn btn-sm" do %>
-        <span class="badge badge-success"><i class="fa fa-edit" aria-hidden="true"></i>&nbsp;Show</span>
+        <%= fa_icon("user", text: "View") %>
       <%end %>
-    </td>
-    <td>
-      <%= link_to edit_membership_path(membership), class: "btn btn-sm"  do %>
-        <span class="badge badge-primary"><i class="fa fa-edit" aria-hidden="true"></i>&nbsp;Edit</span>
+
+      <%= link_to edit_membership_path(membership), class: "btn btn-sm "  do %>
+        <%= fa_icon("pencil-square", text: "Edit") %>
       <%end %>
-     </td>
-    <td>
+
         <%= link_to [membership.user, membership], method: :delete, remote: true,
-          data: { confirm: 'Are you absolutely sure?' },
-          class: "btn btn-sm delete-membership"  do %>
-          <span class="badge badge-danger"><i class="fa fa-user-times" aria-hidden="true"></i>&nbsp;Remove</span>
+          data: { confirm: 'Deleting!!!.. Are you absolutely sure?' },
+          class: "btn btn-sm text-danger delete-membership"  do %>
+          <%= fa_icon("trash", text: "Delete") %>
         <% end %>
     </td>
   </tr>

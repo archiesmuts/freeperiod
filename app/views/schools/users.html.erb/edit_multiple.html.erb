@@ -1,0 +1,39 @@
+<div class="container">
+  <div class="row">
+    <div class="col-sm-12">
+      <h3>Edit Checked Registrations (School)</h3>
+      <p class="font-weight-bold">Indicate the type of member for this person .</p>
+
+      <%= form_with scope: :membership, url: update_multiple_school_memberships_path(@school), method: :put, local: true  do %>
+        <% @school.memberships.each do |membership| %>
+          <p><%= membership.user.name %></p>
+          <%= fields_for "memberships[]", membership do |f| %>
+            <% if membership.errors.any? %>
+              <div id="error_explanation">
+                <h2><%= pluralize(membership.errors.count, "error") %> prohibited this membership from being saved:</h2>
+                <ul>
+                <% membership.errors.full_messages.each do |msg| %>
+                  <li><%= msg %></li>
+                <% end %>
+                </ul>
+              </div>
+            <% end %>
+
+            <% Membership.members.keys.map do |member| %>
+              <label class="custom-control custom-radio">
+                <%= f.radio_button :member, member, class: "custom-control-input" %>
+                <span class="custom-control-indicator"></span>
+                <span class="custom-control-description"><%= member.humanize %></span>
+              </label>
+            <% end %>
+          <% end %>
+          <hr>
+        <% end %>
+
+        <div class="actions">
+          <%= submit_tag "Update", class: "btn btn-primary" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
