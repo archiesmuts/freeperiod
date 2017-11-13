@@ -25,7 +25,7 @@ class Schools::MembershipsController < ApplicationController
         format.json { render :show, status: :created, location: membership }
         format.js { }
       else
-        format.html { redirect_to school_memberships_path(@school), notice: 'Enter an email address'}
+        format.html { redirect_to school_memberships_path(@school), flash:  {error: 'Enter an email address'}}
         format.json { render json: membership.errors, status: :unprocessable_entity }
         format.js   { render layout: false, content_type: 'text/javascript' }
       end
