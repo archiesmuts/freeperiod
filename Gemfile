@@ -31,6 +31,7 @@ gem 'sequenced', '~> 3.1', '>= 3.1.1'
 gem 'fullcalendar-rails', '~> 3.4'
 gem 'momentjs-rails', '~> 2.17', '>= 2.17.1'
 gem 'acts_as_list', '~> 0.9.9'
+gem 'data-confirm-modal', '~> 1.5'
 # gem 'sequenced', '~> 3.1', '>= 3.1.1'
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]

@@ -20,5 +20,6 @@
 //= require fullcalendar
 //= require bootstrap-sprockets
 //= require trix
+//= require data-confirm-modal
 //= require turbolinks
 //= require_tree .
