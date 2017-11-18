@@ -2,47 +2,47 @@
   <div class="card border-primary pb-2">
       <h3 class="card-header bg-light text-dark">
         <div class="row">
-          <div class="col-sm-4">
-            Goals <small>and Action Plans</small>
-          </div>
-          <div class="col-sm-8">
-            <div class="btn-toolbar" role="toolbar" aria-label="Goal Toolbar with button groups">
-              <div class="btn-group mr-2" role="group" aria-label="First group">
-                <% if @goalable.class == UserRegistration %>
-                  <%= link_to [@goalable.registration_klass, @goalable],
-                      class: "btn btn-sm btn-outline-primary" do %>
-                        <%= fa_icon("arrow-left", text: "Back") %>
-                      <% end %>
-                <% elsif @goalable.class == RegistrationKlass %>
-                  <%= link_to [@goalable.school, @goalable],
-                      class: "btn btn-sm btn-outline-primary" do %>
-                        <%= fa_icon("arrow-left", text: "Back") %>
-                      <% end %>
-                <% elsif @goalable.class == School || @goalable.class == User %>
-                  <%= link_to [@goalable],
-                      class: "btn btn-sm btn-outline-primary" do %>
-                        <%= fa_icon("arrow-left", text: "Back") %>
-                      <% end %>
-                <% end %>
-                <%= link_to "#collapseForm", data: {toggle: "collapse"},
-                  aria: {"controls": "collapseForm", "expanded": false, },
-                  class: "btn btn-sm btn-primary" do %>
-                    <%= fa_icon("plus-square", text: "Add a goal") %>
+          <div class="col-sm-5">
+            <% if @goalable.class == UserRegistration %>
+              <%= link_to [@goalable.registration_klass, @goalable],
+                  class: "btn btn-sm btn-outline-primary" do %>
+                    <%= fa_icon("arrow-left", text: "Back") %>
                   <% end %>
-              </div><!-- .btn-group 2 -->
+            <% elsif @goalable.class == RegistrationKlass %>
+              <%= link_to [@goalable.school, @goalable],
+                  class: "btn btn-sm btn-outline-primary" do %>
+                    <%= fa_icon("arrow-left", text: "Back") %>
+                  <% end %>
+            <% elsif @goalable.class == School || @goalable.class == User %>
+              <%= link_to [@goalable, anchor: "my-goals"], 
+                  class: "btn btn-sm btn-outline-primary" do %>
+                    <%= fa_icon("arrow-left", text: "Back") %>
+                  <% end %>
+            <% end %>
+            Goals&nbsp;<small>and Action Plans</small>
+          </div>
+          <div class="col-sm-7">
+            <div class="btn-toolbar" role="toolbar" aria-label="Goal Toolbar with button groups">
               <div class="btn-group mr-2" role="group" aria-label="Second group">
                 <%= link_to "#define-goal-dialog", data: {toggle: "modal"},
                   class: "btn btn-sm btn-outline-info" do %>
                     <%= fa_icon("question-circle", text: "Defining your goals") %>
                   <% end %>
+
                   <%= link_to "#set-goal-dialog", data: {toggle: "modal"},
                     class: "btn btn-sm btn-outline-info" do %>
                       <%= fa_icon("question-circle", text: "Setting SMART goals") %>
                     <% end %>
-              </div> <!-- .btn-group 1 -->
+
+                  <%= link_to "#collapseForm", data: {toggle: "collapse"},
+                    aria: {"controls": "collapseForm", "expanded": false, },
+                    class: "btn btn-sm btn-primary" do %>
+                      <%= fa_icon("plus-square", text: "Add a goal") %>
+                    <% end %>
+              </div> <!-- .btn-group -->
             </div> <!-- .btn-toolbar -->
-          </div> <!-- .row -->
-        </div> <!-- .card -->
+          </div>  <!-- .col -->
+        </div> <!-- .row -->
       </h3>
         <div class="collapse" id="collapseForm">
           <div class="card-body text-primary">
@@ -50,7 +50,7 @@
               <%= render 'new_form', goal: @goal %>
           </div>
         </div> <!-- .collapse new_form -->
-  </div>
+  </div><!-- .card -->
 
   <table class="table table-bordered">
     <thead class="thead-light">
@@ -77,7 +77,13 @@
       <% @goalable.goals.each do |goal| %>
         <tr>
           <td>
-            <%= goal.name %> <br>
+            <%= link_to [goal.goalable, goal], class: "badge badge-primary",
+                data: {toggle: "tooltip", placement: "top" },
+
+                title: "Show goal details and action plans" do %>
+              <%= fa_icon("expand") %>
+            <% end %>
+            &nbsp;<%= goal.name %> <br>
             <%= fa_icon("calendar") %>&nbsp;<span class="badge badge-primary"><%= goal.deadline.strftime("%d %b %Y") if goal.deadline %>&nbsp;</span>
             <%= fa_icon("list-ol") %>&nbsp;<span class="badge badge-info"><%= goal.action_plans.size %></span>&nbsp;
             <%= fa_icon("comments") %>&nbsp;<span class="badge badge-success"><%= goal.comments.size %></span>
@@ -92,11 +98,6 @@
             <%= fa_icon("calendar-check-o") %>&nbsp;<%= goal.completed_at ? goal.completed_at.strftime("%d %b %Y") : "Sometime soon .." %>
           </td>
           <td>
-            <%= link_to [goal.goalable, goal], class: "badge badge-primary",
-                data: {toggle: "tooltip", placement: "top" },
-                title: "Show goal details and action plans" do %>
-              <%= fa_icon("expand", text: "Show") %>
-            <% end %>
             <%#= link_to 'Edit', edit_polymorphic_path([goal.goalable, goal]), class: "btn btn-sm btn-primary" %>&nbsp;
             <%= link_to [goal.goalable, goal], method: :delete,
                 data: { confirm: 'Are you sure? Action plans will also be deleted', toggle: "tooltip", placement: "top"  }, class: "badge badge-danger",

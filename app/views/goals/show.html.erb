@@ -4,35 +4,42 @@
         <%= render "show_card" %>
       </div><!-- .col -->
       <div class="col-md-6">
-        <div class="card border-info">
-          <div class="card-header d-flex justify-content-between">
-            <h4>
-              <%= fa_icon("check-square-o", text: "To Do list and Action Plans") %>
-            </h4>
-            <div>
-              <%= link_to "#how-to-action-plan-dialog", data: {toggle: "modal"},
-                  class: "btn btn-sm btn-outline-primary" do %>
-                    <%= fa_icon("question-circle", text: "How to?") %>
-                  <% end %>
+        <div class="card border-success mb-3">
+          <div class="card-header">
+            <div class="row">
+              <div class="col-sm-9">
+                <h5>
+                  <%= fa_icon("check-square-o", text: "To Do list and Action Plans") %>
+                </h5>
+              </div>
+              <div class="col-sm-3">
+                <%= link_to "#how-to-action-plan-dialog", data: {toggle: "modal"},
+                class: "btn btn-sm btn-outline-primary" do %>
+                <%= fa_icon("question-circle", text: "How to?") %>
+                <% end %>
+              </div>
             </div>
           </div>
-
           <div class="card-footer">
-            <div class="card-title d-flex justify-content-between">
-              <div>
+            <div class="row">
+              <div class="col-sm-4">
                 <%= fa_icon "check-square-o", text: "To Dos" %>&nbsp;
                     <span class="badge badge-info"><%= @goal.action_plans.todo_items.size %></span>&nbsp;
                 <%= fa_icon("arrow-right") %>&nbsp;
+              </div>
+              <div class="col-sm-5  ">
                 <%= fa_icon("calendar-check-o", text: "Action Plans") %>&nbsp;
                     <span class="badge badge-success"><%= @goal.action_plans.action_items.size %></span>&nbsp;
                 <button type="button" class="btn btn-sm btn-light" data-toggle="tooltip" data-placement="top" title="Turn ToDos into Action Plans!">
                   <%= fa_icon("info-circle") %>
                 </button>
               </div>
-              <%= link_to new_goal_action_plan_path(@goal), remote: true, class: "btn btn-sm btn-primary" do %>
-                <%= fa_icon "plus-square" %>&nbsp;Add a To Do
-              <% end %>
-            </div>
+              <div class="col-sm-3">
+                <%= link_to new_goal_action_plan_path(@goal), remote: true, class: "btn btn-sm btn-primary" do %>
+                <%= fa_icon "plus-square" %>&nbsp;Add To Do
+                <% end %>
+              </div>
+            </div> <!-- .row -->
             <small>
               <%= fa_icon("arrows", text: "Sort items by dragging and dropping up or down in the list.") %><br>
               <%= fa_icon("pencil", text: "Click on 'Edit' to add a date and people") %>

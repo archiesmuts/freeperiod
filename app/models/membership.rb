@@ -30,6 +30,9 @@ class Membership < ApplicationRecord
   #   admin: 1,
   #   management: 2
   # }
+  def school_short_name
+    school_name.truncate(35)
+  end
 
   def school_name
    school.try(:name)

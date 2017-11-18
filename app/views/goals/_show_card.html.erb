@@ -1,7 +1,25 @@
 <div class="card border-primary mb-3">
-  <div class="card-body text-primary">
-    <h4 class="card-title"><%= @goal.name %></h4>
-    <h6 class="card-subtitle mb-2 text-muted">Goal</h6>
+  <div class="card-header">
+    <div class="row">
+      <div class="col-sm-9">
+        <h4>
+          <%= link_to polymorphic_path([@goalable, Goal]), class: "btn btn-sm btn-outline-primary" do %>
+            <%= fa_icon("arrow-left", text: "Back") %>
+            <% end %>
+            Goal
+          </h4>
+      </div>
+      <div class="col-sm-3">
+        <%= link_to edit_polymorphic_path([@goalable, @goal]), class: "btn btn-sm btn-primary" do %>
+          <%= fa_icon("pencil", text: "Edit goal") %>
+          <% end %>
+      </div>
+    </div>
+  </div>
+  <div class="card-body text-dark">
+    <h4 class="card-title">
+      <%= @goal.name %>
+    </h4>
     <dl class="row">
       <dt class="col-sm-5">Deadline:</dt>
       <dd class="col-sm-7"><%= @goal.deadline.strftime("%d %b %Y") if @goal.deadline %></dd>
@@ -21,16 +39,15 @@
       <dt class="col-sm-5">Date completed:</dt>
       <dd class="col-sm-7"><%= @goal.completed_at ? @goal.completed_at.strftime("%d %b %Y") : "Working on it... (-.-)Zzz..."  %></dd>
     </dl>
+
   </div>
   <div class="card-footer">
     <div class="row">
       <div class="col-sm-7">
-        <%= link_to polymorphic_path([@goalable, Goal]), class: "btn btn-sm btn-outline-primary" do %>
-        <%= fa_icon("arrow-left", text: "Back") %>
-        <% end %>
-        <%= link_to edit_polymorphic_path([@goalable, @goal]), class: "btn btn-sm btn-primary" do %>
-        <%= fa_icon("pencil", text: "Edit goal") %>
-        <% end %>
+        <h5>
+        <%= fa_icon "comment-o" %>&nbsp;Comments&nbsp;
+        <span class="badge badge-info"><%= @goal.comments.size %></span>
+        </h5>
       </div>
       <div class="col-sm-5">
         <%= link_to "#collapseComments", class: "btn btn-sm btn-outline-primary",
@@ -40,9 +57,6 @@
       </div>
     </div>
     <div class="my-2">
-      <h5 class="card-title"><%= fa_icon "comment-o" %>&nbsp;Comments&nbsp;
-        <span class="badge badge-info"><%= @goal.comments.size %></span>
-      </h5>
     <!-- list comments here -->
       <div class="collapse" id="collapseComments">
         <ul id="list-comments" class="list-group">

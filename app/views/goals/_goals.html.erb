@@ -3,17 +3,15 @@
     <div class="card border-primary mb-3" id="goal-<%= goal.id %>">
       <div class="card-body text-dark">
         <h4 class="card-title"><%= goal.name %></h4>
-        <dl class="row">
-          <dt class="col-sm-5">Deadline:</dt>
-          <dd class="col-sm-7"><%= goal.deadline.strftime("%d %b %Y") if goal.deadline %></dd>
-
-          <dt class="col-sm-5">Status</dt>
-          <dd class="col-sm-7"><%= goal.achieved.humanize %></dd>
+          <p class="card-text"><strong>Deadline:</strong> <%= goal.deadline.strftime("%d %b %Y") if goal.deadline %></p>
+          <p class="card-text"><strong>Status:</strong> <%= goal.achieved.humanize %></p>
           <% if goal.yes? %>
-            <dt class="col-sm-5">Date completed:</dt>
-            <dd class="col-sm-7"><%= goal.completed_at.strftime("%d %b %Y") if goal.completed_at %></dd>
+            <p class="card-text"><strong>Date completed:</strong> <%= goal.completed_at.strftime("%d %b %Y") if goal.completed_at %></p>
           <% end %>
         </dl>
+      </div>
+      <div class="card-footer">
+        <small class="text-muted">Last updated 3 mins ago</small>
       </div>
     </div>
   </div>

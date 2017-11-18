@@ -11,9 +11,12 @@
       <%= membership.user.email if membership.user %>
     </td>
     <td>
-        <%= user_status(membership) %>
+        <%= user_status(membership) %>&nbsp;
+
+        <% if membership.user.invitation_accepted_at %>
+          <%= membership.user.invitation_accepted_at.strftime("%d %b %Y") %>
+        <% end %>
     </td>
-    <td><small><%= membership.user.confirmed_at ? membership.user.invitation_accepted_at : "Not Confirmed" %></small></td>
     <td>
       <%= link_to membership, class: "btn btn-sm" do %>
         <%= fa_icon("user", text: "View") %>

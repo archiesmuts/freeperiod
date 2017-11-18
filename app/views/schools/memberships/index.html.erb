@@ -10,12 +10,17 @@
           comprise of all Educators, Learners, Parents/Guardians and Other (e.g. SGB members) people that will have
           some sort of role in the school.
         </h6>
+        <div class="d-flex justify-content-between mb-2">
         <%= link_to @school, class: "btn btn-sm btn-outline-primary" do %>
           <%= fa_icon("arrow-left", text: "Back") %>
         <% end %>
         <a class="btn btn-sm btn-info" data-toggle="collapse" href="#collapseRegistrationHelp" aria-expanded="false" aria-controls="collapseRegistrationHelp">
-          <%= fa_icon("info-circle", text: "Managing registered school members") %>
+          <%= fa_icon("info-circle", text: "Registration Guide") %>
         </a>
+        </div>
+        <div class="collapse" id="collapseRegistrationHelp">
+          <%= render "registration_help" %>
+        </div>
       </div>
     </div>
     <div class="card border-primary">
@@ -35,36 +40,15 @@
       </div>
     </div>
   </div>
-  <div class="collapse" id="collapseRegistrationHelp">
-    <div class="card">
-      <div class="card-header">
-        Assigning roles to school members.
-      </div>
-      <div class="card-body text-primary">
-        <p class="card-text">
-          The primary role of a person will determine his/her
-          access privileges.
-      </p>
-      <p class="card-text">
-        Thus, educators will have accees to their assigned classes only and learners
-        will only have access to their own subject registration details.
-      </p>
-      <p class="card-text">
-        You can edit multiple records at once. Use the check boxes to select the records
-        you wan to edit. Scroll down to the bottom and click on "Edit selected records" button.
-      </p>
-      </div>
-    </div>
-  </div>
+
   <%= form_with scope: :membership, url: edit_multiple_school_memberships_path(@school), method: :get,  local: true  do %>
-    <table class="table">
+    <table class="table table-responsive">
       <thead>
         <tr>
           <th></th>
           <th>Role</th>
           <th>Name and Email</th>
           <th>Confirmed</th>
-          <th>Date confirmed</th>
           <th></th>
         </tr>
       </thead>

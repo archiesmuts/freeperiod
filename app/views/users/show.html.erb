@@ -5,92 +5,14 @@
         <%= fa_icon("th-list") %>
       </button>
     </p>
-    <h1><%= fa_icon "home" %>&nbsp;My Page</h1>
-    <p class="h4">
-      <%= current_user.first_name if current_user.first_name %>
-      <%= current_user.last_name if current_user.last_name %>&nbsp;
-      <small>
-        <%= fa_icon "envelope" %> <%= current_user.try(:email) %>
-        <%= link_to "Change my Sign-in details", edit_user_registration_path,
-                    class: "btn btn-sm btn-outline-primary" %>
-      </small>
-      <br> <%= current_user.id %>
-    </p>
-    <p>
-      <div class="d-flex flex-column">
-        <div class="p-2">Roles:</div>
-        <% unless current_user.roles.empty? %>
-          <% current_user.roles.each do |role| %>
-          <div class="p-2">
-            <span class="badge badge-info"><%= role.name %> <%= role.resource_type %></span>
-          </div>
-          <% end %>
-          <% else %>
-          No roles
-        <% end %>
-      </div>
-    </p>
-    <hr>
-
-    <!-- Nav Pills -->
-    <p>
-      <ul class="nav nav-tabs flex-column flex-sm-row" role="tablist">
-        <li class="nav-item">
-          <a class="nav-link active" data-toggle="pill" href="#home" role="tab">Home&nbsp; </a>
-        </li>
-        <%# if current_user.has_any_role?(:admin, :faculty) %>
-        <li class="nav-item">
-          <a class="nav-link" data-toggle="pill" href="#user-registration-klasses" role="tab">My Classes&nbsp;
-            <span class="badge badge-pill badge-info pull-right"></span>
-          </a>
-        </li>
-        <%# end %>
-        <%# if current_user.has_role?(:admin) %>
-        <li class="nav-item">
-          <a class="nav-link" data-toggle="pill" href="#roles" role="tab">Access Permissions </a>
-        </li>
-        <%# end %>
-         <li class="nav-item">
-          <a class="nav-link" data-toggle="pill" href="#addresses" role="tab">Addresses</a>
-        </li>
-        <li class="nav-item">
-         <a class="nav-link" data-toggle="pill" href="#goals" role="tab">Goals and Action Plans</a>
-       </li>
-
-      </ul>
-    </p>
-
-      <!-- Tab panes -->
+    <!-- Tab panes -->
       <div class="tab-content">
-        <div class="tab-pane active" id="home" role="tabpanel">
-          <div class="row">
-            <div class="col-md-6">
-
-          <h3>Schools to which you belong
-            <small>
-              <a tabindex="0" class="btn btn-link" role="button" data-toggle="popover"
-                data-trigger="focus" title="Tip"
-                data-content="This is a tip">
-                <%= fa_icon "info-circle" %>&nbsp;Tip
-              </a>
-            </small>
-          </h3>
-
-          <div id="list-memberships">
-            <% unless current_user.memberships.empty? %>
-              <%= render current_user.memberships %>
-            <% else %>
-              <%= link_to "Create your School Account", new_membership_path(current_user), class: "btn btn-success" %>
-              <%= render "nothing_to_list" %>
-              <%= link_to 'New School', new_school_path, class: "btn btn-primary" %>
-            <% end %>
-          </div>
-        </div>
-        </div>
+        <div class="tab-pane fade show active" id="home" role="tabpanel">
+          <%= render "home_card" %>
         </div>
         <%# if current_user.has_any_role?(:admin, :faculty) %>
           <!-- true -->
-        <div class="tab-pane" id="user-registration-klasses" role="tabpanel">
+        <div class="tab-pane" id="my-classes" role="tabpanel">
           <h3>My Classes</h3>
           <ul class="list-group" role="tablist">
             <% unless current_user.registration_klasses.empty? %>
@@ -120,7 +42,7 @@
           </div>
         </div>
         <%# end %>
-        <div class="tab-pane" id="addresses" role="tabpanel">
+        <div class="tab-pane" id="my-addresses" role="tabpanel">
           <h2>Addresses</h2>
           <%= link_to "Manage addresses", user_addresses_path(current_user), class: "btn btn-sm btn-primary" %>
           <div id="list-addresses" class="row py-2">
@@ -135,12 +57,12 @@
             <% end %>
           </div>
         </div>
-        <div class="tab-pane" id="goals" role="tabpanel">
+        <div class="tab-pane" id="my-goals" role="tabpanel">
           <h2>Goals and Action Plans</h2>
           <%= link_to "Manage your goals", user_goals_path(current_user), class: "btn btn-sm btn-primary" %>
         <div id="list-goals" class="row py-2">
           <% if current_user.goals.any? %>
-            <%= render "goals/goals", goalable: @user %>
+              <%= render "goals/goals", goalable: @user %>
           <% else %>
             <li class="list-group-item list-group-item-info no-addresses-to-list">
               No Goals Recorded yet
@@ -151,17 +73,8 @@
         </div>
       </div> <!-- .tab-content -->
   </div>
-  <div id="sidebar" class="col-6 col-md-3 sidebar-offcanvas pt-1">
-    <a href="#" class="list-group-item active">Link</a>
-    <a href="#" class="list-group-item">Link</a>
-    <a href="#" class="list-group-item">Link</a>
-    <a href="#" class="list-group-item">Link</a>
-    <a href="#" class="list-group-item">Link</a>
-    <a href="#" class="list-group-item">Link</a>
-    <a href="#" class="list-group-item">Link</a>
-    <a href="#" class="list-group-item">Link</a>
-    <a href="#" class="list-group-item">Link</a>
-    <a href="#" class="list-group-item">Link</a>
+  <div id="sidebar" class="col-6 col-md-3 sidebar-offcanvas pt-1 nav flex-column nav-pills" role="tablist" aria-orientation="vertical" role="tablist" aria-orientation="vertical">
+      <%= render "sidebar_links" %>
   </div>
 
 </div>

@@ -77,9 +77,9 @@
   <hr>
   <div class="d-flex justify-content-between">
     <% if action_name == "edit" %>
-      <%= link_to 'Cancel', polymorphic_path([@goalable, Goal]), class: "btn btn-outline-primary" %>
-      <% else %>
       <%= link_to 'Cancel', polymorphic_path([@goalable, @goal]), class: "btn btn-outline-primary" %>
+      <% else %>
+      <%= link_to 'Cancel', polymorphic_path([@goalable, Goal]), class: "btn btn-outline-primary" %>
     <% end %>
     <%= form.submit class: "btn btn-primary" %>
   </div>

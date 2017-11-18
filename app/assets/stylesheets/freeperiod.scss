@@ -5,8 +5,22 @@
     display: block;
     width: 100%;
   }
+  .hide-xs {
+    display: none;
+  }
 }
 
+@include media-breakpoint-up(sm) {
+  .hide-sm-up {
+    display: none;
+  }
+}
+
+// @include media-breakpoint-only(xs) {
+//   .show-xs-only {
+//     display: block;
+//   }
+//  }
 // make all images responsive by default
 img {
   @extend .img-fluid;
