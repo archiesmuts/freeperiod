@@ -2,7 +2,7 @@
   <h4><%= achievement.date.strftime("%d %b %Y") %>: <%= achievement.title %></h4>
   <p><%= achievement.description %></p>
 
-  <%= link_to edit_user_registrations_achievement_path(achievement) do %>
+  <%= link_to edit_users_achievement_path(achievement) do %>
       <%= fa_icon("pencil", text: "Edit") %>
     <% end %>
     <%= link_to achievement, remote: true, method: :delete, data: { confirm: 'Are you sure?' },

@@ -18,7 +18,43 @@
       </div>
 
     </div>
-  </div> <!-- .card school-->
+  </div> <!-- .card  school show -->
+  <div class="card mt-2"> <!-- achievements -->
+    <div class="card-body">
+      <h4 class="card-title">Achievements</h4>
+      <p class="card-text">Achievements</p>
+    </div>
+    <div class="card-footer">
+      <div class="row">
+        <div class="col-sm">
+            <%= link_to "#collapseAchievements", class: "btn btn-sm btn-outline-success btn-block",
+                data: { toggle: "collapse" }, aria: {expanded: false} do %>
+                <%= fa_icon("trophy", text: "My Achievements") %>&nbsp;
+                <span class="badge badge-success"><%= @school.achievements.size %></span>
+            <% end %>
+        </div>
+      </div> <!-- .row in card-footer -->
+        <!-- list achievements here -->
+      <div class="collapse" id="collapseAchievements">
+        <ul id="list-achievements" class="list-group py-2">
+          <% if @school.achievements.any? %>
+            <%= render "achievements/achievements", achievable: @school %>
+          <% else %>
+            <li class="list-group-item list-group-item-info no-achievements-to-list">
+              Nothing to list. Complete the form below
+            </li>
+          <% end %>
+        </ul>
+        <%= link_to "#collapseAchievementForm", class: "btn btn-sm btn-success btn-block py-1",
+            data: { toggle: "collapse" }, aria: {expanded: false} do %>
+            <%= fa_icon("plus-square", text: "Add an Achievement") %>
+            <% end %>
+        <div class="collapse py-2" id="collapseAchievementForm">
+          <%= render "achievements/new_form", achievable: @school %>
+        </div><!-- .collapse achievement form -->
+      </div> <!-- .collapse achievements in card-footer -->
+    </div> <!-- .card-footer -->
+  </div>
     <div class="card mt-2"> <!-- card 1/3 -->
       <div class="card-body">
         <h4 class="card-title">School Events</h4>

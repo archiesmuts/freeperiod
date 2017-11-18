@@ -14,7 +14,7 @@
                     <%= fa_icon("arrow-left", text: "Back") %>
                   <% end %>
             <% elsif @goalable.class == School || @goalable.class == User %>
-              <%= link_to [@goalable, anchor: "my-goals"], 
+              <%= link_to [@goalable, anchor: "my-goals"],
                   class: "btn btn-sm btn-outline-primary" do %>
                     <%= fa_icon("arrow-left", text: "Back") %>
                   <% end %>
@@ -22,25 +22,22 @@
             Goals&nbsp;<small>and Action Plans</small>
           </div>
           <div class="col-sm-7">
-            <div class="btn-toolbar" role="toolbar" aria-label="Goal Toolbar with button groups">
-              <div class="btn-group mr-2" role="group" aria-label="Second group">
-                <%= link_to "#define-goal-dialog", data: {toggle: "modal"},
-                  class: "btn btn-sm btn-outline-info" do %>
-                    <%= fa_icon("question-circle", text: "Defining your goals") %>
-                  <% end %>
+            <%= link_to "#define-goal-dialog", data: {toggle: "modal"},
+              class: "btn btn-sm btn-outline-info" do %>
+                <%= fa_icon("question-circle", text: "Defining your goals") %>
+              <% end %>
 
-                  <%= link_to "#set-goal-dialog", data: {toggle: "modal"},
-                    class: "btn btn-sm btn-outline-info" do %>
-                      <%= fa_icon("question-circle", text: "Setting SMART goals") %>
-                    <% end %>
+              <%= link_to "#set-goal-dialog", data: {toggle: "modal"},
+                class: "btn btn-sm btn-outline-info" do %>
+                  <%= fa_icon("question-circle", text: "Setting SMART goals") %>
+                <% end %>
 
-                  <%= link_to "#collapseForm", data: {toggle: "collapse"},
-                    aria: {"controls": "collapseForm", "expanded": false, },
-                    class: "btn btn-sm btn-primary" do %>
-                      <%= fa_icon("plus-square", text: "Add a goal") %>
-                    <% end %>
-              </div> <!-- .btn-group -->
-            </div> <!-- .btn-toolbar -->
+              <%= link_to "#collapseForm", data: {toggle: "collapse"},
+                aria: {"controls": "collapseForm", "expanded": false, },
+                class: "btn btn-sm btn-primary" do %>
+                  <%= fa_icon("plus-square", text: "Add a goal") %>
+                <% end %>
+
           </div>  <!-- .col -->
         </div> <!-- .row -->
       </h3>

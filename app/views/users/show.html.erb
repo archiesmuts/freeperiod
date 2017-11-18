@@ -27,18 +27,41 @@
           </ul>
         </div>
         <%# if current_user.has_role?(:admin) %>
-        <div class="tab-pane" id="roles" role="tabpanel">
+        <div class="tab-pane" id="my-achievements" role="tabpanel">
           <div class="row">
-            <div class="col-md-6">
-              <h3>Access Permissions</h3>
-              <ul class="list-group" role="tablist">
-                <% current_user.roles.each do |role| %>
-                  <li class="list-group-item list-group-item-primary">
-                    "<%= role.name.humanize %>" for <%= role.resource_type %>
-                  </li>
-                <% end %>filename
-              </ul>
-            </div>
+            <div class="card">
+            <div class="card-footer">
+              <div class="row">
+                <div class="col-sm">
+                    <%= link_to "#collapseAchievements", class: "btn btn-sm btn-outline-success btn-block",
+                        data: { toggle: "collapse" }, aria: {expanded: false} do %>
+                        <%= fa_icon("trophy", text: "My Achievements") %>&nbsp;
+                        <span class="badge badge-success"><%= current_user.achievements.size %></span>
+                    <% end %>
+                </div>
+              </div> <!-- .row in card-footer -->
+                <!-- list achievements here -->
+              <div class="collapse" id="collapseAchievements">
+                <ul id="list-achievements" class="list-group py-2">
+                  <% if current_user.achievements.any? %>
+                    <%= render "achievements/achievements", achievable: @user %>
+                  <% else %>
+                    <li class="list-group-item list-group-item-info no-achievements-to-list">
+                      Nothing to list. Complete the form below
+                    </li>
+                  <% end %>
+                </ul>
+                <%= link_to "#collapseAchievementForm", class: "btn btn-sm btn-success btn-block py-1",
+                    data: { toggle: "collapse" }, aria: {expanded: false} do %>
+                    <%= fa_icon("plus-square", text: "Add an Achievement") %>
+                    <% end %>
+                <div class="collapse py-2" id="collapseAchievementForm">
+                  <%= render "achievements/new_form", achievable: @user %>
+                </div><!-- .collapse achievement form -->
+              </div> <!-- .collapse achievements in card-footer -->
+            </div> <!-- .card-footer -->
+          </div>
+
           </div>
         </div>
         <%# end %>

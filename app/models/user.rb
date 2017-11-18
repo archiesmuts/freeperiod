@@ -16,7 +16,7 @@ class User < ApplicationRecord
   has_many :comments, as: :commentable
   has_many :addresses, as: :addressable
   has_many :goals, -> { order('deadline ASC') },  as: :goalable
-
+  has_many :achievements, -> { order('date DESC') }, as: :achievable
 
   validates :first_name, :last_name, :slug, presence: true
   validates :terms_of_privacy_statement, acceptance: true

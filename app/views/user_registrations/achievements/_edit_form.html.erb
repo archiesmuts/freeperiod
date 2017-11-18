@@ -31,9 +31,9 @@
   </div>
   <!-- link_generator in helper module  -->
   <div class="actions">
-    <button type="button" class="btn btn-sm btn-outline-primary">
-      <%= fa_icon("times") %>&nbsp;<%= achievement_link_generator(achievement) %>
-    </button>
+    <%= link_to [@achievable.registration_klass, achievement.achievable], class: "btn btn-sm btn-outline-primary" do %>
+      <%= fa_icon("times", text: "Cancel") %>
+    <% end %>
     <%= form.submit class: "btn btn-sm btn-primary"  %>
   </div>
 <% end %>

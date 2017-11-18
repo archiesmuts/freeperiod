@@ -7,6 +7,7 @@ Rails.application.routes.draw do
     resources :user_registrations
     resources :addresses, module: :users
     resources :goals, module: :users
+    resources :achievements, module: :users
   end
 
   resources :schools do
