@@ -15,10 +15,7 @@ var el = $('.edit_event');
 <% else %>
 
 $('#event-dialog').modal("hide");
-$("#event-<%= @event.id %>").fadeOut(700, function() {
-  this.remove();
-  $('#list-events').append('<%= j render @event %>');
-});
+
 
 // Clear form
 el.find('input:text,text_area').val('');

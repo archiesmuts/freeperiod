@@ -1,8 +1,7 @@
-
-  <h1>School Events</h1>
-  <div class="d-flex justify-content-center py-2">
+  <h1 class="pt-2">School Events</h1>
+  <div class="py-2">
     <%= link_to @school, class: "btn btn-outline-primary" do %>
-     <%= fa_icon "hand-o-left" %> Back to School Page
+     <%= fa_icon "arrow-left" %>&nbsp;Back
     <% end %>
     &nbsp;&nbsp;&nbsp;
     <%= link_to new_school_event_path(@school), remote: true, class: "btn btn-primary" do %>
@@ -16,7 +15,10 @@
     </div>
     <div class="col-sm-3">
       <h3>Upcoming Events</h3>
-      <p class="text-info"><%= fa_icon "info-circle" %> Please use the calendar to look for older events.</p>
+      <p class="text-info">
+        <%= fa_icon "info-circle" %>&nbsp;..including from 1 wk ago.
+        Use the calendar to look for older events.
+      </p>
       <div id="list-events" class="d-flex flex-column">
        <% if @school.events.any? %>
          <%= render @school.events.newer_than(1.week.ago) %>
@@ -32,5 +34,5 @@
 
     </div>
   </div>
-<%= render "modal_dialog" %>
+
 <%= render "full_calendar_modal" %>

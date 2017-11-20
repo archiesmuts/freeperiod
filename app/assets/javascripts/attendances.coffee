@@ -8,7 +8,4 @@ jQuery.fn.countDaysAbsent = ->
 jQuery(document).on "turbolinks:load", ->
   $("#list-attendances").countDaysAbsent()
   $('#attendance-dialog').on 'shown.bs.modal', ->
-    $('.datepicker').datepicker
-      changeMonth: true
-      changeYear: true
-      dateFormat: "yy-mm-dd"
+    $('.datetimepicker').datetimepicker

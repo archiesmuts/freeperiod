@@ -32,5 +32,11 @@ class Event < ApplicationRecord
    end
  end
 
+  def start_weekday
+    start_time.wday
+  end
 
+  def end_weekday
+    end_time.wday
+  end
 end

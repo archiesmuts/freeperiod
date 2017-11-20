@@ -9,3 +9,17 @@
     </div>
   </div>
 </div>
+<!-- <script type="text/javascript">
+    $(function () {
+        $('#event_start_time').datetimepicker();
+        $('#event_end_time').datetimepicker({
+            useCurrent: false //Important! See issue #1075
+        });
+        $("#event_start_time").on("dp.change", function (e) {
+            $('#event_end_time').data("DateTimePicker").minDate(e.date);
+        });
+        $("#event_end_time").on("dp.change", function (e) {
+            $('#event_start_time').data("DateTimePicker").maxDate(e.date);
+        });
+    });
+</script> -->

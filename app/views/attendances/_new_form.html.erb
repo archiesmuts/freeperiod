@@ -1,6 +1,5 @@
 <%= form_with(model: [@attendable, Attendance.new], id: :new_attendance, class: :new_attendance) do |form| %>
 
-
   <div class="form-group">
     <%= form.label :date %>
     <%= form.date_select :date, id: :attendance_date, class: "form-control" %>

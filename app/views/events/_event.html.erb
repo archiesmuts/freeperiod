@@ -1,21 +1,34 @@
-<div id="event-card-<%= event.id %>" class="card border-secondary mb-3">
-  <div class="card-body text-secondary">
-    <h6 class="card-title">
-      <%= fa_icon "fort-awesome" %>&nbsp;<%= link_to event.title, school_event_path(event.school, event) %>
-    </h6>
+<div  class="card border-primary mb-3" id="event-card-<%= event.id %>">
+  <div class="card-body text-dark">
+    <h5 class="card-title">
+      <%= fa_icon "fort-awesome" %>&nbsp;<%= event.title %>
+    </h5>
     <p class="card-text">
-      <%= event.start_time.strftime("%I:%M%p on %a %d %b %Y") %> to<br>
-      <%= event.end_time.strftime("%I:%M%p on %a %d %b %Y") %></p>
+      <% if event.start_weekday == event.end_weekday %>
+      <%= event.start_time.strftime("%I:%M%p") %>&nbsp;to
+      <%= event.end_time.strftime("%I:%M%p on %a %d %b") %>
+      <% else %>
+      <%= event.start_time.strftime("%I:%M%p on %a %d %b") %>to<br>
+      <%= event.end_time.strftime("%I:%M%p on %a %d %b") %>
+      <% end %>
+      <br>
+      <small><%= fa_icon("comment-o", text:"Comments") %></small>&nbsp;<span class="badge badge-info"><%= event.comments.size %></span>
+    </p>
+
   </div>
   <div class="card-footer">
     <div class="d-flex justify-content-between">
-      <%= link_to edit_school_event_path(event.school, event), remote: true do %>
-            <%= fa_icon "pencil" %>&nbsp;Edit
-          <% end %>
-      <%= link_to [event.school, event], method: :delete,
-          data: { confirm: 'Are you sure?' } do %>
-            <%= fa_icon "trash" %>&nbsp;Delete
-          <% end %>
+      <div class="">
+        <%= link_to school_event_path(event.school, event), class: "btn btn-sm btn-link" do %>
+          <span class="text-primary"><%= fa_icon "crosshairs" %>&nbsp;Show more...</span>&nbsp;
+        <% end %>
+
       </div>
+
+      <%= link_to [event.school, event], method: :delete,
+          data: { confirm: 'Are you sure?' }, class: "btn btn-sm btn-link" do %>
+            <span class="text-danger"><%= fa_icon "trash" %>&nbsp;Delete</span>
+          <% end %>
+    </div>
   </div>
 </div>

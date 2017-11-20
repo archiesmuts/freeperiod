@@ -14,8 +14,13 @@
             <p class="card-text">End time: <%= @event.end_time.strftime("%I:%M%p on %a %d %b %Y") %></p>
 
               <%= link_to  school_events_path(@school),
-                  class: "btn btn-outline-primary" do %>
-                  <%= fa_icon "arrow-left" %>&nbsp;Back to Calendar
+                  class: "btn btn-sm btn-outline-primary" do %>
+                  <%= fa_icon "arrow-left" %>&nbsp;Back
+                  <% end %>
+
+                  <%= link_to edit_school_event_path(@school, @event), remote: true,
+                      class: "btn btn-sm btn-primary" do %>
+                    <%= fa_icon "pencil", text: "Edit event" %>
                   <% end %>
           </div>
         </div>
@@ -41,3 +46,4 @@
     </div>
   </div>
 </div>
+<%= render "modal_dialog" %>

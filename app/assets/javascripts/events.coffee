@@ -27,6 +27,7 @@ eventCalendar = ->
           window.location = event.url
         $('#fullCalModal').modal()
 
+
 clearCalendar = ->
   $('#event_calendar').fullCalendar 'delete'
   # In case delete doesn't work.
@@ -36,13 +37,29 @@ jQuery(document).on 'turbolinks:load', eventCalendar
 jQuery(document).on 'turbolinks:before-cache', clearCalendar
 
 jQuery(document).on "turbolinks:load", ->
+  $('#event_title').focus()
   $('#event_start_time').datetimepicker
-  $('.datepicker').datepicker
-    changeMonth: true
-    changeYear: true
-    dateFormat: "yy-mm-dd"
+    sideBySide: true,
+    format: "YYYY-MM-DD hh:mm a"
+  $('#event_end_time').datetimepicker
+    useCurrent: false,
+    format: "YYYY-MM-DD hh:mm a",
+    sideBySide: true
+  $('#event_start_time').on 'dp.change', (e) ->
+    $('#event_end_time').data('DateTimePicker').minDate e.date
+  $('#event_end_time').on 'dp.change', (e) ->
+    $('#event_start_time').data('DateTimePicker').maxDate e.date
+
   $('#event-dialog').on 'shown.bs.modal', ->
-    $('.datepicker').datepicker
-      changeMonth: true
-      changeYear: true
-      dateFormat: "yy-mm-dd"
+    $('#event_title').focus()
+    $('#event_start_time').datetimepicker
+      sideBySide: true,
+      format: "YYYY-MM-DD hh:mm a"
+    $('#event_end_time').datetimepicker
+      useCurrent: false,
+      format: "YYYY-MM-DD hh:mm a",
+      sideBySide: true
+    $('#event_start_time').on 'dp.change', (e) ->
+      $('#event_end_time').data('DateTimePicker').minDate e.date
+    $('#event_end_time').on 'dp.change', (e) ->
+      $('#event_start_time').data('DateTimePicker').maxDate e.date

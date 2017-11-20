@@ -18,6 +18,7 @@
 //= require cocoon
 //= require moment
 //= require fullcalendar
+//= require bootstrap-datetimepicker
 //= require bootstrap-sprockets
 //= require trix
 //= require data-confirm-modal
