@@ -3,7 +3,7 @@
     <%= link_to @school, class: "btn btn-outline-primary" do %>
      <%= fa_icon "arrow-left" %>&nbsp;Back
     <% end %>
-    &nbsp;&nbsp;&nbsp;
+    &nbsp;
     <%= link_to new_school_event_path(@school), remote: true, class: "btn btn-primary" do %>
       <%= fa_icon "calendar-plus-o" %> Create a New Event
     <% end %>
@@ -35,4 +35,5 @@
     </div>
   </div>
 
+<%= render "modal_dialog" %>
 <%= render "full_calendar_modal" %>
