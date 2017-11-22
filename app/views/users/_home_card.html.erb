@@ -1,12 +1,7 @@
 <div class="row">
   <div class="hide-xs col-md-2">
     <div class="card mb-1">
-      <% if current_user.memberships.any? %>
-      <%= image_tag "schoolhouselogo.png",
-                    alt: "schoollogo",
-                    id: "school-logo",
-                    class: "card-img mb-1" %>
-      <% end %>
+      <img data-src="holder.js/200x200?auto=yes&random=yes&textmode=exact" class="card-img image-fluid mb-1">
     </div>
 
   </div>
@@ -34,7 +29,7 @@
       </div>
     </div>
   </div>
-  
+
   <div class="col-12">
       <span class="hide-sm-up"><%= fa_icon "envelope" %>&nbsp;<%= current_user.try(:email) %></span>
   </div>

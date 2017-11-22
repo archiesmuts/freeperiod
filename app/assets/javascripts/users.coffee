@@ -5,5 +5,4 @@ jQuery(document).on "turbolinks:load", ->
   'use strict'
   $('[data-toggle="offcanvas"]').on 'click', ->
     $('.row-offcanvas').toggleClass 'active'
-    return
-  return
+  Holder.run()

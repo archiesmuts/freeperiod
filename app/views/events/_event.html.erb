@@ -12,7 +12,12 @@
       <%= event.end_time.strftime("%I:%M%p on %a %d %b") %>
       <% end %>
       <br>
-      <small><%= fa_icon("comment-o", text:"Comments") %></small>&nbsp;<span class="badge badge-info"><%= event.comments.size %></span>
+      <small><%= fa_icon("comment-o", text:"Comments") %></small>&nbsp;
+      <span class="badge badge-info"><%= event.comments.size %></span>&nbsp;
+      <%= link_to "#", data:  {toggle: "tooltip", placement: "top"},
+          title: "Click on show more to add comments" do %>
+          <%= fa_icon("info-circle") %>
+      <% end %>
     </p>
 
   </div>

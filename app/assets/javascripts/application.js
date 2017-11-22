@@ -11,6 +11,7 @@
 // about supported directives.
 // require fullcalendar/gcal for google calendar integration
 //
+//= require holderjs
 //= require jquery3
 //= require jquery-ui
 //= require rails-ujs
