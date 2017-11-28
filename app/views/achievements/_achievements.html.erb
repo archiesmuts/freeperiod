@@ -1,17 +1,20 @@
 <% achievable.achievements.each do |achievement| %>
-  <li id="achievement-<%= achievement.id %>" class="list-group-item list-group-flush list-group-item-success">
-    <p class="h5"><%= achievement.date.strftime("%d %b %Y") %>: <%= achievement.title %></p>
-    <p><%= achievement.description %></p>
-    <div class="d-flex justify-content-between">
-      <%= link_to edit_polymorphic_path([achievement.achievable, achievement]),
-          class: "btn btn-sm btn-outline-success" do %>
-          <%= fa_icon("pencil", text: "Edit") %>
-        <% end %>
-        <%= link_to [achievement.achievable, achievement], remote: true, method: :delete,
-            data: { confirm: 'Are you sure?', toggle: "tooltip" },
-            class: "delete-achievement btn btn-sm btn-outline-danger", title: "Delete" do %>
-          <%= fa_icon("trash") %>
-        <% end %>
-    </div>
-  </li>
+  <div id="achievement-<%= achievement.id %>" class="card border-success mb-1 mr-1" style="width: 20rem;">
+      <div class="card-body">
+        <h4 class="card-title"><%= achievement.title %></h4>
+        <h6 class="cad-subtitle"><%= achievement.date.strftime("%d %b %Y") %></h6>
+        <p class="card-text"><%= achievement.description %></p>
+      </div>
+      <div class="card-footer d-flex justify-content-between">
+        <%= link_to edit_polymorphic_path([achievement.achievable, achievement]),
+            remote: true, class: "btn btn-sm btn-success" do %>
+            <%= fa_icon("pencil", text: "Edit") %>
+          <% end %>
+          <%= link_to [achievement.achievable, achievement], remote: true, method: :delete,
+              data: { confirm: 'Are you sure?', toggle: "tooltip" },
+              class: "delete-achievement btn btn-sm btn-outline-danger", title: "Delete" do %>
+            <%= fa_icon("trash") %>
+          <% end %>
+      </div>
+  </div>
 <% end %>

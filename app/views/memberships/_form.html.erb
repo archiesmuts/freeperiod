@@ -22,7 +22,7 @@
       <%= f.label :school_name, "Name of your school" %>
       <%= f.text_field :school_name, id: :membership_school_name, class: "form-control", readonly: "readonly"  %>
     </div>
-    <p class="font-weight-bold">Indicate the type of member for this person .</p>
+    <p class="font-weight-bold">Specify the role for this person .</p>
     <% Membership.members.keys.map do |member| %>
       <label class="custom-control custom-radio">
         <%= f.radio_button :member, member, class: "custom-control-input" %>
@@ -32,7 +32,9 @@
     <% end %>
 
     <div class="actions py-2">
-      <%= link_to 'Cancel', @membership, class: "btn btn-outline-primary" %>
+      <%= link_to @membership, class: "btn btn-outline-primary" do %>
+        <%= fa_icon("times", text: "Cancel") %>
+      <% end %>
       <%= f.submit "Update School Registration", class: "btn btn-primary" %>
     </div>
 

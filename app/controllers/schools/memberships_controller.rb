@@ -21,11 +21,11 @@ class Schools::MembershipsController < ApplicationController
         #   user.add_role(:account_owner, @school)
         # end
         # TODO send email notification of school id users is already active or registered
-        format.html { redirect_to school_memberships_path(@school), notice: 'Invitation was successfully sent.' }
+        format.html { redirect_to school_path(@school, anchor: "school-memberships"), notice: 'Invitation was successfully sent.' }
         format.json { render :show, status: :created, location: membership }
         format.js { }
       else
-        format.html { redirect_to school_memberships_path(@school), flash:  {error: 'Enter an email address'}}
+        format.html { redirect_to school_path(@school, anchor: "school-memberships"), flash:  {error: 'Enter an email address'}}
         format.json { render json: membership.errors, status: :unprocessable_entity }
         format.js   { render layout: false, content_type: 'text/javascript' }
       end

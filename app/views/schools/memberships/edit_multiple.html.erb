@@ -1,26 +1,27 @@
 <div class="container">
-  <div class="row">
+  <div class="row py-3">
     <div class="col-sm-12">
-      <h3>Edit the roles for the selected people.</h3>
+      <h3>Edit the roles for the selected people</h3>
       <% if @school.memberships.where(id: params[:membership_ids]).empty? %>
       <div class="alert alert-info" role="alert">
         <h4 class="alert-heading">Hang on moment!</h4>
         <p>
           It looks like you have not selected any records. Please go
-          <%= link_to "back", school_memberships_path(@school), class: "alert-link" %>
+          <%= link_to "back", school_path(@school, anchor: "school_memberships"), class: "alert-link" %>
           and select people using the check boxes and click on the button "Edit selected records".
         </p>
-        <%= link_to school_memberships_path(@school), class: "btn btn-sm btn-outline-primary" do %>
+        <%= link_to school_path(@school, anchor: "school-memberships"), class: "btn btn-sm btn-outline-primary" do %>
         <%= fa_icon("arrow-left", text: "Back") %>
         <% end %>
       </div>
       <% else %>
-      <h4>Change the roles for educators, learners, parents and other for each person respectively.</h4>
 
+      <p class="text-primary h5">Change the roles for educators, learners, parents and other for each person respectively.</p>
+      <hr class="style10">
       <%= form_with scope: :membership, url: update_multiple_school_memberships_path(@school), method: :put, local: true  do %>
         <% @school.memberships.where(id: params[:membership_ids]).each do |membership| %>
           <%= fields_for "memberships[]", membership do |f| %>
-          <p><%= membership.user.name %></p>
+          <h4><%= membership.user.name %></h4>
             <% if membership.errors.any? %>
               <div id="error_explanation">
                 <h2><%= pluralize(membership.errors.count, "error") %> prohibited this membership from being saved:</h2>
@@ -39,11 +40,11 @@
               </label>
             <% end %>
           <% end %>
-          <hr>
+          <hr class="style2">
         <% end %>
 
         <div class="actions">
-          <%= link_to school_memberships_path(@school), class: "btn btn-outline-primary" do %>
+          <%= link_to school_path(@school, anchor: "school-memberships"), class: "btn btn-sm btn-outline-primary" do %>
             <%= fa_icon("times", text: "Cancel") %>
           <% end %>
           <%= submit_tag "Update selected records", class: "btn btn-sm btn-primary" %>

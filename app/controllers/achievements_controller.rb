@@ -15,7 +15,7 @@ class AchievementsController < ApplicationController
 
   # GET /achievements/new
   def new
-    @achievement = @achievable.achievements.new
+    @achievement = Achievement.new
   end
 
   # GET /achievements/1/edit

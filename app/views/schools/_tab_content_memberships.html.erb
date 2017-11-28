@@ -1,0 +1,84 @@
+<div class="container py-2">
+  <div class="card-deck py-2">
+    <div class="card border-primary">
+      <div class="card-body text-dark">
+        <h4 class="card-title">
+          <div class="d-flex justify-content-between">
+            <div>
+              <%= fa_icon("users", text: "Member Registrations") %>&nbsp;<span class="badge badge-info"><%= @school.users.size %></span>&nbsp;
+            </div>
+            <button type="button" class="btn btn-sm btn-outline-primary" data-toggle="collapse" data-target="#collapseMembershipsInfo" aria-expanded="false" aria-controls="collapseMembershipsInfo"><%= fa_icon("chevron-down") %></button>
+          </div>
+        </h4>
+
+      </div>
+    </div>
+    <div class="card border-primary">
+      <div class="card-body text-dark">
+        <%= form_with(model: [@school, Membership.new], local: true, id: :new_membership, class: :new_membership ) do |f| %>
+          <h4 class="card-title">
+            <div class="d-flex justify-content-between">
+              <div><%= fa_icon("envelope", text: "Invite people to register") %></div>
+              <button type="button" class="btn btn-sm btn-outline-info" data-toggle="collapse" data-target="#collapseInvitationForm" aria-expanded="false" aria-controls="collapseInvitationForm"><%= fa_icon("chevron-down") %></button>
+            </div>
+          </h4>
+            <div class="collapse" id="collapseInvitationForm">
+              <div class="form-group">
+                <%= f.label :email, "Email address" %>
+                <%= f.email_field :email, id: :membership_email, class: "form-control", required: true, placeholder: "Type the email of the person you want to invite" %>
+              </div>
+              <div class="actions">
+                <%= f.submit "Send invitation", class: "btn btn-primary btn-sm" %>
+              </div>
+          </div>
+      <% end %>
+      </div>
+    </div>
+  </div>
+    <div  class="collapse" id="collapseMembershipsInfo">
+      <div class="card">
+        <div class="card-body">
+
+      <h6 class="card-subtitle mb-2">
+        This list includes all the people that were invited and confirmed. It should
+        comprise of all Educators, Learners, Parents/Guardians and Other (e.g. SGB members) people that will have
+        some sort of role in the school.
+      </h6>
+      <div>
+        <%= render "schools/memberships/registration_help" %>
+      </div>
+      </div>
+    </div>
+  </div>
+  <%= form_with scope: :membership, url: edit_multiple_school_memberships_path(@school), method: :get,  local: true  do %>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Name and Email</th>
+          <th>
+            <%= fa_icon("check-square", data: {toggle: "tooltip", placement: "top"},
+              title:"Click check boxes to edit multiple records") %>
+          </th>
+          <th>Role</th>
+          <th>Confirmed</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody id="list-members">
+          <%= render "schools/memberships/membership" %>
+      </tbody>
+      <tfoot>
+        <tr>
+          <td colspan="1">
+          </td>
+          <td colspan="4">
+
+              <%= submit_tag "Edit selected records", class: "btn btn-sm btn-primary" %>
+            </div>
+          </td>
+        </tr>
+      </tfoot>
+    </table>
+  <% end %>
+</div>
+<%#= render "modal_dialog" %>

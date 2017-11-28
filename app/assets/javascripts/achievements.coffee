@@ -1,10 +1,17 @@
 # Place all the behaviors and hooks related to the matching controller here.
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://coffeescript.org/
-jQuery(document).on "turbolinks:load", ->
-  $('.datepicker').datepicker
-    changeMonth: true
-    changeYear: true
-    dateFormat: "yy-mm-dd"
+jQuery.fn.sizeAchievements = ->
+  size_achievements = $("#list-achievements").children().length
+  $("#sizeAchievements").text size_achievements
 
+jQuery(document).on "turbolinks:load", ->
+  $("#list-achievements").sizeAchievements()
   $('#achievement_title').focus()
+  $('#achievement_date').datetimepicker
+    format: "YYYY-MM-DD"
+
+  $('#achievement-dialog').on 'shown.bs.modal', ->
+    $('#achievement_title').focus()
+    $('#achievement_date').datetimepicker
+      format: "YYYY-MM-DD"

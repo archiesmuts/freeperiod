@@ -45,3 +45,5 @@ $(document).on "turbolinks:load", ->
       didScroll = false
     return
   ), 250
+
+  Holder.run()

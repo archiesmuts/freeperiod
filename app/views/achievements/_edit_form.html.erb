@@ -1,16 +1,7 @@
-<%= form_with(model: [@achievable, achievement], local: true) do |form| %>
-  <% if achievement.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(achievement.errors.count, "error") %> prohibited this achievement from being saved:</h2>
+<%= form_with(model: [@achievable, @achievement], id: :edit_achievement, class: :edit_achievement) do |form| %>
+  <div class="errors">
 
-      <ul>
-      <% achievement.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-
+  </div>
   <div class="form-group">
     <%= form.label :title %>
     <%= form.text_field :title, id: :achievement_title, class: "form-control", placeholder: "A headline title" %>
@@ -25,15 +16,16 @@
     <div class="col-sm-4">
       <div class="form-group">
         <%= form.label :date %>
-        <%= form.text_field :date, id: :achievement_date, class: "form-control datepicker", placeholder: "When dit it happen?" %>
+        <%= form.text_field :date, id: :achievement_date, class: "form-control", placeholder: "When dit it happen?" %>
       </div>
     </div>
   </div>
   <!-- link_generator in helper module  -->
-  <div class="actions">
-    <button type="button" class="btn btn-sm btn-outline-primary">
-      <%= fa_icon("times") %>&nbsp;<%= achievement_link_generator(achievement) %>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-sm btn-outline-primary" data-dismiss="modal" aria-label="Close">
+      <%= fa_icon("times") %>&nbsp;Cancel
     </button>
+
     <%= form.submit class: "btn btn-sm btn-primary"  %>
   </div>
 <% end %>

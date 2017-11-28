@@ -1,40 +1,39 @@
-<% unless controller.controller_name == "users" %>
-  <tr id="membership-<%= membership.id %>">
+<% @school.memberships.each do |membership| %>
+  <% unless controller.controller_name == "users" %>
+    <tr id="membership-<%= membership.id %>">
+      <td>
+        <%= membership.user.name_reversed if membership.user %><br>
+        <%= membership.user.email if membership.user %>
+      </td>
 
-    <td>
-      <%= hidden_field_tag "school[membership_ids][]", nil %>
-      <%= check_box_tag "membership_ids[]", membership.id %>
-    </td>
-    <td><span class="badge badge-info"><%= membership.member.humanize %> </span></td>
-    <td>
-      <%= membership.user.name_reversed if membership.user %><br>
-      <%= membership.user.email if membership.user %>
-    </td>
-    <td>
-        <%= user_status(membership) %>&nbsp;
+      <td>
+        <%= hidden_field_tag "school[membership_ids][]", nil %>
+        <%= check_box_tag "membership_ids[]", membership.id %>
+      </td>
+      <td><span class="badge badge-info"><%= membership.member.humanize %></span></td>
 
-        <% if membership.user.invitation_accepted_at %>
-          <%= membership.user.invitation_accepted_at.strftime("%d %b %Y") %>
-        <% end %>
-    </td>
-    <td>
-      <%= link_to membership, class: "btn btn-sm" do %>
-        <%= fa_icon("user", text: "View") %>
-      <%end %>
+      <td>
+          <%= user_status(membership) %>&nbsp;
 
-      <%= link_to edit_membership_path(membership), class: "btn btn-sm "  do %>
-        <%= fa_icon("pencil-square", text: "Edit") %>
-      <%end %>
+          <% if membership.user.invitation_accepted_at %>
+            <%= membership.user.invitation_accepted_at.strftime("%d %b %Y") %>
+          <% end %>
+      </td>
+      <td>
+        <%= link_to membership, class: "btn", data: {toggle: "tooltip", placement: "bottom"}, title: "View individual profile" do %>
+          <%= fa_icon("id-card", text: "View") %>
+        <%end %>
 
         <%= link_to [membership.user, membership], method: :delete, remote: true,
-          data: { confirm: 'Deleting!!!.. Are you absolutely sure?' },
-          class: "btn btn-sm text-danger delete-membership"  do %>
+          data: { confirm: 'Click on confirm if you want to delete this record' },
+          class: "btn text-danger delete-membership"  do %>
           <%= fa_icon("trash", text: "Delete") %>
         <% end %>
-    </td>
-  </tr>
-<% else %>
-  <li  id="membership-<%= membership.id %>">
-    <%= link_to membership.school.name, school_path(membership.school) %>
-  </li>
+      </td>
+    </tr>
+  <% else %>
+    <li  id="membership-<%= membership.id %>">
+      <%= link_to membership.school.name, school_path(membership.school) %>
+    </li>
+  <% end %>
 <% end %>

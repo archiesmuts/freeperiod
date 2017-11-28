@@ -1,0 +1,13 @@
+// Add the dialog title
+$('#achievement-dialog  h4').html("Edit achievement");
+
+// Render the new form
+$('.modal-body').html('<%= j render "achievements/edit_form" %>');
+
+// Show the dynamic dialog
+$('#achievement-dialog').modal("show");
+
+// Set focus to the first element
+$('#achievement-dialog').on('shown.bs.modal', function () {
+  $('.achievement-date').focus();
+});
