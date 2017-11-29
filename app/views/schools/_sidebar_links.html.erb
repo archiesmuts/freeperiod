@@ -5,3 +5,6 @@
 <a class="nav-link list-group-item" id="#" data-toggle="pill" href="#" role="tab" aria-controls="" aria-selected="false"><%= fa_icon("address-book fw", text: "link") %></a>
 <a class="nav-link list-group-item" href="#">Analytics</a>
 <a class="nav-link list-group-item" href="#">Export</a>
+<%= link_to current_user, class: "nav-link list-group-item", aria: {selected: false}  do %>
+  <%= fa_icon "fw smile-o", text: "My page" %>
+<% end %>

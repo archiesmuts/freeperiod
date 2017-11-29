@@ -7,11 +7,8 @@
       </div>
       <div class="col-10">
         <h1><%= @school.name %></h1>
-        <%= link_to current_user, class: "btn btn-sm btn-outline-primary" do %>
-          <%= fa_icon "smile-o" %>&nbsp;Back to my page
-        <% end %>
-        <%= link_to 'Edit details', edit_school_path(@school), class: "btn btn-sm btn-primary" %>
         <p>This is an example to show the potential of an offcanvas layout pattern in Bootstrap. Try some responsive-range viewport sizes to see it in action.</p>
+        <%= link_to 'Edit details', edit_school_path(@school), class: "btn btn-primary btn-block-xs" %>
       </div>
   </div> <!-- .row -->
 </div> <!-- .jumbotron -->

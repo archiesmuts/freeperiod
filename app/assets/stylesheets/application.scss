@@ -1,6 +1,22 @@
 // import the CSS framework
 // Do not use *= require in Sass or your other stylesheets will not be able to access the Bootstrap mixins and variables.
+//
+// example override bootswatch variables
+// $primary:       #FFCF06;
+// $secondary:     #37474f;
+// $success:       #28b62c;
+// $info:          #03a9f4;
+// $warning:       #fbe42c;
+// $danger:        #ff4136;
+// $light:         #eeeeee;
+// $dark:          #444444;
+// end example override
+//
+// import bootswatch theme scss
+
+@import "bootswatch/solar/variables";
 @import "bootstrap";
+@import "bootswatch/solar/bootswatch";
 @import "jquery-ui/core";
 @import "jquery-ui/datepicker";
 @import "jquery-ui/slider";

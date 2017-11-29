@@ -1,0 +1,29 @@
+<%# add navigation links to this file %>
+<% if user_signed_in? %>
+  <li class="nav-item dropdown">
+    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownProfileLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      <%= fa_icon "user" %>&nbsp;<%= current_user.name %>
+    </a>
+    <div class="dropdown-menu" aria-labelledby="navbarDropdownProfileLink">
+      <%= link_to 'My Profile Page',   current_user, class: 'dropdown-item' %>
+      <%= link_to 'Edit My Account', edit_user_registration_path, class: 'dropdown-item' %>
+
+    </div>
+  </li>
+  <li class="nav-item">
+    <%= link_to destroy_user_session_path, :method=>'delete', data: {confirm: "Click on confirm if you really want to leave."}, class: 'nav-link' do %>
+    <%= fa_icon "sign-out" %> Sign out
+    <% end %>
+  </li>
+<% else %>
+  <li class='nav-item'>
+    <%= link_to new_user_session_path, class: 'nav-link' do %>
+      <%= fa_icon "sign-in" %> Sign in
+    <% end %>
+  </li>
+  <li class='nav-item'>
+    <%= link_to new_user_registration_path, class: 'nav-link' do %>
+      <%= fa_icon "magic" %> Sign up
+    <% end %>
+  </li>
+<% end %>
