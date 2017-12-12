@@ -1,72 +1,37 @@
-<div class="container">
-  <div class="row">
-    <div class="col-sm">
-      <div class="card border-primary my-3">
-        <h5 class="card-header">
-          <div class="d-flex justify-content-between">
-            <div>
-              <%= fa_icon "graduation-cap" %>&nbsp;<%= @registration_klass.subject_class? ? "Subject " : "Registration " %>
-              <small> <%= @registration_klass.course_name %></small>
-            </div>
-            <span class="badge badge-light"><%= @registration_klass.year.strftime("%Y") %></span>
-          </div>
-        </h5>
-        <div class="card-body text-primary">
-          <h4 class="card-title">
-            <%= @registration_klass.name %>
-          </h4>
-          <h6 class="card-subtitle text-muted"><%= @registration_klass.school.name.truncate(50) %></h6>
-          <p class="card-text">
-            <small class="text-muted"><%= @registration_klass.course_name %></small>
-          </p>
-        </div>
-        <div class="card-footer">
-          <div class="d-flex justify-content-between">
-            <div class="p-1">
-              <%= link_to @registration_klass.school, class: "btn btn-sm btn-outline-primary" do %>
-                <%= fa_icon "chevron-left" %>&nbsp;School page
-              <% end %>
-              <%= link_to school_registration_klasses_path(@school), class: "btn btn-sm btn-outline-dark" do %>
-                <%= fa_icon "list" %>&nbsp;View all classes
-              <% end %>
-            </div>
-            <div class="p-1">
-              <% unless @registration_klass.school_faculty? %>
-                <%= link_to edit_school_registration_klass_path(@registration_klass.school, @registration_klass), class: "btn btn-sm btn-primary" do %>
-                  <%= fa_icon "pencil-square" %>&nbsp;Edit details
-                  <% end %>
-                <% else %>
-                <%= link_to select_faculty_school_registration_klass_path(@registration_klass.school, @registration_klass), class: "btn btn-sm btn-primary" do %>
-                <%= fa_icon "pencil-square" %>&nbsp;Edit/Select Faculty
-                <% end %>
-              <% end %>
-              <%= link_to "Class Goals", registration_klass_goals_path(@registration_klass), class: "btn btn-sm btn-primary" %>
-            </div>
-          </div>
-        </div>
-          <%= render "registration_klasses/user_registrations_card" %>
-      </div><!-- .card for registration_klass -->
-    </div> <!-- .col -->
+<% content_for :title do %>Class page <% end %>
+<div class="row row-offcanvas row-offcanvas-right pt-2">
+  <div class="col-12 col-md-9">
+    <p class="float-right d-md-none">
+      <button type="button" class="btn btn-primary btn-sm" data-toggle="offcanvas">
+        <%= fa_icon("th-list") %>
+      </button>
+    </p>
+    <!-- Tab panes -->
+    <div class="tab-content">
+      <div class="tab-pane fade show active" id="class-home" role="tabpanel">
+        <%= render "tab_content_home" %>
+        <%= render "tab_content_user_registrations" %>
+      </div>
+      <%# if current_user.has_any_role?(:admin, :faculty) %>
+        <!-- true -->
+      <div class="tab-pane" id="lesson-plans" role="tabpanel">
+          <%= render "tab_content_lesson_plans" %>
+      </div>
+      <div class="tab-pane" id="class-goals" role="tabpanel">
+        <%= render "tab_content_goals" %>
+      </div>
+      <div class="tab-pane" id="class-achievements" role="tabpanel">
+        <%= render "tab_content_achievements" %>
+      </div>
+    </div> <!-- .tab-content -->
+  </div><!-- .col-12 .col-md-9-->
+  <div id="sidebar" class="col-6 col-md-3 sidebar-offcanvas pt-1 nav flex-column nav-pills" role="tablist" aria-orientation="vertical" role="tablist" aria-orientation="vertical">
+      <%= render "sidebar_links" %>
+  </div><!-- #sidebar -->
+</div> <!-- .row -->
 
-    <div class="col-sm">
-      <% if @registration_klass.subject_class? %>
-        <%= render "registration_klasses/lesson_plans_card" %>
-      <% end %>
-    </div> <!-- .col -->
-  </div> <!-- .row -->
-
-  <div class="row">
-    <div class="col-md-6">
-
-    </div>
-  </div>
-</div> <!-- .container -->
-
-<!-- modal forms-->
-<!-- <div class="collapse" id="add-registration-form">
-  <p><%#= render "user_registrations/new_form" %></p>
-</div> -->
-<%#= render "user_registrations/modal_dialog" %>
-
-
+<!-- modals -->
+<%= render "achievements/modal_dialog" %>
 <%= render "lesson_plans/modal_dialog" %>
+<%= render "goals/modal_dialog" %>
+<%#= render "user_registrations/modal_dialog" %>

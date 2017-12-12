@@ -1,7 +1,7 @@
 <% if @user_registration.teacher? %>
-  <span class='badge badge-info'>Teacher</span>
+  Teacher
 <% elsif @user_registration.substitute_teacher? %>
-    <span class='badge badge-info'>Substitute teacher</span>
+  Substitute teacher
 <% else %>
-  <span class='badge badge-info'>Learner</span>
+  Learner
 <% end %>

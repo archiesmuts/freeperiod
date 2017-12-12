@@ -1,5 +1,9 @@
 $(".delete-action-plan").bind('ajax:success', function() {
   $(this).closest('li').fadeOut(500, function(){
   	$(this).remove();
+    $('#list-action-plans').sizeTasks();
+    $('#list-action-plans').sizeActionPlans();
+    $("#list-action-plans").sizeCompleted();
+    $("#list-action-plans").sizeTotalActionPlans();
   });
 });

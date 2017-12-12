@@ -6,6 +6,8 @@ class RegistrationKlass < ApplicationRecord
   belongs_to :school, inverse_of: :registration_klasses
   belongs_to :course, inverse_of: :registration_klasses
   has_many :user_registrations
+  has_many :teachers, -> {where(user_type: ['teacher','substitute_teacher'] )}, class_name: "UserRegistration"
+  has_many :learners, -> {where(user_type: "learner" )}, class_name: "UserRegistration"
   has_many :users, through: :user_registrations
   has_many :lesson_plans
   has_many :goals, as: :goalable

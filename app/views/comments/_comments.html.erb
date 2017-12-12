@@ -1,8 +1,10 @@
 <% commentable.comments.each do |comment| %>
-  <li class="list-group-item">
+  <li id="comment-<%= comment.id %> "class="list-group-item">
+    <span class="text-primary"><%= comment.comment %></span><br>
     <small>
-      <%= fa_icon "comment" %>&nbsp;<em><%= comment.user.name %>&nbsp;
-        ...<%= time_ago_in_words(comment.created_at) %> ago.</em>
+      <%= fa_icon "comment" %>&nbsp;
+      <em><%= comment.user.name %>&nbsp;
+        -&nbsp;<%= time_ago_in_words(comment.created_at) %>&nbsp;ago.
+      </em>
     </small>
-  </li>
 <% end %>

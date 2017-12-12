@@ -37,7 +37,9 @@ class UserRegistration < ApplicationRecord
   def registration_klass_year
     self.registration_klass.try(:year)
   end
-
+  def school
+    self.registration_klass.school
+  end
   def slug_candidates
     [
       :user_name,
@@ -52,7 +54,7 @@ class UserRegistration < ApplicationRecord
 
   private
   def set_completed_at
-    if completed_changed? && completed == true
+    if saved_change_to_completed? && completed == true
       update_column(:completed_at, Time.now)
     end
   end

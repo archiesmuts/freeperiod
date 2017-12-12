@@ -1,0 +1,42 @@
+<div class="jumbotron">
+  <div class="row">
+      <div class="col-2 hide-xs">
+        <div class="card">
+          <img class="card-img-top" data-src="holder.js/100x100?auto=yes&theme=sky&text=logo" />
+        </div>
+      </div>
+      <div class="col-10">
+        <h2>
+          <%= link_to @registration_klass.school, class: "btn btn-outline-primary" do %>
+            <%= fa_icon "arrow-left" %>&nbsp;
+          <% end %>
+          <%= @registration_klass.name %>&nbsp;
+          <small>
+            <span class="badge badge-dark">
+              <%= @registration_klass.year.strftime("%Y") %>
+            </span>
+          </small>
+        </h2>
+        <p class="lead"><%= fa_icon "graduation-cap" %>&nbsp;<%= @registration_klass.course_name %></p>
+
+        <p>This is an example to show the potential of an offcanvas layout pattern in Bootstrap. Try some responsive-range viewport sizes to see it in action.</p>
+        <div class="float-right">
+          <% unless @registration_klass.school_faculty? %>
+            <%= link_to edit_school_registration_klass_path(@registration_klass.school, @registration_klass), class: "btn btn-primary btn-block-xs" do %>
+              <%= fa_icon "pencil-square" %>&nbsp;Edit/Add learners
+              <% end %>
+            <%= link_to school_registration_klasses_path(@school), class: "btn btn-outline-primary btn-block-xs" do %>
+              <%= fa_icon "list", text: "View all classes" %>
+              <% end %>
+            <% else %>
+            <%= link_to select_faculty_school_registration_klass_path(@registration_klass.school, @registration_klass), class: "btn btn-secondary btn-block-xs" do %>
+            <%= fa_icon "pencil-square" %>&nbsp;Edit/Select Faculty
+            <% end %>
+          <% end %>
+        </div>
+      </div>
+  </div> <!-- .row -->
+  <div class="row">
+
+  </div>
+</div> <!-- .jumbotron -->

@@ -2,7 +2,7 @@
 
   <div class="form-group">
     <%= form.label :date %>
-    <%= form.date_select :date, id: :attendance_date, class: "form-control" %>
+    <%= form.date_select :date, use_short_month: true, id: :attendance_date, class: "form-control" %>
   </div>
   <div class="errors"></div>
 
@@ -12,8 +12,10 @@
   </div>
 
   <div class="modal-footer">
-    <button type="button" class="btn btn-outline-primary" data-dismiss="modal" id="createPart">Cancel</button>
-    <%= form.submit class: "btn btn-primary" %>
+    <button type="button" class="btn btn-outline-primary" data-dismiss="modal" id="createAttendance">
+      <%= fa_icon("times", text: "Cancel") %>
+    </button>
+    <%= form.submit "Save record", class: "btn btn-primary" %>
   </div>
 
 <% end %>

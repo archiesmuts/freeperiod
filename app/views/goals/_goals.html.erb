@@ -1,17 +1,25 @@
 <% goalable.goals.each do |goal| %>
-  <div class="col-sm-4">
-    <div class="card border-primary mb-3" id="goal-<%= goal.id %>">
-      <div class="card-body text-dark">
+  <div class="col-sm-6">
+    <div class="card border-primary mb-3 scale" id="goal-<%= goal.id %>">
+      <div class="card-body">
         <h4 class="card-title"><%= goal.name %></h4>
-          <p class="card-text"><strong>Deadline:</strong> <%= goal.deadline.strftime("%d %b %Y") if goal.deadline %></p>
-          <p class="card-text"><strong>Status:</strong> <%= goal.achieved.humanize %></p>
+          <p class="card-text"><strong><%= fa_icon("calendar-check-o", text: "Deadline:") %></strong>&nbsp;<%= goal.deadline.strftime("%d %b %Y") if goal.deadline %></p>
+          <p class="card-text"><strong><%= fa_icon("question-circle-o", text: "Status:") %></strong>&nbsp;<%= goal.achieved.humanize %></p>
           <% if goal.yes? %>
-            <p class="card-text"><strong>Date completed:</strong> <%= goal.completed_at.strftime("%d %b %Y") if goal.completed_at %></p>
+            <p class="card-text"><strong><%= fa_icon("clock-o", text: "Date completed") %></strong>&nbsp;<%= goal.completed_at.strftime("%d %b %Y") if goal.completed_at %></p>
           <% end %>
-        </dl>
+          <p class="card-text"><%= fa_icon("check-circle", text: "Action Plans") %>&nbsp;<span class="badge badge-info"><%= goal.action_plans.size %></span></p>
+          <p class="card-text text-muted"><small>Last updated&nbsp;<%= time_ago_in_words(goal.updated_at) %>&nbsp;ago</small></p>
+
       </div>
       <div class="card-footer">
-        <small class="text-muted">Last updated 3 mins ago</small>
+        <%= link_to [goal.goalable, goal], method: :delete,
+            data: { confirm: 'NOTE - Any action plans will also be deleted!'},
+            class: "btn btn-sm btn-danger btn-block-xs" do %>
+              <%= fa_icon("trash", text: "Delete") %>
+            <% end %>
+
+        <%= link_to "Show", polymorphic_path([goal.goalable, goal]), class: "btn btn-sm btn-primary btn-block-xs float-right" %>
       </div>
     </div>
   </div>

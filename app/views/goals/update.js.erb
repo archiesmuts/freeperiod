@@ -1,0 +1,26 @@
+var el = $('.edit_goal');
+
+<% if @goal.errors.any? %>
+
+  // Create a list of errors
+  var errors = $('<ul class="list-group" />');
+
+  <% @goal.errors.full_messages.each do |error| %>
+    errors.append('<li class="list-group-item list-group-item-danger"><%= j error %></li>');
+  <% end %>
+
+  // Display errors on form
+  el.find('.errors').html(errors);
+
+<% else %>
+
+$('#list-goals').append('<%= j render @goal %>');
+$("#goal-<%= @goal.id %>").hide().fadeIn(1000);
+$('#goal-dialog').modal("hide");
+
+// Clear form
+el.find('input:text,text_area').val('');
+el.find('.errors').empty();
+
+<% end %>
+// Source: www.alfajango.com/blog/rails-3-remote-links-and-forms-data-type-with-jquery/

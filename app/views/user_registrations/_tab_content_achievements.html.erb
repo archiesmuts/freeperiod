@@ -1,0 +1,15 @@
+<div class="jumbotron">
+
+<h1><%= fa_icon("trophy", text: "My Achievements") %></h1>
+<span class="badge badge-success"><%= @user_registration.achievements.size %></span>
+</div>
+
+<div id="list-achievements" class="d-flex flex-wrap">
+  <% if @user_registration.achievements.any? %>
+    <%= render "achievements/achievements", achievable: @user_registration %>
+  <% else %>
+    <li class="list-group-item list-group-item-info no-achievements-to-list">
+      Nothing to list. Complete the form below
+    </li>
+  <% end %>
+</div>

@@ -1,0 +1,17 @@
+<div class="jumbotron">
+  <h1> My Goals and Action Plans</h1>
+  <p>This is a template for a simple marketing or informational website. It includes a large callout called a jumbotron and three supporting pieces of content. Use it as a starting point to create something more unique.</p>
+    <%= link_to new_user_goal_path(current_user), remote: true, class: "btn btn-primary btn-block-xs float-right" do %>
+      <%= fa_icon("plus", text: "Add a Goal") %>
+    <% end %>
+</div>
+<div class="d-flex flex-wrap" id="list-goals">
+  <% if current_user.goals.any? %>
+      <%= render "goals/goals", goalable: @user %>
+  <% else %>
+    <li class="list-group-item list-group-item-info no-addresses-to-list">
+      No Goals Recorded yet
+    </li>
+
+  <% end %>
+</div>

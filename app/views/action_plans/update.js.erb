@@ -1,5 +1,33 @@
-<% if @action_plan.completed? %>
-  $('#<%= dom_id(action_plan) %>').appendTo('#list-action-plans').removeClass("list-group-item-info").addClass("list-group-item-success");
+
+var el = $('.edit_action_plan');
+
+<% if @action_plan.errors.any? %>
+
+  // Create a list of errors
+  var errors = $('<ul class="list-group" />');
+
+  <% @action_plan.errors.full_messages.each do |error| %>
+    errors.append('<li class="list-group-item list-group-item-danger"><%= j error %></li>');
+  <% end %>
+
+  // Display errors on form
+  el.find('.errors').html(errors);
+
 <% else %>
-  $('#<%= dom_id(action_plan) %>').appendTo('#list-action-plans').removeClass("list-group-item-success").addClass("list-group-item-info");
+$('#list-action-plans').append('<%= j render @action_plan %>');
+//fix to hide li#action_plan after update using class on li
+$(".action_plan_<%= @action_plan.id %>").detach();
+$("#action_plan_<%= @action_plan.id %>").hide().fadeIn(1000);
+$('#list-action-plans').sizeTasks();
+$('#list-action-plans').sizeActionPlans();
+$("#list-action-plans").sizeCompleted();
+$("#list-action-plans").sizeTotalActionPlans();
+$('#action-plan-dialog').modal("hide");
+
+// Clear form
+el.find('input:text,text_area').val('');
+el.find('.errors').empty();
+
 <% end %>
+// Source: www.alfajango.com/blog/rails-3-remote-links-and-forms-data-type-with-jquery/
+// TODO add function to update counters for tasks and action_plans respectively

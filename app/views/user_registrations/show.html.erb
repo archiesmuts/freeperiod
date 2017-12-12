@@ -1,103 +1,34 @@
-<div class="container">
-  <div class="row">
-    <div class="col-md-7">
-      <div id="show-user-registration-card-<%= @user_registration.id %>">
-        <div id="user-registration-card-<%= @user_registration.id %>" class="card border-primary my-3">
-          <div class="card-header">
-                <%= link_to school_registration_klass_path(@registration_klass.school, @registration_klass),
-                    class: "btn btn-sm btn-outline-primary btn-block-xs" do %>
-                        <%= fa_icon("arrow-left", text: "Back to") %>&nbsp;<%= @user_registration.registration_klass.name %>
-                    <% end %>
-          </div><!-- .card-header for user-registration-card -->
-          <div class="card-body text-primary">
-            <h4 class="card-title">
-              <%= fa_icon("user") %>&nbsp;<%= @user_registration.user_name %>
-            </h4>
-            <p class="card-text">
-               <span id="user-type">
-                 <%= render "user_type_display" %>
-              </span>
-              <%= @user_registration.completed ? "Completed on" : "Active" %> <%= @user_registration.try(:completed_at) %>
-            </p>
-          </div><!-- .card-body for user-registration-card -->
-          <div class="card-footer">
-            <div class="row">
-              <div class="col-sm">
-                <%= link_to edit_registration_klass_user_registration_path(@user_registration.registration_klass, @user_registration),
-                    remote: true, class: "btn btn-sm btn-primary btn-block mb-1" do %>
-                      <%= fa_icon("pencil", text: "Edit registration") %>
-                    <% end %>
-              </div>
-              <div class="col-sm">
-                <%= link_to user_registration_goals_path(@user_registration),
-                    class: "btn btn-sm btn-outline-primary btn-block mb-1" do %>
-                    <%= fa_icon("star", text: "My goals for this subject") %>&nbsp;
-                    <span class="badge badge-info"><%= @user_registration.goals.size %></span>
-                    <% end %>
-              </div>
-              <div class="col-sm">
-                  <%= link_to "#collapseAchievements", class: "btn btn-sm btn-outline-success btn-block",
-                      data: { toggle: "collapse" }, aria: {expanded: false} do %>
-                      <%= fa_icon("trophy", text: "My Achievements") %>&nbsp;
-                      <span class="badge badge-success"><%= @user_registration.achievements.size %></span>
-                  <% end %>
-              </div>
-            </div> <!-- .row in card-footer -->
-              <!-- list achievements here -->
-            <div class="collapse" id="collapseAchievements">
-              <ul id="list-achievements" class="list-group py-2">
-                <% if @user_registration.achievements.any? %>
-                  <%= render "achievements/achievements", achievable: @user_registration %>
-                <% else %>
-                  <li class="list-group-item list-group-item-info no-achievements-to-list">
-                    Nothing to list. Complete the form below
-                  </li>
-                <% end %>
-              </ul>
-              <%= link_to "#collapseAchievementForm", class: "btn btn-sm btn-success btn-block py-1",
-                  data: { toggle: "collapse" }, aria: {expanded: false} do %>
-                  <%= fa_icon("plus-square", text: "Add an Achievement") %>
-                  <% end %>
-              <div class="collapse py-2" id="collapseAchievementForm">
-                <%= render "achievements/new_form", achievable: @user_registration %>
-              </div><!-- .collapse achievement form -->
-            </div> <!-- .collapse achievements in card-footer -->
-          </div> <!-- .card-footer -->
-        </div>
-      </div> <!-- .card -->
-    </div> <!-- .col-md-7 -->
-    <div class="col-md-5">
-      <div class="card border-primary my-3">
-        <h5 class="card-header d-flex justify-content-between">
-          <div><%= fa_icon "comment-o" %>&nbsp;Attendance record</div>
-          <small>
-            &nbsp;Days absent:&nbsp;
-            <span class="badge badge-info" id="days-absent"></span>
-          </small>
-        </h5>
-        <div class="p-1 d-flex justify-content-end">
-          <%= link_to new_user_registration_attendance_path(@user_registration),
-              remote: true, class: "btn btn-sm btn-outline-danger"  do %>
-                <%= fa_icon("plus", text: "Record Day Absent") %>
-              <% end %>
-        </div>
-          <!-- list comments here -->
-          <% if @user_registration.attendances.any? %>
-            <ul id="list-attendances" class="list-group">
-              <%= render "attendances/attendances", attendable: @user_registration %>
-            </ul>
-          <% else %>
-            <ul class="list-group">
-              <li class="list-group-item list-group-item-info no-attendances-to-list">
-                No attendance recorded yet
-              </li>
-            </ul>
-
-          <% end %>
+<% content_for :title do %>Grade/Subject Registration <% end %>
+<div class="row row-offcanvas row-offcanvas-right pt-2">
+  <div class="col-12 col-md-9">
+    <p class="float-right d-md-none">
+      <button type="button" class="btn btn-primary btn-sm" data-toggle="offcanvas">
+        <%= fa_icon("th-list") %>
+      </button>
+    </p>
+    <!-- Tab panes -->
+    <div class="tab-content">
+      <div class="tab-pane fade show active" id="user-reg-home" role="tabpanel">
+        <%= render "tab_content_home" %>
       </div>
-      <%#= render "attendances/form", attendable: @user_registration %>
-    </div><!-- .col-md-5 -->
-  </div> <!-- .row -->
-</div> <!-- .container -->
+
+      <div class="tab-pane" id="user-reg-goals" role="tabpanel">
+        <%= render "tab_content_goals" %>
+      </div>
+      <div class="tab-pane" id="user-reg-achievements" role="tabpanel">
+        <%= render "tab_content_achievements" %>
+      </div>
+      <div class="tab-pane" id="user-reg-attendances" role="tabpanel">
+        <%= render "tab_content_attendances" %>
+      </div>
+    </div> <!-- .tab-content -->
+  </div><!-- .col-12 .col-md-9-->
+  <div id="sidebar" class="col-6 col-md-3 sidebar-offcanvas pt-1 nav flex-column nav-pills" role="tablist" aria-orientation="vertical" role="tablist" aria-orientation="vertical">
+      <%= render "sidebar_links" %>
+  </div><!-- #sidebar -->
+</div> <!-- .row -->
+
 <%= render "user_registrations/modal_dialog" %>
+<%= render "achievements/modal_dialog" %>
+<%= render "goals/modal_dialog" %>
 <%= render "attendances/modal_dialog" %>

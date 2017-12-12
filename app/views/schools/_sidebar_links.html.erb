@@ -1,8 +1,9 @@
 <a class="nav-link active list-group-item" id="home-tab" data-toggle="pill" href="#home" role="tab" aria-controls="home" aria-selected="true"><%= fa_icon("university fw", text: "Home") %></a>
 <a class="nav-link list-group-item" id="dashboard-tab" data-toggle="pill" href="#dashboard" role="tab" aria-controls="dashboard" aria-selected="false"><%= fa_icon("th fw", text: "Dasboard") %></a>
 <a class="nav-link list-group-item" id="school-memberships-tab" data-toggle="pill" href="#school-memberships" role="tab" aria-controls="school-memberships" aria-selected="false"><%= fa_icon("users fw", text: "Membership registrations") %>&nbsp;<span id="sizeMemberships" class="badge badge-info"><%= @school.memberships.size %></span></a>
-<a class="nav-link list-group-item" id="school-achievements-tab" data-toggle="pill" href="#school-achievements" role="tab" aria-controls="" aria-selected="false"><%= fa_icon("trophy fw", text: "Achievements") %>&nbsp;<span id="sizeAchievements" class="badge badge-success"></span></a>
-<a class="nav-link list-group-item" id="#" data-toggle="pill" href="#" role="tab" aria-controls="" aria-selected="false"><%= fa_icon("address-book fw", text: "link") %></a>
+<a class="nav-link list-group-item" id="school-achievements-tab" data-toggle="pill" href="#school-achievements" role="tab" aria-controls="" aria-selected="false"><%= fa_icon("trophy fw", text: "Achievements") %>&nbsp;<span id="sizeAchievements" class="badge badge-info"></span></a>
+<a class="nav-link list-group-item" id="goals-tab" data-toggle="pill" href="#school-goals" role="tab" aria-controls="" aria-selected="false"><%= fa_icon("fw check-square-o", text: "Goals and Action Plans") %>&nbsp;<span id="sizeGoals" class="badge badge-info"></span></a>
+<a class="nav-link list-group-item" id="school-registration-klasses-tab" data-toggle="pill" href="#school-registration-klasses" role="tab" aria-controls="" aria-selected="false"><%= fa_icon("fw graduation-cap", text: "Registration and Subject Classes") %>&nbsp;<span id="sizeKlasses" class="badge badge-info"></span></a>
 <a class="nav-link list-group-item" href="#">Analytics</a>
 <a class="nav-link list-group-item" href="#">Export</a>
 <%= link_to current_user, class: "nav-link list-group-item", aria: {selected: false}  do %>

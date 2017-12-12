@@ -13,11 +13,11 @@
           </ul>
         </div>
       <% end %>
-      <h4><%= @registration_klass.school.name %></h4>
     </div>
   </div> <!-- first .row -->
   <div class="row">
     <div class="col-md">
+      <h4><%= @registration_klass.school.name %></h4>
       <div class="form-group">
         <%= form.label :klass_type, "Is this a Subject Class or a Registration Class?" %><br>
         <% RegistrationKlass.klass_types.keys.map do |klass_type| %>
@@ -51,8 +51,11 @@
             class: "form-control" %>
       </div>
       <div class="actions">
-        <%= link_to 'Cancel', [@registration_klass.school, @registration_klass ], class: "btn btn-outline-primary" %>
-        <%= form.submit "Update class details", class: "btn btn-primary" %>
+        <%= link_to [@registration_klass.school, @registration_klass ],
+            class: "btn btn-outline-primary" do %>
+            <%= fa_icon("times", text: "Cancel") %>
+          <% end %>
+        <%= form.submit "Save changes", class: "btn btn-primary" %>
       </div>
     </div>
     <div class="col-md">

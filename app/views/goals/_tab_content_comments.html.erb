@@ -1,0 +1,31 @@
+<div class="card border-primary mb-2">
+  <div class="card-body">
+    <h3 class="card-title text-primary"><%= @goal.name %></h3>
+    <p class="card-text">
+      <span class="text-info"><%= show_name_display(@goal) %></span>&nbsp;|&nbsp;
+      <span class="text-success">Was this goal achieved?</span>&nbsp;
+      <span class="badge badge-success"><%= @goal.achieved.humanize %></span>
+    </p>
+  </div>
+</div>
+
+<div class="card border-info">
+  <div class="card-body">
+    <h4 class="sub-title">Comments&nbsp;
+      <span class="badge badge-info">
+        <span id="sizeComments"></span>
+      </span>
+      <small><em>newest on top</em></small>
+    </h4>
+    <%= render "comments/form", commentable: @goal %>
+    <ul id="list-comments" class="list-group list-group-flush">
+      <% if @goal.comments.any? %>
+        <%= render "comments/comments", commentable: @goal %>
+      <% else %>
+        <li class="list-group-item list-group-item-info no-comments-to-list">
+          Nobody has commented yet.
+        </li>
+      <% end %>
+    </ul>
+  </div>
+</div>

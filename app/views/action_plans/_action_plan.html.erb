@@ -1,4 +1,5 @@
-<li id="<%= dom_id(action_plan) %>" class="list-group-item list-group-item-<%= action_plan.completed? ? "success" : "info" %>">
+<!-- action_plans/action_plan -->
+<li id="<%= dom_id(action_plan) %>" class="list-group-item">
   <div class="row">
     <div class="col-sm-1">
       <% if action_plan.when_date %>
@@ -16,7 +17,7 @@
     </div>
     <div class="col-sm-9">
       <%= action_to_do_span(action_plan) %>&nbsp;
-      <%= action_plan.what %>
+      <span class="text-success"><%= action_plan.what %></span>
       <br>
       <small>
         <%= fa_icon("calendar") %>&nbsp;<em>Complete by&nbsp;
@@ -25,14 +26,14 @@
       </small>
     </div>
     <div class="col-sm-2">
-      <%= link_to edit_goal_action_plan_path(action_plan.goal, action_plan),
+      <%= link_to edit_goal_action_plan_path(action_plan.goal, action_plan), remote: true,
           class: "badge badge-primary",
           data: {toggle: "tooltip", placement: "left" }, title: "Edit" do %>
         <%= fa_icon("pencil") %>
       <% end %>
       <%= link_to [action_plan.goal, action_plan], method: :delete, remote: true,
-        data: {toggle: "tooltip", placement: "left", confirm: 'Are you sure?' },
-        title: "Delete", class: "badge badge-danger delete-action-plan" do %>
+        data: {toggle: "tooltip", placement: "left", confirm: 'Are you sure you want to delete this action plan?' },
+        title: "Deleting Action Plan", class: "badge badge-danger delete-action-plan" do %>
           <%= fa_icon("trash") %>
         <% end %>
     </div>

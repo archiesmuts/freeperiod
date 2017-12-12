@@ -1,13 +1,31 @@
-<li id="user_registration-<%= user_registration.id %>" class="list-group-item d-flex justify-content-between" >
-  <div class="">
-    <%= user_type(user_registration.user) %>
-    &nbsp;<%= link_to user_registration.user_name, [user_registration.registration_klass, user_registration] %>
-  </div>
-  <div class="">
-    <%= link_to [user_registration.registration_klass, user_registration], method: :delete, remote: true,
-        data: { confirm: 'Are you absolutely sure?' },
-        class: "btn btn-sm btn-danger btn-link delete-user-registration" do %>
-        <span class="text-danger"><i class="fa fa-user-times" aria-hidden="true"></i>&nbsp;Remove</span>
-    <% end %>
-  </div>
-</li>
+<div class="col-sm-6" >
+  <div class="card border-primary mb-3 scale" id="user_registration-<%= user_registration.id %>">
+    <div class="card-body">
+      <div class="media">
+        <img class="align-self-start mr-3" data-src="holder.js/60x60?auto=yes&theme=sky&text=logo" alt="headshot">
+        <div class="media-body">
+          <h5 class="mt-0"><%= user_registration.user_name %></h5>
+          <p class=""><%= user_type(user_registration.user) %></p>
+          <p class="mb-0">Donec sed odio dui. Nullam quis risus eget urna mollis ornare vel eu leo. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.</p>
+        </div>
+      </div><!-- .media -->
+    </div><!-- .card-body-->
+    <div class="card-footer">
+      <div class="row">
+        <div class="col-sm">
+          <%= link_to [user_registration.registration_klass, user_registration], class: "btn btn-sm btn-primary btn-block" do %>
+          <%= fa_icon("id-card-o", text: "Show details") %>
+          <% end %>
+        </div><!-- .col -->
+        <div class="col-sm">
+          <%= link_to [user_registration.registration_klass, user_registration], method: :delete, remote: true,
+              data: { confirm: 'CAUTION! Are you sure you want to delete this record? Click on "Confirm" to delete.' },
+              class: "btn btn-sm btn-danger btn-block-xs delete-user-registration float-right" do %>
+              <%= fa_icon("user-times", text: "Remove") %>
+          <% end %>
+        </div> <!-- .col -->
+
+      </div><!-- .row -->
+    </div><!-- .card-footer -->
+  </div><!-- .card-->
+</div><!-- .col-sm-6 -->

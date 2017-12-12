@@ -3,8 +3,11 @@ class Goal < ApplicationRecord
   extend FriendlyId
   friendly_id :name, use: :slugged
   belongs_to :goalable, polymorphic: true
-  has_many :action_plans, -> { order('position ASC') }, inverse_of: :goal
-  has_many :comments, as: :commentable
+  has_many :action_plans, inverse_of: :goal
+  has_many :action_items, -> { where("when_date IS NOT NULL")}, class_name: "ActionPlan"
+  has_many :task_items, -> { where("when_date IS NULL")}, class_name: "ActionPlan"
+  has_many :completed_items, -> { where(completed: true)}, class_name: "ActionPlan"
+  has_many :comments, -> { order('created_at DESC') }, as: :commentable
 
   validates :name, :deadline, :slug, :achievability, :achieved, presence: true
   validates :measurement, :person_responsible, presence: true, on: :update

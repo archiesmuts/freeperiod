@@ -14,10 +14,12 @@ var el = $('.new_comment');
 
 <% else %>
 
-$('#list-comments').append('<%= j render @comment %>');
+$('#list-comments').prepend('<%= j render @comment %>');
 $("#comment-<%= @comment.id %>").hide().fadeIn(1000);
-$(".no-attendances-to-list").detach();
+$("#list-comments").sizeComments();
+$(".no-comments-to-list").detach();
 $("#comment_comment").val('');
+
 $("#comment_comment").focus();
 
 // Clear form

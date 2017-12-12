@@ -1,16 +1,34 @@
-<li id="lesson-plan-<%= lesson_plan.id %>" class="list-group-item d-flex justify-content-between" >
-  <div class="">
-
-      <%= term_label lesson_plan.term %>
-      <!-- https://rails.devcamp.com/rails-bdd-tdd-course/advanced-features-rails/creating-custom-view-helper-rails -->
-    <!-- TODO write a helper to display lesson_plan enum term strings as numbers e.g. one should be 1 etc. -->
-    &nbsp;<%= link_to lesson_plan.name, [lesson_plan.registration_klass, lesson_plan] %>
+<div class="col-sm-6">
+  <div class="card border-primary mb-3 scale" id="lesson-plan-<%= lesson_plan.id %>">
+    <div class="card-body">
+      <h4 class="card-title">
+        <div class="row">
+          <div class="col-sm-9">
+            <%= lesson_plan.name %>
+          </div>
+          <div class="col-sm-3">
+            <%= link_to [lesson_plan.registration_klass, lesson_plan], class: "btn btn-sm btn-outline-success"  do %>
+            <%= fa_icon("chevron-circle-right", text: "Show")%>
+            <% end %>
+          </div>
+        </div>
+      </h4>
+        <p class="card-text">
+           <%= term_label lesson_plan.term %>
+              <!-- https://rails.devcamp.com/rails-bdd-tdd-course/advanced-features-rails/creating-custom-view-helper-rails -->
+            <!-- TODO write a helper to display lesson_plan enum term strings as numbers e.g. one should be 1 etc. -->
+            &nbsp;
+        </p>
+        <%= link_to [lesson_plan.registration_klass, lesson_plan], method: :delete,
+          data: { confirm: 'Careful, this will be gone forever!' },
+          remote: true, class: "btn btn-sm btn-danger delete-lesson-plan" do %>
+          <%= fa_icon("trash", text: "Delete") %>
+        <% end %>
+    </div>
+    <div class="card-footer">
+      <h5 class="card-title">
+        <%= fa_icon "file-text-o" %> Assessments <span class="badge badge-info"><%= lesson_plan.assessments.size %></span>
+      </h5>
+    </div>
   </div>
-  <div class="">
-    <%= link_to [lesson_plan.registration_klass, lesson_plan], method: :delete,
-      data: { confirm: 'Are you absolutely sure? This will be gone forever!' },
-      remote: true, class: "btn btn-sm btn-danger btn-link delete-lesson-plan" do %>
-      <span class="text-danger"><i class="fa fa-trash" aria-hidden="true"></i>&nbsp;Delete</span>
-    <% end %>
-  </div>
-</li>
+</div>

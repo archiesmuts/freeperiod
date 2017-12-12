@@ -1,0 +1,34 @@
+<div class="jumbotron">
+  <div class="row">
+    <div class="col-sm-7">
+      <h2> <%= @user_registration.user_name %></h2>
+      <p class="h4 text-info">
+        <%= @user_registration.registration_klass.name %>&nbsp;
+        <span class="badge badge-dark"><%= @user_registration.registration_klass.year.strftime("%Y") %></span>
+      </p>
+    </div>
+    <div class="col-sm-5">
+      <h4 class="text-primary"><%= fa_icon "calendar-minus-o", text: "Attendance record:" %></h4>
+      <h5 class="text-info">
+        Days absent:&nbsp;<span class="badge badge-info" id="daysAbsent"></span>
+      </h5>
+      <%= link_to new_user_registration_attendance_path(@user_registration),
+        remote: true, class: "btn btn-primary btn-block-xs"  do %>
+        <%= fa_icon("calendar-minus-o", text: "Record Day Absent") %>
+      <% end %>
+    </div>
+  </div>
+</div><!--.jumbotron -->
+
+<!-- list attendances here -->
+<% if @user_registration.attendances.any? %>
+  <div id="list-attendances" class="d-flex flex-wrap">
+    <%= render "attendances/attendances", attendable: @user_registration %>
+  </div>
+<% else %>
+  <ul class="list-group">
+    <li class="list-group-item list-group-item-action no-attendances-to-list">
+      No attendance recorded yet
+    </li>
+  </ul>
+<% end %>

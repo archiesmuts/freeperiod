@@ -1,0 +1,25 @@
+<div class="container">
+  <h4>
+  <%= fa_icon "users", text: "Class List:" %>&nbsp;
+  <small>
+    Teachers:&nbsp;<span class="badge badge-info"><%= @registration_klass.teachers.size %></span>&nbsp;
+    Learners:&nbsp;<span class="badge badge-success"><%= @registration_klass.learners.size %></span>
+   </small>
+</h4>
+</div>
+    <!-- TODO redesign to view people in cards with their head pics and key demographic details -->
+
+<div id="list-user-registrations" class="d-flex flex-wrap pt-2">
+  <% if @registration_klass.user_registrations.any? %>
+    <%= render @registration_klass.user_registrations %>
+  <% else %>
+    <li class="list-group-item list-group-item-action list-group-item-info no-user-registrations-to-list">
+      <%= render "no_people_to_list" %>
+    </li>
+  <% end %>
+</div>
+  <!-- <div>
+    <%#= link_to new_registration_klass_user_registration_path(@registration_klass), remote: true, class: "btn btn-sm btn-primary" do %>
+      <%#= fa_icon "user-plus" %>&nbsp;Add a Learner/Teacher
+    <%# end %>
+  </div> -->

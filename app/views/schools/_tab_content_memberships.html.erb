@@ -1,20 +1,20 @@
 <div class="container py-2">
   <div class="card-deck py-2">
     <div class="card border-primary">
-      <div class="card-body text-dark">
+      <div class="card-body">
         <h4 class="card-title">
           <div class="d-flex justify-content-between">
             <div>
               <%= fa_icon("users", text: "Member Registrations") %>&nbsp;<span class="badge badge-info"><%= @school.users.size %></span>&nbsp;
             </div>
-            <button type="button" class="btn btn-sm btn-outline-primary" data-toggle="collapse" data-target="#collapseMembershipsInfo" aria-expanded="false" aria-controls="collapseMembershipsInfo"><%= fa_icon("chevron-down") %></button>
+            <button type="button" class="btn btn-sm btn-outline-info" data-toggle="collapse" data-target="#collapseMembershipsInfo" aria-expanded="false" aria-controls="collapseMembershipsInfo"><%= fa_icon("chevron-down") %></button>
           </div>
         </h4>
 
       </div>
     </div>
     <div class="card border-primary">
-      <div class="card-body text-dark">
+      <div class="card-body">
         <%= form_with(model: [@school, Membership.new], local: true, id: :new_membership, class: :new_membership ) do |f| %>
           <h4 class="card-title">
             <div class="d-flex justify-content-between">
@@ -39,11 +39,6 @@
       <div class="card">
         <div class="card-body">
 
-      <h6 class="card-subtitle mb-2">
-        This list includes all the people that were invited and confirmed. It should
-        comprise of all Educators, Learners, Parents/Guardians and Other (e.g. SGB members) people that will have
-        some sort of role in the school.
-      </h6>
       <div>
         <%= render "schools/memberships/registration_help" %>
       </div>

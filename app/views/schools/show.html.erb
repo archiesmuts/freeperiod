@@ -1,3 +1,6 @@
+<% content_for :title do %>School Home<% end %>
+<!-- school show view  -->
+<!-- TODO add a tagline for Achievements Goals etc. -->
 <div class="row row-offcanvas row-offcanvas-right pt-2">
   <div class="col-12 col-md-9">
     <p class="float-right d-md-none">
@@ -21,6 +24,12 @@
       <div class="tab-pane fade" id="school-achievements" role="tabpanel">
         <%= render "tab_content_achievements" %>
       </div>
+      <div class="tab-pane fade" id="school-goals" role="tabpanel">
+        <%= render "tab_content_goals" %>
+      </div>
+      <div class="tab-pane fade" id="school-registration-klasses" role="tabpanel">
+        <%= render "tab_content_registration_klasses" %>
+      </div>
     </div> <!-- .tab-content -->
   </div>
   <div id="sidebar" class="col-6 col-md-3 sidebar-offcanvas pt-1 nav flex-column nav-pills" role="tablist" aria-orientation="vertical" role="tablist" aria-orientation="vertical">
@@ -31,3 +40,5 @@
 
 <!-- modals  -->
 <%= render "achievements/modal_dialog" %>
+<%= render "goals/modal_dialog" %>
+<%= render "registration_klasses/modal_dialog" %>

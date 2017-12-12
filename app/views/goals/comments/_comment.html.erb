@@ -1,5 +1,10 @@
 <li id="comment-<%= comment.id %>" class="list-group-item" >
-  <%= comment.comment %>
-    <%= comment.comment %><br>
-    <small> <%= fa_icon "comment" %>&nbsp;<em>...<%= comment.user.name %></em></small>
+    <span class="text-primary"><%= comment.comment %></span><br>
+    <small>
+      <%= fa_icon "comment" %>&nbsp;
+      <em>
+        <%= comment.user.name %>&nbsp;
+        -&nbsp;<%= time_ago_in_words(comment.created_at) %>&nbsp;ago.
+      </em>
+    </small>
 </li>

@@ -1,0 +1,6 @@
+$(".delete-goal").bind('ajax:success', function() {
+  $("#goal-<%= @goal.id %>").fadeOut(500, function(){
+  	$(this).remove();
+    $('#list-goals').sizeGoals();
+  });
+});

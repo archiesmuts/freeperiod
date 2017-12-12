@@ -1,41 +1,29 @@
-<%= form_with(model: [@goal, action_plan], local: true) do |form| %>
-  <% if action_plan.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(action_plan.errors.count, "error") %> prohibited this action_plan from being saved:</h2>
-
-      <ul>
-      <% action_plan.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-
+<%= form_with(model: [@goal, @action_plan], id: :edit_action_plan, class: :edit_action_plan) do |form| %>
+  <div class="errors"> </div>
   <div class="form-group row">
     <%= form.label :what, "What needs to be done?", class: "col-sm-3 col-form-label" %>
     <div class="col-sm-9">
-      <%= form.text_field :what, id: :action_plan_what, class: "form-control" %>
+      <%= form.text_field :what, id: :action_plan_what, class: "form-control action_plan_what" %>
     </div>
   </div>
   <div class="row">
-    <div class="col-sm-6">
+    <div class="col-sm-9">
       <div class="form-group">
         <%= form.label :who, "Who will do it?" %>
         <%= form.text_field :who, id: :action_plan_who, class: "form-control" %>
       </div>
 
     </div>
-    <div class="col-sm-6">
+    <div class="col-sm-3">
       <div class="form-group">
-        <%= form.label :when_date, "when_date will it be done?" %>
-        <%= form.text_field :when_date, id: :action_plan_when_date, class: "form-control datepicker" %>
+        <%= form.label :when_date, "By when will it be done?" %>
+        <%= form.text_field :when_date, id: :action_plan_when_date, class: "form-control datetimepicker" %>
       </div>
     </div>
   </div>
-  <hr>
-  <div class="actions">
-    <%= link_to 'Back',  [@goal.goalable, @action_plan.goal], class: "btn btn-outline-primary" %>
-    <%= form.submit class: "btn btn-primary" %>
-
+  
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-primary" data-dismiss="modal" id="editActionPlan">Cancel</button>
+    <%= form.submit  class: "btn btn-primary" %>
   </div>
 <% end %>

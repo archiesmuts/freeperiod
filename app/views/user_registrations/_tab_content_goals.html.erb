@@ -1,0 +1,14 @@
+<div class="jumbotron">
+  <%= fa_icon("star", text: "My goals for this subject") %>&nbsp;
+  <span class="badge badge-info"><%= @user_registration.goals.size %></span>
+</div>
+<div class="d-flex flex-wrap" id="list-goals">
+  <% if @user_registration.goals.any? %>
+      <%= render "goals/goals", goalable: @user_registration %>
+  <% else %>
+    <li class="list-group-item list-group-item-info no-addresses-to-list">
+      No Goals Recorded yet
+    </li>
+
+  <% end %>
+</div>

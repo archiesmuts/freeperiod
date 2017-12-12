@@ -3,6 +3,7 @@
 <a class="nav-link list-group-item" id="my-goals-tab" data-toggle="pill" href="#my-goals" role="tab" aria-controls="my-goals" aria-selected="false"><%= fa_icon("calendar-check-o fw", text: "My Goals & Action Plans") %>&nbsp;<span class="badge badge-info"><%= current_user.goals.size %></span></a>
 <a class="nav-link list-group-item" id="my-achievements-tab" data-toggle="pill" href="#my-achievements" role="tab" aria-controls="my-achievements" aria-selected="false"><%= fa_icon("check-square fw", text: "My Achievements") %>&nbsp;<span class="badge badge-info"><%= current_user.achievements.size %></span></a>
 <a class="nav-link list-group-item" id="my-addresses-tab" data-toggle="pill" href="#my-addresses" role="tab" aria-controls="my-adresses" aria-selected="false"><%= fa_icon("address-book fw", text: "My Addresses") %></a>
+<a class="nav-link list-group-item" id="my-classes-tab" data-toggle="pill" href="#my-classes" role="tab" aria-controls="my-classes" aria-selected="false"><%= fa_icon("graduation-cap fw", text: "My Classes") %></a>
 <% if current_user.memberships.any? %>
   <%= render current_user.memberships %>
 <% end %>

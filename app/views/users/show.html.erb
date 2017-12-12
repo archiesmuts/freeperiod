@@ -1,3 +1,4 @@
+<% content_for :title do %>My personal page<% end %>
 <div class="row row-offcanvas row-offcanvas-right pt-2">
   <div class="col-12 col-md-9">
     <p class="float-right d-md-none">
@@ -13,86 +14,19 @@
       <%# if current_user.has_any_role?(:admin, :faculty) %>
         <!-- true -->
       <div class="tab-pane" id="my-classes" role="tabpanel">
-        <h3>My Classes</h3>
-        <ul class="list-group" role="tablist">
-          <% unless current_user.registration_klasses.empty? %>
-            <% current_user.registration_klasses.each do |registration_klass| %>
-              <li class="list-group-item list-group-item-primary">
-                "<%= registration_klass.name %>" for <%= registration_klass.klass_type.humanize %>
-              </li>
-            <% end %>
-            <% else %>
-            <%= render "nothing_to_list" %>
-          <% end %>
-        </ul>
+        <%= render "tab_content_my_classes" %>
       </div>
       <%# if current_user.has_role?(:admin) %>
       <div class="tab-pane" id="my-achievements" role="tabpanel">
-        <div class="row">
-          <div class="card">
-          <div class="card-footer">
-            <div class="row">
-              <div class="col-sm">
-                  <%= link_to "#collapseAchievements", class: "btn btn-sm btn-outline-success btn-block",
-                      data: { toggle: "collapse" }, aria: {expanded: false} do %>
-                      <%= fa_icon("trophy", text: "My Achievements") %>&nbsp;
-                      <span class="badge badge-success"><%= current_user.achievements.size %></span>
-                  <% end %>
-              </div>
-            </div> <!-- .row in card-footer -->
-              <!-- list achievements here -->
-            <div class="collapse" id="collapseAchievements">
-              <ul id="list-achievements" class="list-group py-2">
-                <% if current_user.achievements.any? %>
-                  <%= render "achievements/achievements", achievable: @user %>
-                <% else %>
-                  <li class="list-group-item list-group-item-info no-achievements-to-list">
-                    Nothing to list. Complete the form below
-                  </li>
-                <% end %>
-              </ul>
-              <%= link_to "#collapseAchievementForm", class: "btn btn-sm btn-success btn-block py-1",
-                  data: { toggle: "collapse" }, aria: {expanded: false} do %>
-                  <%= fa_icon("plus-square", text: "Add an Achievement") %>
-                  <% end %>
-              <div class="collapse py-2" id="collapseAchievementForm">
-                <%#= render "achievements/new_form", achievable: @user %>
-              </div><!-- .collapse achievement form -->
-            </div> <!-- .collapse achievements in card-footer -->
-          </div> <!-- .card-footer -->
-        </div>
-
-        </div>
+        <%= render "tab_content_achievements" %>
       </div>
       <%# end %>
       <div class="tab-pane" id="my-addresses" role="tabpanel">
-        <h2>Addresses</h2>
-        <%= link_to "Manage addresses", user_addresses_path(current_user), class: "btn btn-sm btn-primary" %>
-        <div id="list-addresses" class="row py-2">
-          <% if current_user.addresses.any? %>
-            <%= render "addresses/addresses", addressable: @user %>
-          <% else %>
-            <li class="list-group-item list-group-item-info no-addresses-to-list">
-              No addresses recorded yet.&nbsp;
-              <%= link_to 'Add an Address', new_user_address_path(current_user),
-                  class: "btn btn-sm btn-outline-primary" %>
-            </li>
-          <% end %>
-        </div>
+          <%= render "tab_content_addresses" %>
       </div>
+
       <div class="tab-pane" id="my-goals" role="tabpanel">
-        <h2>Goals and Action Plans</h2>
-        <%= link_to "Manage your goals", user_goals_path(current_user), class: "btn btn-sm btn-primary" %>
-      <div id="list-goals" class="row py-2">
-        <% if current_user.goals.any? %>
-            <%= render "goals/goals", goalable: @user %>
-        <% else %>
-          <li class="list-group-item list-group-item-info no-addresses-to-list">
-            No Goals Recorded yet
-          </li>
-          <%= link_to 'Create a New Goal', new_user_goal_path(current_user), class: "btn btn-primary" %>
-        <% end %>
-        </div>
+        <%= render "tab_content_goals" %>
       </div>
     </div> <!-- .tab-content -->
   </div>
@@ -103,4 +37,6 @@
 </div>
 
 <!-- modal adresses edit action -->
-<%# render "addresses/modal_dialog" %>
+<%= render "goals/modal_dialog" %>
+<%#= render "addresses/modal_dialog" %>
+<%= render "achievements/modal_dialog" %>

@@ -5,8 +5,8 @@ class Achievement < ApplicationRecord
   belongs_to :achievable, polymorphic: true
   has_many :comments, as: :commentable
   validates :title, :description, :date, :slug, presence: true
+  # TODO add public/private option
 
-  
   def should_generate_new_friendly_id?
     title_changed?
   end

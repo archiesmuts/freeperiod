@@ -1,0 +1,21 @@
+<div class="jumbotron">
+  <h2> <%= fa_icon "book" %>&nbsp;Lesson Plans </h2>
+  <p class="h5"><span class="badge badge-dark"><%= @registration_klass.name %></span></p>
+  <p>
+    This is a template for a simple marketing or informational website. It includes a large callout called a jumbotron and three supporting pieces of content. Use it as a starting point to create something more unique.
+  </p>
+    <%= link_to new_registration_klass_lesson_plan_path(@registration_klass), remote: true,
+        class: "btn btn-primary btn-block-xs float-right" do %>
+      <%= fa_icon("plus", text: "Add a Lesson plan") %>
+    <% end %>
+
+</div>
+<div class="d-flex flex-wrap" id="list-lesson-plans">
+  <% if @registration_klass.lesson_plans.any? %>
+    <%= render @registration_klass.lesson_plans %>
+  <% else %>
+    <li class="list-group-item list-group-item-action list-group-item-info no-lesson-plans-to-list">
+      No lesson plans to list
+    </li>
+  <% end %>
+</div>

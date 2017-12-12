@@ -1,26 +1,16 @@
-<%= form_with(model: [@goalable, goal], local: true) do |form| %>
-  <% if goal.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(goal.errors.count, "error") %> prohibited this goal from being saved:</h2>
-
-      <ul>
-      <% goal.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
+<%= form_with(model: [@goalable, @goal], id: :edit_goal, class: :edit_goal) do |form| %>
+  <div class="errors"></div>
   <div class="row my-2">
     <div class="col-sm-9">
       <div class="form-group">
         <%= form.label :name %>
-        <%= form.text_field :name, id: :goal_name, class: "form-control" %>
+        <%= form.text_field :name, id: :goal_name, class: "form-control goal_name" %>
       </div>
     </div>
     <div class="col-sm-3">
       <div class="form-group">
         <%= fa_icon("calendar") %>&nbsp;<%= form.label :deadline %>
-        <%= form.text_field :deadline, id: :goal_deadline, class: "form-control datepicker" %>
+        <%= form.text_field :deadline, id: :goal_deadline, class: "form-control datetimepicker" %>
       </div>
     </div>
   </div> <!-- .row -->
@@ -69,7 +59,7 @@
     <div class="col-sm-3">
       <div class="form-group">
         <%= fa_icon("calendar") %>&nbsp;<%= form.label :completed_at, "Date Completed" %>
-        <%= form.text_field :completed_at, id: :goal_completed_at, class: "form-control datepicker" %>
+        <%= form.text_field :completed_at, id: :goal_completed_at, class: "form-control datetimepicker" %>
       </div>
     </div>
   </div>  <!-- .row -->

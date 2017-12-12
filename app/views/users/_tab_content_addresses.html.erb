@@ -1,0 +1,16 @@
+<div class="jumbotron">
+  <h1>My Address Details</h1>
+  <p>This is a template for a simple marketing or informational website. It includes a large callout called a jumbotron and three supporting pieces of content. Use it as a starting point to create something more unique.</p>
+    <%= link_to new_user_address_path(current_user), remote: true, class: "btn btn-primary btn-block-xs float-right" do %>
+      <%= fa_icon("plus", text: "Add an Address") %>
+    <% end %>
+</div>
+<div id="list-addresses" class="row py-2">
+  <% if current_user.addresses.any? %>
+    <%= render "addresses/addresses", addressable: @user %>
+  <% else %>
+    <li class="list-group-item list-group-item-info no-addresses-to-list">
+      No addresses recorded yet.
+    </li>
+  <% end %>
+</div>

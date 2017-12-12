@@ -3,8 +3,8 @@
 # You can use CoffeeScript in this file: http://coffeescript.org/
 jQuery.fn.countDaysAbsent = ->
   number_days = $("#list-attendances").children().length
-  $("#days-absent").text number_days
-
+  $("#daysAbsent").text number_days
+  $("#sizeUserRegAttendances").text number_days
 jQuery(document).on "turbolinks:load", ->
   $("#list-attendances").countDaysAbsent()
   $('#attendance-dialog').on 'shown.bs.modal', ->

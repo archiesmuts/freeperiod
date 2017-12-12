@@ -19,12 +19,25 @@ $("#user-registration-<%= @user_registration.id %>").hide().fadeIn(1000);
 $("#user-registration-card-<%= @user_registration.id %>").hide().fadeIn(1000);
 $('#user-registration-dialog').modal("hide");
 <% if @user_registration.teacher? %>
-  $('#user-type').html("<span class='badge badge-info'>Teacher</span>");
+  $('#user-type').text("Teacher");
 <% elsif @user_registration.substitute_teacher? %>
-    $('#user-type').html("<span class='badge badge-info'>Substitute teacher</span>");
+    $('#user-type').text("Substitute teacher");
 <% else %>
-  $('#user-type').html("<span class='badge badge-info'>Learner</span>");
+  $('#user-type').text("Learner");
 <% end %>
+//
+// if ($("#user-type:contains('Teacher')") && $("#user-role:contains('educator')")) {
+//   $("#user-role-type-mismatch-alert").hide();
+//   }
+// if $("#user-type:contains('Substitute teacher')") && $("#user-role:contains('educator')")) {
+//   $("#user-role-type-mismatch-alert").hide();
+//   }
+// if ($("#user-type:contains('Learner')") && $("#user-role:contains('learner')")) {
+//   $("#user-role-type-mismatch-alert").hide();
+// }
+// else
+//   $("#user-role-type-mismatch-alert").show();
+
 // Clear form
 el.find('input:text,text_area').val('');
 el.find('.errors').empty();
