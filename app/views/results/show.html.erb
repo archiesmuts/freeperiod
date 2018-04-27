@@ -1,44 +1,62 @@
 <!-- result show page -->
-<div class="container">
-  <div class="row">
-  <div class="col-md-5">
-      <div id="result-card-<%= @result.id %>">
-        <div class="card border-secondary my-3">
-          <h5 class="card-header"><%= fa_icon "check" %>&nbsp;Assessment Result</h5>
-            <div class="card-body text-primary">
-            <h4 class="card-title"><%= @result.assessment.name%></h4>
-            <h6 class="card-subtitle mb-2 text-muted"> <%= @result.user_registration.user_name %></h6>
-            <p class="card-text">
-              <%= @result.student_score %> / <%= @result.assessment.value %>
-            </p>
-            <p class="card-text">
-              Teacher Comment: <br><%= @result.teacher_comment %>
-            </p>
-          </div>
-          <div class="card-footer">
-            <%= link_to 'Back to assessment', [@assessment.lesson_plan, @result.assessment], class: "btn btn-sm btn-outkine-primary" %>
-          </div>
-        </div>
-      </div><!-- #result-card -->
-    </div> <!-- .col-md -->
-    <div class="col-md-7">
-      <div class="card border-primary my-3">
-        <h5 class="card-header">
-          <%= fa_icon "comment-o" %>&nbsp;Comments
-        </h5>
-      <!-- list comments here -->
-      <ul id="list-comments" class="list-group">
-        <% if @result.comments.any? %>
-          <%= render "comments/comments", commentable: @result %>
-        <% else %>
-          <li class="list-group-item list-group-item-info no-comments-to-list">
-            Nobody has commented yet.
-          </li>
+<% content_for :title do %>fp Assessment Result<% end %>
+<div class="mt-2">
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb breadcrumb-color">
+      <li class="breadcrumb-item">
+        <%= link_to [@assessment.lesson_plan, @result.assessment] do %>
+          <%= fa_icon("arrow-left", text: "Assessment") %>
         <% end %>
-      </ul>
+      </li>
+      <li class="breadcrumb-item active" aria-current="page">Individual Learner Result</li>
+    </ol>
+  </nav>
+</div>
+<div class="jumbotron mt-2">
+  <div class="row">
+    <div class="col-md-6 col-lg-4 offset-lg-2">
+      <h1 class="h3 text-primary">
+        <%= fa_icon("user-circle") %>&nbsp;<%= @result.user_registration.user_name %>
+      </h1>
+      <h2 class="h4 text-white"><%= @result.assessment.name%></h2>
+
+      <dl class="row" id="assessmentScore">
+        <dt class="col-sm-4">Actual Result:</dt>
+        <dd class="col-sm-8 text-white">
+          <%= @result.student_score %> / <%= @result.assessment.value %>&nbsp;
+          <span class="badge badge-primary" id="percentActual">?????</span>
+        </dd>
+
+        <dt class="col-sm-4">Learner Goal:</dt>
+        <dd class="col-sm-8 text-white">
+          75 / <%= @assessment.value %>&nbsp;
+          <span class="badge badge-info" id="percentGoal">?????</span>
+        </dd>
+      </dl>
+      <p class="h4">Teacher's Remarks</p>
+      <% if @result.teacher_comment %>
+        <p class="text-white">
+          <%= @result.teacher_comment %>
+        </p>
+      <% else %>
+          <p class="text-info">Teacher has not commented yet.</p>
+      <% end %>
+      <hr class="my-3">
+      <div class="mb-2">
+        <%= link_to edit_assessment_result_path(@result.assessment, @result),
+          class: "btn btn-lg btn-primary btn-block-xs" do %>
+          <%= fa_icon("pencil-square", text: "Edit result") %>
+        <% end %>
+        <!-- TODO add conditonal to either show or hide depending on id user has roles learner or teacher  -->
+        <%= link_to edit_assessment_result_path(@result.assessment, @result),
+          class: "btn btn-lg btn-primary btn-block-xs" do %>
+          <%= fa_icon("pencil-square", text: "Record my goal") %>
+        <% end %>
       </div>
-      <%= render "comments/form", commentable: @result %>
+
     </div>
+    <div class="col-md-6 col-lg-4">
+      <%= render "result_comments" %>
     </div>
   </div>
-</div>
+</div> <!-- .jumbotron -->

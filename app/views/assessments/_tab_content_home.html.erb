@@ -1,0 +1,82 @@
+<div class="mt-1">
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item">
+        <%= link_to [@lesson_plan.registration_klass, @assessment.lesson_plan] do %>
+          <%= fa_icon "arrow-left", text: "Lesson Plan" %>&nbsp;(<%= @lesson_plan.registration_klass.course_name %>)
+        <% end %>
+      </li>
+      <li class="breadcrumb-item active" aria-current="page">Assessment</li>
+    </ol>
+  </nav>
+</div>
+<div class="jumbotron">
+  <div class="row">
+    <div class="col-xl-10 offset-xl-1">
+      <h1 class="h3 text-white"><%= fa_icon("check-square") %>&nbsp;<%= @assessment.name %></h1>
+      <h2 class="h4 text-info">Assessment - <%= @lesson_plan.registration_klass.course_name %></h2>
+      <h3 class="h4"></h3>
+      <p class="h5">
+        <span class="badge badge-secondary">Type: <%= @assessment.assessment_type.name %></span>&nbsp;
+        <span class="badge badge-secondary">Task: <%= @assessment.assessment_task.name %></span>
+      </p>
+      <dl class="row" id="assessmentStats">
+        <dt class="col-sm-4">Lesson Plan:</dt>
+        <dd class="col-sm-8 text-white">
+          <%= @assessment.lesson_plan_name %>
+        </dd>
+
+        <dt class="col-sm-4">Assessment Value:</dt>
+        <dd class="col-sm-8 text-white">
+          <%= @assessment.value %>
+        </dd>
+
+        <dt class="col-sm-4">Sum of questions:</dt>
+        <dd class="col-sm-8 text-white">
+          <span id="totalValue"></span>
+        </dd>
+
+        <dt class="col-sm-4">Number of questions:</dt>
+        <dd class="col-sm-8 text-white">
+          <span id="sizeParts1">5</span>
+        </dd>
+
+      </dl>
+
+      <div class="row">
+        <div class="col-sm-6">
+          <%= link_to edit_lesson_plan_assessment_path(@assessment.lesson_plan, @assessment),
+            class: "btn btn-lg btn-primary btn-block-xs" do %>
+            <%= fa_icon "edit", text: "Edit assessment" %>
+          <% end %>
+        </div>
+        <div class="col-sm-6">
+          <%= link_to new_assessment_part_path(@assessment), remote: true,
+            class: "btn btn-lg btn-success btn-block-xs" do %>
+            <%= fa_icon "plus-square" %>&nbsp;Add a question
+          <% end %>
+        </div>
+      </div>
+      <!-- .row inner -->
+      <hr class="style4 my-2">
+      <p class="h3">
+        Assessment questions&nbsp;<small><span class="badge badge-info" id="sizeParts2"></span></small>&nbsp;
+        <a class="btn btn-sm btn-outline-info"  href="#list-parts" role="button"  aria-controls="list-parts">
+          <%= fa_icon("angle-double-down") %>
+        </a>
+      </p>
+    </div>
+    <!-- .col -->
+  </div>
+  <!-- jumbotron.row -->
+</div>
+<!-- .jumbotron -->
+<% if @assessment.parts.any? %>
+  <div  id="list-parts" class="row d-flex">
+    <%= render @assessment.parts %>
+  </div>
+<% else %>
+  <div class="row d-flex">
+    <%= render "parts/part_placeholder" %>
+  </div>
+<% end %>

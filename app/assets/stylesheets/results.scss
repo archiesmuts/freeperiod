@@ -3,6 +3,6 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 // hide form fields for :user_registration_id in results/edit_form
-.user-registration-id {
+.user-registration-id, #user_name {
   display: none;
 }

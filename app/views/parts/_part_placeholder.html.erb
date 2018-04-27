@@ -1,0 +1,28 @@
+<div class="col-md-4" id="part-placeholder">
+  <div class="card text-white bg-dark mb-3">
+    <div class="card-header">Question</div>
+    <div class="card-body">
+      <h5 class="card-title">Name</h5>
+      <p class="card-text">Description</p>
+      <p class="card-text">
+        <span class="badge badge-info"> <span class="partValue">value</span>/<span class="totalValue"></span></span>
+      </p>
+    </div>
+    <div class="card-footer">
+      <div class="row">
+        <div class="col-md-6">
+          <%= link_to "#", method: :delete, remote: true,
+            data: { confirm: 'Delete! Are you absolutely sure?' },
+            class: "btn btn-sm btn-danger" do %>
+              <%= fa_icon("trash", text: "Delete") %>
+          <% end %>
+        </div>
+        <div class="col-md-6">
+          <%= link_to "#", remote: true, class: "btn btn-sm btn-primary btn-block" do %>
+          <%= fa_icon "pencil", text: "Edit question" %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

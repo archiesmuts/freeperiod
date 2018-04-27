@@ -1,0 +1,41 @@
+<div class="col-sm-4">
+  <div class="card border-primary mb-3 scale">
+    <div class="card-body">
+      <h4 class="card-title text-white">
+        <div class="row">
+          <div class="col-sm-9">
+            <%= fa_icon("book", text: "Example Lesson Plan") %>
+          </div>
+          <div class="col-sm-3">
+
+          </div>
+        </div>
+      </h4>
+        <p class="card-text">
+           Term 1
+        </p>
+        <p class="card-text">A more complete lesson plan description ....</p>
+        <p class="lead card-title">
+          <%= fa_icon "check", text: "Assessments" %>&nbsp;
+          <span class="badge badge-info">11</span>
+        </p>
+    </div>
+    <div class="card-footer">
+      <div class="row">
+        <div class="col-sm-8">
+          <%= link_to "#", method: :delete,
+            data: { confirm: 'Careful, this will be gone forever!' },
+            remote: true, class: "btn btn-sm btn-danger btn-block-xs" do %>
+            <%= fa_icon("trash", text: "Delete") %>
+          <% end %>
+        </div>
+        <div class="col-sm-4">
+          <%= link_to "#", class: "btn btn-sm btn-primary btn-block-xs"  do %>
+          <%= fa_icon("book", text: "Show")%>
+          <% end %>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>

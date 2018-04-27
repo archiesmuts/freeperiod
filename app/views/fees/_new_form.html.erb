@@ -1,11 +1,10 @@
 <%= form_with(model: [@school, Fee.new], id: :new_fee, class: :new_fee) do |form| %>
 
-  <h4><%= @school.name %></h4>
   <div class="errors"></div>
 
   <div class="form-group">
     <%= form.label :name %>
-    <%= form.text_field :name, id: :fee_name, class: "form-control fee_name", required: true  %>
+    <%= form.text_field :name, id: :fee_name, class: "form-control fee_name", placeholder: "Give your fee a unique name", required: true  %>
   </div>
   <div class="row">
     <div class="col-sm-5">
@@ -15,7 +14,7 @@
           <%= form.date_select :year,
             {selected: Date.today,
             discard_day: true, discard_month: true,
-            end_year: Date.today.year},
+            end_year: Date.today.year + 1},
             {class: "form-control"} %>
         </div>
       </div>

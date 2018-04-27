@@ -1,65 +1,54 @@
-<div class="card border-primary mb-2">
-  <div class="card-body">
-    <div class="row">
-      <div class="col-sm-6">
-        <h3 class="card-title text-primary"><%= @goal.name %></h3>
-        <p class="card-text">
-          <span class="text-info"><%= show_name_display(@goal) %></span>&nbsp;
-          <span class="text-success"><%= fa_icon("calendar-check-o", text: "Completed") %></span>
-          <span class="badge badge-success">
-            <span  id="sizeCompleted"></span>
-          </span>
-        </p>
-      </div>
-      <div class="col-sm-6">
-        <p>
-          <%= fa_icon("arrows", text: "Drag items up or down in the list in order of importance.") %>
-        </p>
-          <p><%= fa_icon("pencil", text: "Click on 'Edit' to add a date and/or people") %></p>
-      </div>
-
+<div class="jumbotron mt-1">
+  <div class="row">
+    <div class="col-lg-6 offset-xl-1">
+      <h1 class="h2"><%= show_name_display(@goal) %> and Action Plans</h1>
+      <h2 class="text-primary h4"><%= fa_icon("star") %>&nbsp;<%= @goal.name %></h2>
     </div>
-
+    <div class="col-lg-5">
+      <div class="alert alert-very-dark">
+        <h4 class="d-flex justify-content-between align-items-center">
+          <span class="text-success"><%= fa_icon("calendar-check-o", text: "Completed actions") %></span>
+          <span class="badge badge-success" id="sizeCompleted"></span>
+        </h4>
+      </div>
+      <p>The things you need <strong>Todo</strong> to achieve this goal.</p>
+    </div>
   </div>
 </div>
-<div class="card border-success mb-3">
-  <div class="card-header">
-    <div class="row">
-      <div class="col-sm-9">
-        <h5>
-          <%= fa_icon("check-square-o", text: "Tasks and Action Plans") %>&nbsp;
-          <small>
-            <span class="text-info">Things you need to do to achieve your goal.</span>
-          </small>
-        </h5>
-      </div>
-      <div class="col-sm-3">
-        <%= link_to "#how-to-action-plan-dialog", data: {toggle: "modal"},
-        class: "btn btn-sm btn-outline-info btn-block-xs" do %>
-        <%= fa_icon("question-circle", text: "Tip-How to?") %>
-        <% end %>
-      </div>
-    </div><!-- .row -->
-  </div><!-- .card-header -->
-  <div class="card-body">
-    <div class="row">
-      <div class="col-sm-9">
-        Turn&nbsp;
-        <%= fa_icon "check-square-o", text: "Tasks" %>&nbsp;
-            <span class="badge badge-info" id="sizeTasks"></span>&nbsp;into
 
-        <%= fa_icon("calendar-check-o", text: "Action Plans") %>&nbsp;
+<div class="row">
+  <div class="col-sm col-lg col-xl-10 offset-xl-1 ">
+    <!-- card action plan -->
+    <div class="card border-success mb-3">
+      <div class="card-header">
+        <h5 class="text-white">
+          <%= fa_icon("check-square-o", text: "Todo's") %>&nbsp;
+          <span class="badge badge-info" id="sizeTasks"></span>&nbsp;
+          and <%= fa_icon("calendar-check-o", text: "Action Plans") %>&nbsp;
           <span class="badge badge-success" id="sizeActionPlans"></span>
-      </div>
-      <div class="col-sm-3">
-        <%= link_to new_goal_action_plan_path(@goal), remote: true, class: "btn btn-sm btn-primary btn-block-xs" do %>
-        <%= fa_icon "plus-square" %>&nbsp;Add a Task
-        <% end %>
-      </div>
-    </div> <!-- .row -->
-    <hr>
-  </div><!-- .card-body-->
-  <div>
+        </h5>
+        <p class="text-info">Things you need to do to achieve your goal.</p>
+      </div><!-- .card-header -->
+      <div class="card-body">
+        <div class="row">
+          <div class="col-sm-9">
+            <p class="card-text text-white">
+              Add&nbsp;<%= fa_icon "check-square-o", text: "Todo's" %>&nbsp;
+              and turn them into&nbsp;<%= fa_icon("calendar-check-o", text: "Action Plans") %>
+            </p>
+          </div>
+          <div class="col-sm-3">
+            <%= link_to new_goal_action_plan_path(@goal), remote: true, class: "btn btn-primary btn-block" do %>
+            <%= fa_icon "plus-square" %>&nbsp;Add a Todo
+            <% end %>
+          </div>
+        </div> <!-- .row -->
+        <p class="card-text text-info">
+          <%= fa_icon("arrows", text: "Click & Drag items up or down in the list in order of importance.") %><br />
+          <%= fa_icon("pencil-square-o", text: "Click on Edit to turn Todo into Action Plan") %>
+        </p>
+      </div><!-- .card-body-->
       <%= render "list_action_plans" %>
+    </div><!-- .card -->
   </div>
-</div><!-- .card -->
+</div>

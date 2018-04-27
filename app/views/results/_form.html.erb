@@ -1,0 +1,49 @@
+<%= form_with(model: [@result.assessment, @result], local: true, id: :edit_result, class: :edit_result) do |form| %>
+
+  <div class="form-group row">
+    <%= form.label :user_registration_id, "Name of Learner", class: "col-sm-3 col-form-label" %>
+    <div class="col-sm-9">
+      <h4><span class="form-control-plaintext" readonly><%= @result.user_registration.user_name %></span></h4>
+    </div>
+  </div>
+
+  <h4>
+    <%= @result.assessment.name %> Value: <%=  @result.assessment.value  %>
+  </h4>
+
+  <% if @result.errors.any? %>
+    <div id="error_explanation">
+      <h3><%= pluralize(@result.errors.count, "error") %> prohibited this course from being saved:</h3>
+      <ul>
+      <% @result.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-group row">
+    <%= form.label :student_score, class: "col-sm-5 col-form-label" %>
+    <div class="col-sm-3">
+      <%= form.number_field :student_score, id: :result_student_score, class: "form-control result_student_score " %>
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <label for="goalValue" class="col-sm-5 col-form-label">My Goal - "dummy data"</label>
+    <div class="col-sm-3">
+      <input type="number" class="form-control" id="inputGoalValue" placeholder="15">
+    </div>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :teacher_comment %>
+    <%= form.text_area :teacher_comment, id: :result_teacher_comment, class: "form-control" %>
+  </div>
+
+  <%= link_to [@assessment, @result], class: "btn btn-lg btn-outline-primary" do %>
+    <%= fa_icon("times", text: "Cancel") %>
+  <% end %>
+
+  <%= form.submit class: "btn btn-lg btn-primary" %>
+<% end %>

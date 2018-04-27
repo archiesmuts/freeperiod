@@ -1,15 +1,35 @@
+<div class="mt-1">
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item">
+        <%= link_to school_registration_klass_path(@registration_klass.school, @registration_klass) do %>
+          <%= fa_icon("arrow-left") %>&nbsp;<%= @registration_klass.course_name %>
+        <% end %>
+      </li>
+      <li class="breadcrumb-item"><a href="#"><%= @user_registration.registration_klass.klass_type.titleize %>&nbsp;Registration Card</a></li>
+      <li class="breadcrumb-item active" aria-current="page">My Achievements</li>
+    </ol>
+  </nav>
+</div>
 <div class="jumbotron">
-
-<h1><%= fa_icon("trophy", text: "My Achievements") %></h1>
-<span class="badge badge-success"><%= @user_registration.achievements.size %></span>
+  <div class="col-xl-10 offset-xl-1">
+    <h1 class="h2"><%= fa_icon("trophy", text: "My Achievements") %>
+      <small><span class="badge badge-success" id="sizeUserAchievements1"></span></small>
+    </h1>
+    <p class="lead">
+      Remember to celebrate both <strong>big</strong> and <strong>small</strong> achievements.
+      You know when you have those <em>"Yes. I did it!"</em> moments? List all of those here.
+    <hr class="my-4">
+    <%= link_to new_user_achievement_path(current_user), remote: true, class: "btn btn-lg btn-primary btn-block-xs" do %>
+      <%= fa_icon("plus-square", text: "Add an Achievement") %>
+    <% end %>
+  </div>
 </div>
 
 <div id="list-achievements" class="d-flex flex-wrap">
   <% if @user_registration.achievements.any? %>
     <%= render "achievements/achievements", achievable: @user_registration %>
   <% else %>
-    <li class="list-group-item list-group-item-info no-achievements-to-list">
-      Nothing to list. Complete the form below
-    </li>
+    <%= render "achievements/achievement_placeholder" %>
   <% end %>
 </div>

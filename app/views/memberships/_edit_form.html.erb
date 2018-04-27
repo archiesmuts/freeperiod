@@ -1,0 +1,57 @@
+<!-- from user show or membership index views -->
+<%= form_with(model: [@user, @membership], local: true) do |f| %>
+
+    <% if @membership.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(membership.errors.count, "error") %> prohibited this account from being saved:</h2>
+
+        <ul>
+          <% @membership.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+    <div class="form-group">
+      <%= f.label :user_name, "Name of person" %>
+      <h4><%= @membership.user.name %></h4>
+      <%#= f.collection_select :user_id, User.includes(:memberships).where(memberships: {school_id: membership.school.id}).order("last_name, first_name"), :id, :name_reversed, { }, {class: "form-control-plaintext", readonly: "readonly"}%>
+      <%= f.text_field :user_name, id: :membership_user_name, class: "form-control membership_user_name", readonly: "readonly" %>
+    </div>
+    <div class="form-group">
+      <%= f.label :school_name, "Name of your school" %>
+      <%= f.text_field :school_name, id: :membership_school_name, class: "form-control", readonly: "readonly"  %>
+    </div>
+    <p class="font-weight-bold">Specify the role for this person .</p>
+    <% Membership.members.keys.map do |member| %>
+      <label class="form-check-label form-check-inline">
+        <%= f.radio_button :member, member, class: "form-check-input" %>
+        <span class="form-check-label"><%= member.humanize %></span>
+      </label>
+    <% end %>
+    <div class="alert alert-warning" id="alert-account-owner" role="alert">
+      <strong>Note!</strong> Assigning the "Account owner" role will provide ALL ACCESS to this person"
+    </div>
+    <p class="font-weight-bold mt-2">Indicate the current Grade for this person</p>
+
+    <div class="form-check form-check-inline">
+      <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
+      <label class="form-check-label" for="inlineRadio1">Grade 8</label>
+    </div>
+    <div class="form-check form-check-inline">
+      <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2" checked>
+      <label class="form-check-label" for="inlineRadio2">Grade 9</label>
+    </div>
+    <div class="form-check form-check-inline">
+      <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio3" value="option3">
+      <label class="form-check-label" for="inlineRadio3">Grade 10</label>
+    </div>
+    <hr>
+    <div class="actions my-2">
+      <%= link_to @membership, class: "btn btn-lg btn-outline-primary btn-block-xs" do %>
+        <%= fa_icon("times", text: "Cancel") %>
+      <% end %>
+      <%= f.submit "Save changes", class: "btn btn-lg btn-primary btn-block-xs" %>
+    </div>
+
+<% end %>

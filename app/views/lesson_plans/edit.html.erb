@@ -1,6 +1,10 @@
-<h1>Editing Lesson Plan</h1>
-
-<%= render 'edit_form', lesson_plan: @lesson_plan %>
-
-<%= link_to 'Show', [@lesson_plan.registration_klass, @lesson_plan] %>
-<%= link_to 'Back', registration_klass_lesson_plans_path(@lesson_plan.registration_klass) %>
+<div class="row mt-3">
+  <div class="col-xl-6 offset-xl-3">
+    <div class="card text-white bg-dark mb-3">
+      <div class="card-header">Editing Lesson Plan - <%= @lesson_plan.registration_klass.course_name %></div>
+      <div class="card-body">
+        <%= render 'edit_form', lesson_plan: @lesson_plan %>
+      </div>
+    </div>
+  </div>
+</div>

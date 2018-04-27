@@ -1,23 +1,28 @@
+<!-- achievements/achievement -->
 <% achievable.achievements.each do |achievement| %>
-<div class="col-sm-4">
-  <div id="achievement-<%= achievement.id %>" class="card border-success mb-1 mr-1">
+<div class="col-sm-4" id="<%= dom_id(achievement) %>">
+  <div class="card border-success text-white bg-dark mb-1">
       <div class="card-body">
         <h4 class="card-title"><%= achievement.title %></h4>
         <h6 class="cad-subtitle"><%= achievement.date.strftime("%d %b %Y") %></h6>
         <p class="card-text"><%= achievement.description %></p>
       </div>
-      <div class="card-footer d-flex justify-content-between">
-        <%= link_to [achievement.achievable, achievement], remote: true, method: :delete,
-            data: { confirm: 'Are you sure you want do delete this?', toggle: "tooltip" },
-            class: "delete-achievement btn btn-sm btn-outline-danger btn-block-xs", title: "Deleting Achievement" do %>
-          <%= fa_icon("trash", text: "Delete") %>
-        <% end %>
-
-        <%= link_to edit_polymorphic_path([achievement.achievable, achievement]),
-            remote: true, class: "btn btn-sm btn-primary btn-block-xs" do %>
-            <%= fa_icon("pencil", text: "Edit") %>
-          <% end %>
-
+      <div class="card-footer">
+        <div class="row">
+          <div class="col-sm-4">
+            <%= link_to [achievement.achievable, achievement], remote: true, method: :delete,
+                data: { confirm: 'Are you sure you want do delete this?', toggle: "tooltip" },
+                class: "delete-achievement btn btn-danger btn-block-xs", title: "Deleting Achievement" do %>
+              <%= fa_icon("trash", text: "Delete") %>
+            <% end %>
+          </div>
+          <div class="col-sm-8">
+            <%= link_to edit_polymorphic_path([achievement.achievable, achievement]),
+                remote: true, class: "btn btn-primary btn-block" do %>
+                <%= fa_icon("pencil-square-o", text: "Edit Achievement") %>
+              <% end %>
+          </div>
+        </div>
       </div>
   </div>
 </div>

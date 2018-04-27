@@ -1,5 +1,6 @@
 $(".delete-assessment").bind('ajax:success', function() {
-  $(this).closest('li').fadeOut(500, function(){
+  $("#achievement_<%= @achievement.id %>").fadeOut(500, function(){
   	$(this).remove();
+    $('#list-assessments').sizeAssessments();
   });
 });

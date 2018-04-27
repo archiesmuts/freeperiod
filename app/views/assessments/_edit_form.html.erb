@@ -1,8 +1,17 @@
-<%= form_with(model:[@assessment.lesson_plan, @assessment], method: :patch, id: :edit_assessment, class: :edit_assessment) do |form| %>
+<%= form_with(model:[@assessment.lesson_plan, @assessment], local: true, id: :edit_assessment, class: :edit_assessment) do |form| %>
 
     <p><strong> <%= @assessment.lesson_plan.klass_name %>: <%= @assessment.lesson_plan.name %></strong></p>
-
-    <div class="row pt-2">
+    <% if @assessment.errors.any? %>
+      <div id="error_explanation">
+        <h3><%= pluralize(@assessment.errors.count, "error") %> prohibited this course from being saved:</h3>
+        <ul>
+        <% @assessment.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
+    <div class="row mt-2">
       <div class="col-md">
         <div class="form-group">
           <%= form.label :name %>
@@ -19,34 +28,32 @@
         <div class="form-group">
           <%= form.label :assessment_type_id%>
           <%= form.collection_select :assessment_type_id, AssessmentType.order(:name),
-              :id, :name, { include_blank: true  }, { class: "form-control assessment_assessment_type_id"} %>
+              :id, :name, { include_blank: true  }, { class: "custom-select assessment_assessment_type_id"} %>
         </div>
         <div class="form-group">
           <%= form.label :assessment_task_id%>
           <%= form.grouped_collection_select :assessment_task_id, AssessmentType.order(:name),
               :assessment_tasks, :name, :id, :name, { include_blank: true  },
-              {class: "form-control assessment_assessment_task_id"} %>
+              {class: "custom-select assessment_assessment_task_id"} %>
         </div>
       </div>
 
       <div class="col-md">
-        <h4>Select Learners for this assessment</h4>
         <div class="form-group">
-        <%= form.label :user_registration_id, "Names of Learners", class: "form-label" %>
-            <div class="custom-controls-stacked">
-              <!-- TODO create a scope to select users who are members of this school -->
+          <h4 class="text-white"><%= form.label :user_registration_id, "Select Learners for this assessment", class: "form-label" %></h4>
+              <!-- TODO create a scope to select users who are registed for this class -->
               <!-- TODO how to filter users to shorten the lookup list on checkbox -->
-              <%= form.collection_check_boxes :user_registration_ids, UserRegistration.joins(registration_klass: [:lesson_plans]), :id, :user_name do |b| %>
-              <label class="custom-control custom-checkbox">
-                <%= b.check_box class: "custom-control-input" %>
-                <span class="custom-control-indicator"></span>
-                <span class="custom-control-description"> <%= b.label %> </span>
+              <%= form.collection_check_boxes :user_registration_ids, UserRegistration.joins(registration_klass: [:lesson_plans]).uniq, :id, :user_name do |b| %>
+              <label class="form-check">
+                <%= b.check_box class: "form-check-input" %>
+                <span class="form-check-label"> <%= b.label %> </span>
               </label>
               <% end %>
-            </div>
         </div>
       </div>
     </div>
-      <%= link_to 'Cancel', [@assessment.lesson_plan, @assessment],  class: "btn btn-outline-primary"  %>
-      <%= form.submit class: "btn btn-primary" %>
+      <%= link_to [@assessment.lesson_plan, @assessment],  class: "btn btn-lg btn-outline-primary" do %>
+        <%= fa_icon("times", text: "Cancel") %>
+      <% end %>
+      <%= form.submit "Save Changes", class: "btn btn-lg btn-primary" %>
 <% end %>

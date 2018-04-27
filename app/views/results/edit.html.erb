@@ -1,5 +1,10 @@
-<h1>Editing Result</h1>
-
-<%= render 'edit_form', result: @result %>
-
-<%= link_to 'Show',[@assessment, @result] %> |
+<div class="row mt-3">
+  <div class="col-xl-6 offset-xl-3">
+    <div class="card text-white bg-dark mb-3">
+      <div class="card-header">Editing Result - <%= @result.assessment.name %></div>
+      <div class="card-body">
+        <%= render 'form', result: @result %>
+      </div>
+    </div>
+  </div>
+</div>

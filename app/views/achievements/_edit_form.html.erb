@@ -16,14 +16,13 @@
     <div class="col-sm-4">
       <div class="form-group">
         <%= form.label :date %>
-        <%= form.text_field :date, id: :achievement_date, class: "form-control", placeholder: "When dit it happen?" %>
+        <%= form.text_field :date, id: :achievement_date, class: "form-control datetimepicker", placeholder: "When dit it happen?" %>
       </div>
     </div>
   </div>
-  <!-- link_generator in helper module  -->
   <div class="modal-footer">
     <button type="button" class="btn btn-sm btn-outline-primary" data-dismiss="modal" aria-label="Close">
-      <%= fa_icon("times") %>&nbsp;Cancel
+      <%= fa_icon("times", text: "Cancel") %>
     </button>
 
     <%= form.submit class: "btn btn-sm btn-primary"  %>

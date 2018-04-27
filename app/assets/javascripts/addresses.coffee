@@ -1,6 +1,16 @@
 # Place all the behaviors and hooks related to the matching controller here.
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://coffeescript.org/
+jQuery.fn.sizeAddresses = ->
+  size_addresses = $("#list-addresses").children().length
+  $("#sizeAddresses1").text size_addresses
+  $("#sizeAddresses2").text size_addresses
+
+jQuery(document).on "turbolinks:load", ->
+  $("#list-addresses").sizeAddresses()
+
+
+
 # $(document).on "turbolinks:load", ->
 #   $('#add-address-link').click (event) ->
 #     event.preventDefault()

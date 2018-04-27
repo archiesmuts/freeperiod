@@ -1,19 +1,31 @@
+<div class="mt-1">
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item">
+        <%= link_to school_registration_klass_path(@registration_klass.school, @registration_klass) do %>
+          <%= fa_icon("arrow-left") %>&nbsp;<%= @registration_klass.course_name %>
+        <% end %>
+      </li>
+      <li class="breadcrumb-item"><a href="#"><%= @user_registration.registration_klass.klass_type.titleize %>&nbsp;Registration Card</a></li>
+      <li class="breadcrumb-item active" aria-current="page">Attendance Record</li>
+    </ol>
+  </nav>
+</div>
 <div class="jumbotron">
   <div class="row">
-    <div class="col-sm-7">
+    <div class="col-xl-10 offset-xl-1">
       <h2> <%= @user_registration.user_name %></h2>
       <p class="h4 text-info">
         <%= @user_registration.registration_klass.name %>&nbsp;
         <span class="badge badge-dark"><%= @user_registration.registration_klass.year.strftime("%Y") %></span>
       </p>
-    </div>
-    <div class="col-sm-5">
-      <h4 class="text-primary"><%= fa_icon "calendar-minus-o", text: "Attendance record:" %></h4>
-      <h5 class="text-info">
-        Days absent:&nbsp;<span class="badge badge-info" id="daysAbsent"></span>
-      </h5>
+      <h4 class="text-primary">
+        <%= fa_icon "calendar-minus-o", text: "Attendance record:" %>&nbsp;
+        <small>Days absent:&nbsp;<span class="badge badge-info" id="daysAbsent1"></span></small>
+      </h4>
+        <hr class="my-4">
       <%= link_to new_user_registration_attendance_path(@user_registration),
-        remote: true, class: "btn btn-primary btn-block-xs"  do %>
+        remote: true, class: "btn btn-lg btn-primary btn-block-xs"  do %>
         <%= fa_icon("calendar-minus-o", text: "Record Day Absent") %>
       <% end %>
     </div>
@@ -22,7 +34,7 @@
 
 <!-- list attendances here -->
 <% if @user_registration.attendances.any? %>
-  <div id="list-attendances" class="d-flex flex-wrap">
+  <div id="list-attendances" class="row d-flex flex-wrap">
     <%= render "attendances/attendances", attendable: @user_registration %>
   </div>
 <% else %>

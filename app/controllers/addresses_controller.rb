@@ -46,7 +46,7 @@ class AddressesController < ApplicationController
     @addressable = @address.addressable
     respond_to do |format|
       if @address.update(address_params)
-        format.html { redirect_to [@address.addressable, @address], notice: 'Address was successfully updated.' }
+        format.html { redirect_to [@addressable, @address], notice: 'Address was successfully updated.' }
         format.json { render :show, status: :ok, location: @address }
         format.js { }
       else

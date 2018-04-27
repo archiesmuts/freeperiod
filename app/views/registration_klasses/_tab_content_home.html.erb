@@ -1,42 +1,56 @@
+<!-- registration_klasses/tab_home  -->
+<div class="mt-1">
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item">
+        <%= link_to school_registration_klasses_path(@registration_klass.school) do %>
+          <%= fa_icon "arrow-left", text: "Registration and Subject Classes Index" %>
+        <% end %>
+      </li>
+      <li class="breadcrumb-item active" aria-current="page">
+        <%= @registration_klass.course_name %> - <%= @registration_klass.year.strftime("%Y") %>
+      </li>
+    </ol>
+  </nav>
+</div>
 <div class="jumbotron">
   <div class="row">
-      <div class="col-2 hide-xs">
-        <div class="card">
-          <img class="card-img-top" data-src="holder.js/100x100?auto=yes&theme=sky&text=logo" />
-        </div>
+    <div class="col-2 d-none d-sm-block">
+      <div class="card">
+        <img class="card-img-top" data-src="holder.js/100x100?auto=yes&theme=sky&text=logo" />
       </div>
-      <div class="col-10">
-        <h2>
-          <%= link_to @registration_klass.school, class: "btn btn-outline-primary" do %>
-            <%= fa_icon "arrow-left" %>&nbsp;
-          <% end %>
-          <%= @registration_klass.name %>&nbsp;
-          <small>
-            <span class="badge badge-dark">
-              <%= @registration_klass.year.strftime("%Y") %>
-            </span>
-          </small>
-        </h2>
-        <p class="lead"><%= fa_icon "graduation-cap" %>&nbsp;<%= @registration_klass.course_name %></p>
-
-        <p>This is an example to show the potential of an offcanvas layout pattern in Bootstrap. Try some responsive-range viewport sizes to see it in action.</p>
-        <div class="float-right">
-          <% unless @registration_klass.school_faculty? %>
-            <%= link_to edit_school_registration_klass_path(@registration_klass.school, @registration_klass), class: "btn btn-primary btn-block-xs" do %>
-              <%= fa_icon "pencil-square" %>&nbsp;Edit/Add learners
-              <% end %>
-            <%= link_to school_registration_klasses_path(@school), class: "btn btn-outline-primary btn-block-xs" do %>
-              <%= fa_icon "list", text: "View all classes" %>
+    </div>
+    <div class="col-12 col-xl-10">
+      <h1 class="h2 text-white"><%= @registration_klass.name %></h1>
+      <h2 class="h4"><%= fa_icon("graduation-cap") %>&nbsp;<%= @registration_klass.course_name %> - <%= @registration_klass.year.strftime("%Y") %></h2>
+      <h3 class="h4 text-white">
+        <%= fa_icon "users", text: "Learners" %>&nbsp;
+        <span class="badge badge-success"><%= @registration_klass.learners.size %></span>
+      </h3>
+      <p>Note. You can also add people by clicking on the "Edit" button</p>
+      <hr>
+      <div class="row mb-2">
+        <div class="col-lg-6">
+            <% unless @registration_klass.school_faculty? %>
+              <%= link_to edit_school_registration_klass_path(@registration_klass.school, @registration_klass),
+                class: "btn btn-lg btn-primary btn-block-xs" do %>
+                <%= fa_icon "pencil-square", text: "Edit class" %>
               <% end %>
             <% else %>
-            <%= link_to select_faculty_school_registration_klass_path(@registration_klass.school, @registration_klass), class: "btn btn-secondary btn-block-xs" do %>
-            <%= fa_icon "pencil-square" %>&nbsp;Edit/Select Faculty
+              <%= link_to select_faculty_school_registration_klass_path(@registration_klass.school, @registration_klass),
+                class: "btn btn-lg btn-secondary btn-block-xs" do %>
+                <%= fa_icon "pencil-square", text: "Edit / Select Faculty" %>
+              <% end %>
             <% end %>
+        </div>
+        <div class="col-lg-6">
+          <%= link_to new_registration_klass_user_registration_path(@registration_klass), remote: true,
+            class: "btn btn-lg btn-outline-primary btn-block-xs"  do %>
+            <%= fa_icon("plus", text: "Add a teacher") %>
           <% end %>
         </div>
       </div>
+    </div>
   </div> <!-- .row -->
-  <div class="row">
-
-  </div>
 </div> <!-- .jumbotron -->
+<%= render "user_registrations/modal_dialog" %>

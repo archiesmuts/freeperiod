@@ -8,6 +8,11 @@ jQuery(document).on "turbolinks:load", ->
   $('#membership_user_name').autocomplete
     source: $('#membership_user_name').data('autocomplete-source')
 
-  $('#nav-link-members').click (event) ->
-    event.preventDefault()
-    $('#membership-').remove()
+  $('.membership_user_name').hide()
+  $('#alert-account-owner').hide()
+
+  $('[name="membership[member]"]').on 'click', ->
+    if $(this).val() == 'account_owner'
+      $('#alert-account-owner').show()
+    else
+      $('#alert-account-owner').hide()

@@ -15,7 +15,7 @@ var el = $('.edit_lesson_plan');
 <% else %>
 
 $('#list-lesson-plans').append('<%= j render @lesson_plan %>');
-$("#lesson-plan-card-<%= @lesson_plan.id %>").hide().fadeIn(1000);
+$("#<%= dom_id(lesson_plan) %>").hide().fadeIn(1000);
 $('#lesson-plan-dialog').modal("hide");
 
 <% if @lesson_plan.four? %>

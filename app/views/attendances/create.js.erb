@@ -14,8 +14,8 @@ var el = $('.new_attendance');
 
 <% else %>
 
-$('#list-attendances').append('<%= j render @attendance %>');
-$("#attendance-<%= @attendance.id %>").hide().fadeIn(1000);
+$('#list-attendances').prepend('<%= j render @attendance %>');
+$("#attendance_<%= @attendance.id %>").hide().fadeIn(1000);
 $('#attendance-dialog').modal("hide");
 $('#no-attendances-to-list').detach();
 

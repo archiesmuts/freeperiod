@@ -1,28 +1,38 @@
-<%= form_with(model: [@pay_agreement.fee, @pay_agreement], method: :patch, id: :edit_pay_agreement, class: :edit_pay_agreement) do |form| %>
+<%= form_with(model: [@pay_agreement.fee, @pay_agreement], id: :edit_pay_agreement, class: :edit_pay_agreement) do |form| %>
 
-  <p>
-    <strong>
-      <%= @pay_agreement.fee.name %>. Amount: <%=  @pay_agreement.fee.amount  %>
-    </strong>
-  </p>
-
-  <div class="errors"></div>
-
-  <div class="form-group fee-user-registration-id">
-    <%= form.label :user_registration_id %>
-    <%= form.text_field :user_registration_id, id: :pay_agreement_user_registration_id, class: "form-control" %>
+  <h4><%= fa_icon("user-circle") %>&nbsp;<%= @pay_agreement.user_registration.user_name %></h4>
+  <h5 class="text-white">
+    Approved School Fee:&nbsp;<span class="badge badge-success"><%= number_to_currency(@pay_agreement.fee.amount, precision: 2, unit: "R") %></span>
+  </h5>
+  <% if @pay_agreement.errors.any? %>
+    <div id="error_explanation">
+      <h3><%= pluralize(@pay_agreement.errors.count, "error") %> prohibited this course from being saved:</h3>
+      <ul>
+      <% @pay_agreement.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="form-group pay-agreement-user-registration-id">
+    <%= form.label :user_registration_id, "Learner" %>
+    <%= form.text_field :user_registration_id, id: :pay_agreement_user_registration_id, class: "form-control", readonly: "readonly" %>
   </div>
-  <div class="form-group">
-    <%= form.label :discount_in_percent%>
-    <%= form.number_field :discount_in_percent, id: :pay_agreement_discount, class: "form-control pay_agreement_discount" %>
+  <div class="form-group row">
+    <%= form.label :discount_in_percent, class: "col-sm-6 col-form-label "%>
+    <div class="col-sm-3">
+      <%= form.number_field :discount_in_percent, id: :pay_agreement_discount, class: "form-control pay_agreement_discount" %>
+    </div>
   </div>
   <div class="form-group">
     <%= form.label :comment %>
     <%= form.text_area :comment, id: :pay_agreement_comment, class: "form-control ." %>
   </div>
-  <div class="modal-footer">
-    <button type="button" class="btn btn-outline-primary" data-dismiss="modal" id="editPayAgreement">Cancel</button>
-    <%= form.submit class: "btn btn-primary" %>
+  <div class="actions">
+    <%= link_to [@pay_agreement.fee, @pay_agreement], class: "btn btn-lg btn-outline-primary"  do %>
+      <%= fa_icon("times", text: "Cancel") %>
+    <% end %>
+    <%= form.submit class: "btn btn-lg btn-primary" %>
   </div>
 
 <% end %>

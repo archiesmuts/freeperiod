@@ -1,0 +1,67 @@
+<div class="mt-1">
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item">
+        <%= link_to  school_memberships_path(@membership.school) do %>
+          <%= fa_icon "arrow-left", text: "Membership Administration" %>
+        <% end %>
+      </li>
+      <li class="breadcrumb-item active" aria-current="page">Membership Registration Card</li>
+    </ol>
+  </nav>
+</div>
+<!-- .nav.breadcrumb -->
+<div class="jumbotron mt-1">
+  <div class="row">
+    <div class="col-xl-10 offset-xl-1">
+      <div class="media">
+        <div class="row">
+          <div class="col-xs-2 d-md-none">
+            <%= image_tag "placeholder_user.png",
+              size: "100x100",
+              alt: "Headshot",
+              id: "headshot-left",
+              class: "image-fluid mb-1 mx-1" %>
+          </div>
+          <div class="media-body">
+            <div class="col-xs-10">
+              <h1 class="h2 text-white"><%= fa_icon "id-card" %>&nbsp;<%= @membership.user.full_name %></h1>
+              <h2 class="h4">
+                <%= fa_icon "university" %>&nbsp;<%= @membership.school.name if @membership.school %>
+              </h2>
+              <p class="lead">Role: <span class="badge badge-info"><%= @membership.member.humanize %></span></p>
+
+              <!-- TODO add options for grade registration etc. -->
+              <p class="lead text-white">Currently registered for Grade <span class="badge badge-secondary">9</span> Todo </p>
+              <!-- TODO add radio button selection for grades to allow filter placing kids in different classes -->
+              <hr>
+              <%= link_to edit_membership_path(@membership), class: "btn btn-lg btn-primary" do %>
+                <%= fa_icon "pencil-square", text: "Edit registration" %>
+              <% end %>
+              <div class="alert alert-info mt-2" role="alert">
+                Add user profile infomation pulled from user profile address etc.
+              </div>
+              <div class="d-flex justify-content-between">
+                <em>Created on: <%= @membership.created_at.strftime("%d %b %Y") %></em>
+                <em>Updated on: <%= @membership.updated_at.strftime("%d %b %Y") if @membership.updated_at %></em>
+              </div>
+            </div>
+            <!-- .media-body.col -->
+          </div>
+          <!-- .media-body -->
+          <div class="col-md-2 d-none d-md-block">
+            <%= image_tag "placeholder_user.png",
+              size: "250x250",
+              alt: "Headshot",
+              id: "headshot-right",
+              class: "image-fluid" %>
+          </div>
+        </div>
+        <!-- .media.row -->
+      </div>
+      <!-- .media -->
+    </div>
+  </div>
+  <!-- .jumbotron.row -->
+</div>
+<!-- .jumbotron -->

@@ -3,6 +3,8 @@ class Attendance < ApplicationRecord
   belongs_to :attendable, polymorphic: true
   validates :comment, :date, presence: true
   validate :attendance_cannot_be_recorded_in_the_future
+  validates :date, uniqueness: {message: "already recorded as day absent."}
+
 
   def attendance_cannot_be_recorded_in_the_future
     if date.present? && date > Date.today

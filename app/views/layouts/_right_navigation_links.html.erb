@@ -12,18 +12,18 @@
   </li>
   <li class="nav-item">
     <%= link_to destroy_user_session_path, :method=>'delete', data: {confirm: "Click on confirm if you really want to leave."}, class: 'nav-link' do %>
-    <%= fa_icon "sign-out" %> Sign out
+    <%= fa_icon "sign-out", text: "Sign out" %> 
     <% end %>
   </li>
 <% else %>
   <li class='nav-item'>
     <%= link_to new_user_session_path, class: 'nav-link' do %>
-      <%= fa_icon "sign-in" %> Sign in
+      <%= fa_icon "sign-in", text: "Sign in" %>
     <% end %>
   </li>
   <li class='nav-item'>
-    <%= link_to new_user_registration_path, class: 'nav-link' do %>
-      <%= fa_icon "magic" %> Sign up
+    <%= link_to page_path("create_new_account"), class: 'nav-link' do %>
+      <%= fa_icon "magic", text: "Sign up" %>
     <% end %>
   </li>
 <% end %>

@@ -1,82 +1,57 @@
-<div class="container">
+<% content_for :title do %>fp School Fee - <%= @fee.year.strftime("%Y") %><% end %>
+<div class="mt-2">
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item">
+        <%= link_to @school  do %>
+          <%= fa_icon("arrow-left", text: "School home") %>
+        <% end %>
+      </li>
+      <li class="breadcrumb-item">
+        <%= link_to "School Fees Index", school_fees_path(@school) %>
+      </li>
+      <li class="breadcrumb-item active" aria-current="page">School Fees Administration</li>
+    </ol>
+  </nav>
+</div>
+<div class="jumbotron">
   <div class="row">
-    <div class="col-sm">
-      <div class="card border-primary my-3">
-        <h5 class="card-header">
-          <div class="d-flex justify-content-between">
-            <div>
-              <%= fa_icon "money" %>
-              <small>School Fee</small>
-            </div>
-            <span class="badge badge-light"><%= @fee.year.strftime("%Y") %></span>
-          </div>
-        </h5>
-        <div class="card-body text-primary">
-          <h4 class="card-title">
-            <%= @fee.name %>
-          </h4>
-          <h6 class="card-subtitle text-muted"><%= @fee.school.name.truncate(50) %></h6>
-          <h5 class="card-subtitle py-2">R<%= @fee.amount %></h5>
-          <p class="card-text"><%= fa_icon "comment" %></p>
-        </div>
-        <div class="card-footer">
-          <div class="d-flex justify-content-between">
-            <div class="p-1">
-              <%= link_to @fee.school, class: "btn btn-sm btn-outline-primary" do %>
-                <%= fa_icon "chevron-left" %>&nbsp;School page
-              <% end %>
-              <%= link_to school_fees_path(@school), class: "btn btn-sm btn-outline-dark" do %>
-                <%= fa_icon "list" %>&nbsp;View List of School Fees
-              <% end %>
-            </div>
-            <div class="p-1">
-              <%= link_to edit_school_fee_path(@fee.school, @fee), class: "btn btn-sm btn-primary" do %>
-                <%= fa_icon "pencil-square" %>&nbsp;Edit details
-              <% end %>
-            </div>
-          </div>
-        </div>
-          <%#= render "registration_klasses/user_registrations_card" %>
-
-      </div><!-- .card for registration_klass -->
-    </div> <!-- .col -->
-
-    <div class="col-sm">
-      <!-- list fee pay_agreements here -->
-      <div class="card border-primary my-3">
-        <h5 class="card-header">
-          <div class="d-flex justify-content-between">
-            <div>
-              <%= fa_icon "check-circle-o" %>&nbsp;<strong>Pay Agreements</strong>
-            </div>
-            <div>
-              <small> <a href="#" data-toggle="tooltip" data-placement="left" title="Click on a name to edit an agreement" class="card-link"><i class="fa fa-info-circle"></i></small></a>
-            </div>
-          </div>
-        </h5>
-
-        <ul id="list-pay-agreements" class="list-group">
-          <% if @fee.pay_agreements.any? %>
-            <%= render @fee.pay_agreements %>
-          <% else %>
-            <li class="list-group-item list-group-item-info no-pay-agreements-to-list">
-              No pay agreements to list
-            </li>
+    <div class="col-lg-10 offset-lg-1">
+      <h1><%= fa_icon("money", text: "School Fee") %>&nbsp;
+        <span class="badge badge-dark"><%= @fee.year.strftime("%Y") %></span>
+      </h1>
+      <h2 class="text-white">
+        Amount:&nbsp;<%= number_to_currency(@fee.amount, precision: 2, unit: "R") %>
+      </h2>
+      <h4><%= fa_icon("comment", text: "Comment") %></h4>
+      <p>Insert comment here</p>
+      <p class="text-info">
+        <%= fa_icon("info-circle", text: "Create Pay Agreements by assigning learners to this school fee. Click on 'Edit details'") %>
+      </p>
+      <hr>
+      <div class="row my-1 action-buttons">
+        <div class="col-md-4 mb-1">
+          <%= link_to edit_school_fee_path(@fee.school, @fee), class: "btn btn-lg btn-primary btn-block-xs" do %>
+            <%= fa_icon "pencil-square", text: "Edit details" %>
           <% end %>
-        </ul>
+        </div>
+        <div class="col-md-4 mb-1">
+          <h3>
+            <%= fa_icon "files-o", text: "Pay Agreements" %>&nbsp;
+            <span class="badge badge-info" id="payAgreementsSize"><%= @fee.pay_agreements.size %></span>
+          </h3>
+        </div>
+        <div class="col-md-4 mb-1">
+          <%= link_to  fee_pay_agreements_path(@fee),
+            class: "btn btn-lg btn-success btn-block-xs" do %>
+            <%= fa_icon("list", text: "Manage Pay Agreements") %>
+          <% end %>
+        </div>
       </div>
-    </div> <!-- .col -->
-  </div> <!-- .row -->
-
-  <div class="row">
-    <div class="col-md-6">
-
+      <!-- .row action-buttons -->
     </div>
+    <!-- row.col -->
   </div>
-</div> <!-- .container -->
-
-<!-- modal forms-->
-
-
-
-<%= render "pay_agreements/modal_dialog" %>
+  <!-- .row -->
+</div>
+<!-- .jumbotron -->

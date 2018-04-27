@@ -1,64 +1,97 @@
-<div class="container py-2">
-  <div class="card-deck py-2">
-    <div class="card border-primary">
-      <div class="card-body">
-        <h4 class="card-title">
-          Registered School Members&nbsp;<span class="badge badge-info"><%= @school.users.size %></span>
-        </h4>
-        <h6 class="card-subtitle mb-2 text-muted">
-          This list includes all the people that were invited and confirmed. It should
-          comprise of all Educators, Learners, Parents/Guardians and Other (e.g. SGB members) people that will have
-          some sort of role in the school.
-        </h6>
-        <div class="d-flex justify-content-between mb-2">
-        <%= link_to @school, class: "btn btn-sm btn-outline-primary" do %>
-          <%= fa_icon("arrow-left", text: "Back") %>
+<% content_for :title do %>fp - School Memberships<% end %>
+<div class="mt-2">
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb bg-i-like-food">
+      <li class="breadcrumb-item">
+        <%= link_to @school  do %>
+        <%= fa_icon("arrow-left", text: "School home") %>
         <% end %>
-        <a class="btn btn-sm btn-info" data-toggle="collapse" href="#collapseRegistrationHelp" aria-expanded="false" aria-controls="collapseRegistrationHelp">
-          <%= fa_icon("info-circle", text: "Registration Guide") %>
-        </a>
+      </li>
+      <li class="breadcrumb-item active" aria-current="page">School Membership Administration</li>
+    </ol>
+  </nav>
+</div>
+<!-- nav.breadcrumb -->
+<div class="jumbotron bg-i-like-food">
+  <div class="row">
+    <div class="col-xl-10 offset-xl-1">
+      <h1>
+        Registered School Members&nbsp;
+        <small><span class="badge badge-info"><%= @school.memberships.size %></span></small>
+      </h1>
+      <p class="lead">
+        This list includes Educators, Learners, Parents/Guardians and Other (e.g. SGB members) people that will have
+        some sort of role in the sall the people that were invited and confirmed.
+      </p>
+      <div class="row">
+        <div class="col-sm-6">
+          <a class="btn btn-info" data-toggle="collapse" href="#collapseRegistrationHelp" aria-expanded="false" aria-controls="collapseRegistrationHelp">
+            <%= fa_icon("info-circle", text: "Registration Guide") %>
+          </a>
         </div>
-        <div class="collapse" id="collapseRegistrationHelp">
-          <%= render "registration_help" %>
-        </div>
-      </div>
-    </div>
-    <div class="card border-primary">
-      <div class="card-body">
-        <%= form_with(model: [@school, Membership.new], local: true, id: :new_membership, class: :new_membership ) do |f| %>
-        <h4 class="card-title">
-          Invite teachers, students and parents to register
-        </h4>
-          <div class="form-group">
-            <%= f.label :email, "Email address" %>
-            <%= f.email_field :email, id: :membership_email, class: "form-control", required: true, placeholder: "Type the email of the person you want to invite" %>
+          <div class="col-sm-6">
+            <form class="form-inline my-2 my-lg-0">
+              <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+              <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+            </form>
           </div>
-          <div class="actions">
-            <%= f.submit "Send invitation", class: "btn btn-primary btn-sm" %>
-          </div>
-      <% end %>
       </div>
     </div>
   </div>
-
-  <%= form_with scope: :membership, url: edit_multiple_school_memberships_path(@school), method: :get,  local: true  do %>
-    <table class="table table-responsive">
-      <thead>
-        <tr>
-          <th></th>
-          <th>Role</th>
-          <th>Name and Email</th>
-          <th>Confirmed</th>
-          <th></th>
-        </tr>
-      </thead>
-      <tbody id="list-members">
-          <%= render @school.memberships %>
-      </tbody>
-    </table>
-    <div class="actions">
-      <%= submit_tag "Edit selected records ", class: "btn btn-primary" %>
-    </div>
-  <% end %>
 </div>
+<div class="row">
+  <div class="col-xl-10 offset-xl-1">
+    <div class="collapse" id="collapseRegistrationHelp">
+      <%= render "registration_help" %>
+    </div>
+
+  </div>
+</div>
+<%= form_with scope: :membership, url: edit_multiple_school_memberships_path(@school), method: :post,  local: true  do %>
+  <div class="d-flex justify-content-center">
+    <p class="text-info">
+      <button type="button" class="btn btn-outline-info" disabled>
+        <%= fa_icon("check-square", text: "Select and edit up to 5 records at a time.") %>
+      </button>
+      &nbsp;
+      <%= submit_tag "Edit Selected Records ", class: "btn btn-primary" %>
+      &nbsp;
+      <button class="btn btn-sm btn-info" type="button" data-toggle="collapse" data-target="#collapseEditTip" aria-expanded="false" aria-controls="collapseEditTip">
+        <%= fa_icon("info", text: "Tip") %>
+      </button>
+    </p>
+  </div>
+  <div class="collapse" id="collapseEditTip">
+    <div class="d-flex justify-content-center">
+      <div class="card text-white bg-info w-50">
+        <div class="card-body">
+          <p class="card-text">
+            When selecting records further down the page, click on the round "Up to
+            the Top - Arrow" button to quickly jump to the top of the page.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xl-10 offset-xl-1">
+      <table class="table">
+        <thead>
+          <tr>
+            <th></th>
+            <th>Name and Email</th>
+            <th><%= fa_icon("check-square") %></th>
+            <th>Role</th>
+            <th>Confirmed</th>
+            <th colspan="2"></th>
+          </tr>
+        </thead>
+        <tbody id="list-members">
+          <%= render @school.memberships %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+<% end %>
+
 <%#= render "modal_dialog" %>

@@ -47,3 +47,5 @@ $(document).on "turbolinks:load", ->
   ), 250
 
   Holder.run()
+
+  $('[data-toggle="tooltip"]').tooltip()

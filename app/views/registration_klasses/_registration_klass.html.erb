@@ -1,7 +1,11 @@
-<tr id="registration-klass-<%= registration_klass.id %>">
-  <td><%= link_to registration_klass.name, [registration_klass.school, registration_klass] %></td>
-  <td><%= registration_klass.klass_type.humanize %></td>
-  <td><%= registration_klass.course.name %></td>
-  <td><%= registration_klass.year.strftime("%Y") %></td>
-  <td><%= link_to 'Destroy', [registration_klass.school, registration_klass], method: :delete, data: { confirm: 'Are you sure?' } %></td>
-</tr>
+<div class="col-md-4" id="<%= dom_id(registration_klass) %>">
+  <div class="card text-white bg-dark mb-3">
+    <div class="card-header"><%= registration_klass.klass_type.humanize %></div>
+    <div class="card-body">
+      <h4 class="card-title"><%= link_to registration_klass.name, [registration_klass.school, registration_klass] %> </h4>
+      <h5 class="card-subtitle"><%= registration_klass.course.name %></h5>
+      <p class="card-text"><%= registration_klass.year.strftime("%Y") %></p>
+      <%= link_to 'Show', [registration_klass.school, registration_klass], class: "btn btn-primary" %>
+    </div>
+  </div>
+</div>

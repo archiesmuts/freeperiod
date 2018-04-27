@@ -7,6 +7,7 @@
 // $success:       #28b62c;
 // $info:          #03a9f4;
 // $warning:       #fbe42c;
+$danger:           #8B0000; //darkred
 // $danger:        #ff4136;
 // $light:         #eeeeee;
 // $dark:          #444444;
@@ -17,18 +18,20 @@
 @import "bootswatch/solar/variables";
 @import "bootstrap";
 @import "bootswatch/solar/bootswatch";
+@import "bs_offcanvas";
 @import "jquery-ui/core";
 @import "jquery-ui/datepicker";
 @import "jquery-ui/slider";
 @import "jquery-ui/theme";
+@import "product";
 @import "trix";
 @import "font-awesome";
-@import "users";
 @import 'freeperiod';
 @import "fields_with_errors";
 @import "ui_autocomplete";
 @import "fullcalendar";
 @import "bootstrap-datetimepicker.css";
+@import 'schools';
 @import 'goals';
 @import 'user_registrations';
-// @import "freeperiod";
+@import "registration_klasses";

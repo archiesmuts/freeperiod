@@ -9,15 +9,17 @@
   <%= user.slug %>
 </td>
 <td>
-  <% unless user.memberships.empty? %>
-    <%= render user.memberships %>
+  <% unless user.schools.empty? %>
+    <% user.schools.each do |school| %>
+      <%= school.name %>
+    <% end %>
   <% end %>
 </td>
 <td>
   <ul>
     <% unless user.roles.empty? %>
       <% user.roles.each do |role| %>
-        <li><%= role.name %> <%= role.resource_type %><br> <%= role.resource_id %></li>
+        <li><%= role.name %> <%= role.resource_type %></li>
       <% end %>
     <% else %>
       No roles

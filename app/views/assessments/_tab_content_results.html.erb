@@ -1,0 +1,39 @@
+<div class="mt-1">
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item">
+        <%= link_to [@lesson_plan.registration_klass, @assessment.lesson_plan] do %>
+          <%= fa_icon "arrow-left", text: "Lesson Plan" %>&nbsp;-&nbsp;<%= @lesson_plan.registration_klass.course_name %>
+        <% end %>
+      </li>
+      <li class="breadcrumb-item"><a href="#">Assessment</a></li>
+      <li class="breadcrumb-item active" aria-current="page">Results</li>
+    </ol>
+  </nav>
+</div>
+<div class="jumbotron jumbotron-bg-rain">
+  <div class="row">
+    <div class=" col-xl-10 offset-xl-1">
+      <h1 class="h2"><%= fa_icon("check-circle-o", text: "Results") %></h1>
+      <h2 class="h4 text-white"><%= fa_icon("check-square", text: "Assessment:") %>&nbsp;<%= @assessment.name %></h2>
+      <h3 class="h5 text-info">Lesson Plan: <%= @assessment.lesson_plan_name %>&nbsp;(<%= @assessment.lesson_plan.registration_klass.course_name %>) </h3>
+
+      <hr class="style4 my-2">
+      <p class="h4">
+        <%= fa_icon("check-square", text: "Individual Results") %>&nbsp;
+        <span class="badge badge-info" id="sizeResults1"></span>
+      </p>
+    </div>
+  </div>
+</div>
+<!-- list assessment results here -->
+  <% if @assessment.results.any? %>
+  <div class="row d-flex flex-wrap" id="list-results">
+    <%= render @assessment.results %>
+  </div> <!-- .row -->
+  <% else %>
+    <div class="row d-flex">
+      <%= render "results/result_placeholder" %>
+    </div> <!-- .row -->
+
+  <% end %>

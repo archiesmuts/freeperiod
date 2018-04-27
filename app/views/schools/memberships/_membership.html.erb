@@ -2,31 +2,43 @@
   <% unless controller.controller_name == "users" %>
     <tr id="membership-<%= membership.id %>">
       <td>
-        <%= membership.user.name_reversed if membership.user %><br>
-        <%= membership.user.email if membership.user %>
+        <%= image_tag "placeholder_user.png",
+          size: "40x40",
+          alt: "Headshot",
+          id: "headshot",
+          class: "image-fluid mr-3" %>
       </td>
-
+      <td>
+        <%= membership.user.name_reversed if membership.user %><br>
+        <%= membership.user.email if membership.user %> <br>
+        <%= membership.user.id if membership.user %> <br>
+      </td>
       <td>
         <%= hidden_field_tag "school[membership_ids][]", nil %>
         <%= check_box_tag "membership_ids[]", membership.id %>
       </td>
-      <td><span class="badge badge-info"><%= membership.member.humanize %></span></td>
 
       <td>
+        <% unless membership.user.roles.empty? %>
+        <span class="badge badge-info"><%= membership.member.humanize %></span>
+        <% else %>
+          <span class="badge badge-warning">No role assigned</span>
+        <% end %>
+      </td>
+      <td>
           <%= user_status(membership) %>&nbsp;
-
           <% if membership.user.invitation_accepted_at %>
             <%= membership.user.invitation_accepted_at.strftime("%d %b %Y") %>
           <% end %>
       </td>
       <td>
-        <%= link_to membership, class: "btn", data: {toggle: "tooltip", placement: "bottom"}, title: "View individual profile" do %>
-          <%= fa_icon("id-card", text: "View") %>
+        <%= link_to membership, class: "btn btn-sm btn-primary" do %>
+          <%= fa_icon("id-card", text: "Show") %>
         <%end %>
 
         <%= link_to [membership.user, membership], method: :delete, remote: true,
-          data: { confirm: 'Click on confirm if you want to delete this record' },
-          class: "btn text-danger delete-membership"  do %>
+          data: { confirm: 'Caution! Clicking on confirm will permanently delete this record.' },
+          class: "btn btn-sm btn-danger delete-membership"  do %>
           <%= fa_icon("trash", text: "Delete") %>
         <% end %>
       </td>

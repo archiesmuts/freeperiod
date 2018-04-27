@@ -1,10 +1,30 @@
 <% addressable.addresses.each do |address| %>
-  <div class="col-sm-3">
-    <div class="card" id="address-<%= address.id %>">
-      <div class="card-body">
-        <h4 class="card-title"><%= address.address_type.humanize %> Address</h4>
-        <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
-        <p class="card-text"><%= address.address %></p>
+  <div class="card text-white bg-dark border-info" id="<%= dom_id(address) %>">
+    <div class="card-header">
+      <%= address.address_type.humanize %>&nbsp;Address
+    </div>
+    <div class="card-body">
+      <h4 class="card-title"><%= address.address %></h4>
+      <p class="card-text">Postal address</p>
+      <p class="card-text">Telephone number</p>
+      <p class="card-text">Cell phone number</p>
+    </div>
+    <div class="card-footer">
+      <div class="row">
+        <div class="col-sm-7">
+          <%= link_to [address.addressable, address], remote: true, method: :delete,
+            data: { confirm: "Are you sure you want do delete this? If yes click on 'Confirm' to continue.", toggle: "tooltip" },
+            class: "delete-address btn btn-danger btn-block-xs",
+            title: "Deleting address" do %>
+            <%= fa_icon("trash", text: "Delete") %>
+          <% end %>
+        </div>
+        <div class="col-sm-5">
+          <%= link_to edit_polymorphic_path([address.addressable, address]),
+            remote: true, class: "btn btn-primary btn-block" do %>
+            <%= fa_icon("pencil-square", text: "Edit Address") %>
+          <% end %>
+        </div>
       </div>
     </div>
   </div>

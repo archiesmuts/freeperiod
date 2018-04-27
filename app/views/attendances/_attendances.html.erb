@@ -1,5 +1,5 @@
 <% attendable.attendances.each do |attendance| %>
-<div class="col-sm-3 attendance-<%= attendance.id %>"  id="attendance-<%= attendance.id %>">
+<div class="col-sm-3 attendance-card attendance-<%= attendance.id %>"  id="<%= dom_id(attendance) %>">
   <!-- attendances/attendances  -->
   <div class="card border-primary mb-3 scale">
     <div class="card-header">Day Absent</div>
@@ -10,21 +10,19 @@
     <div class="card-footer">
       <div class="row">
         <div class="col">
-          <%= link_to edit_polymorphic_path([attendance.attendable, attendance]),
-              remote: true, class: "btn btn-sm btn-primary  btn-block-xs" do %>
-            <%= fa_icon "pencil", text: "Edit" %>
-          <% end %>
-        </div>
-        <div class="col">
           <%= link_to [attendance.attendable, attendance], method: :delete, remote: true,
             data: { confirm: 'Deleting attendance record! Click on confirm if you are serious about this.' },
-            class: "btn btn-sm btn-danger btn-block-xs delete-attendance" do %>
+            class: "btn btn-sm btn-danger btn-block delete-attendance" do %>
               <%= fa_icon("trash", text: "Delete") %>
             <% end %>
         </div>
-
+        <div class="col">
+          <%= link_to edit_polymorphic_path([attendance.attendable, attendance]),
+              remote: true, class: "btn btn-sm btn-primary btn-block" do %>
+            <%= fa_icon "pencil", text: "Edit" %>
+          <% end %>
+        </div>
       </div>
-
     </div>
   </div><!-- .card -->
 </div> <!-- .col-sm-3 -->

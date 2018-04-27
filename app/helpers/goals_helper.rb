@@ -6,26 +6,26 @@ module GoalsHelper
     case parent_class
     when "User"
       html = ""
-      html << (link_to [@goalable], class: "btn btn-outline-primary" do
-              fa_icon("arrow-left")
+      html << (link_to [@goalable] do
+              fa_icon("arrow-left", text: "My home page")
               end)
       html.html_safe
     when "School"
       html = ""
-      html << (link_to [@goalable], class: "btn btn-outline-primary" do
-              fa_icon("arrow-left")
+      html << (link_to [@goalable] do
+              fa_icon("arrow-left", text: "School home")
               end)
       html.html_safe
     when "UserRegistration"
       html = ""
-      html << (link_to [@goalable.registration_klass, @goalable], class: "btn btn-outline-primary" do
-              fa_icon("arrow-left")
+      html << (link_to [@goalable.registration_klass, @goalable] do
+              fa_icon("arrow-left", text: "Registration home")
               end)
       html.html_safe
     when "RegistrationKlass"
       html = ""
-      html << (link_to [@goalable.school, @goalable], class: "btn btn-outline-primary" do
-              fa_icon("arrow-left")
+      html << (link_to [@goalable.school, @goalable] do
+              fa_icon("arrow-left", text: "Class home")
               end)
       html.html_safe
     end
@@ -36,13 +36,35 @@ module GoalsHelper
     parent_class = goal.goalable.class.to_s
     case parent_class
     when "User"
-      content_tag(:span, "Personal Goal and Action Plans")
+      content_tag(:span, "Personal Goal")
     when "School"
-      content_tag(:span, "School Goal and Action Plans")
+      content_tag(:span, "School Goal")
     when "UserRegistration"
-      content_tag(:span, "Subject Goal and Action Plans")
+      content_tag(:span, "Subject Goal")
     when "RegistrationKlass"
-      content_tag(:span, "Class Goal and Action Plans")
+      content_tag(:span, "Class Goal")
+    end
+  end
+
+  def show_polymorphic_parent_name(goal)
+    parent_class = goal.goalable.class.to_s
+    case parent_class
+    when "User"
+      html = ""
+      html << (@goalable.name)
+      html.html_safe
+    when "School"
+      html = ""
+      html << (@goalable.name)
+      html.html_safe
+    when "UserRegistration"
+      html = ""
+      html << (@goalable.registration_klass.course_name)
+      html.html_safe
+    when "RegistrationKlass"
+      html = ""
+      html << (@goalable.course_name)
+      html.html_safe
     end
   end
 end

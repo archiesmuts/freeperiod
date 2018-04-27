@@ -1,83 +1,31 @@
-<div class="container">
-  <div class="row">
-    <div class="col-md">
-      <div id="assessment-card-<%= @assessment.id %>" class="card border-primary my-3">
-        <h5 class="card-header"><%= fa_icon "check" %>&nbsp;Assessment</h5>
-        <div class="card-body text-primary">
-          <h4 class="card-title"><%= @assessment.name %></h4>
-          <h6 class="card-subtitle mb-2 text-muted">Lesson Plan: <%= @assessment.lesson_plan_name %></h6>
-          <p class="card-text">
-            Assessment Value: <%= @assessment.value %>  Sum of parts:&nbsp;<span id="totalValue"></span>
-          </p>
-        </div>
-        <div class="card-footer">
-          <div class="d-flex justify-content-between">
-            <%= link_to [@lesson_plan.registration_klass, @assessment.lesson_plan],
-              class: "btn btn-sm btn-outline-primary" do %>
-              <%= fa_icon "arrow-left" %>&nbsp;Lesson plan
-            <% end %>
-            <%= link_to edit_lesson_plan_assessment_path(@assessment.lesson_plan, @assessment),
-               class: "btn btn-sm btn-primary" do %>
-              <%= fa_icon "edit" %>&nbsp;Edit assessment
-            <% end %>
-          </div>
-        </div>
-      </div> <!-- #assessment-card -->
-      <!-- list assessment parts here -->
-      <div class="card border-primary my-3">
-        <h5 class="card-header">
-          <div class="d-flex justify-content-between">
-            <div>
-              <%= fa_icon "check-circle-o" %>&nbsp;<strong>Assessment parts</strong>
-            </div>
-            <div>
-              <%= link_to new_assessment_part_path(@assessment), remote: true,
-                class: "btn btn-sm btn-primary" do %>
-                <%= fa_icon "plus-square" %>&nbsp;Add a part
-              <% end %>
-            </div>
-          </div>
-        </h5>
-        <ul id="list-parts" class="list-group">
-          <% if @assessment.parts.any? %>
-            <%= render @assessment.parts %>
-          <% else %>
-            <li class="list-group-item list-group-item-info no-parts-to-list">
-              No assessment parts to list
-            </li>
-          <% end %>
-        </ul>
+<% content_for :title do %>fp - Assessment Home<% end %>
+<!-- school show view  -->
+<div class="row row-offcanvas row-offcanvas-right pt-2">
+  <div class="col-12 col-md-9">
+    <p class="float-right d-md-none">
+      <button type="button" class="btn btn-primary btn-sm" data-toggle="offcanvas">
+        <%= fa_icon("th-list") %>
+      </button>
+    </p>
+    <!-- Tab panes -->
+    <div class="tab-content">
+      <div class="tab-pane fade show active" id="assessment-home" role="tabpanel">
+        <%= render "tab_content_home" %>
       </div>
-    </div> <!-- .col-md-8 -->
 
-    <div class="col-md">
-      <!-- list assessment results here -->
-      <div class="card border-primary my-3">
-        <h5 class="card-header">
-          <div class="d-flex justify-content-between">
-            <div>
-              <%= fa_icon "check-circle-o" %>&nbsp;<strong>Results</strong>
-            </div>
-            <div>
-              <small> <a href="#" data-toggle="tooltip" data-placement="left" title="Click on a name to edit a result" class="card-link"><i class="fa fa-info-circle"></i></small></a>
-            </div>
-          </div>
-        </h5>
-
-        <ul id="list-results" class="list-group">
-          <% if @assessment.results.any? %>
-            <%= render @assessment.results %>
-          <% else %>
-            <li class="list-group-item list-group-item-info no-assessment-parts-to-list">
-              No assessment results to list
-            </li>
-          <% end %>
-        </ul>
+      <div class="tab-pane fade" id="assessment-results" role="tabpanel">
+        <%= render "tab_content_results" %>
       </div>
-    </div>
-  </div> <!-- .row -->
+      <div class="tab-pane fade" id="assessment-teachers-guide" role="tabpanel">
+        <%= render "tab_content_teachers_guide" %>
+      </div>
+    </div> <!-- .tab-content -->
+  </div>
+  <div id="sidebar" class="col-6 col-md-3 sidebar-offcanvas pt-1 nav flex-column nav-pills" role="tablist" aria-orientation="vertical" role="tablist" aria-orientation="vertical">
+    <%= render "sidebar_links" %>
+  </div>
+</div> <!-- .row -->
 
-</div>
 <%= render "assessments/modal_dialog" %>
 <!-- modal forms parts-->
 <div class="collapse" id="add-part-form">

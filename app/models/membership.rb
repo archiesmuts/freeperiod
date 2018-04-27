@@ -18,11 +18,12 @@ class Membership < ApplicationRecord
   # perhaps add management
   enum member: {
     not_defined: 0,
-    account_owner: 1,
     educator: 2,
     learner: 3,
     parent_or_guardian: 4,
-    friend_of_school: 5
+    friend_of_school: 5,
+    account_owner: 1,
+    school_admin: 6
   }
 
   # enum permission:  {

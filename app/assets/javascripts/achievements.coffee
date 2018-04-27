@@ -3,7 +3,8 @@
 # You can use CoffeeScript in this file: http://coffeescript.org/
 jQuery.fn.sizeAchievements = ->
   size_achievements = $("#list-achievements").children().length
-  $("#sizeAchievements").text size_achievements
+  $("#sizeAchievements1").text size_achievements
+  $("#sizeAchievements2").text size_achievements
 
 jQuery(document).on "turbolinks:load", ->
   $("#list-achievements").sizeAchievements()
@@ -13,5 +14,5 @@ jQuery(document).on "turbolinks:load", ->
 
   $('#achievement-dialog').on 'shown.bs.modal', ->
     $('#achievement_title').focus()
-    $('#achievement_date').datetimepicker
+    $('.datetimepicker').datetimepicker
       format: "YYYY-MM-DD"

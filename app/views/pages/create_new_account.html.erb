@@ -1,0 +1,25 @@
+<% content_for :title do %>Creating a New Account<% end %>
+<div class="row">
+  <div class="col-12 col-xl-8 offset-xl-2 mt-3">
+    <h1>Creating a New School Account - <small>Administrators only!</small> </h1>
+    <div class="alert alert-info mt-2" role="alert">
+      <h4 class="alert-heading">Notice for Teachers, Parents and Learners</h4>
+      <p>Only the School Administrator may create a school account.</p>
+      <p>
+        Individual Teachers, Parents and Learners will receive an <em>inivitation to register
+        via email</em>. The email invitation will contain a link with instructions on how to register.
+
+      </p>
+      <p>
+        Clicking on the link will automatically take you to the <em>Registration Page</em> where
+        you will be required to <em>register</em> with an <em>email address and password</em>.
+      </p>
+      <hr>
+      <p class="mb-0"><%= link_to "Ok understood. Take me back", root_path, class: "alert-link" %></p>
+    </div>
+    <%= link_to root_path, class: 'btn btn-lg btn-outline-primary' do %>
+      <%= fa_icon "times", text: "Cancel" %>
+    <% end %>
+    <%= link_to "Registration Process", page_path("member_registrations"), class: "btn btn-lg btn-primary" %>
+  </div>
+</div>

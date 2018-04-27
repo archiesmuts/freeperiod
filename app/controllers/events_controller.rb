@@ -27,7 +27,6 @@ class EventsController < ApplicationController
   # POST /events.json
   def create
     @event = @school.events.build(event_params)
-
     respond_to do |format|
       if @event.save
         format.html { redirect_to [@school, @event], notice: 'Event was successfully created.' }

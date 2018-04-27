@@ -1,11 +1,28 @@
-<div class="jumbotron">
-  <h1>My Address Details</h1>
-  <p>This is a template for a simple marketing or informational website. It includes a large callout called a jumbotron and three supporting pieces of content. Use it as a starting point to create something more unique.</p>
-    <%= link_to new_user_address_path(current_user), remote: true, class: "btn btn-primary btn-block-xs float-right" do %>
-      <%= fa_icon("plus", text: "Add an Address") %>
-    <% end %>
+<div class="mt-1">
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a href="#">Home</a></li>
+      <li class="breadcrumb-item active" aria-current="page">My Addresses</li>
+    </ol>
+  </nav>
 </div>
-<div id="list-addresses" class="row py-2">
+<div class="jumbotron mt-1">
+  <div class="row">
+    <div class="col-xl-10 offset-xl-1">
+      <h1 class="text-white">
+        My Addresses&nbsp;
+        <small><span id="sizeAddresses1" class="badge badge-info"></span></small>
+      </h1>
+      <h2 class="h5"><%= fa_icon("address-card") %>&nbsp;Home and Work Addresses</h2>
+      <hr>
+      <%= link_to new_user_address_path(current_user),
+        remote: true, class: "btn btn-lg btn-primary btn-block-xs" do %>
+        <%= fa_icon("plus-square", text: "Add an Address") %>
+      <% end %>
+    </div>
+  </div>
+</div>
+<div id="list-addresses" class="card-deck">
   <% if current_user.addresses.any? %>
     <%= render "addresses/addresses", addressable: @user %>
   <% else %>

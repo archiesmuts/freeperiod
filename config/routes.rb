@@ -13,6 +13,7 @@ Rails.application.routes.draw do
   resources :schools do
     resources :memberships, path: :users, module: :schools do
       collection do
+        post :edit_multiple #required when error cuased by Large params set causing: "HTTP parse error, malformed request"
         get :edit_multiple
         put :update_multiple
       end

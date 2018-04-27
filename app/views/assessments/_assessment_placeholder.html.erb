@@ -1,0 +1,26 @@
+<div class="col-sm-4">
+  <div class="card text-white bg-dark mb-3">
+    <div class="card-header">Assessment</div>
+    <div class="card-body">
+      <h5 class="card-title">Example assessment name</h5>
+      <p class="card-text">Type: <span class="badge badge-primary">Assessment Type</span></p>
+      <p class="card-text">Assessment Value: <span class="badge badge-secondary">50</span></p>
+    </div>
+    <div class="card-footer">
+      <div class="row">
+        <div class="col-sm-8">
+          <%= link_to "#", method: :delete, remote: true,
+            data: { confirm: 'Are you absolutely sure?' },
+            class: "btn btn-danger btn-block-xs " do %>
+              <%= fa_icon("trash", text: "Delete") %>
+            <% end %>
+        </div>
+        <div class="col-sm-4">
+          <%= link_to "#", class: "btn btn-primary btn-block-xs" do %>
+          <%= fa_icon("expand", text: "Show") %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

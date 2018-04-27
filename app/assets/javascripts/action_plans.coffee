@@ -39,7 +39,7 @@ $(document).on "turbolinks:load", ->
   $("#list-action-plans").sizeTasks()
   $("#list-action-plans").sizeActionPlans()
   $("#list-action-plans").sizeCompleted()
-  
+  $("#list-action-plans").sizeTotalActionPlans()
 
   $('#action-plan-dialog').on 'shown.bs.modal', ->
     $('.action_plan_what').focus()

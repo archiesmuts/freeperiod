@@ -1,4 +1,4 @@
-<% content_for :title do %>Goal and Action plans<% end %>
+<% content_for :title do %>Goal and Action Plans<% end %>
 <div class="row row-offcanvas row-offcanvas-right mt-1">
   <div class="col-12 col-md-9">
     <p class="float-right d-md-none">
@@ -11,14 +11,17 @@
       <div class="tab-pane fade show active" id="goal-home" role="tabpanel">
         <%= render "tab_content_home" %>
       </div>
-
       <div class="tab-pane" id="goal-action-plans" role="tabpanel">
         <%= render "tab_content_action_plans" %>
-
       </div>
-      <div class="tab-pane" id="goal-comments" role="tabpanel">
-        <%= render "tab_content_comments" %>
-
+      <div class="tab-pane" id="about-goals" role="tabpanel">
+        <%= render "tab_content_about_goals" %>
+      </div>
+      <div class="tab-pane" id="defining-goals" role="tabpanel">
+        <%= render "tab_content_defining_goals" %>
+      </div>
+      <div class="tab-pane" id="smart-goals" role="tabpanel">
+        <%= render "tab_content_smart_goals" %>
       </div>
 
     </div> <!-- .tab-content -->

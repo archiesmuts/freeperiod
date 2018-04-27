@@ -62,7 +62,7 @@ class PayAgreementsController < ApplicationController
   def destroy
     @pay_agreement.destroy
     respond_to do |format|
-      format.html { redirect_to fee_pay_agreements(@fee.school, @fee), notice: 'Pay agreement was successfully destroyed.' }
+      format.html { redirect_to fee_pay_agreements_path(@fee), notice: 'Pay agreement was successfully destroyed.' }
       format.json { head :no_content }
       format.js   { }
     end

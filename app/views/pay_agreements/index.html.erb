@@ -1,33 +1,65 @@
-<p id="notice"><%= notice %></p>
+<% content_for :title do %>fp Fee Pay Agreements<% end %>
+<div class="mt-2">
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb breadcrumb-color">
+      <li class="breadcrumb-item">
+        <%= link_to [@fee.school, @fee, ] do %>
+          <%= fa_icon("arrow-left", text: "School Fee") %>
+        <% end %>
+      </li>
+      <li class="breadcrumb-item active" aria-current="page">Pay Agreements</li>
+    </ol>
+  </nav>
+</div>
+<div class="row">
+  <div class="col-md-5 offset-lg-1">
+    <h1><span class="badge badge-dark"><%= @fee.year.strftime("%Y") %></span>&nbsp;Pay Agreements</h1>
+    <div class="my-2">
+      <%= link_to  new_fee_pay_agreement_path(@fee),
+        class: "btn btn-lg btn-primary" do %>
+        <%= fa_icon("plus-square", text: "New Pay Agreement") %>
+      <% end %>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="alert alert-info" role="alert">
+      <h4>
+        Approved School Fee:&nbsp;
+        <span class="badge badge-dark">
+          <%= number_to_currency(@fee.amount, precision: 2, unit: "R") %>
+        </span>
+      </h4>
+    </div>
+  </div>
+</div>
 
-<h1>Pay Agreements</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th>Fee</th>
-      <th>User registration</th>
-      <th>Discount</th>
-      <th>Comment</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+<div class="row">
+  <div class="col-lg-10 offset-lg-1">
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th><%= fa_icon("user-circle", text: "Learner") %></th>
+          <th>Agreed Fee</th>
+          <th>Discount</th>
+          <th>Comment</th>
+          <th colspan="3"></th>
+        </tr>
+      </thead>
 
-  <tbody>
-    <% @pay_agreements.each do |pay_agreement| %>
-      <tr>
-        <td><%= pay_agreement.fee_id %></td>
-        <td><%= pay_agreement.user_registration_id %></td>
-        <td><%= pay_agreement.discount %></td>
-        <td><%= pay_agreement.comment %></td>
-        <td><%= link_to 'Show', pay_agreement %></td>
-        <td><%= link_to 'Edit', edit_pay_agreement_path(pay_agreement) %></td>
-        <td><%= link_to 'Destroy', pay_agreement, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Pay Agreement', new_pay_agreement_path %>
+      <tbody>
+        <% @fee.pay_agreements.each do |pay_agreement| %>
+          <tr>
+            <td><%= pay_agreement.user_registration.user_name %></td>
+            <td><%= number_to_currency(pay_agreement.agreed_school_fee, precision: 2, unit: "R") %></td>
+            <td><%= number_to_percentage(pay_agreement.discount_in_percent, precision: 2) %></td>
+            <td><%= pay_agreement.comment.truncate(30) if pay_agreement.comment %></td>
+            <td><%= link_to 'Show', [pay_agreement.fee, pay_agreement] %></td>
+            <td><%= link_to 'Edit', edit_fee_pay_agreement_path(pay_agreement.fee, pay_agreement) %></td>
+            <td><%= link_to 'Destroy', [pay_agreement.fee, pay_agreement], method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+    </div>
+</div>

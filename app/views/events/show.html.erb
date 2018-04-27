@@ -1,48 +1,47 @@
 <!-- Event show page -->
-<div class="container d-flex justify-content-center">
-  <div class="col-md-6">
-      <div id="event-card-<%= @event.id %>">
-        <div class="card border-secondary my-3">
-          <h5 class="card-header"><%= fa_icon "fort-awesome" %>&nbsp;School Event</h5>
-            <div class="card-body text-primary">
-            <h4 class="card-title"><%= @event.title %></h4>
-            <h6 class="card-subtitle mb-2 text-muted"> <%= @event.school_name %></h6>
-            <p class="card-text">
-              <%= @event.description %>
-            </p>
-            <p class="card-text">Start time: <%= @event.start_time.strftime("%I:%M%p on %a %d %b %Y") %></p>
-            <p class="card-text">End time: <%= @event.end_time.strftime("%I:%M%p on %a %d %b %Y") %></p>
+<div class="row">
+  <div class="col-md-5 offset-md-1">
+    <div class="card border-secondary my-3" id="event-card-<%= @event.id %>">
+      <h5 class="card-header">
+        <%= link_to  school_events_path(@school), class: "btn btn-sm btn-outline-primary" do %>
+          <%= fa_icon "arrow-left" %>
+        <% end %>
+      <%= fa_icon "fort-awesome" %>&nbsp;School Event</h5>
+      <div class="card-body text-primary">
+      <h4 class="card-title"><%= @event.title %></h4>
+      <h6 class="card-subtitle mb-2 text-muted"> <%= @event.school_name %></h6>
+      <p class="card-text"><%= @event.description %></p>
+      <p class="card-text">Start time: <%= @event.start_time.strftime("%I:%M%p on %a %d %b %Y") %></p>
+      <p class="card-text">End time: <%= @event.end_time.strftime("%I:%M%p on %a %d %b %Y") %></p>
+        <%= link_to edit_school_event_path(@school, @event),
+            class: "btn btn-sm btn-primary" do %>
+          <%= fa_icon "pencil", text: "Edit event" %>
+        <% end %>
+      </div>
+    </div><!-- .card -->
+  </div> <!-- .col-md -->
 
-              <%= link_to  school_events_path(@school),
-                  class: "btn btn-sm btn-outline-primary" do %>
-                  <%= fa_icon "arrow-left" %>&nbsp;Back
-                  <% end %>
-
-                  <%= link_to edit_school_event_path(@school, @event), remote: true,
-                      class: "btn btn-sm btn-primary" do %>
-                    <%= fa_icon "pencil", text: "Edit event" %>
-                  <% end %>
-          </div>
-        </div>
-      </div><!-- #event-card -->
-    </div> <!-- .col-md -->
-    <div class="col-md-6">
-      <div class="card border-primary my-3">
-        <h5 class="card-header">
-          <%= fa_icon "comment-o" %>&nbsp;Comments on the event
-        </h5>
+  <div class="col-md-4">
+    <div class="card border-primary my-3">
+      <h5 class="card-header">
+        <%= fa_icon "comment-o" %>&nbsp;Leave a comment on the event
+      </h5>
+    <div class="card-body">
+      <%= render "comments/form", commentable: @event %>
       <!-- list comments here -->
-      <ul id="list-comments" class="list-group">
-        <% if @event.comments.any? %>
-          <%= render "comments/comments", commentable: @event%>
-        <% else %>
+
+    <ul id="list-comments" class="list-group">
+      <% if @event.comments.any? %>
+        <%= render "comments/comments", commentable: @event%>
+      <% else %>
+        <p>
           <li class="list-group-item list-group-item-info no-comments-to-list">
             Nobody has commented yet.
           </li>
-        <% end %>
-      </ul>
-      </div>
-      <%= render "comments/form", commentable: @event %>
+        </p>
+      <% end %>
+    </ul>
+    </div>
     </div>
   </div>
 </div>

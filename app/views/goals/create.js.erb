@@ -15,8 +15,9 @@ var el = $('.new_goal');
 <% else %>
 
 $('#list-goals').append('<%= j render @goal %>');
-$("#goal-<%= @goal.id %>").hide().fadeIn(1000);
+$("#<%= dom_id(@goal) %>").hide().fadeIn(1000);
 $("#list-goals").sizeGoals();
+$('#sizeUserGoals').sizeGoals();
 $(".no-goals-to-list").detach();
 $("#goal_name").val('');
 $("#goal_deadline").val('');

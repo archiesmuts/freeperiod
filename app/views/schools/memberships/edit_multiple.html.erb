@@ -10,7 +10,7 @@
           <%= link_to "back", school_path(@school, anchor: "school_memberships"), class: "alert-link" %>
           and select people using the check boxes and click on the button "Edit selected records".
         </p>
-        <%= link_to school_path(@school, anchor: "school-memberships"), class: "btn btn-sm btn-outline-primary" do %>
+        <%= link_to school_memberships_path(@school), class: "btn btn-primary" do %>
         <%= fa_icon("arrow-left", text: "Back") %>
         <% end %>
       </div>
@@ -33,10 +33,9 @@
               </div>
             <% end %>
             <% Membership.members.keys.map do |member| %>
-              <label class="custom-control custom-radio">
-                <%= f.radio_button :member, member, class: "custom-control-input" %>
-                <span class="custom-control-indicator"></span>
-                <span class="custom-control-description"><%= member.humanize %></span>
+              <label class="form-check-inline">
+                <%= f.radio_button :member, member, class: "form-check-input" %>
+                <span class="form-check-label"><%= member.humanize %></span>
               </label>
             <% end %>
           <% end %>
@@ -44,10 +43,10 @@
         <% end %>
 
         <div class="actions">
-          <%= link_to school_path(@school, anchor: "school-memberships"), class: "btn btn-sm btn-outline-primary" do %>
+          <%= link_to school_memberships_path(@school), class: "btn btn-outline-primary" do %>
             <%= fa_icon("times", text: "Cancel") %>
           <% end %>
-          <%= submit_tag "Update selected records", class: "btn btn-sm btn-primary" %>
+          <%= submit_tag "Update selected records", class: "btn btn-primary" %>
         </div>
       <% end %>
       <% end %>

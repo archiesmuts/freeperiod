@@ -1,7 +1,14 @@
-<tr id="fee-<%= fee.id %>">
-  <td><%= link_to fee.name, [fee.school, fee] %></td>
-  <td><%= fee.year.strftime("%Y") %></td>
-  <td><%= fee.amount %></td>
-  <td><%= fee.year.strftime("%Y") %></td>
-  <td><%= link_to 'Destroy', [fee.school, fee], method: :delete, data: { confirm: 'Are you sure?' } %></td>
-</tr>
+<div class="col-sm-3" id="<%= dom_id(fee) %>">
+  <div class="card border-primary">
+    <div class="card-body">
+      <div class="row">
+        <div class="col-5">
+          <span class="text-info"><%= fee.year.strftime("%Y") %></span>
+        </div>
+        <div class="col-7">
+          <span class="text-white"><%= number_to_currency(fee.amount, precision: 2, unit: "R") %></span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

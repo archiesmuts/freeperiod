@@ -1,24 +1,59 @@
-<p id="notice"><%= notice %></p>
+<% content_for :title do %>fp Pay Agreement<% end %>
+<div class="mt-2">
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb breadcrumb-color">
+      <li class="breadcrumb-item">
+        <%= link_to fee_pay_agreements_path(@pay_agreement.fee) do %>
+          <%= fa_icon("arrow-left", text: "List of Pay Agreements") %>
+        <% end %>
+      </li>
+      <li class="breadcrumb-item active" aria-current="page">Fee Pay Agreement</li>
+    </ol>
+  </nav>
+</div>
+<div class="jumbotron">
+  <div class="row">
+    <div class="col-lg-10 offset-lg-1">
+      <h1>
+        <%= fa_icon("file-text", text: "Pay Agreement") %>&nbsp;
+        <small><span class="badge badge-secondary"><%= @pay_agreement.fee.year.strftime("%Y") %></span></small>
+      </h1>
+      <h2 class="text-white"><%= fa_icon("user-circle") %>&nbsp;<%= @pay_agreement.user_registration.user_name %></h2>
+      <hr>
+      <dl class="row">
+        <dt class="col-sm-3 h4">Approved School Fee</dt>
+        <dd class="col-sm-9 h4">
+          <span class="badge badge-secondary">
+            <%= number_to_currency(@pay_agreement.approved_school_fee, precision: 2, unit: "R") %>
+          </span>
+        </dd>
 
-<p>
-  <strong>Fee:</strong>
-  <%= @pay_agreement.fee_id %>
-</p>
+        <dt class="col-sm-3 h4">Discount</dt>
+        <dd class="col-sm-9 h4">
+          <span class="badge badge-warning"><%= number_to_percentage(@pay_agreement.discount_in_percent, precision: 2) %></span>
+        </dd>
 
-<p>
-  <strong>User registration:</strong>
-  <%= @pay_agreement.user_registration_id %>
-</p>
+        <dt class="col-sm-3 h4">Agreed Amount</dt>
+        <dd class="col-sm-9 h4">
+          <span class="badge badge-success">
+            <%= number_to_currency(@pay_agreement.agreed_school_fee, precision: 2, unit: "R") %>
+          </span>
+        </dd>
 
-<p>
-  <strong>Discount:</strong>
-  <%= @pay_agreement.discount %>
-</p>
 
-<p>
-  <strong>Comment:</strong>
-  <%= @pay_agreement.comment %>
-</p>
 
-<%= link_to 'Edit', edit_pay_agreement_path(@pay_agreement) %> |
-<%= link_to 'Back', pay_agreements_path %>
+      </dl>
+      <p class="h4">Comment:<br><%= @pay_agreement.comment %></p>
+      <hr>
+      <%= link_to fee_pay_agreements_path(@pay_agreement.fee),
+        class: "btn btn-lg btn-outline-primary" do %>
+        <%= fa_icon("arrow-left", text: "Back") %>
+      <% end %>
+
+      <%= link_to edit_fee_pay_agreement_path(@pay_agreement.fee, @pay_agreement),
+        class: "btn btn-lg btn-primary" do %>
+        <%= fa_icon("pencil", text: "Edit Agreement") %>
+      <% end %>
+    </div>
+  </div>
+</div>

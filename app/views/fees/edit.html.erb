@@ -1,4 +1,19 @@
-<div class="container py-3">
+<div class="row">
+  <div class="col-xl-10 offset-xl-1">
     <h1>Editing Fee</h1>
+    <h2 class="h4">Create Pay Agreements for each learner&nbsp;
+      <small>
+        <a data-toggle="collapse" href="#collapseCreatePayAgreements"  aria-expanded="false" aria-controls="collapseExample">
+          ...learn how.
+        </a>
+      </small>
+    </h2>
+    <div class="collapse" id="collapseCreatePayAgreements">
+      <div class="card card-body">
+        Create Pay Agreements for every learner by assigning individual learners to
+        the specfic fee for this year. You can select all at once or do it one-by-one.
+      </div>
+    </div>
     <%= render 'edit_form', fee: @fee %>
+  </div>
 </div>

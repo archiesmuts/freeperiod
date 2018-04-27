@@ -17,7 +17,8 @@ var el = $('.new_achievement');
 $('#list-achievements').append('<%= j render @achievement %>');
 $("#achievement-<%= @achievement.id %>").hide().fadeIn(1000);
 $("#list-achievements").sizeAchievements();
-$(".no-achievements-to-list").detach();
+
+$("#no-achievements-to-list").detach();
 $("#achievement_title").val('');
 $("#achievement_description").val('');
 $("#achievement_date").val('');

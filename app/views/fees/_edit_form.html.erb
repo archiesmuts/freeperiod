@@ -1,67 +1,78 @@
 <%= form_with(model: [@school, @fee], local: true, id: :edit_fee, class: :edit_fee) do |form| %>
-<div class="row">
+  <div class="row">
+    <div class="col-md-7">
+      <% if @fee.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(fee.errors.count, "error") %> prohibited this fee from being saved:</h2>
 
-  <div class="col-md">
-    <h4><%= @school.name %></h4>
+          <ul>
+          <% fee.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+          </ul>
+        </div>
+      <% end %>
 
-    <% if @fee.errors.any? %>
-      <div id="error_explanation">
-        <h2><%= pluralize(fee.errors.count, "error") %> prohibited this fee from being saved:</h2>
-
-        <ul>
-        <% fee.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
-        <% end %>
-        </ul>
+      <div class="form-group">
+        <%= form.label :name %>
+        <%= form.text_field :name, id: :fee_name, class: "form-control fee_name", required: true  %>
       </div>
-    <% end %>
-
-    <div class="form-group">
-      <%= form.label :name %>
-      <%= form.text_field :name, id: :fee_name, class: "form-control fee_name", required: true  %>
-    </div>
-    <div class="row">
-      <div class="col-sm-5">
-        <div class="form-group row">
-          <%= form.label :year, class: "col-sm-3 col-form-label"  %>
-          <div class="col-sm-8">
-            <%= form.date_select :year,
-              {selected: Date.today,
-              discard_day: true, discard_month: true,
-              end_year: Date.today.year},
-              {class: "form-control"} %>
+      <div class="row">
+        <div class="col-sm-6">
+          <div class="form-group row">
+            <%= form.label :year, class: "col-sm-3 col-form-label"  %>
+            <div class="col-sm-8">
+              <%= form.date_select :year,
+                {selected: Date.today,
+                discard_day: true, discard_month: true,
+                end_year: Date.today.year + 1},
+                {class: "form-control custom-select"} %>
+            </div>
           </div>
         </div>
-      </div>
-      <div class="col-sm-7">
-        <div class="form-group row">
-          <%= form.label :amount, class: "col-sm-3 col-form-label" %>
-          <div class="col-sm-8">
-            <div class="input-group mb-2 mb-sm-0">
-               <div class="input-group-addon">R</div>
+        <div class="col-sm-6">
+          <div class="form-group row">
+            <%= form.label :amount, class: "col-sm-3 col-form-label" %>
+            <div class="col-sm-8">
+              <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                  <span class="input-group-text">R</span>
+                </div>
                 <%= form.number_field :amount, id: :fee_amount, class: "form-control", required: true %>
+              </div>
             </div>
           </div>
         </div>
       </div>
+      <!-- .row inner -->
+      <div class="actions my-2">
+        <%= link_to [@school, @fee], class: "btn btn-lg btn-outline-primary" do %>
+          <%= fa_icon("times", text: "Cancel") %>
+        <% end %>
+        <%= form.submit class: "btn btn-lg btn-primary" %>
+      </div>
     </div>
+    <!-- .col-md-6 -->
 
-    <div class="actions">
-      <%= link_to 'Cancel', [@school, @fee], class: "btn btn-outline-primary" %>
-      <%= form.submit class: "btn btn-primary" %>
+    <div class="col-md-5">
+      <h4>Assign Learners to this year's school fee</h4>
+      <div class="form-check mb-2">
+        <input class="form-check-input" type="checkbox" value="" id="checkAll">
+        <label class="form-check-label" for="checkAll">
+          Click to Select All Learners
+        </label>
+      </div>
+      <div class="form-group">
+        <%= form.label :user_registration_id, "Names of Learners", class: "form-label" %>
+        <%= form.collection_check_boxes :user_registration_ids, UserRegistration.learner_and_active.joins(:registration_klass).where('registration_klasses.klass_type' => "registration_class"), :id, :user_name do |b| %>
+        <label class="form-check">
+          <%= b.check_box class: "form-check-input fee-box" %>
+          <span class="form-check-label"><%= b.label %></span>
+        </label>
+        <% end %>
+      </div>
     </div>
+    <!-- .col-md-5 -->
   </div>
-
-  <div class="col-md">
-    <h4>Select Learners for this school fee</h4>
-    <div class="form-group">
-    <%= form.label :user_registration_id, "Names of Learners", class: "form-label" %>
-          <!-- TODO create a scope to select users who are members of this school -->
-          <!-- TODO how to filter users to shorten the lookup list on checkbox -->
-          <%= form.collection_select :user_registration_ids, UserRegistration.all,
-              :id, :user_name, {selected: @fee.user_registration_ids, include_blank: true}, { multiple: true}  %>
-    </div>
-  </div>
-</div>
-
+  <!-- .row -->
 <% end %>

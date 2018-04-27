@@ -1,6 +1,6 @@
 class AssessmentsController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_lesson_plan, only: [:new, :create, :show]
+  before_action :set_lesson_plan, only: [:new, :create, :show, :update]
   before_action :set_assessment, only: [:show, :edit, :update, :destroy]
 
   # GET /assessments

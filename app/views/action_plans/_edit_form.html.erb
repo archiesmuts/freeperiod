@@ -1,27 +1,21 @@
 <%= form_with(model: [@goal, @action_plan], id: :edit_action_plan, class: :edit_action_plan) do |form| %>
   <div class="errors"> </div>
-  <div class="form-group row">
-    <%= form.label :what, "What needs to be done?", class: "col-sm-3 col-form-label" %>
-    <div class="col-sm-9">
-      <%= form.text_field :what, id: :action_plan_what, class: "form-control action_plan_what" %>
-    </div>
+  <div class="form-group">
+    <%= form.label :what, "What needs to be done?" %>
+    <%= form.text_field :what, id: :action_plan_what, class: "form-control action_plan_what" %>
   </div>
-  <div class="row">
-    <div class="col-sm-9">
-      <div class="form-group">
-        <%= form.label :who, "Who will do it?" %>
-        <%= form.text_field :who, id: :action_plan_who, class: "form-control" %>
-      </div>
+  <div class="form-group">
+    <%= form.label :who, "Who will do it?" %>
+    <%= form.text_field :who, id: :action_plan_who, class: "form-control" %>
+  </div>
 
+  <div class="input-group">
+    <div class="input-group-prepend">
+      <span class="input-group-text" id="byWhenDate">By when will it be done?</span>
     </div>
-    <div class="col-sm-3">
-      <div class="form-group">
-        <%= form.label :when_date, "By when will it be done?" %>
-        <%= form.text_field :when_date, id: :action_plan_when_date, class: "form-control datetimepicker" %>
-      </div>
-    </div>
+    <%= form.text_field :when_date, id: :action_plan_when_date, class: "form-control datetimepicker" %>
   </div>
-  
+
   <div class="modal-footer">
     <button type="button" class="btn btn-outline-primary" data-dismiss="modal" id="editActionPlan">Cancel</button>
     <%= form.submit  class: "btn btn-primary" %>

@@ -9,16 +9,16 @@
   </div>
 
   <div class="form-group">
-    <%= form.label :term, "School Term" %><br>
-    <% LessonPlan.terms.keys.map do |term| %>
-      <label class="custom-control custom-radio">
-        <%= form.radio_button :term, term, class: "custom-control-input" %>
-        <span class="custom-control-indicator"></span>
-        <%= custom_radio_label term %>
-        <!-- view for <span class="custom-control-description ><%#= term.humanize %></span>-->
-
-      </label>
-    <% end %>
+    <div class="form-group">
+      <%= form.label :term, "School Term" %><br>
+      <% LessonPlan.terms.keys.map do |term| %>
+        <label class="form-check-inline">
+          <%= form.radio_button :term, term, class: "form-check-input" %>
+          <span class="form-check-label"><%= term.humanize %></span>
+          <!-- view helper for <span class="custom-control-description ><%#= term.humanize %></span>-->
+        </label>
+      <% end %>
+    </div>
   </div>
 
   <div class="modal-footer">

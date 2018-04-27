@@ -31,16 +31,15 @@
 
       <div class="form-group">
         <% Course.subject_types.keys.map do |subject_type| %>
-          <label class="custom-control custom-radio">
-            <%= form.radio_button :subject_type, subject_type, class: "custom-control-input" %>
-            <span class="custom-control-indicator"></span>
-            <span class="custom-control-description"><%= subject_type.humanize %></span>
+          <label class="form-check-label form-check-inline">
+            <%= form.radio_button :subject_type, subject_type, class: "form-check-input" %>
+            <span class="form-check-label"><%= subject_type.humanize %></span>
           </label>
         <% end %>
       </div>
 
       <div class="actions">
-        <%= form.submit class: "btn btn-primary" %>
+        <%= form.submit class: "btn btn-lg btn-primary" %>
       </div>
     <% end %>
   </div>

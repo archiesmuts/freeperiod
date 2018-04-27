@@ -3,11 +3,14 @@
 # You can use CoffeeScript in this file: http://coffeescript.org/
 jQuery.fn.sizeGoals = ->
   size_goals = $("#list-goals").children().length
-  $("#sizeGoals").text size_goals
+  $("#sizeGoals1").text size_goals
+  $("#sizeGoals2").text size_goals
 
 jQuery(document).on "turbolinks:load", ->
+  $('.datetimepicker').datetimepicker
+    format: "YYYY-MM-DD"
   $("#list-goals").sizeGoals()
-  
+
   $('#goal-dialog').on 'shown.bs.modal', ->
     $('.goal_name').focus()
     $('.datetimepicker').datetimepicker

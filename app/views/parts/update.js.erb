@@ -17,8 +17,8 @@ var el = $('.edit_part');
 $('#list-parts').append('<%= j render @part %>');
 $("#part-<%= @part.id %>").hide().fadeIn(1000);
 $('#part-dialog').modal("hide");
-$('#totalValue').text(getTotal());
-$('.totalValue').text(getTotal());
+$('#totalValue').getTotal();
+$('.totalValue').getTotal();
 
 // Clear form
 el.find('input:text,text_area').val('');

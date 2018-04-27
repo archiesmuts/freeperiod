@@ -1,0 +1,37 @@
+<div class="col-sm-6 goal-card">
+  <div class="card border-primary mb-3 scale">
+    <div class="card-header">
+      Example Goal
+    </div>
+    <div class="card-body">
+      <h4 class="card-title text-primary"><%= fa_icon("star") %>&nbsp;I want to pass mathematics with at leat 70%</h4>
+        <p class="card-text">
+          <strong><%= fa_icon("calendar-check-o", text: "Deadline:") %></strong>&nbsp;
+          <span class="text-info">2018-11-30</span>
+        </p>
+        <p class="card-text"><strong><%= fa_icon("question-circle-o", text: "Status:") %></strong>&nbsp;
+          <span class="text-info">In Progress</span>
+        </p>
+          <p class="card-text"><strong><%= fa_icon("clock-o", text: "Date completed") %></strong>&nbsp;
+            <span class="text-info">Not yet completed</span>
+          </p>
+        <h5 class="card-sub-title">
+          <span class="text-white"><%= fa_icon("check-circle", text: "Action Plans") %></span>&nbsp;
+          <span class="badge badge-info">7</span>&nbsp;
+        </h5>
+        <p class="card-text text-muted">
+          <small>Last updated 3 months ago</small>
+        </p>
+    </div>
+    <div class="card-footer">
+      <div class="row">
+        <div class="col-sm-6">
+            <button type="button" name="button"class="btn btn-danger"><%= fa_icon("trash", text: "Delete") %></button>
+        </div>
+        <div class="col-sm-6">
+          <button type="button" name="button"class="btn btn-primary btn-block"><%= fa_icon("pencil", text: "Edit Goal") %></button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

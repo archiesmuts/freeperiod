@@ -1,46 +1,48 @@
+<div class="mt-1">
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item">
+        <%= link_to school_registration_klass_path(@registration_klass.school, @registration_klass) do %>
+          <%= fa_icon("arrow-left") %>&nbsp;<%= @registration_klass.course_name %>
+        <% end %>
+      </li>
+      <li class="breadcrumb-item active" aria-current="page"><%= @user_registration.registration_klass.klass_type.titleize %>&nbsp;Registration Card</li>
+    </ol>
+  </nav>
+</div>
 <div class="jumbotron">
   <div class="row">
-      <div class="col-2 hide-xs">
-        <div class="card">
-          <img class="card-img-top" data-src="holder.js/100x100?auto=yes&theme=sky&text=logo" />
+    <div class="col-xl-10 offset-xl-1">
+      <div class="media">
+        <div class="media-body">
+            <h1 class="h2 mt-0 mb-1"> <%= @user_registration.user_name %></h1>
+            <h2 class="h3 text-info">
+              <%= @user_registration.registration_klass_name %>
+            </h2>
+            <h3 class="h4">
+              <%= @user_registration.registration_klass.course_name %>&nbsp;
+              <span class="badge badge-dark"><%= @user_registration.registration_klass.year.strftime("%Y") %></span>
+            </h3>
+            <p>
+              <span id="user-type" class="badge badge-info"><%= render "user_type_display" %></span>&nbsp;
+              <span class="badge badge-light"><%= @user_registration.completed ? "Completed on" : "Active" %>&nbsp;
+                <% if @user_registration.completed == true %>
+                  <%= @user_registration.completed_at.strftime("%d-%b-%Y") %>
+                <% end %>
+              </span>
+            </p>
+            <p><span id="user-role">Check:&nbsp;<%= user_role_check(@user_registration) %></span></p>
+            <hr>
+            <%= link_to edit_registration_klass_user_registration_path(@user_registration.registration_klass, @user_registration),
+                remote: true, class: "btn btn-lg btn-primary btn-block-xs" do %>
+                  <%= fa_icon("pencil", text: "Edit registration") %>
+                <% end %>
         </div>
-      </div>
-      <div class="col-10">
-        <h2>
-          <%= link_to school_registration_klass_path(@registration_klass.school, @registration_klass),
-              class: "btn btn-outline-primary" do %>
-                  <%= fa_icon("arrow-left") %>&nbsp;
-          <% end %>
-          <%= @user_registration.user_name %>&nbsp;
-        </h2>
-        <p class="h4 text-info">
-          <%= @user_registration.registration_klass.name %>&nbsp;
-          <span class="badge badge-dark"><%= @user_registration.registration_klass.year.strftime("%Y") %></span>
-        </p>
-        <p><span id="user-type" class="badge badge-info"><%= render "user_type_display" %></span>&nbsp;
-          <span class="badge badge-dark"><%= @user_registration.completed ? "Completed on" : "Active" %>&nbsp;
-            <% if @user_registration.completed == true %>
-              <%= @user_registration.completed_at.strftime("%d-%b-%Y") %>
-            <% end %>
-          </span>
-          <span> <%= @user_registration.user.roles.to_a %></span>
-          <span id="user-role" >
-            <%= user_role_check(@user_registration) %>
-          </span>
-            <div id="user-role-type-mismatch-alert" class="alert alert-warning">
-              <strong>Oh snap!</strong> User's type, i.e. Teacher or Learner does not
-              correspond to the role set up for this user on the membership registration.
-              Confirm if the user type has been set correctly.
-            </div>
-        </p>
-
-        <p>This is an example to show the potential of an offcanvas layout pattern in Bootstrap. Try some responsive-range viewport sizes to see it in action.</p>
-        <%= link_to edit_registration_klass_user_registration_path(@user_registration.registration_klass, @user_registration),
-            remote: true, class: "btn btn-primary btn-block-xs" do %>
-              <%= fa_icon("pencil", text: "Edit registration") %>
-            <% end %>
-
-      </div>
-  </div> <!-- .row -->
-
-</div> <!-- .jumbotron -->
+        <!-- .media-body -->
+          <img class="ml-3" data-src="holder.js/120x120?auto=yes&theme=sky&text=headshot" />
+        </div>
+        <!-- .jumbotron.media -->
+    </div>
+  </div>
+</div>
+<!-- .jumbotron -->

@@ -15,7 +15,7 @@ var el = $('.new_lesson_plan');
 <% else %>
 
 $('#list-lesson-plans').append('<%= j render @lesson_plan %>');
-$("#lesson-plan-<%= @lesson_plan.id %>").hide().fadeIn(1000);
+$("#lesson_plan_<%= @lesson_plan.id %>").hide().fadeIn(1000);
 $('#lesson-plan-dialog').modal('hide');
 $('.no-lesson-plans-to-list').detach();
 <% if @lesson_plan.four? %>

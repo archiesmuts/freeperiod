@@ -1,14 +1,17 @@
 <a class="nav-link active list-group-item" id="user-reg-home-tab" data-toggle="pill" href="#user-reg-home" role="tab" aria-controls="user-registration-home" aria-selected="true"><%= fa_icon("user-circle fw") %>&nbsp;<%= @user_registration.user_name %></a>
 <% if @registration_klass.subject_class? %>
-  <a class="nav-link list-group-item" id="user-reg-goals-tab" data-toggle="pill" href="#user-reg-goals" role="tab" aria-controls="" aria-selected="false"><%= fa_icon("calendar-check-o fw", text: "My Subject Goals & Action plans") %>&nbsp;<span id="sizeUserRegGoals" class="badge badge-info">?</span></a>
-  <a class="nav-link list-group-item" id="user-reg-achievements-tab" data-toggle="pill" href="#user-reg-achievements" role="tab" aria-controls="" aria-selected="false"><%= fa_icon("trophy fw", text: "My Achievements") %>&nbsp;<span id="sizeUserRegAchievements" class="badge badge-info">?</span></a>
+  <a class="nav-link list-group-item d-flex justify-content-between align-items-center" id="user-reg-goals-tab" data-toggle="pill" href="#user-reg-goals" role="tab" aria-controls="" aria-selected="false"><span><%= fa_icon("calendar-check-o fw", text: "My Subject Goals & Action plans") %></span><span id="sizeGoals2" class="badge badge-info">?</span></a>
+  <a class="nav-link list-group-item d-flex justify-content-between align-items-center" id="user-reg-achievements-tab" data-toggle="pill" href="#user-reg-achievements" role="tab" aria-controls="" aria-selected="false"><span><%= fa_icon("trophy fw", text: "My Achievements") %></span><span id="sizeAchievements2" class="badge badge-info">?</span></a>
 <% end %>
 <% if @registration_klass.registration_class? %>
-  <a class="nav-link list-group-item" id="user-reg-attendances-tab" data-toggle="pill" href="#user-reg-attendances" role="tab" aria-controls="" aria-selected="false"><%= fa_icon("calendar-minus-o fw", text: "Attendance Record") %>&nbsp;<span id="sizeUserRegAttendances" class="badge badge-info"></span></a>
+  <a class="nav-link list-group-item d-flex justify-content-between align-items-center" id="user-reg-attendances-tab" data-toggle="pill" href="#user-reg-attendances" role="tab" aria-controls="" aria-selected="false"><span><%= fa_icon("calendar-minus-o fw", text: "Attendance Record") %></span><span id="daysAbsent2" class="badge badge-info"></span></a>
 <% end %>
 <% if @registration_klass.school_faculty? %>
-  <a class="nav-link list-group-item" id="user-reg-attendances-tab" data-toggle="pill" href="#user-reg-attendances" role="tab" aria-controls="" aria-selected="false"><%= fa_icon("calendar-minus-o fw", text: "Attendance Record") %>&nbsp;<span id="sizeUserRegAttendances" class="badge badge-info">?</span></a>
+  <a class="nav-link list-group-item d-flex justify-content-between align-items-center" id="user-reg-goals-tab" data-toggle="pill" href="#user-reg-goals" role="tab" aria-controls="" aria-selected="false"><span><%= fa_icon("calendar-check-o fw", text: "My Faculty Goals & Action plans") %></span><span id="sizeGoals2" class="badge badge-info">?</span></a>
+  <a class="nav-link list-group-item d-flex justify-content-between align-items-center" id="user-reg-achievements-tab" data-toggle="pill" href="#user-reg-achievements" role="tab" aria-controls="" aria-selected="false"><span><%= fa_icon("trophy fw", text: "My Achievements") %></span><span id="sizeAchievements2" class="badge badge-info">?</span></a>
+  <a class="nav-link list-group-item d-flex justify-content-between align-items-center" id="user-reg-attendances-tab" data-toggle="pill" href="#user-reg-attendances" role="tab" aria-controls="" aria-selected="false"><span><%= fa_icon("calendar-minus-o fw", text: "Attendance Record") %></span><span id="sizeAttendances2" class="badge badge-info">?</span></a>
 <% end %>
+
 <%= link_to current_user, class: "nav-link list-group-item", aria: {selected: false}  do %>
   <%= fa_icon "fw smile-o", text: "My page" %>
 <% end %>

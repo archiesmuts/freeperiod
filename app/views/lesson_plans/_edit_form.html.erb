@@ -1,27 +1,35 @@
-<%= form_with(model:[@lesson_plan.registration_klass, @lesson_plan], method: :patch, id: :edit_lesson_plan, class: :edit_lesson_plan) do |form| %>
+<%= form_with(model:[@lesson_plan.registration_klass, @lesson_plan], local: true, id: :edit_lesson_plan, class: :edit_lesson_plan) do |form| %>
 
-  <p> <strong><%= @lesson_plan.registration_klass.name %></strong> </p>
-  <div class="errors"></div>
+  <h4 class="card-title"><%= @lesson_plan.registration_klass.name %></h4>
+
+  <% if @lesson_plan.errors.any? %>
+    <div id="error_explanation">
+      <h3><%= pluralize(@lesson_plan.errors.count, "error") %> prohibited this course from being saved:</h3>
+      <ul>
+      <% @lesson_plan.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
 
   <div class="form-group">
-    <%= form.label :name, "Name for your lesson plan" %>
+    <%= form.label :name, "Name of your lesson plan" %>
     <%= form.text_field :name, id: :lesson_plan_name, class: "form-control" %>
   </div>
 
   <div class="form-group">
     <%= form.label :term, "School Term" %><br>
     <% LessonPlan.terms.keys.map do |term| %>
-      <label class="custom-control custom-radio">
-        <%= form.radio_button :term, term, class: "custom-control-input" %>
-        <span class="custom-control-indicator"></span>
-        <%= custom_radio_label term %>
+      <label class="form-check-inline">
+        <%= form.radio_button :term, term, class: "form-check-input" %>
+        <span class="form-check-label"><%= term.humanize %></span>
         <!-- view helper for <span class="custom-control-description ><%#= term.humanize %></span>-->
       </label>
     <% end %>
   </div>
-
-  <div class="modal-footer">
-    <button type="button" class="btn btn-outline-primary btn-sm" data-dismiss="modal" id="createLessonPlan">Cancel</button>
-    <%= form.submit "Save lesson plan", class: "btn btn-primary btn-sm" %>
-  </div>
+  <%= link_to [@lesson_plan.registration_klass, @lesson_plan], class: "btn btn-outline-primary" do %>
+    <%= fa_icon("times", text: "Cancel") %>
+  <% end %>
+  <%= form.submit "Save lesson plan", class: "btn btn-primary" %>
 <% end %>

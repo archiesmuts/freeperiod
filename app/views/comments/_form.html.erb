@@ -1,16 +1,9 @@
 <%= form_with(model: [commentable, Comment.new], id: :new_comment, class: :new_comment) do |form| %>
-  <div class="row py-2">
-    <div class="col-sm-9">
-      <div class="errors"> </div>
-      <div class="form-group">
-        <div class="input-group">
-          <div class="input-group-addon"> <%= fa_icon "comment" %></div>
-          <%= form.text_area :comment, id: :comment_comment, class: "form-control", placeholder: "Write a comment" %>
-        </div>
-      </div>
-    </div>
-    <div class="col-sm-3">
-      <%= form.submit "Post comment", class: "btn btn-primary btn-block-xs" %>
-    </div>
+  <div class="errors"> </div>
+  <div class="form-group">
+    <%= form.label :comment, "Write a comment" %>
+    <%= form.text_area :comment, id: :comment_comment, class: "form-control", placeholder: "Write a comment" %>
   </div>
+  <%= form.submit "Post comment", class: "btn btn-sm btn-primary btn-block-xs" %>&nbsp;
+  <%= fa_icon("paper-plane") %>
 <% end %>

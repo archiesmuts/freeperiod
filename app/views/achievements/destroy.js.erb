@@ -1,7 +1,6 @@
 $(".delete-achievement").bind('ajax:success', function() {
-  $("#achievement-<%= @achievement.id %>").fadeOut(500, function(){
+  $("#achievement_<%= @achievement.id %>").fadeOut(500, function(){
   	$(this).remove();
-    // var number_days = $( ".attendance" ).length;
     $('#list-achievements').sizeAchievements();
   });
 });

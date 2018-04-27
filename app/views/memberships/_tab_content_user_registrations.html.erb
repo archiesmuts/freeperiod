@@ -1,0 +1,28 @@
+<div class="mt-1">
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item">
+        <%= link_to  school_memberships_path(@membership.school) do %>
+          <%= fa_icon "arrow-left", text: "Membership Administration" %>
+        <% end %>
+      </li>
+      <li class="breadcrumb-item"><a href="#">Membership Registration Card</a></li>
+      <li class="breadcrumb-item active" aria-current="page">Class Registrations</li>
+    </ol>
+  </nav>
+</div>
+<div class="row">
+  <div class="col-12 col-xl-10 offset-xl-1">
+    <h1 class="text-white">Class/Team/House Registrations</h1>
+  </div>
+</div>
+<div class="row">
+  <div class="col-xl-8 offset-xl-1">
+    <div class="list-group">
+    <% @membership.user.user_registrations.each do |user_registration| %>
+      <%= link_to user_registration.registration_klass_name, registration_klass_user_registration_path(user_registration.registration_klass, user_registration),
+        class: "list-group-item list-group-item-action" %>
+    <% end %>
+  </div>
+  </div>
+</div>

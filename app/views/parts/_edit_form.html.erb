@@ -13,7 +13,7 @@
     <%= form.label :description %>
     <%= form.text_area :description,  id: :part_description, class: "form-control", required: true %>
   </div>
-  
+
   <div class="row">
     <div class="col-sm-6">
       <div class="form-group">
@@ -24,8 +24,10 @@
   </div>
 
   <div class="modal-footer">
-    <button type="button" class="btn btn-outline-primary" data-dismiss="modal" id="createPart">Cancel</button>
-    <%= form.submit class: "btn btn-primary" %>
+    <button type="button" class="btn btn-lg btn-outline-primary" data-dismiss="modal" id="createPart">
+      <%= fa_icon("times", text: "Cancel") %>
+    </button>
+    <%= form.submit "Update question", class: "btn btn-lg btn-primary" %>
   </div>
 
 

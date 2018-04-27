@@ -1,10 +1,13 @@
-<div class="container">
-  <div class="row d-flex justify-content-md-center">
-      <div class="col-md-8">
-      <h1>Editing User Registration</h1>
-
-      <%= render 'form', membership: @membership %>
+<% content_for :title do %>fp - Edit Registration<% end %>
+<div class="row d-flex justify-content-xl-center">
+  <div class="col-xl-7">
+    <div class="card border-primary mt-2">
+      <div class="card-body text-white">
+        <h4 class="card-title">
+          <%= fa_icon("tasks", text: "Editing Membership Registration") %>
+        </h4>
+        <%= render 'edit_form', membership: @membership %>
+      </div>
     </div>
-
-
+  </div>
 </div>

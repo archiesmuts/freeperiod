@@ -1,4 +1,4 @@
-<% content_for :title do %>My personal page<% end %>
+<% content_for :title do %>My home page<% end %>
 <div class="row row-offcanvas row-offcanvas-right pt-2">
   <div class="col-12 col-md-9">
     <p class="float-right d-md-none">
@@ -9,13 +9,15 @@
     <!-- Tab panes -->
     <div class="tab-content">
       <div class="tab-pane fade show active" id="home" role="tabpanel">
-        <%= render "home_card" %>
+        <%= render "tab_content_home" %>
       </div>
-      <%# if current_user.has_any_role?(:admin, :faculty) %>
-        <!-- true -->
+
       <div class="tab-pane" id="my-classes" role="tabpanel">
         <%= render "tab_content_my_classes" %>
       </div>
+      <%# if current_user.has_any_role?(:admin, :faculty) %>
+        <!-- true -->
+
       <%# if current_user.has_role?(:admin) %>
       <div class="tab-pane" id="my-achievements" role="tabpanel">
         <%= render "tab_content_achievements" %>
@@ -36,7 +38,6 @@
 
 </div>
 
-<!-- modal adresses edit action -->
 <%= render "goals/modal_dialog" %>
-<%#= render "addresses/modal_dialog" %>
 <%= render "achievements/modal_dialog" %>
+<%= render "addresses/modal_dialog" %>

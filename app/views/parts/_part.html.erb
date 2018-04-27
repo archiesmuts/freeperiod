@@ -1,18 +1,30 @@
-<li id="part-<%= part.id %>" class="list-group-item d-flex justify-content-between" >
-  <div>
-    <%= link_to edit_assessment_part_path(part.assessment, part), remote: true do %>
-      <%= fa_icon "edit" %>&nbsp;<%= part.name %>
-    <% end %>
-    <br>
-    <%= part.description %>
+<!-- parts/part -->
+<div class="col-md-6 part-card" id="<%= dom_id(part) %>">
+  <div class="card text-white bg-dark mb-3">
+    <div class="card-header">Section/Question - <%= @assessment.name.truncate(25) %></div>
+    <div class="card-body">
+      <h5 class="card-title"><%= part.name %></h5>
+      <p class="card-text"><%= part.description %></p>
+      <p class="card-text">
+        <span class="badge badge-info"><span class="partValue"><%= part.value %></span>/<span class="totalValue"></span></span>
+      </p>
+    </div>
+    <div class="card-footer">
+      <div class="row">
+        <div class="col-md-6">
+          <%= link_to [part.assessment, part], method: :delete, remote: true,
+            data: { confirm: 'Delete! Are you absolutely sure?' },
+            class: "btn btn-danger delete-part" do %>
+              <%= fa_icon("trash", text: "Delete") %>
+          <% end %>
+        </div>
+        <div class="col-md-6">
+          <%= link_to edit_assessment_part_path(part.assessment, part), remote: true,
+            class: "btn btn-primary btn-block" do %>
+          <%= fa_icon "pencil", text: "Edit question" %>
+          <% end %>
+        </div>
+      </div>
+    </div>
   </div>
-  <div>
-    <span class="badge badge-info"> <span class="partValue"><%= part.value %></span>/<span class="totalValue"></span></span>
-
-    <%= link_to [part.assessment, part], method: :delete, remote: true,
-        data: { confirm: 'Delete! Are you absolutely sure?' },
-        class: "btn btn-sm btn-danger btn-link delete-part" do %>
-          <span class="text-danger"><i class="fa fa-trash" aria-hidden="true"></i>&nbsp;Remove</span>
-        <% end %>
-  </div>
-</li>
+</div>

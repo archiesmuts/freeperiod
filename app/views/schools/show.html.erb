@@ -3,19 +3,23 @@
 <!-- TODO add a tagline for Achievements Goals etc. -->
 <div class="row row-offcanvas row-offcanvas-right pt-2">
   <div class="col-12 col-md-9">
-    <p class="float-right d-md-none">
+    <div class="float-right d-md-none">
       <button type="button" class="btn btn-primary btn-sm" data-toggle="offcanvas">
         <%= fa_icon("th-list") %>
       </button>
-    </p>
+    </div>
     <!-- Tab panes -->
     <div class="tab-content">
       <div class="tab-pane fade show active" id="home" role="tabpanel">
-        <%= render "home_card" %>
+        <%= render "tab_content_home" %>
       </div>
 
       <div class="tab-pane fade" id="dashboard" role="tabpanel">
         <%= render "tab_content_dashboard" %>
+      </div>
+
+      <div class="tab-pane fade" id="school-registration-klasses" role="tabpanel">
+        <%= render "tab_content_registration_klasses" %>
       </div>
 
       <div class="tab-pane fade" id="school-memberships" role="tabpanel">
@@ -27,8 +31,11 @@
       <div class="tab-pane fade" id="school-goals" role="tabpanel">
         <%= render "tab_content_goals" %>
       </div>
-      <div class="tab-pane fade" id="school-registration-klasses" role="tabpanel">
-        <%= render "tab_content_registration_klasses" %>
+      <div class="tab-pane fade" id="school-events" role="tabpanel">
+        <%= render "tab_content_events" %>
+      </div>
+      <div class="tab-pane fade" id="school-fees" role="tabpanel">
+        <%= render "tab_content_fees" %>
       </div>
     </div> <!-- .tab-content -->
   </div>
@@ -42,3 +49,4 @@
 <%= render "achievements/modal_dialog" %>
 <%= render "goals/modal_dialog" %>
 <%= render "registration_klasses/modal_dialog" %>
+<%= render "fees/modal_dialog" %>

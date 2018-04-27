@@ -9,15 +9,19 @@ class UserRegistration < ApplicationRecord
   has_many :assessments, through: :results
   has_many :pay_agreements, inverse_of: :user_registration
   has_many :fees, through: :pay_agreements
-  has_many :attendances, -> { order "date" }, as: :attendable
-  has_many :goals, as: :goalable
+  has_many :attendances, -> { order "date DESC" }, as: :attendable
+  has_many :goals,-> { order "deadline ASC" }, as: :goalable
   has_many :achievements, -> { order('date DESC') }, as: :achievable
 
 
 
   # scope :for_this_klass, -> { where(field: true)   }
   validates :user_id, :registration_klass_id, :user_type, presence: true
+  validates_uniqueness_of :user_id, scope: :registration_klass_id, message: "already exists"
   validates :completed, inclusion: { in: [true, false] }
+
+  scope :learners, -> { where(user_type: "learner") }
+  scope :learner_and_active, -> { learners.where(completed: false) }
 
   enum user_type: {
     learner: 0,
@@ -37,6 +41,7 @@ class UserRegistration < ApplicationRecord
   def registration_klass_year
     self.registration_klass.try(:year)
   end
+
   def school
     self.registration_klass.school
   end

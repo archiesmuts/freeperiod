@@ -1,0 +1,28 @@
+<h1>Welcome <%= @user.first_name %>!</h1>
+<h2>Start by first creating your <span class="badge badge-primary">School Account.</span></h2>
+<h3>Remember this!</h3>
+<p class="lead">
+  When you create your <span class="badge badge-primary">School Account</span>
+  you will automatically be assigned the <span class="badge badge-secondary">role</span>
+  of <span class="badge badge-info">Account owner.</span> This role can later be
+  assigned to one or more other people should you so wish.
+</p>
+<p class="lead">
+  What is important is that as <span class="badge badge-info">Account owner</span>
+  you have <span class="badge badge-success">full access permission</span> to all
+  the pages on your site.
+</p>
+<p class="lead">
+  As <span class="badge badge-info">Account owner</span> you will be responsible
+  to assign specfic <span class="badge badge-secondary">roles</span> to teachers,
+  learners, parents and school administrators respectively.
+  Each <span class="badge badge-secondary">role</span> will have its own
+  specific <span class="badge badge-success">access permissions</span>.
+</p>
+<hr>
+<div class="my-2">
+  <%= link_to new_school_path,
+    class: "btn btn-lg btn-primary" do %>
+  <%= fa_icon("plus-circle", text: "Create your School Account") %>
+  <% end %>
+</div>

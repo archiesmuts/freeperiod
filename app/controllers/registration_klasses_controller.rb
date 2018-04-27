@@ -6,7 +6,7 @@ class RegistrationKlassesController < ApplicationController
   # GET /registration_klasses
   # GET /registration_klasses.json
   def index
-    @registration_klasses = @school.registration_klasses.all
+    @registration_klasses = @school.registration_klasses.order("year DESC, course_name ASC")
   end
 
   # GET /registration_klasses/1

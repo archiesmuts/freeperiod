@@ -1,20 +1,39 @@
-<div class="jumbotron">
-  <h2>Our Class Goals and Action Plans</h2>
-  <p class="h5"><span class="badge badge-dark"><%= @registration_klass.name %></span></p>
-  <p>This is a template for a simple marketing or informational website. It includes a large callout called a jumbotron and three supporting pieces of content. Use it as a starting point to create something more unique.</p>
-    <%= link_to new_registration_klass_goal_path(@registration_klass), remote: true,
-        class: "btn btn-primary btn-block-xs float-right" do %>
-      <%= fa_icon("plus", text: "Add a Class Goal") %>
-    <% end %>
-
-</div>
-
-<div class="d-flex flex-wrap" id="list-goals">
-    <% if @registration_klass.goals.any? %>
-      <%= render "goals/goals", goalable: @registration_klass %>
-    <% else %>
-      <li class="list-group-item list-group-item-info no-goals-to-list">
-        No Goals Recorded yet
+<div class="mt-1">
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item">
+        <%= link_to school_registration_klasses_path(@registration_klass.school) do %>
+          <%= fa_icon "arrow-left", text: "Registration and Subject Classes Index" %>
+        <% end %>
       </li>
-    <% end %>
+      <li class="breadcrumb-item active">
+        <a href="#"><%= @registration_klass.course_name %> - <%= @registration_klass.year.strftime("%Y") %></a>
+      </li>
+      <li class="breadcrumb-item active" aria-current="page">Class Goals</li>
+    </ol>
+  </nav>
 </div>
+<div class="jumbotron">
+  <div class="row">
+    <div class="col-12 col-xl-10 offset-xl-1">
+      <h1 class="h2 text-white"><%= fa_icon("calendar-check-o", text: "Achieving Our Goals Together") %>&nbsp;<small><span class="badge badge-info" id="sizeClassGoals"></span></small></h1>
+      <h2 class="h3 text-info"><%= @registration_klass.name %></h2>
+      <h3 class="h4"><%= @registration_klass.course_name %> - <%= @registration_klass.year.strftime("%Y") %></h3>
+      <hr>
+      <%= link_to new_registration_klass_goal_path(@registration_klass), remote: true,
+      class: "btn btn-lg btn-primary btn-block-xs" do %>
+      <%= fa_icon("plus", text: "Add a Class Goal") %>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<% if @registration_klass.goals.any? %>
+  <div class="row d-flex" id="list-goals">
+    <%= render "goals/goals", goalable: @registration_klass %>
+  </div>
+<% else %>
+  <div class="row d-flex">
+    <%= render "goals/goal_placeholder" %>
+  </div>
+<% end %>

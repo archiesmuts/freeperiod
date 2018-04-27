@@ -19,6 +19,10 @@ eventCalendar = ->
     eventLimit: true
     eventRender: (event, element) ->
       element.attr 'href', 'javascript:void(0);'
+      element.hover (->
+        $(this).css 'background-color', 'darkorange'
+        ), ->
+        $(this).css 'background-color', 'darkslategrey'
       element.click ->
         $('.modal-title').html event.title
         $('.modal-body').html moment(event.start).format('MMM Do h:mm A') + ' to ' + moment(event.end).format('MMM Do h:mm A') + '<br />' + event.description

@@ -25,11 +25,7 @@ $('.no-user-registrations-to-list').detach();
 <% else %>
   $('#user-type').html("<span class='badge badge-info'>Learner</span>");
 <% end %>
-<% unless @user_registration.teacher? ||  @user_registration.substitute_teacher? &&  @user_registration.user.has_role?(:educator, @user_registration.school ) %>
-  $("#user-role-type-mismatch-alert").show();
-  <% else %>
-  $("#user-role-type-mismatch-alert").hide();
-<% end %>
+
 // Clear form
 el.find('input:text,text_area').val('');
 el.find('.errors').empty();

@@ -1,11 +1,11 @@
-<a class="nav-link active list-group-item" id="class-home-tab" data-toggle="pill" href="#class-home" role="tab" aria-controls="class-home" aria-selected="true"><%= fa_icon("graduation-cap fw") %>&nbsp;<%= @registration_klass.course_name.truncate(35) %></a>
+<a class="nav-link active list-group-item" id="class-home-tab" data-toggle="pill" href="#class-home" role="tab" aria-controls="class-home" aria-selected="true"><%= fa_icon("graduation-cap fw") %>&nbsp;<%= @registration_klass.course_name.truncate(35) %>&nbsp;Home</a>
 <% if @registration_klass.subject_class? %>
-  <a class="nav-link list-group-item" id="lesson-plans-tab" data-toggle="pill" href="#lesson-plans" role="tab" aria-controls="lesson_plans" aria-selected="false"><%= fa_icon("book fw", text: "Lesson Plans") %>&nbsp;<span id="sizeLessonPlans" class="badge badge-info">?</span></a>
+  <a class="nav-link list-group-item d-flex justify-content-between align-items-center" id="lesson-plans-tab" data-toggle="pill" href="#lesson-plans" role="tab" aria-controls="lesson_plans" aria-selected="false"><span><%= fa_icon("book fw", text: "Lesson Plans") %></span><span id="sizeLessonPlans2" class="badge badge-info"></span></a>
 <% end %>
-<a class="nav-link list-group-item" id="class-achievements-tab" data-toggle="pill" href="#class-achievements" role="tab" aria-controls="" aria-selected="false"><%= fa_icon("trophy fw", text: "Achievements") %>&nbsp;<span id="sizeClassAchievements" class="badge badge-info">?</span></a>
-<a class="nav-link list-group-item" id="class-goals-tab" data-toggle="pill" href="#class-goals" role="tab" aria-controls="" aria-selected="false"><%= fa_icon("calendar-check-o fw", text: "Goals and Action plans") %>&nbsp;<span id="sizeClassGoals" class="badge badge-info">?</span></a>
-<a class="nav-link list-group-item" href="#">Analytics</a>
-<a class="nav-link list-group-item" href="#">Export</a>
+<a class="nav-link list-group-item d-flex justify-content-between align-items-center" id="class-achievements-tab" data-toggle="pill" href="#class-achievements" role="tab" aria-controls="" aria-selected="false"><span><%= fa_icon("trophy fw", text: "Achievements") %></span><span id="sizeAchievements2" class="badge badge-info"></span></a>
+<a class="nav-link list-group-item d-flex justify-content-between align-items-center" id="class-goals-tab" data-toggle="pill" href="#class-goals" role="tab" aria-controls="" aria-selected="false"><span><%= fa_icon("calendar-check-o fw", text: "Goals and Action plans") %></span><span id="sizeGoals2" class="badge badge-info"></span></a>
+<a class="nav-link list-group-item d-flex justify-content-between align-items-center" id="class-teachers-guide-tab" data-toggle="pill" href="#class-teachers-guide" role="tab" aria-controls="" aria-selected="false"><span><%= fa_icon("map-signs fw", text: "Teacher's Guide") %></span></a>
+
 <%= link_to current_user, class: "nav-link list-group-item", aria: {selected: false}  do %>
   <%= fa_icon "fw smile-o", text: "My page" %>
 <% end %>

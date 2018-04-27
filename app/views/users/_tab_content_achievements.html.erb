@@ -1,21 +1,36 @@
-<div class="jumbotron">
-  <h1>Celebrate my achievements. <small><em>Big and small</em></small> </h1>
-  <p>
-    Remember to celebrate both the big and the little achievements.
-    You know when have that <em>"Yes. I did it!"</em> moments? List all of those here.
-  </p>
-    <%= link_to new_user_achievement_path(current_user), remote: true, class: "btn btn-primary btn-block-xs" do %>
-      <%= fa_icon("plus", text: "Add an Achievement") %>
-    <% end %>
+<div class="mt-1">
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a href="#">Home</a></li>
+      <li class="breadcrumb-item active" aria-current="page">My Personal Achievements</li>
+    </ol>
+  </nav>
 </div>
-
-<div class="d-flex flex-wrap" id="list-achievements">
-    <% if current_user.achievements.any? %>
-      <%= render "achievements/achievements", achievable: @user %>
-    <% else %>
-      <li class="list-group-item list-group-item-info no-achievements-to-list">
-        <h4 class="list-group-item-heading">No Achievements to list yet.</h4>
-        Remember to also celebrate the little things. You know when have that <em>"Yes. I did it!"</em> moments?
-      </li>
-    <% end %>
-</div> <!-- .card-deck -->
+<div class="jumbotron mt-1">
+  <div class="row">
+    <div class="col-xl-10 offset-xl-1">
+      <h1 class="text-white">Celebrating my achievements&nbsp;
+        <small><span class="badge badge-info" id="sizeAchievements1"></span></small>
+      </h1>
+      <h2 class="h5">
+        <%= fa_icon("trophy", text: "My Personal Achievements") %> <span class="badge badge-warning">Private</span>
+      </h2>
+      <p class="text-white">
+        Remember to celebrate both <strong>big</strong> and <strong>small</strong> achievements.
+        You know when you have those <em>"Yes. I did it!"</em> moments? List all of those here.
+      </p>
+      <%= link_to new_user_achievement_path(current_user), remote: true, class: "btn btn-lg btn-primary btn-block-xs" do %>
+        <%= fa_icon("plus-square", text: "Add an Achievement") %>
+      <% end %>
+    </div>
+  </div>
+</div>
+<% if current_user.achievements.any? %>
+<div class="row d-flex" id="list-achievements">
+  <%= render "achievements/achievements", achievable: @user %>
+</div>
+<% else %>
+<div class="row d-flex">
+  <%= render "achievements/achievement_placeholder" %>
+</div>
+<% end %>

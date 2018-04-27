@@ -1,0 +1,6 @@
+$(".delete-address").bind('ajax:success', function() {
+  $(this).parents('div.address-card').fadeOut(500, function(){
+  	$(this).remove();
+    $('#list-addresses').sizeAddresses();
+  });
+});

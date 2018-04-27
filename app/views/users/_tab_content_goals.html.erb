@@ -1,17 +1,36 @@
-<div class="jumbotron">
-  <h1> My Goals and Action Plans</h1>
-  <p>This is a template for a simple marketing or informational website. It includes a large callout called a jumbotron and three supporting pieces of content. Use it as a starting point to create something more unique.</p>
-    <%= link_to new_user_goal_path(current_user), remote: true, class: "btn btn-primary btn-block-xs float-right" do %>
-      <%= fa_icon("plus", text: "Add a Goal") %>
-    <% end %>
+<div class="mt-1">
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a href="#">Home</a></li>
+      <li class="breadcrumb-item active" aria-current="page">My Personal Goals</li>
+    </ol>
+  </nav>
 </div>
-<div class="d-flex flex-wrap" id="list-goals">
+<div class="jumbotron mt-1">
+  <div class="row">
+    <div class="col-xl-10 offset-xl-1">
+      <h1 class="text-white">
+        My Goals and Action Plans&nbsp;
+          <small>
+            <span id="sizeGoals1" class="badge badge-info"></span>
+          </small>
+      </h1>
+      <h2 class="h5">
+      <%= fa_icon("star", text: "Personal Goals") %> <span class="badge badge-warning">Private</span>
+      </h2>
+      <hr>
+      <p class="text-white">Achieve something by setting a goal and clear action plans.</p>
+      <%= link_to new_user_goal_path(current_user), remote: true, class: "btn btn-lg btn-primary btn-block-xs" do %>
+        <%= fa_icon("plus-square", text: "Create a New Goal") %>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<div class="row" id="list-goals">
   <% if current_user.goals.any? %>
       <%= render "goals/goals", goalable: @user %>
   <% else %>
-    <li class="list-group-item list-group-item-info no-addresses-to-list">
-      No Goals Recorded yet
-    </li>
-
+    <%= render "goals/goal_placeholder" %>
   <% end %>
 </div>

@@ -1,39 +1,33 @@
-  <h1 class="pt-2">School Events</h1>
-  <div class="py-2">
-    <%= link_to @school, class: "btn btn-outline-primary" do %>
-     <%= fa_icon "arrow-left" %>&nbsp;Back
-    <% end %>
-    &nbsp;
-    <%= link_to new_school_event_path(@school), remote: true, class: "btn btn-primary" do %>
-      <%= fa_icon "calendar-plus-o" %> Create an Event
-    <% end %>
-  </div>
-
+<div class="mt-1">
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item">
+        <%= link_to @school do %>
+          <%= fa_icon "arrow-left", text: "School home" %>&nbsp;
+        <% end %>
+      </li>
+      <li class="breadcrumb-item active" aria-current="page">School Events Calendar</li>
+    </ol>
+  </nav>
+</div>
   <div class="row">
-    <div class="col-sm-9">
-      <div id="event_calendar" class="py-2"> </div>
+    <div class="col-lg-6 offset-lg-1">
+      <h1 class="py-2">
+      Upcoming School Events&nbsp;<small><span class="badge badge-info"><%= @school.events.newer_than(1.day.ago).size %></small></span>
+      </h1>
     </div>
-    <div class="col-sm-3">
-      <h3>Upcoming Events</h3>
-      <p class="text-info">
-        <%= fa_icon "info-circle" %>&nbsp;..including from 1 wk ago.
-        Use the calendar to look for older events.
-      </p>
-      <div id="list-events" class="d-flex flex-column">
-       <% if @school.events.any? %>
-         <%= render @school.events.newer_than(1.week.ago) %>
-       <% else %>
-          <div class="card border-info mb-3 no-events-to-list">
-            <div class="card-header">Header</div>
-            <div class="card-body text-info">
-              <p class="card-text">No Events to list</p>
-            </div>
-          </div>
-       <% end %>
-      </div>
-
+    <div class="col-lg-5">
+      <%= link_to new_school_event_path(@school), remote: true,
+        class: "btn btn-lg btn-primary btn-block-xs" do %>
+        <%= fa_icon "calendar-plus-o", text: "Create an Event" %>
+      <% end %>
     </div>
   </div>
+<div class="row">
+  <div class="col-md-10 offset-md-1">
+    <div id="event_calendar" class="py-2"> </div>
+  </div>
+</div>
 
 <%= render "modal_dialog" %>
 <%= render "full_calendar_modal" %>

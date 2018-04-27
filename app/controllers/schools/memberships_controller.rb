@@ -37,8 +37,28 @@ class Schools::MembershipsController < ApplicationController
 
   def update_multiple
     @memberships = @school.memberships.update(params[:memberships].keys, params[:memberships].values)
+    @memberships.each do |membership, school, user|
+      school = membership.school
+      user = membership.user
+      current_member = membership.member.to_sym
+      user.remove_role(current_member, school)
+      case membership.member.to_sym
+        when :account_owner
+          user.add_role("account_owner", school)
+        when :school_admin
+          user.add_role("school_admin", school)
+        when :educator
+          user.add_role("educator", school)
+        when :learner
+          user.add_role("learner", school)
+        when :parent_or_guardian
+          user.add_role("parent_or_guardian", school)
+        when :friend_of_school
+          user.add_role("friend_of_school", school)
+      end
+    end
     respond_to do |format|
-      format.html { redirect_to school_path(@school), notice: 'School registrations were successfully updated.' }
+      format.html { redirect_to school_memberships_path(@school), notice: 'School registrations were successfully updated.' }
       @memberships.reject! { |m| m.errors.empty? }
       if @memberships.empty?
         format.html { redirect_to school_memberships_path(@school), notice: 'Nothing was changed.' }

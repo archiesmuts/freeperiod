@@ -1,0 +1,32 @@
+<div class="mt-1">
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item">
+        <a href="#">School home</a>
+      </li>
+      <li class="breadcrumb-item active" aria-current="page">School Fees</li>
+    </ol>
+  </nav>
+</div>
+<div class="jumbotron mt-1">
+  <div class="col-xl-10 offset-xl-1">
+    <h1 class="text-white"><%= fa_icon("money", text: "School Fees") %></h1>
+    <p>This is a template for a simple marketing or informational website. It includes a large callout called a jumbotron and three supporting pieces of content. Use it as a starting point to create something more unique.</p>
+    <hr>
+    <%= link_to school_fees_path(@school), class: "btn btn-lg btn-primary" do %>
+      <%= fa_icon("money", text: "Manage Fees") %>
+    <% end %>
+  </div>
+</div>
+
+<% if @school.fees.any? %>
+  <div class="row d-flex flex-wrap" id="list-fees">
+    <%= render @school.fees %>
+  </div>
+<% else %>
+  <ul class="list-group">
+    <li class="list-group-item list-group-item-active no-fees-to-list">
+      Nothing to list
+    </li>
+  </ul>
+<% end %>

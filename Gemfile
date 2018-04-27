@@ -5,7 +5,7 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
-gem 'rails', '~> 5.1.4'
+gem 'rails', '~> 5.1.5'
 gem 'puma', '~> 3.7'
 gem 'sass-rails', '~> 5.0'
 gem 'uglifier', '>= 1.3.0'
@@ -16,8 +16,8 @@ gem 'high_voltage'
 gem 'jquery-rails'
 gem 'jquery-ui-rails', '~> 6.0', '>= 6.0.1'
 gem 'cocoon', '~> 1.2', '>= 1.2.10'
-gem 'bootstrap', '~> 4.0.0.beta2.1'
-gem 'bootswatch', '~> 4.0.0.beta2.1'
+gem 'bootstrap', '~> 4.0'
+gem 'bootswatch', '~> 4.0'
 gem 'pg', '~> 0.21.0'
 gem 'devise', '~> 4.3'
 gem 'devise_invitable', '~> 1.7', '>= 1.7.2'

@@ -1,7 +1,6 @@
 <!-- memberships new user form from school show view -->
 <%= form_with(model: [@user, Membership.new], local: true, id: :new_membership, class: :new_membership) do |f| %>
-<div class="row">
-  <div class="col-md-8">
+
     <% if @membership.errors.any? %>
       <div id="error_explanation">
         <h2><%= pluralize(membership.errors.count, "error") %> prohibited this account from being saved:</h2>
@@ -20,21 +19,24 @@
     </div>
     <div class="form-group">
       <%= f.label :school_id, "Name of your school" %>
-      <%= f.text_field :school_name, id: :membership_school_name, class: "form-control" %>
+      <%= f.text_field :school_name, id: :membership_school_name, class: "form-control",
+        placeholder: "Write down the name of your school" %>
     </div>
       <div class="form-group">
         <%# if current_user.has_role?(:admin) %>
-        <% Membership.members.keys.map do |member| %>
-          <label class="custom-control custom-radio">
-            <%= f.radio_button :member, member, class: "custom-control-input" %>
-            <span class="custom-control-indicator"></span>
-            <span class="custom-control-description"><%= member.humanize %></span>
+        <%= f.label :member, "Confirm your role as Account Owner" %><br>
+        <% member_types_to_exclude = [:learner, :educator, :parent_or_guardian, :friend_of_school] %>
+        <% Membership.members.except(*member_types_to_exclude).keys.map do |member| %>
+          <label class="form-check-label form-check-inline">
+            <%= f.radio_button :member, member, class: "form-check-input" %>
+            <span class="form-check-label"><%= member.humanize %></span>
           </label>
         <% end %>
       </div>
       <div class="actions">
-        <%= f.submit "Save details", class: "btn btn-sm btn-outline-primary" %>
+        <%= link_to current_user, class: "btn btn-lg btn-outline-primary" do %>
+          <%= fa_icon("times", text: "Cancel") %>
+        <% end %>
+        <%= f.submit "Save account", class: "btn btn-lg btn-primary" %>
       </div>
-    </div>
-  </div>
 <% end %>

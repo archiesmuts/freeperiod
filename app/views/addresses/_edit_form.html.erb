@@ -1,0 +1,24 @@
+<%= form_with(model: [@addressable, @address], id: :edit_address, class: :edit_address ) do |form| %>
+
+  <div class="errors">
+  <div class="form-group">
+    <%= form.label :address_type, "Indicate type of address", class:"form-check-label" %><br>
+    <% Address.address_types.keys.map do |address_type| %>
+      <label class="form-check-label form-check-inline">
+        <%= form.radio_button :address_type, address_type, class: "form-check-input" %>
+        <span class="form-check-label"><%= address_type.humanize %></span>
+      </label>
+    <% end %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :address %>
+    <%= form.text_field :address, id: :address_address, class: "form-control address-address", placeholder: "Type full address" %>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-sm btn-outline-primary" data-dismiss="modal" aria-label="Close">
+      <%= fa_icon("times", text: "Cancel") %>
+    </button>
+    <%= form.submit class: "btn btn-sm btn-primary"  %>
+  </div>
+<% end %>

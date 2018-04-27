@@ -6,30 +6,27 @@
 
   <div class="form-group row">
     <%= form.label :user_id, "Name of Student/Teacher", class: "col-4 col-form-label" %>
-    <div class="col">
-      <%= form.collection_select :user_id, User.all, :id, :full_name, {prompt: "Select a person"}, {class: "form-control", id: "user_registration_user_select"}%>
+    <div class="col-8">
+      <input type="text" readonly class="form-control" id="staticName" value="<%= @user_registration.user.full_name %>">
       <!-- TODO create a scope to select users who are members of this school -->
     </div>
   </div>
   <div class="form-group">
     <%= form.label :user_type, "Is this person a Learner or a Teacher?" %><br>
     <% UserRegistration.user_types.keys.map do |user_type| %>
-      <label class="custom-control custom-radio">
-        <%= form.radio_button :user_type, user_type, class: "custom-control-input" %>
-        <span class="custom-control-indicator"></span>
-        <span class="custom-control-description"><%= user_type.humanize %></span>
+      <label class="form-check-inline">
+        <%= form.radio_button :user_type, user_type, class: "form-check-input" %>
+        <span class="form-check-label"><%= user_type.humanize %></span>
       </label>
     <% end %>
   </div>
 
   <div class="form-group">
-    <label class="custom-control custom-checkbox">
-      <%= form.check_box :completed, class: "custom-control-input" %>
-      <span class="custom-control-indicator"></span>
-      <span class="custom-control-description">
-        <p class="text-primary">
-          Check to mark student/teacher as completed for the current year&nbsp;
-          <i class="fa fa-check" aria-hidden="true"></i>
+    <label class="form-check">
+      <%= form.check_box :completed, class: "form-check-input" %>
+      <span class="form-check-label">
+        <p class="">
+          <%= fa_icon("check", text: "Check box to mark student/teacher as completed for the current year.") %>
         </p>
       </span>
     </label>
@@ -37,7 +34,7 @@
 
   <div class="modal-footer">
     <button type="button" class="btn btn-outline-primary" data-dismiss="modal"> <%= fa_icon("times", text: "Cancel") %></button>
-    <%= form.submit "Save registration", class: "btn btn-primary" %>
+    <%= form.submit "Save changes", class: "btn btn-primary" %>
   </div>
 
 <% end %>

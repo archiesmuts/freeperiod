@@ -1,0 +1,13 @@
+// Add the dialog title
+$('#address-dialog h4').html("Add an Address");
+
+// Render the new form
+$('.modal-body').html('<%= j render "addresses/new_form" %>');
+
+// Show the dynamic dialog
+$('#address-dialog').modal("show");
+
+// Set focus to the first element
+$('#address-dialog').on('shown.bs.modal', function () {
+  $('#address_title').focus();
+});

@@ -1,14 +1,40 @@
-<div class="jumbotron">
-  <%= fa_icon("star", text: "My goals for this subject") %>&nbsp;
-  <span class="badge badge-info"><%= @user_registration.goals.size %></span>
+<div class="mt-1">
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item">
+        <%= link_to school_registration_klass_path(@registration_klass.school, @registration_klass) do %>
+          <%= fa_icon("arrow-left") %>&nbsp;<%= @registration_klass.course_name %>
+        <% end %>
+      </li>
+      <li class="breadcrumb-item"><a href="#"><%= @user_registration.registration_klass.klass_type.titleize %>&nbsp;Registration Card</a></li>
+      <li class="breadcrumb-item active" aria-current="page">My Goals and Action Plans</li>
+    </ol>
+  </nav>
 </div>
-<div class="d-flex flex-wrap" id="list-goals">
+<div class="jumbotron">
+  <div class="row">
+    <div class="col-xl-10 offset-xl-1">
+      <h1 class="h2">
+        <%= fa_icon("star", text: "My goals for this") %>&nbsp;<%= @user_registration.registration_klass.klass_type.titleize %>
+        <small><span class="badge badge-info"><%= @user_registration.goals.size %></span></small>
+      </h1>
+      <h2 class="h5 text-info">
+        <%= @user_registration.registration_klass_name %>&nbsp;
+        <span class="badge badge-dark"><%= @user_registration.registration_klass.year.strftime("%Y") %></span>
+      </h2>
+      <h3 class="h5"><%= @user_registration.registration_klass.course_name %></h3>
+      <hr class="my-2">
+      <%= link_to new_user_registration_goal_path(@user_registration), remote: true, class: "btn btn-lg btn-primary btn-block-xs" do %>
+        <%= fa_icon("plus", text: "Add a Goal") %>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<div class="row d-flex flex-wrap" id="list-goals">
   <% if @user_registration.goals.any? %>
       <%= render "goals/goals", goalable: @user_registration %>
   <% else %>
-    <li class="list-group-item list-group-item-info no-addresses-to-list">
-      No Goals Recorded yet
-    </li>
-
+    <%= render "goals/goal_placeholder" %>
   <% end %>
 </div>

@@ -1,27 +1,37 @@
-<%= form_with(model: [@goalable, @goal], id: :edit_goal, class: :edit_goal) do |form| %>
-  <div class="errors"></div>
+<%= form_with(model: [@goalable, @goal], local: true, id: :edit_goal, class: :edit_goal) do |form| %>
+  <% if @goal.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@goal.errors.count, "error") %> prohibited this school from being saved:</h2>
+
+      <ul>
+      <% @goal.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  
   <div class="row my-2">
     <div class="col-sm-9">
       <div class="form-group">
-        <%= form.label :name %>
+        <%= form.label :name, "Describe your goal" %>
         <%= form.text_field :name, id: :goal_name, class: "form-control goal_name" %>
       </div>
     </div>
     <div class="col-sm-3">
       <div class="form-group">
-        <%= fa_icon("calendar") %>&nbsp;<%= form.label :deadline %>
+        <%= fa_icon("calendar") %>&nbsp;<%= form.label :deadline, "When is this due?" %>
         <%= form.text_field :deadline, id: :goal_deadline, class: "form-control datetimepicker" %>
       </div>
     </div>
   </div> <!-- .row -->
 
   <div class="form-group">
-    <%= fa_icon("check-square") %>&nbsp;<%= form.label :achievability, "Is this goal achievable?" %>
+    <%= fa_icon("check-square") %>&nbsp;<%= form.label :achievability, "Is this goal achievable?", class:"form-check-label" %>
     <% Goal.achievabilities.keys.map do |achievability| %>
-      <label class="custom-control custom-radio">
-        <%= form.radio_button :achievability, achievability, class: "custom-control-input" %>
-        <span class="custom-control-indicator"></span>
-        <span class="custom-control-description"><%= achievability.humanize %></span>
+      <label class="form-check-label form-check-inline">
+        <%= form.radio_button :achievability, achievability, class: "form-check-input" %>
+        <span class="form-check-label"><%= achievability.humanize %></span>
       </label>
     <% end %>
   </div>
@@ -46,12 +56,11 @@
   <div class="row">
     <div class="col-sm-9">
       <div class="form-group">
-        <%= fa_icon("check-square") %>&nbsp;<%= form.label :achieved, "Was this goal achieved?" %>
+        <%= fa_icon("check-square") %>&nbsp;<%= form.label :achieved, "Was this goal achieved?", class:"form-check-label" %>
         <% Goal.achieveds.keys.map do |achieved| %>
-          <label class="custom-control custom-radio">
-            <%= form.radio_button :achieved, achieved, class: "custom-control-input" %>
-            <span class="custom-control-indicator"></span>
-            <span class="custom-control-description"><%= achieved.humanize %></span>
+          <label class="form-check-label form-check-inline">
+            <%= form.radio_button :achieved, achieved, class: "form-check-input" %>
+            <span class="form-check-label"><%= achieved.humanize %></span>
           </label>
         <% end %>
       </div>
@@ -65,12 +74,18 @@
   </div>  <!-- .row -->
 
   <hr>
-  <div class="d-flex justify-content-between">
-    <% if action_name == "edit" %>
-      <%= link_to 'Cancel', polymorphic_path([@goalable, @goal]), class: "btn btn-outline-primary" %>
-      <% else %>
-      <%= link_to 'Cancel', polymorphic_path([@goalable, Goal]), class: "btn btn-outline-primary" %>
-    <% end %>
-    <%= form.submit class: "btn btn-primary" %>
+  <div class="row">
+    <div class="col-12 col-md-5 offset-md-7">
+      <% if action_name == "edit" %>
+        <%= link_to polymorphic_path([@goalable, @goal]), class: "btn btn-outline-primary btn-block-xs" do %>
+          <%= fa_icon("times", text: "Cancel") %>
+        <% end %>
+        <% else %>
+        <%= link_to polymorphic_path([@goalable, Goal]), class: "btn btn-outline-primary btn-block-xs" do %>
+          <%= fa_icon("times", text: "Cancel") %>
+        <% end %>
+      <% end %>
+      &nbsp;<%= form.submit class: "btn btn-primary btn-block-xs" %>
+    </div>
   </div>
 <% end %>

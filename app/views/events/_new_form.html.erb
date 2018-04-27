@@ -1,16 +1,16 @@
 <%= form_with(model: [@school, Event.new], id: :new_event, class: :new_event) do |form| %>
 
-  <h4><%= @school.name %></h4>
+  <h4 class="text-white"><%= @school.name %></h4>
   <div class="errors"> </div>
 
   <div class="form-group">
-    <%= form.label :title %>
-    <%= form.text_field :title, id: :event_title, class: "form-control" %>
+    <%= form.label :title, "Headline title" %>
+    <%= form.text_field :title, id: :event_title, class: "form-control", placeholder: "Give it a headline title" %>
   </div>
 
   <div class="form-group">
     <%= form.label :description %>
-    <%= form.text_area :description, id: :event_description, class: "form-control" %>
+    <%= form.text_area :description, id: :event_description, class: "form-control", placeholder: "Provide a more detailed description of the event" %>
   </div>
   <div class="row">
     <div class='col-sm-6'>

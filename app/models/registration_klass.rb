@@ -11,6 +11,7 @@ class RegistrationKlass < ApplicationRecord
   has_many :users, through: :user_registrations
   has_many :lesson_plans
   has_many :goals, as: :goalable
+  has_many :achievements, as: :achievable
 
 
   validates :school_id, :course_id, :name, :klass_type, :year, :slug, presence: true
@@ -19,7 +20,8 @@ class RegistrationKlass < ApplicationRecord
   enum klass_type: {
     subject_class: 0,
     registration_class: 1,
-    school_faculty: 2
+    school_faculty: 2,
+    school_admin: 3
   }
 
   def should_generate_new_friendly_id?

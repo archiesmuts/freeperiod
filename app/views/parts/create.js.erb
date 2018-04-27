@@ -15,10 +15,10 @@ var el = $('.new_part');
 <% else %>
 
 $('#list-parts').append('<%= j render @part %>');
-$("#part-<%= @part.id %>").hide().fadeIn(1000);
+$("#<%= dom_id(@part) %>").hide().fadeIn(1000);
 $('#part-dialog').modal('hide');
-$('.no-parts-to-list').detach();
-$('#totalValue').text(getTotal());
+$('#part-placeholder').detach();
+$('#totalValue').getTotal();
 
 // Clear form
 el.find('input:text,text_area').val('');

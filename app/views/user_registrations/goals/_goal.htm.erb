@@ -1,0 +1,44 @@
+<div class="col-sm-6 goal-card" id="polym_<%= dom_id(goal) %>">
+    <div class="card border-primary mb-3 scale">
+      <div class="card-body">
+        <h4 class="card-title text-primary"><%= fa_icon("star") %>&nbsp;<%= @goal.name %></h4>
+          <p class="card-text">
+            <strong><%= fa_icon("calendar-check-o", text: "Deadline:") %></strong>&nbsp;
+            <span class="text-info"><%= @goal.deadline.strftime("%d %b %Y") if @goal.deadline %></span>
+          </p>
+          <p class="card-text"><strong><%= fa_icon("question-circle-o", text: "Status:") %></strong>&nbsp;
+            <span class="text-info"><%= @goal.achieved.humanize %></span>
+          </p>
+          <% if @goal.yes? %>
+            <p class="card-text"><strong><%= fa_icon("clock-o", text: "Date completed") %></strong>&nbsp;
+              <span class="text-info"><%= @goal.completed_at.strftime("%d %b %Y") if @goal.completed_at %></span>
+            </p>
+          <% end %>
+          <h5 class="card-sub-title">
+            <span class="text-white"><%= fa_icon("check-circle", text: "Action Plans") %></span>&nbsp;
+            <span class="badge badge-info"><%= @goal.action_plans.size %></span>&nbsp;
+          </h5>
+          <p class="card-text text-muted">
+            <small>Last updated&nbsp;<%= time_ago_in_words(@goal.updated_at) %>&nbsp;ago</small>
+          </p>
+
+      </div>
+      <div class="card-footer">
+        <div class="row">
+          <div class="col-sm-6">
+            <%= link_to [@goal.goalable, @goal], method: :delete, remote: true,
+              data: { confirm: 'NOTE - Any action plans will also be deleted!'},
+              class: "btn btn-sm btn-danger btn-block-xs delete-goal" do %>
+                <%= fa_icon("trash", text: "Delete") %>
+            <% end %>
+          </div>
+          <div class="col-sm-6">
+            <%= link_to polymorphic_path([@goal.goalable, @goal]),
+              class: "btn btn-sm btn-primary btn-block" do %>
+              Show more&nbsp;<%= fa_icon("chevron-right") %>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+</div>

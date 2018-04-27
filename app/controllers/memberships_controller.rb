@@ -49,6 +49,8 @@ class MembershipsController < ApplicationController
         case @membership.member.to_sym
           when :account_owner
             user.add_role("account_owner", school)
+          when :school_admin
+            user.add_role("school_admin", school)
           when :educator
             user.add_role("educator", school)
           when :learner

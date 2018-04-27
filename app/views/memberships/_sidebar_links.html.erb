@@ -1,0 +1,6 @@
+<a class="nav-link active list-group-item" id="membership-home-tab" data-toggle="pill" href="#membership-home" role="tab" aria-controls="membership-home" aria-selected="true"><%= fa_icon("id-card", text: "Membership Home") %></a>
+<a class="nav-link list-group-item d-flex justify-content-between align-items-center" id="membership-user-registrations-tab" data-toggle="pill" href="#membership-user-registrations" role="tab" aria-controls="" aria-selected="false"><span><%= fa_icon("graduation-cap fw", text: "Class Registrations") %></span><span id="sizeClassRegistrations" class="badge badge-info">?</span></a>
+<a class="nav-link list-group-item d-flex justify-content-between align-items-center" id="membership-teachers-guide-tab" data-toggle="pill" href="#membership-teachers-guide" role="tab" aria-controls="" aria-selected="false"><span><%= fa_icon("map-signs fw", text: "Teacher's Guide") %></span></a>
+<%= link_to current_user, class: "nav-link list-group-item", aria: {selected: false}  do %>
+  <%= fa_icon "fw smile-o", text: "My page" %>
+<% end %>

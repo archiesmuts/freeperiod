@@ -75,7 +75,7 @@ class PartsController < ApplicationController
     end
 
     def set_part
-      @part = Part.friendly.find(params[:id])
+      @part = Part.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

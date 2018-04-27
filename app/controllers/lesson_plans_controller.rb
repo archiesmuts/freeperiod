@@ -1,6 +1,6 @@
 class LessonPlansController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_registration_klass, only: [:new, :create, :show]
+  before_action :set_registration_klass
   before_action :set_lesson_plan, only: [:show, :edit, :update, :destroy]
 
   # GET /lesson_plans

@@ -1,8 +1,8 @@
-<% content_for :title do %>Class page <% end %>
+<% content_for :title do %>fp - <%= @registration_klass.course_name %><% end %>
 <div class="row row-offcanvas row-offcanvas-right pt-2">
   <div class="col-12 col-md-9">
     <p class="float-right d-md-none">
-      <button type="button" class="btn btn-primary btn-sm" data-toggle="offcanvas">
+      <button type="button" class="btn btn-primary btn-sm" id="navToggle" data-toggle="offcanvas">
         <%= fa_icon("th-list") %>
       </button>
     </p>
@@ -22,6 +22,9 @@
       </div>
       <div class="tab-pane" id="class-achievements" role="tabpanel">
         <%= render "tab_content_achievements" %>
+      </div>
+      <div class="tab-pane" id="class-teachers-guide" role="tabpanel">
+        <%= render "tab_content_teachers_guide" %>
       </div>
     </div> <!-- .tab-content -->
   </div><!-- .col-12 .col-md-9-->

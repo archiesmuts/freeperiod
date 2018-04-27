@@ -1,20 +1,42 @@
-<div class="jumbotron">
-  <h2>Our Class Achievements TODO</h2>
-  <p class="h5"><span class="badge badge-dark"><%= @registration_klass.name %></span></p>
-  <p>This is a template for a simple marketing or informational website. It includes a large callout called a jumbotron and three supporting pieces of content. Use it as a starting point to create something more unique.</p>
-    <%#= link_to new_registration_klass_achievement_path(@registration_klass),
-        class: "btn btn-primary" do %>
-      <%#= fa_icon("plus", text: "Add an Achievement") %>
-    <%# end %>
+<div class="mt-1">
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item">
+        <%= link_to school_registration_klasses_path(@registration_klass.school) do %>
+          <%= fa_icon "arrow-left", text: "Registration and Subject Classes Index" %>
+        <% end %>
+      </li>
+      <li class="breadcrumb-item active">
+        <a href="#"><%= @registration_klass.course_name %> - <%= @registration_klass.year.strftime("%Y") %></a>
+      </li>
+      <li class="breadcrumb-item active" aria-current="page">Class Achievements</li>
+    </ol>
+  </nav>
+</div>
+<div class="jumbotron jumbo-bg">
+  <div class="row">
+    <div class="col-12 col-xl-10 offset-xl-1">
+      <h1 class="h2 text-white"><%= fa_icon("trophy", text: "Celebrating Our Achievements") %>&nbsp;
+        <small><span class="badge badge-info" id="sizeClassAchievements1"></span></small>
+      </h1>
+      <h2 class="h3 text-info"><%= @registration_klass.name %></h2>
+      <h3 class="h4"><%= @registration_klass.course_name %> - <%= @registration_klass.year.strftime("%Y") %></h3>
 
+      <p class="text-white">
+        Remember to celebrate both <strong>big</strong> and <strong>small</strong> achievements.
+        You know when you have those <em>"Yes. I did it!"</em> moments? List all of those here.
+      </p>
+      <%= link_to new_user_achievement_path(current_user), remote: true, class: "btn btn-lg btn-primary btn-block-xs" do %>
+      <%= fa_icon("plus-square", text: "Add an Achievement") %>
+      <% end %>
+    </div>
+  </div>
 </div>
 
-<!-- <div class="d-flex flex-wrap" id="list-achievements">
-    <%# if @registration_klass.achievements.any? %>
-      <%#= render "achievements/achievements", achievable: @registration_klass %>
-    <#% else %>
-      <li class="list-group-item list-group-item-info no-goals-to-list">
-        No Achievements Recorded yet
-      </li>
-    <%# end %>
-</div> -->
+<% if @registration_klass.achievements.any? %>
+<div class="row d-flex" id="list-achievements">
+  <%= render "achievements/achievements", achievable: @registration_klass %>
+</div> <!-- .card-deck -->
+<% else %>
+  <%= render "achievements/achievement_placeholder" %>
+<% end %>

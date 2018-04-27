@@ -1,48 +1,83 @@
+<div class="mt-1">
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb ">
+      <li class="breadcrumb-item">
+        <%= link_generator(@goal) %>
+      </li>
+      <li class="breadcrumb-item active" aria-current="page"><%= show_name_display(@goal) %></li>
+    </ol>
+  </nav>
+</div>
 <div class="jumbotron mt-1">
   <div class="row">
-    <div class="col-sm-1">
-      <h2>
-        <%= link_generator(@goal) %>
+    <div class="col-sm">
+      <h1>
+        <%= show_name_display(@goal) %>
+      </h1>
+      <h2 class="h4 text-primary">
+        <%= fa_icon("star") %>&nbsp;<%= @goal.name %>
       </h2>
+      <hr>
+      <p class="mt-2">
+        <div class="row">
+          <div class="col-md col-lg-6">
+            <%= link_to edit_polymorphic_path([@goalable, @goal]), class: "btn btn-lg btn-primary btn-block" do %>
+              <%= fa_icon("pencil", text: "Edit your goal") %>
+            <% end %>
+          </div>
+          <div class="col-md col-lg-6">
+            <button type="button" class="btn btn-lg btn-secondary btn-block disabled">
+              <%= fa_icon("calendar-check-o", text: "Action Plans") %>&nbsp;
+              <span class="badge badge-dark" id="sizeTotalActionPlans"></span>
+            </button>
+          </div>
+        </div>
+      </p>
+      <p class="d-flex justify-content-center">
+        <a class="btn btn-lg btn-info btn-block-xs" href="#goal-comments-section" role="button">
+          <%= fa_icon("comments", text: "View Comments") %>&nbsp;
+          <span class="badge badge-light" id="sizeGoalComments"></span>&nbsp;
+          <%= fa_icon("angle-double-down") %>
+        </a>
+      </p>
+
     </div>
-    <div class="col-sm-11">
-        <h2 class="text-primary"><%= @goal.name %></h2>
-        <p class="text-info"><%= show_name_display(@goal) %></p>
+    <div class="col-sm">
+      <p>
+        <strong>This goal must be completed by:</strong><br>
+        <spam class="text-white"><%= @goal.deadline.strftime("%d %b %Y") if @goal.deadline %></spam>
+      </p>
+      <p>
+        <strong>Is this goal achievable?</strong><br>
+        <span class="text-white"><%= @goal.achievability.humanize %></span>
+      </p>
+      <p>
+        <strong>How will you know if you succeeded?</strong><br>
+        <span class="text-white"><%= @goal.measurement ? @goal.measurement : "¯\\_(ツ)_/¯ " %></span>
+      </p>
+      <p>
+        <strong>Who is reponsible?</strong><br>
+        <span class="text-white"><%= @goal.person_responsible ? @goal.person_responsible : " (Ͼ˳Ͽ)..!!! "%></span>
+      </p>
+      <p>
+        <strong>Was this goal achieved?</strong><br>
+        <span class="text-white"><%= @goal.achieved.humanize %></span>
+      </p>
+      <p>
+        <strong>Date completed:</strong><br>
+        <span class="text-white">
+          <%= @goal.completed_at ? @goal.completed_at.strftime("%d %b %Y") : "Working on it... (-.-)Zzz..."  %>
+        </span>
+      </p>
+      <p>
+        <strong>Last updated:</strong><br>
+        <span class="text-white"><em><%= time_ago_in_words(@goal.updated_at) %>&nbsp;ago</em></span>
+      </p>
     </div>
-  </div> <!-- .row -->
-
-  <dl class="row">
-    <dt class="col-sm-5">Deadline:</dt>
-    <dd class="col-sm-7"><%= @goal.deadline.strftime("%d %b %Y") if @goal.deadline %></dd>
-
-    <dt class="col-sm-5">Is this goal achievable?</dt>
-    <dd class="col-sm-7"><%= @goal.achievability.humanize %></dd>
-
-    <dt class="col-sm-5">How will you know if you succeeded?</dt>
-    <dd class="col-sm-7"><%= @goal.measurement ? @goal.measurement : "¯\\_(ツ)_/¯ " %></dd>
-
-    <dt class="col-sm-5">Who is reponsible?</dt>
-    <dd class="col-sm-7"><%= @goal.person_responsible ? @goal.person_responsible : " (Ͼ˳Ͽ)..!!! "%></dd>
-
-    <dt class="col-sm-5">Was this goal achieved?</dt>
-    <dd class="col-sm-7"><%= @goal.achieved.humanize %></dd>
-
-    <dt class="col-sm-5">Date completed:</dt>
-    <dd class="col-sm-7"><%= @goal.completed_at ? @goal.completed_at.strftime("%d %b %Y") : "Working on it... (-.-)Zzz..."  %></dd>
-
-    <dt class="col-sm-5">Last updated:</dt>
-    <dd class="col-sm-7"><em><%= time_ago_in_words(@goal.updated_at) %>&nbsp;ago</em></dd>
-  </dl>
-  <div class="row">
-    <div class="col-sm-5">
-      <button type="button" class="btn btn-info btn-block-xs">
-        <%= fa_icon("calendar-check-o", text: "Action Plans") %>&nbsp;<span class="badge badge-light"><%= @goal.action_plans.size %></span>
-      </button>
-    </div>
-    <div class="col-sm-7">
-      <%= link_to edit_polymorphic_path([@goalable, @goal]), remote: true, class: "btn btn-primary btn-block-xs" do %>
-      <%= fa_icon("pencil", text: "Edit goal") %>
-      <% end %>
-    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-sm col-lg-8">
+    <%= render "tab_content_comments" %>
   </div>
 </div>

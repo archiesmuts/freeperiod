@@ -66,6 +66,7 @@ class GoalsController < ApplicationController
     respond_to do |format|
       format.html { redirect_to polymorphic_path([@goalable, Goal]), notice: 'Goal was successfully destroyed.' }
       format.json { head :no_content }
+      format.js   { }
     end
   end
 

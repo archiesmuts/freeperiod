@@ -1,31 +1,23 @@
-<div class="card border-primary mb-2">
-  <div class="card-body">
-    <h3 class="card-title text-primary"><%= @goal.name %></h3>
-    <p class="card-text">
-      <span class="text-info"><%= show_name_display(@goal) %></span>&nbsp;|&nbsp;
-      <span class="text-success">Was this goal achieved?</span>&nbsp;
-      <span class="badge badge-success"><%= @goal.achieved.humanize %></span>
-    </p>
-  </div>
-</div>
-
-<div class="card border-info">
-  <div class="card-body">
-    <h4 class="sub-title">Comments&nbsp;
-      <span class="badge badge-info">
-        <span id="sizeComments"></span>
-      </span>
-      <small><em>newest on top</em></small>
-    </h4>
-    <%= render "comments/form", commentable: @goal %>
-    <ul id="list-comments" class="list-group list-group-flush">
+  <div class="card border-info">
+    <div class="card-body">
+      <h4 class="card-title" id="goal-comments-section">
+            <%= fa_icon("comments", text: "Comments") %>&nbsp;
+            <span class="badge badge-info">
+              <span id="sizeComments"></span>
+            </span>
+      </h4>
+      <p class="card-text text-muted"><em>Newest on top</em></p>
+      <%= render "comments/form", commentable: @goal %>
+    </div>
       <% if @goal.comments.any? %>
+      <ul id="list-comments" class="list-group list-group-flush">
         <%= render "comments/comments", commentable: @goal %>
+      </ul>
       <% else %>
-        <li class="list-group-item list-group-item-info no-comments-to-list">
+      <ul class="list-group list-group-flush no-comments-to-list">
+        <li class="list-group-item list-group-item-info">
           Nobody has commented yet.
         </li>
+      </ul>
       <% end %>
-    </ul>
   </div>
-</div>
