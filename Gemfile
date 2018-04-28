@@ -5,7 +5,7 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
-gem 'rails', '~> 5.1.5'
+gem 'rails', '~> 5.1.6'
 gem 'puma', '~> 3.7'
 gem 'sass-rails', '~> 5.0'
 gem 'uglifier', '>= 1.3.0'
@@ -16,8 +16,8 @@ gem 'high_voltage'
 gem 'jquery-rails'
 gem 'jquery-ui-rails', '~> 6.0', '>= 6.0.1'
 gem 'cocoon', '~> 1.2', '>= 1.2.10'
-gem 'bootstrap', '~> 4.0'
-gem 'bootswatch', '~> 4.0'
+gem 'bootstrap', '~> 4.1.0'
+gem 'bootswatch', '~> 4.1.0'
 gem 'pg', '~> 0.21.0'
 gem 'devise', '~> 4.3'
 gem 'devise_invitable', '~> 1.7', '>= 1.7.2'
@@ -51,4 +51,5 @@ group :development do
   gem 'faker', '~> 1.6', '>= 1.6.3'
   gem 'letter_opener', '~> 1.4', '>= 1.4.1'
 end
-ruby '2.4.2'
+
+ruby '2.5.1'
