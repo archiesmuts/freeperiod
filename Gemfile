@@ -5,7 +5,7 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
-gem 'rails', '~> 5.1.6'
+gem 'rails', '~> 5.2'
 gem 'puma', '~> 3.7'
 gem 'sass-rails', '~> 5.0'
 gem 'uglifier', '>= 1.3.0'
@@ -23,7 +23,7 @@ gem 'devise', '~> 4.3'
 gem 'devise_invitable', '~> 1.7', '>= 1.7.2'
 gem 'wicked', '~> 1.3', '>= 1.3.2'
 gem 'font-awesome-rails', '~> 4.7', '>= 4.7.0.2'
-gem 'trix', '~> 0.11.0'
+# gem 'trix', '~> 0.11.0'
 gem 'sendgrid', '~> 1.2', '>= 1.2.4'
 gem 'friendly_id', '~> 5.2', '>= 5.2.1'
 gem 'pundit', '~> 1.1'
