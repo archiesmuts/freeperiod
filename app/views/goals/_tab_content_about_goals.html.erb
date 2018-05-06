@@ -1,64 +1,71 @@
-<div class="jumbotron mt-1 goals-todos-bg">
+<div class="mt-1">
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb ">
+      <li class="breadcrumb-item">
+        <%= link_generator(@goal) %>
+      </li>
+      <li class="breadcrumb-item">
+        <a href="#"><%= show_name_display(@goal) %></a>
+      </li>
+      <li class="breadcrumb-item active" aria-current="page">What are Goals, Todo's and Action Plans?</li>
+    </ol>
+  </nav>
+</div>
+<div class="jumbotron mt-1">
   <div class="row">
     <div class="col-xl-9 offset-xl-1">
-      <h1 class="text-white">What are Goals, To do's and Action Plans?</h1>
-    </div>
-  </div>
-</div>
-<div class="row">
-  <div class="col-xl-9 offset-xl-1">
-    <details>
-      <summary>What is a Goal?</summary>
-        <p>
-          A goal is something that a person or a group of people may want to
-          achieve or attain at some point in the future. People endeavor to reach goals
-          within a finite time by setting deadlines.
+      <h1 class="text-white">What are Goals, Todo's and Action Plans?</h1>
+      <details>
+        <summary>What is a Goal?</summary>
+          <p class="lead text-white">
+            A goal is something that a person or a group of people may want to
+            achieve or attain at some point in the future. People endeavor to reach goals
+            within a finite time by setting deadlines.
+          </p>
+      </details>
+
+      <details>
+        <summary>What is a To Do list?</summary>
+        <p class="lead text-white">
+          A to do list is a list of things you need to do, i.e. actions, in order
+          to achieve a specific goal. The idea is too brainstorm a list by
+          writing down every single action you need to do in order to achieve your goal.
         </p>
-    </details>
+      </details>
 
-    <details>
-      <summary>What is a To Do list?</summary>
-      <p>
-        A to do list is a list of things you need to do, i.e. actions, in order
-        to achieve a specific goal. The idea is too brainstorm a list by
-        writing down every single action you need to do in order to achieve your goal.
-      </p>
-    </details>
+      <details>
+        <summary>What is an Action Plan?</summary>
+        <p class="lead text-white">
+          Most of us know we need to make “To Do” lists! However, not many of us know we
+          need to turn our “To Do” lists into action plans.
+        </p>
+        <p class="lead text-white">
+          An action plan converts a “To Do” list into a step-by-step approach for action.
+        </p>
+        <p class="lead text-white">
+          Action plans bring order to your life because once you’ve formulated a sound plan,
+          you are free to stop worrying because everything you have to do is planned out
+          with the correct deadlines.
+        </p>
+      </details>
 
-    <details>
-      <summary>What is an Action Plan?</summary>
-      <p>
-        Most of us know we need to make “To Do” lists! However, not many of us know we
-        need to turn our “To Do” lists into action plans.
-      </p>
-      <p>
-        An action plan converts a “To Do” list into a step-by-step approach for action.
-      </p>
-      <p>
-        Action plans bring order to your life because once you’ve formulated a sound plan,
-        you are free to stop worrying because everything you have to do is planned out
-        with the correct deadlines.
-      </p>
-
-    </details>
-
-    <details>
-      <summary>Turning “To Do” lists into “Action Plans”</summary>
-      <p class="lead">Brainstorm a “To Do” list</p>
+      <details>
+        <summary>Turning “To Do” lists into “Action Plans”</summary>
+        <p class="lead text-white">Brainstorm a “To Do” list</p>
         <ul>
           <li>
             Write down every single action you need to do in order to complete a particular
             section of this journal. Remember: no action is too small to write down.
           </li>
         </ul>
-      <p class="lead">Cross out all the unnecessary items</p>
+        <p class="lead text-white">Cross out all the unnecessary items</p>
         <ul>
           <li>
             Ask yourself: “Does this action clearly contribute to my business?” If it doesn’t,
             cross it out. It’s that simple!
           </li>
         </ul>
-      <p class="lead">Prioritise your list</p>
+        <p class="lead text-white">Prioritise your list</p>
         <ul>
           <li>
             Number the items on your list in the order you must do them, according to:
@@ -69,7 +76,7 @@
           </li>
         </ul>
 
-        <p class="lead">Assign responsibility</p>
+        <p class="lead text-white">Assign responsibility</p>
         <ul>
           <li>
             Each action has to be someone’s responsibility.
@@ -80,7 +87,7 @@
           </li>
         </ul>
 
-        <p class="lead">Assign a deadline</p>
+        <p class="lead text-white">Assign a deadline</p>
         <ul>
           <li>
             Actions must have a deadline.
@@ -90,6 +97,7 @@
             then stick to that deadline, no compromises!
           </li>
         </ul>
-    </details>
+      </details>
+    </div>
   </div>
 </div>

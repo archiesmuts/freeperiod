@@ -1,25 +1,30 @@
 <!-- registration_klass/achievement -->
-<div id="polym_<%= dom_id(achievement) %>" class="card text-white bg-dark mb-1 mr-1 achievement-card" style="width: 20rem;">
-  <div class="card-body">
-    <h4 class="card-title"><%= achievement.title %></h4>
-    <h6 class="cad-subtitle"><%= achievement.date.strftime("%d %b %Y") %></h6>
-    <p class="card-text"><%= achievement.description %></p>
-  </div>
-  <div class="card-footer">
-    <div class="row">
-      <div class="col-sm-6">
-        <%= link_to [achievement.achievable, achievement], remote: true, method: :delete,
-        data: { confirm: 'Are you sure?', toggle: "tooltip" },
-        class: "delete-achievement btn btn-sm btn-block-xs btn-danger", title: "Delete" do %>
-        <%= fa_icon("trash") %>
-        <% end %>
-      </div>
-      <div class="col-md-6">
-        <%= link_to edit_polymorphic_path([achievement.achievable, achievement]),
-          remote: true, class: "btn btn-sm btn-block-xs btn-success" do %>
-          <%= fa_icon("pencil", text: "Edit") %>
-        <% end %>
+<div class="col-sm-4 achievement-card" id="polym_<%= dom_id(achievement) %>">
+  <div  class="card text-white bg-dark mb-1 mr-1">
+    <div class="card-header">
+      Achievement
+    </div>
+    <div class="card-body">
+      <h4 class="card-title"><%= achievement.title %></h4>
+      <h6 class="cad-subtitle"><%= achievement.date.strftime("%d %b %Y") %></h6>
+      <p class="card-text"><%= achievement.description %></p>
+    </div>
+    <div class="card-footer">
+      <div class="row">
+        <div class="col-sm-6">
+          <%= link_to [achievement.achievable, achievement], remote: true, method: :delete,
+          data: { confirm: 'Are you sure?', toggle: "tooltip" },
+          class: "delete-achievement btn btn-sm btn-block-xs btn-danger", title: "Delete" do %>
+          <%= fa_icon("trash") %>
+          <% end %>
         </div>
+        <div class="col-md-6">
+          <%= link_to edit_polymorphic_path([achievement.achievable, achievement]),
+            remote: true, class: "btn btn-sm btn-block-xs btn-success" do %>
+            <%= fa_icon("pencil", text: "Edit") %>
+          <% end %>
+        </div>
+      </div>
     </div>
   </div>
 </div>

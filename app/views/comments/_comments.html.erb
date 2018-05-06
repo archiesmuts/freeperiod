@@ -1,5 +1,5 @@
 <% commentable.comments.each do |comment| %>
-  <li id="comment-<%= comment.id %> "class="list-group-item list-group-item-action">
+  <li id="<%= dom_id(comment) %>" class="list-group-item list-group-item-action">
     <span class="text-white"><%= comment.comment %></span><br>
     <small>
       <%= fa_icon "comment" %>&nbsp;

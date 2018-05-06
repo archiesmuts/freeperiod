@@ -3,8 +3,8 @@
 # You can use CoffeeScript in this file: http://coffeescript.org/
 jQuery.fn.sizeComments = ->
   size_comments = $("#list-comments").children().length
-  $("#sizeComments").text size_comments
-  $("#sizeGoalComments").text size_comments
+  $("#sizeComments1").text size_comments
+  $("#sizeComments2").text size_comments
 
 jQuery(document).on "turbolinks:load", ->
   $("#list-comments").sizeComments()

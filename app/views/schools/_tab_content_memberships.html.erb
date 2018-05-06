@@ -22,77 +22,36 @@
       <% end %>
     </div>
     <div class="col-xl-5">
-      <div class="card text-white bg-primary">
-        <div class="card-body">
-          <%= form_with(model: [@school, Membership.new], local: true, id: :new_membership, class: :new_membership ) do |f| %>
-          <h4 class="card-title">
-            <div class="d-flex justify-content-between">
-              <div><%= fa_icon("paper-plane", text: "Invite people to register") %></div>
-              <button type="button" class="btn btn-sm btn-info" data-toggle="collapse" data-target="#collapseInvitationForm" aria-expanded="false" aria-controls="collapseInvitationForm"><%= fa_icon("chevron-down") %></button>
-            </div>
-          </h4>
-          <div class="collapse" id="collapseInvitationForm">
-            <div class="form-group">
-              <%= f.label :email, "Email address" %>
-              <%= f.email_field :email, id: :membership_email, class: "form-control", required: true, placeholder: "Type the email of the person you want to invite" %>
-            </div>
-            <div class="actions">
-              <%= f.submit "Send invitation", class: "btn btn-success" %>
-            </div>
+      <button type="button" class="btn btn-lg btn-info btn-block" data-toggle="collapse" data-target="#collapseInvitationForm" aria-expanded="false" aria-controls="collapseInvitationForm">
+        <%= fa_icon("chevron-down", text: "Invite people to register", right: true) %>
+      </button>
+      <div class="collapse mt-2" id="collapseInvitationForm">
+        <div class="card text-white bg-success">
+          <div class="card-body">
+            <%= form_with(model: [@school, Membership.new], local: true, id: :new_membership, class: :new_membership ) do |f| %>
+              <div class="form-group">
+                <%= f.label :email, "Email address" %>
+                <%= f.email_field :email, id: :membership_email, class: "form-control", required: true, placeholder: "Type the email of the person you want to invite" %>
+              </div>
+              <div class="actions">
+                <%= f.submit "Send invitation", class: "btn btn-primary" %>&nbsp;
+                <button type="button" name="sendInvitation" class="btn btn-primary" disabled>
+                  <%= fa_icon("paper-plane") %>
+                </button>
+              </div>
+            <% end %>
           </div>
-          <% end %>
         </div>
       </div>
+      <!-- #collapseInvitationForm  -->
     </div>
+    <!-- .col -->
   </div>
+  <!-- .row -->
 </div>
 <!-- .jumbotron -->
-<div class="row">
-  <div class="col-xl-4 offset-xl-1">
-    <button type="button" class="btn btn-lg btn-outline-info" data-toggle="collapse" data-target="#collapseMembershipsInfo" aria-expanded="false" aria-controls="collapseMembershipsInfo">
-      How do I register people?&nbsp;<%= fa_icon("chevron-down") %>
-    </button>
-  </div>
-  <div class="col-xl-6">
+<%= render "schools/memberships/registration_help" %>
 
-  </div>
-</div>
-
-<div class="row mt-2">
-  <div class="col-xl-10 offset-xl-1">
-    <h2>About School Memberships</h2>
-    <h3>Who should register?</h3>
-    <p>
-      Anybody who will need access to information on your school site, for whatever reason,
-      must be registered. Apart from the account owner, all other users must be invited to
-      register via an email invitiation generated from this page.
-    </p>
-    <p>
-      Well certainly teachers, learners and parents are top on the list.
-      Furthermore, you should also add administrative staff, coaching staff and SGB members.
-    </p>
-    <p>
-      A person can be invited to register by using the form on this page.  Simply
-      fill in the person's email address and click on "Send Invitation".
-    </p>
-    <p>
-      Upon receipt of if the email invitation the person will need to click on the link
-      provided in the email to accept the invitation. The person will be redirected to the
-      your school's registration page. The person's First name, Surname and password will
-      be required to complete registration.
-    </p>
-    <p>
-      After successfull registration the person becomes a member of your school.
-    </p>
-      All registered users become members of the school. When a
-
-      Depending on the role of members, i.e.
-      registered users, each person will be granted different levels of access on the site.
-    <div class="collapse" id="collapseMembershipsInfo">
-      <%= render "schools/memberships/registration_help" %>
-    </div>
-  </div>
-</div>
 
 <%#= render "edit_multiple_form" %>
 

@@ -1,4 +1,4 @@
-<li id="comment-<%= comment.id %>" class="list-group-item" >
+<li id="<%= dom_id(comment) %>" class="list-group-item" >
     <span class="text-white"><%= comment.comment %></span><br>
     <small>
       <%= fa_icon "comment" %>&nbsp;

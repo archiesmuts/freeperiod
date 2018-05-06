@@ -39,14 +39,7 @@
     </div>
   </div>
 </div>
-<div class="row">
-  <div class="col-xl-10 offset-xl-1">
-    <div class="collapse" id="collapseRegistrationHelp">
-      <%= render "registration_help" %>
-    </div>
 
-  </div>
-</div>
 <%= form_with scope: :membership, url: edit_multiple_school_memberships_path(@school), method: :post,  local: true  do %>
   <div class="d-flex justify-content-center">
     <p class="text-info">
@@ -66,8 +59,10 @@
       <div class="card text-white bg-info w-50">
         <div class="card-body">
           <p class="card-text">
-            When selecting records further down the page, click on the round "Up to
-            the Top - Arrow" button to quickly jump to the top of the page.
+            When selecting records further down the page,
+            click on the <span class="badge badge-light"><%= fa_icon("angle-up") %></span> "Up to
+            the Top - Arrow" button to quickly jump to the top of the page. The button will appear
+            in the bottom-right corner of the page
           </p>
         </div>
       </div>

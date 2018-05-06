@@ -52,7 +52,11 @@
             <td class="text-right"><%= registration_klass.learners.size %></td>
             <td><%= registration_klass.course.name %></td>
             <td><%= registration_klass.year.strftime("%Y") %></td>
-            <td><%= link_to 'Show', [registration_klass.school, registration_klass], class: "btn btn-sm btn-primary" %></td>
+            <td>
+              <%= link_to [registration_klass.school, registration_klass], class: "btn btn-sm btn-primary" do %>
+                <%= fa_icon("angle-double-right", text: "Show", right: true) %>
+              <% end %>
+            </td>
             <td>
               <%= link_to  [registration_klass.school, registration_klass],
                 method: :delete,

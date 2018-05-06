@@ -1,37 +1,108 @@
-<%= form_with(model: [@result.assessment, @result], method: :patch, id: :edit_result, class: :edit_result) do |form| %>
+<% content_for :title do %>fp Editing Result <% end %>
+<%= form_with(model: [@result.assessment, @result], local: true, id: :edit_result, class: :edit_result) do |form| %>
 
-  <p>
-    <strong>
-      <%= @result.assessment.name %>. Value: <%=  @result.assessment.value  %>
-    </strong>
-  </p>
+  <% if @result.errors.any? %>
+    <div id="error_explanation">
+      <h3><%= pluralize(@result.errors.count, "error") %> prohibited this course from being saved:</h3>
+      <ul>
+      <% @result.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
 
-  <div class="errors"></div>
-
-  <div class="form-group user-registration-id">
-    <%= form.label :user_registration_id, "Name of Learner", class: "form-label" %>
-    <%= form.text_field :user_registration_id, id: :user_name, class: "form-control" %>
-  </div>
   <div class="form-group row">
-    <%= form.label :student_score, class: "col-sm-5 col-form-label" %>
-    <div class="col-sm-3">
-      <%= form.number_field :student_score, id: :result_student_score, class: "form-control result_student_score " %>
+    <%= form.label :user_registration_id, "Name of Learner", class: "col-sm-4 col-form-label" %>
+    <div class="col-sm-7">
+      <div class="input-group mb-3">
+        <input type="text" class="form-control" value="<%= @result.user_registration.user_name %>" aria-label="Learner Name" readonly>
+      </div>
     </div>
   </div>
-  <!-- TODO add conditional to show goal to learner only and vice versa for the rest of the content -->
+  <!--.form-group row  user name -->
+
   <div class="form-group row">
-    <label for="goalValue" class="col-sm-5 col-form-label">My Goal - "dummy data"</label>
-    <div class="col-sm-3">
-      <input type="number" class="form-control" id="inputGoalValue" placeholder="15">
+    <label for="Assessment" class="col-sm-4 col-form-label">Assessment name</label>
+    <div class="col-sm-7">
+      <div class="input-group mb-3">
+        <input type="text" class="form-control" value="<%= @result.assessment.name %>" aria-label="Assessment Name" readonly>
+      </div>
     </div>
   </div>
+  <!--.form-group row assessment name -->
+
+  <div class="form-group row">
+    <label for="Assessment" class="col-sm-4 col-form-label">Assessment Value</label>
+    <div class="col-sm-4">
+      <div class="input-group mb-3">
+        <input type="text" class="form-control" id="valAssessment" value="<%= @result.assessment.value  %>" aria-label="Assessment Value" readonly>
+        <div class="input-group-append">
+          <span class="input-group-text">points</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--.form-group row assessment value -->
+
+  <div class="form-group row">
+    <%= form.label :student_score, "Learner's mark",  class: "col-sm-4 col-form-label" %>
+    <div class="col-sm-4">
+      <div class="input-group mb-3">
+        <%= form.number_field :student_score, id: :result_student_score, class: "form-control result_student_score " %>
+        <div class="input-group-append">
+          <span class="input-group-text">points</span>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-3">
+      <div class="input-group mb-3">
+        <input type="text" class="form-control" id="pctMarkInput" readonly>
+        <div class="input-group-append">
+          <span class="input-group-text">%</span>
+        </div>
+      </div>
+      <button type="button" class="btn btn-sm btn-outline-success" id="calcPctMark">
+        <%= fa_icon("calculator", text: "Calc %") %>
+      </button>
+    </div>
+  </div>
+  <!--.form-group row student mark -->
+  <!-- TODO add database field for learner goal value -->
+  <div class="form-group row">
+    <label for="goalValue" class="col-sm-4 col-form-label">My Goal</label>
+    <div class="col-sm-4">
+      <div class="input-group mb-3">
+        <input type="number" class="form-control" id="valGoal" value="25" readonly>
+        <div class="input-group-append">
+          <span class="input-group-text">points</span>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-3">
+      <div class="input-group mb-3">
+        <input type="text" class="form-control" id="pctGoalInput" readonly>
+        <div class="input-group-append">
+          <span class="input-group-text">%</span>
+        </div>
+      </div>
+      <button type="button" class="btn btn-sm btn-outline-success" id="calcPctGoal">
+        <%= fa_icon("calculator", text: "Calc %") %>
+      </button>
+    </div>
+  </div>
+  <!--.form-group row student goal -->
+
   <div class="form-group">
     <%= form.label :teacher_comment %>
     <%= form.text_area :teacher_comment, id: :result_teacher_comment, class: "form-control" %>
   </div>
+  <!--.form-group  teacher_comment -->
   <div class="actions">
-    <button type="button" class="btn btn-l btn-outline-primary" data-dismiss="modal" id="editResult">Cancel</button>
+    <%= link_to [@assessment, @result], class: "btn btn-lg btn-outline-primary" do %>
+      <%= fa_icon("times", text: "Cancel") %>
+    <% end %>
     <%= form.submit class: "btn btn-lg btn-primary" %>
   </div>
-
+<!-- actions -->
 <% end %>

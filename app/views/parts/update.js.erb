@@ -13,9 +13,9 @@ var el = $('.edit_part');
   el.find('.errors').html(errors);
 
 <% else %>
-
+$("#part_<%= @part.id %>").detach();
 $('#list-parts').append('<%= j render @part %>');
-$("#part-<%= @part.id %>").hide().fadeIn(1000);
+$("#part_<%= @part.id %>").hide().fadeIn(1000);
 $('#part-dialog').modal("hide");
 $('#totalValue').getTotal();
 $('.totalValue').getTotal();

@@ -10,7 +10,7 @@
       </ul>
     </div>
   <% end %>
-  
+
   <div class="row my-2">
     <div class="col-sm-9">
       <div class="form-group">
@@ -18,7 +18,7 @@
         <%= form.text_field :name, id: :goal_name, class: "form-control goal_name" %>
       </div>
     </div>
-    <div class="col-sm-3">
+    <div class="col-md-3">
       <div class="form-group">
         <%= fa_icon("calendar") %>&nbsp;<%= form.label :deadline, "When is this due?" %>
         <%= form.text_field :deadline, id: :goal_deadline, class: "form-control datetimepicker" %>

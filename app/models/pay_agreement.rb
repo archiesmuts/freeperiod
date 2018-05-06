@@ -5,9 +5,11 @@ class PayAgreement < ApplicationRecord
   belongs_to :fee, inverse_of: :pay_agreements
   belongs_to :user_registration, inverse_of: :pay_agreements
   validates :fee_id, :user_registration_id, :discount,:discount_in_percent, :slug, presence: true
-  validates :comment, presence: true, on: :update, if: :special_discount?
+  validates :comment, presence: true, on: :update, if: :discounted?
 
-  def special_discount?
+  scope :discounted, -> { where("discount > 0")  }
+
+  def discounted?
     discount > 0
   end
 
@@ -21,7 +23,9 @@ class PayAgreement < ApplicationRecord
   def student_name
     self.user_registration.user_name
   end
-
+  def discount_amount
+    approved_school_fee - agreed_school_fee 
+  end
   def agreed_school_fee
    approved_school_fee-(approved_school_fee*discount)
  end
@@ -29,6 +33,7 @@ class PayAgreement < ApplicationRecord
  def approved_school_fee
    fee.amount
  end
+
 
  def discount_in_percent
    discount.to_d*100 if discount

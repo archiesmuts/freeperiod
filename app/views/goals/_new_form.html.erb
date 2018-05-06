@@ -3,10 +3,10 @@
    <div class="form-group">
       <%= form.label :name, "Describe your goal" %>
       <%= form.text_field :name, id: :goal_name, class: "form-control goal_name",
-          placeholder: "Describe your goal", required: true %>
+          placeholder: "What do you want to achieve?", required: true %>
     </div>
     <div class="row">
-      <div class="from-group col-sm-3">
+      <div class="from-group col-md-3">
         <%= form.label :deadline, "When is this due?" %>
         <%= form.text_field :deadline, id: :goal_deadline, autocomplete: "off", class: "form-control datetimepicker",
         placeholder: "Due date?", required: true %>

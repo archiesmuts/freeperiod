@@ -11,13 +11,13 @@
         <div class="col-sm-6">
           <%= link_to [assessment.lesson_plan, assessment], method: :delete, remote: true,
             data: { confirm: 'Are you absolutely sure?' },
-            class: "btn btn-danger btn-block-xs delete-assessment" do %>
+            class: "btn btn-sm btn-danger btn-block-xs delete-assessment" do %>
               <%= fa_icon("trash", text: "Delete") %>
             <% end %>
         </div>
         <div class="col-sm-6">
-          <%= link_to [assessment.lesson_plan, assessment], class: "btn btn-primary btn-block" do %>
-          <%= fa_icon("angle-double-right", text: "Show") %>
+          <%= link_to [assessment.lesson_plan, assessment], class: "btn btn-sm btn-primary btn-block" do %>
+          <%= fa_icon("angle-double-right", text: "Show", right: true) %>
           <% end %>
         </div>
       </div>

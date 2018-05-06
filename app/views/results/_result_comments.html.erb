@@ -1,14 +1,16 @@
-<h4 class="text">
-  <%= fa_icon "comments", text: "Comments" %>&nbsp;<span class="badge badge-secondary" id="sizeResultComments">?</span>
+<h4 class="text" id="comments">
+  <%= fa_icon "comments", text: "Comments" %>&nbsp;<span class="badge badge-info" id="sizeComments1"></span>
 </h4>
-<ul id="list-comments" class="list-group">
   <% if @result.comments.any? %>
+  <ul id="list-comments" class="list-group">
     <%= render "comments/comments", commentable: @result %>
+  </ul>
   <% else %>
-    <li class="list-group-item list-group-item-info no-comments-to-list">
+  <ul class="list-group no-comments-to-list">
+    <li class="list-group-item list-group-item-info">
       Nobody has commented yet.
     </li>
+  </ul>
   <% end %>
-</ul>
 <hr>
 <div class="my-3"><%= render "comments/form", commentable: @result %></div>

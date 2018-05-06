@@ -34,9 +34,11 @@
 </div>
 
 <% if @registration_klass.achievements.any? %>
-<div class="row d-flex" id="list-achievements">
-  <%= render "achievements/achievements", achievable: @registration_klass %>
-</div> <!-- .card-deck -->
+  <div class="row d-flex" id="list-achievements">
+    <%= render "achievements/achievements", achievable: @registration_klass %>
+  </div>
 <% else %>
-  <%= render "achievements/achievement_placeholder" %>
+  <div class="row d-flex">
+    <%= render "achievements/achievement_placeholder" %>
+  </div>
 <% end %>

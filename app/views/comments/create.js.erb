@@ -15,7 +15,7 @@ var el = $('.new_comment');
 <% else %>
 
 $('#list-comments').prepend('<%= j render @comment %>');
-$("#comment-<%= @comment.id %>").hide().fadeIn(1000);
+$("#comment_<%= @comment.id %>").hide().fadeIn(1000);
 $("#list-comments").sizeComments();
 $(".no-comments-to-list").detach();
 $("#comment_comment").val('');

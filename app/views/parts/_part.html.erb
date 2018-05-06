@@ -1,7 +1,9 @@
 <!-- parts/part -->
 <div class="col-md-6 part-card" id="<%= dom_id(part) %>">
   <div class="card text-white bg-dark mb-3">
-    <div class="card-header">Section/Question - <%= @assessment.name.truncate(25) %></div>
+    <div class="card-header">
+      <span class="badge badge-success">Q</span>&nbsp;<%= @assessment.name.truncate(50) %>
+    </div>
     <div class="card-body">
       <h5 class="card-title"><%= part.name %></h5>
       <p class="card-text"><%= part.description %></p>

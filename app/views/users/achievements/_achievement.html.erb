@@ -1,4 +1,7 @@
 <div id="polym_<%= dom_id(achievement) %>" class="card text-white bg-dark mb-1 mr-1 achievement-card" style="width: 20rem;">
+  <div class="card-header">
+    Personal Achievement
+  </div>
   <div class="card-body">
     <h4 class="card-title"><%= achievement.title %></h4>
     <h6 class="cad-subtitle"><%= achievement.date.strftime("%d %b %Y") %></h6>
@@ -16,7 +19,7 @@
       <div class="col-md-8">
         <%= link_to edit_polymorphic_path([achievement.achievable, achievement]),
           remote: true, class: "btn btn-block btn-primary" do %>
-          <%= fa_icon("pencil", text: "Edit Achievement") %>
+          <%= fa_icon("pencil", text: "Edit") %>
         <% end %>
         </div>
     </div>

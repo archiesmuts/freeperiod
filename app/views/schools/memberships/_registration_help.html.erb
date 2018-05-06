@@ -1,24 +1,161 @@
-<div class="alert alert-success">
-  <h4 class="alert-heading">
-    This list includes all the people that were invited and confirmed. It should
-    comprise of all Educators, Learners, Parents/Guardians and Other (e.g. SGB members) people that will have
-    some sort of role in the school.
-  </h4>
-  <hr>
-  <h5 class="alert-heading">
-    Assigning roles to individuals.
-  </h5>
-  <p>
-      The primary role of a person will determine her/his <strong>access privileges</strong>.
-  </p>
-  <hr>
-  <p>
-    Thus, educators will have access to their assigned classes only and learners
-    will only have access to their own subject registration details.
-  </p>
-  <hr>
-  <p>
-    <strong>You can edit multiple records at once</strong>. Use the check boxes to select the records
-    you want to edit. Scroll down to the bottom and click on the <em>"Edit selected records"</em> button.
-  </p>
+<div class="row mt-2">
+  <div class="col-xl-10 offset-xl-1">
+    <h2>About School Memberships</h2>
+    <div class="accordion" id="accordion">
+      <div class="card">
+        <div class="card-header" id="whoShouldRegister">
+          <h5 class="mb-0">
+            <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseWhoShouldRegister" aria-expanded="true" aria-controls="collapseOne">
+              Who should register?
+            </button>
+          </h5>
+        </div>
+
+        <div id="collapseWhoShouldRegister" class="collapse show" aria-labelledby="whoShouldRegister" data-parent="#accordion">
+          <div class="card-body">
+            <p class="card-text text-white">
+              Anybody who will need access to information on your website, for whatever reason,
+              must be registered. Apart from the account owner, all other users must be invited to
+              register via an email invitiation generated from this page.
+            </p>
+            <p class="card-text text-white">
+              The following people should be registered: Educators, Learners, Parents/Guardians and
+              Administrators. There might also be other people that but will play some
+              sort of role in the school but do not fall in any of the aforementioned
+              categories . They can be categorised as a "Friends of School".
+            </p>
+          </div>
+        </div>
+        <!-- .collapse -->
+      </div>
+      <!-- .card  -->
+      <div class="card">
+        <div class="card-header" id="howToRegister">
+          <h5 class="mb-0">
+            <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseHowToRegister" aria-expanded="false" aria-controls="collapseThree">
+              How do we register people?
+            </button>
+          </h5>
+        </div>
+        <div id="collapseHowToRegister" class="collapse" aria-labelledby="howToRegister" data-parent="#accordion">
+          <div class="card-body">
+            <p class="card-text text-white">
+              A person can be invited to register by using the form on this page.  Simply
+              fill in the person's email address and click on "Send Invitation".
+            </p>
+            <p class="card-text text-white">
+              Upon receipt of if the email the invitee will need to accept the invitation by
+              clicking on the link in the email. The person will be redirected to
+              your school's registration page where she or he can complete the registration.
+              Her or his First name, Surname and Password will be required to complete registration.
+            </p>
+            <p class="card-text text-white">
+              After successfull registration the person becomes a member of your school.
+            </p>
+          </div>
+        </div>
+      </div>
+      <!-- .card  -->
+      <div class="card">
+        <div class="card-header" id="shareEmailAdresses">
+          <h5 class="mb-0">
+            <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseShareEmailAdresses" aria-expanded="false" aria-controls="collapseThree">
+              What about learners who do not have an email address?
+            </button>
+          </h5>
+        </div>
+        <div id="collapseShareEmailAdresses" class="collapse" aria-labelledby="shareEmailAdresses" data-parent="#accordion">
+          <div class="card-body">
+            <p class="card-text text-white">
+              There will be many cases where people, especially learners, do not
+              have an email address. Thankfully there are solutions available that
+              should suit most people.
+            </p>
+            <p class="card-text text-white">
+              <strong>Email aliases:</strong><br>
+              Some parents will have an email account that allow up to five email aliases.
+              This allows one to share the same email account with up to five family
+              members with different names (or aliases).
+            </p>
+            <p class="card-text text-white">
+              <strong>GMail account:</strong><br>
+              Another option is available for parents with a GMail account.
+              GMail lets you create infinite number of aliases on one account.
+            </p>
+            <p class="card-text text-white">
+              For example lets use Mrs Jane Doe, who has two children Jack and Jill at school.
+              Mrs Doe's email is <span class="badge badge-light">mrsjanedoe@gmail.com</span>.
+              To share her email Mrs Doe can grant the school permission to create aliases on the fly as follows.
+              When sending an invitation to Jill for example, just add a
+              "PLUS symbol with Jill's name" between "mrsjanedoe" and "@gmail.com"
+              e.g. mrsjanedoe<span class="badge badge-info">+jill</span>@gmail.com. Nothing else is required.
+            </p>
+            <p class="card-text text-white">
+              Thus, an email sent to
+              <span class="badge badge-light">mrsjanedoe</span>
+              <span class="badge badge-info">+jill</span>
+              <span class="badge badge-light">@gmail.com</span>
+              or <span class="badge badge-light">mrsjanedoe</span>
+              <span class="badge badge-info">+jack</span>
+              <span class="badge badge-light">@gmail.com</span>
+              will all be redirected to one common email address and that is
+              <span class="badge badge-light">mrsjanedoe@gmail.com</span>.
+              On the school database Jack and Jill's emaill addresses will be stored with
+              the newly created aliases "mrsjanedoe+jack@gmail.com" and "mrsjanedoe+jill@gmail.com"
+              respectively.
+            </p>
+            <p class="card-text text-white">
+              GMail does NOT recognize characters after the PLUS symbol but the gmail
+              search filter can distinguish between the different addresses and you can
+              therefore redirect these emails to separate gmail folders or apply different labels.
+            </p>
+          </div>
+        </div>
+      </div>
+      <!-- .card  -->
+      <div class="card">
+        <div class="card-header" id="assigningRoles">
+          <h5 class="mb-0">
+            <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseAssigningRoles" aria-expanded="false" aria-controls="collapseTwo">
+              Assigning roles to individuals.
+            </button>
+          </h5>
+        </div>
+        <div id="collapseAssigningRoles" class="collapse" aria-labelledby="assigningRoles" data-parent="#accordion">
+          <div class="card-body">
+            <p class="card-text text-white">
+              When people finally register after receiving an invitiation they
+              will not have any roles assigned to them. On the membership list it
+              will be labelled as <span class="badge badge-warning">No roles assigned</span>.
+            </p>
+            <p class="card-text text-white">
+              The account owner or any of the assigned school administrators can then proceed
+              to assign roles to Educators, Learners, Parents respectively.
+            </p>
+            <p class="card-text text-white">
+              The primary role of a person will determine her/his <strong>access permissions</strong> on the site.
+              Depending on the roles assigned to each person, he/she will have different
+              levels of access across the site. The specific role will determine
+              if a person can perform one or more of the following actions:
+            </p>
+            <ul class="text-info">
+              <li>Create content</li>
+              <li>Edit content</li>
+              <li>View content - restricted or full control</li>
+            </ul>
+            <p class="card-text text-white">
+              Personal permissions apply to content that belongs to a single user.
+              Thus, educators will have access to their assigned classes only and learners
+              will only have access to their personal class registration details etc.
+            </p>
+          </div>
+        </div>
+        <!-- .collapse -->
+      </div>
+      <!-- .card  -->
+    </div>
+    <!-- .accordion -->
+  </div>
+  <!-- row.col -->
 </div>
+<!-- .row -->

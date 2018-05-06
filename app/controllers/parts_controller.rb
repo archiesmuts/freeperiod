@@ -1,6 +1,6 @@
 class PartsController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_assessment, only: [:new, :create]
+  before_action :set_assessment, only: [:new, :create, :update, :destroy]
   before_action :set_part, only: [:show, :edit, :update, :destroy]
 
   # GET /parts

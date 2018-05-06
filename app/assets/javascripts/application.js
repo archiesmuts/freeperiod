@@ -21,7 +21,7 @@
 //= require fullcalendar
 //= require bootstrap-datetimepicker
 //= require bootstrap-sprockets
-//= require trix
+//require trix
 //= require data-confirm-modal
 //= require turbolinks
 //= require_tree .

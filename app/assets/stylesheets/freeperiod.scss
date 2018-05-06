@@ -48,6 +48,11 @@ img {
 	overflow: hidden;
 }
 
+input[readonly].form-control {
+    // background-color: #grey;
+		color: #002b36;
+    /* any other styles */
+}
 
 hr.style1{
 	border-top: 1px solid darkslategrey;

@@ -3,7 +3,7 @@
     <tr id="membership-<%= membership.id %>">
       <td>
         <%= image_tag "placeholder_user.png",
-          size: "40x40",
+          size: "50x50",
           alt: "Headshot",
           id: "headshot",
           class: "image-fluid mr-3" %>
@@ -33,7 +33,7 @@
       </td>
       <td>
         <%= link_to membership, class: "btn btn-sm btn-primary" do %>
-          <%= fa_icon("id-card", text: "Show") %>
+          <%= fa_icon("id-card", text: "Show", right: true) %>
         <%end %>
 
         <%= link_to [membership.user, membership], method: :delete, remote: true,

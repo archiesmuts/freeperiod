@@ -1,6 +1,6 @@
 <%= form_with(model: [@school, @fee], local: true, id: :edit_fee, class: :edit_fee) do |form| %>
   <div class="row">
-    <div class="col-md-7">
+    <div class="col-md-6">
       <% if @fee.errors.any? %>
         <div id="error_explanation">
           <h2><%= pluralize(fee.errors.count, "error") %> prohibited this fee from being saved:</h2>
@@ -55,10 +55,10 @@
     <!-- .col-md-6 -->
 
     <div class="col-md-5">
-      <h4>Assign Learners to this year's school fee</h4>
+      <h4>Create Pay Agreements by assigning Learners</h4>
       <div class="form-check mb-2">
         <input class="form-check-input" type="checkbox" value="" id="checkAll">
-        <label class="form-check-label" for="checkAll">
+        <label class="form-check-label text-primary" for="checkAll">
           Click to Select All Learners
         </label>
       </div>

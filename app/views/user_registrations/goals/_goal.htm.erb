@@ -28,14 +28,14 @@
           <div class="col-sm-6">
             <%= link_to [@goal.goalable, @goal], method: :delete, remote: true,
               data: { confirm: 'NOTE - Any action plans will also be deleted!'},
-              class: "btn btn-sm btn-danger btn-block-xs delete-goal" do %>
+              class: "btn btn-danger btn-block-xs delete-goal" do %>
                 <%= fa_icon("trash", text: "Delete") %>
             <% end %>
           </div>
           <div class="col-sm-6">
             <%= link_to polymorphic_path([@goal.goalable, @goal]),
-              class: "btn btn-sm btn-primary btn-block" do %>
-              Show more&nbsp;<%= fa_icon("chevron-right") %>
+              class: "btn btn-primary btn-block" do %>
+              ;<%= fa_icon("chevron-right", text: "Show") %>
             <% end %>
           </div>
         </div>

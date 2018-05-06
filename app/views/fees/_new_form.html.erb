@@ -15,7 +15,7 @@
             {selected: Date.today,
             discard_day: true, discard_month: true,
             end_year: Date.today.year + 1},
-            {class: "form-control"} %>
+            {class: "form-control custom-select"} %>
         </div>
       </div>
     </div>
@@ -24,7 +24,9 @@
         <%= form.label :amount, class: "col-sm-3 col-form-label" %>
         <div class="col-sm-8">
           <div class="input-group mb-2 mb-sm-0">
-             <div class="input-group-addon">R</div>
+             <div class="input-group-prepend">
+               <span class="input-group-text">R</span>
+             </div>
               <%= form.number_field :amount, id: :fee_amount, class: "form-control", required: true %>
           </div>
         </div>

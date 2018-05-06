@@ -19,6 +19,7 @@ $("#assessment-<%= @assessment.id %>").hide().fadeIn(1000);
 $('#assessment-dialog').modal('hide');
 $('.no-assessments-to-list').detach();
 $("#list-assessments").sizeAssessments();
+$("#list-assessments").sizeParts();
 
 
 // Clear form

@@ -12,51 +12,92 @@
     </ol>
   </nav>
 </div>
-<div class="jumbotron mt-2">
+<div class="jumbotron">
   <div class="row">
-    <div class="col-md-6 col-lg-4 offset-lg-2">
-      <h1 class="h3 text-primary">
+    <div class="col-lg-10 offset-lg-1">
+      <h1 class="h3">Individual Learner Result</h1>
+      <h2 class="h3 text-primary">
         <%= fa_icon("user-circle") %>&nbsp;<%= @result.user_registration.user_name %>
-      </h1>
-      <h2 class="h4 text-white"><%= @result.assessment.name%></h2>
-
-      <dl class="row" id="assessmentScore">
-        <dt class="col-sm-4">Actual Result:</dt>
-        <dd class="col-sm-8 text-white">
-          <%= @result.student_score %> / <%= @result.assessment.value %>&nbsp;
-          <span class="badge badge-primary" id="percentActual">?????</span>
-        </dd>
-
-        <dt class="col-sm-4">Learner Goal:</dt>
-        <dd class="col-sm-8 text-white">
-          75 / <%= @assessment.value %>&nbsp;
-          <span class="badge badge-info" id="percentGoal">?????</span>
-        </dd>
-      </dl>
+      </h2>
+      <h3 class="h4 text-white"> Assessment: <%= @result.assessment.name %></h3>
+    </div>
+  </div>
+  <hr>
+  <div class="row">
+    <div class="col-md-6 col-lg-5 offset-lg-1">
+      <h4 class="text-info">Assessment Value: <span class="badge badge-info"><%= number_with_precision(@result.assessment.value, precision: 1) %></span> </h4>
+      <table class="table table-sm table-hover">
+        <thead class="">
+          <tr>
+            <th scope="col"></th>
+            <th class="text-info" scope="col">My Goal</th>
+            <th  class="text-white" scope="col">My Mark</th>
+            <th scope="col">Gap??</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">points</th>
+            <td class="text-info">75/<%= number_with_precision(@result.assessment.value, precision: 1) %></td>
+            <td class="text-white"><%= number_with_precision(@result.student_score, precision: 1) %>/<%= number_with_precision(@result.assessment.value, precision: 1) %></td>
+            <td>???</td>
+          </tr>
+          <tr>
+            <th scope="row">percent</th>
+            <td class="text-info">00.00%</td>
+            <td class="text-white"><%= number_to_percentage(@result.percent_mark, precision: 1) %></td>
+            <td>-</td>
+          </tr>
+        </tbody>
+      </table>
+      <!-- table results  -->
+      <hr class="my-3">
+    </div>
+    <!-- .col -->
+    <div class="col-md-6 col-lg-4">
       <p class="h4">Teacher's Remarks</p>
       <% if @result.teacher_comment %>
         <p class="text-white">
           <%= @result.teacher_comment %>
         </p>
       <% else %>
-          <p class="text-info">Teacher has not commented yet.</p>
+          <p class="text-info">Teacher has not made any remarks yet.</p>
       <% end %>
-      <hr class="my-3">
-      <div class="mb-2">
+      <button type="button" class="btn btn-outline-info" disabled>
+        Other Comments <span class="badge badge-info" id="sizeComments2"></span>
+      </button>
+      <a href="#comments" class="btn btn-outline-info" role="button">
+        <%= fa_icon("angle-double-down") %>
+      </a>
+    </div>
+    <!-- .col teacher_comment -->
+
+  </div>
+  <!--< .row main -->
+  <div class="row">
+    <div class="col-lg-10 offset-lg-1">
+      <div class="actions">
+        <%= link_to [@assessment.lesson_plan, @result.assessment], class: "btn btn-lg btn-outline-primary" do %>
+          <%= fa_icon("arrow-left", text: "Back") %>
+        <% end %>
         <%= link_to edit_assessment_result_path(@result.assessment, @result),
-          class: "btn btn-lg btn-primary btn-block-xs" do %>
+          class: "btn btn-lg btn-primary" do %>
           <%= fa_icon("pencil-square", text: "Edit result") %>
         <% end %>
         <!-- TODO add conditonal to either show or hide depending on id user has roles learner or teacher  -->
         <%= link_to edit_assessment_result_path(@result.assessment, @result),
-          class: "btn btn-lg btn-primary btn-block-xs" do %>
-          <%= fa_icon("pencil-square", text: "Record my goal") %>
+          class: "btn btn-lg btn-primary" do %>
+          <%= fa_icon("pencil-square", text: "Set my goal") %>
         <% end %>
       </div>
 
     </div>
-    <div class="col-md-6 col-lg-4">
-      <%= render "result_comments" %>
-    </div>
   </div>
-</div> <!-- .jumbotron -->
+  <!-- .row action buttons -->
+</div>
+<!-- .jumbotron -->
+<div class="row">
+  <div class="col-md-6 col-lg-6 offset-lg-1">
+    <%= render "result_comments" %>
+  </div>
+</div>

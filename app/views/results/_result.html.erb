@@ -19,25 +19,16 @@
       </p>
     </div>
     <div class="card-footer">
-      <div class="row">
-        <div class="col-md-4">
-          <%= link_to [result.assessment, result], method: :delete, remote: true,
-            data: { confirm: 'Delete! Are you absolutely sure?' },
-            class: "btn btn-sm btn-danger delete-result" do %>
-            <%= fa_icon("trash", text: "Delete") %>
-          <% end %>
-        </div>
-        <div class="col-md-4">
-          <%= link_to edit_assessment_result_path(result.assessment, result), remote: true,
-            class: "btn btn-sm btn-primary" do %>
-            <%= fa_icon("pencil-square", text: "Edit") %>
-          <% end %>
-        </div>
-        <div class="col-md-4">
-          <%= link_to [result.assessment, result], class: "btn btn-sm btn-primary" do %>
-          <%= fa_icon "angle-double-right", text: "Show" %>
-          <% end %>
-        </div>
+      <div class="d-flex justify-content-between">
+        <%= link_to [result.assessment, result], method: :delete, remote: true,
+          data: { confirm: 'Delete! Are you absolutely sure?' },
+          class: "btn btn-danger delete-result" do %>
+          <%= fa_icon("trash", text: "Delete") %>
+        <% end %>
+
+        <%= link_to [result.assessment, result], class: "btn btn-primary" do %>
+          <%= fa_icon "angle-double-right", text: "Show", right: true %>
+        <% end %>
       </div>
     </div>
   </div>
