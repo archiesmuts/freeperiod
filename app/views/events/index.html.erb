@@ -1,3 +1,4 @@
+<% content_for :title do %>Calendar of Events <% end %>
 <div class="mt-1">
   <nav aria-label="breadcrumb">
     <ol class="breadcrumb">
@@ -10,21 +11,21 @@
     </ol>
   </nav>
 </div>
-  <div class="row">
-    <div class="col-lg-6 offset-lg-1">
-      <h1 class="py-2">
-      Upcoming School Events&nbsp;<small><span class="badge badge-info"><%= @school.events.newer_than(1.day.ago).size %></small></span>
-      </h1>
-    </div>
-    <div class="col-lg-5">
-      <%= link_to new_school_event_path(@school), remote: true,
-        class: "btn btn-lg btn-primary btn-block-xs" do %>
-        <%= fa_icon "calendar-plus-o", text: "Create an Event" %>
-      <% end %>
-    </div>
-  </div>
 <div class="row">
-  <div class="col-md-10 offset-md-1">
+  <div class="col-md-8 col-lg-6 col-xl-6 offset-xl-2">
+    <h1 >
+    Upcoming School Events&nbsp;<small><span class="badge badge-info"><%= @school.events.newer_than(1.day.ago).size %></small></span>
+    </h1>
+  </div>
+  <div class="col-md-4 col-lg-2 col-xl-2">
+    <%= link_to new_school_event_path(@school),
+      class: "btn btn-lg btn-primary btn-block-xs" do %>
+      <%= fa_icon "calendar-plus-o", text: "Create an Event" %>
+    <% end %>
+  </div>
+</div>
+<div class="row">
+  <div class="col-xl-8 offset-xl-2">
     <div id="event_calendar" class="py-2"> </div>
   </div>
 </div>

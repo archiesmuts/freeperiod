@@ -1,27 +1,51 @@
 <!-- Event show page -->
-<div class="row">
-  <div class="col-md-5 offset-md-1">
-    <div class="card border-secondary my-3" id="event-card-<%= @event.id %>">
-      <h5 class="card-header">
-        <%= link_to  school_events_path(@school), class: "btn btn-sm btn-outline-primary" do %>
-          <%= fa_icon "arrow-left" %>
+<% content_for :title do %>School Event<% end %>
+<div class="mt-1">
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb ">
+      <li class="breadcrumb-item">
+        <%= link_to school_events_path(@school) do %>
+          <%= fa_icon("arrow-left", text: "Events Calendar") %>
         <% end %>
-      <%= fa_icon "fort-awesome" %>&nbsp;School Event</h5>
-      <div class="card-body text-primary">
-      <h4 class="card-title"><%= @event.title %></h4>
-      <h6 class="card-subtitle mb-2 text-muted"> <%= @event.school_name %></h6>
-      <p class="card-text"><%= @event.description %></p>
-      <p class="card-text">Start time: <%= @event.start_time.strftime("%I:%M%p on %a %d %b %Y") %></p>
-      <p class="card-text">End time: <%= @event.end_time.strftime("%I:%M%p on %a %d %b %Y") %></p>
+      </li>
+      <li class="breadcrumb-item active" aria-current="page">School Event</li>
+    </ol>
+  </nav>
+</div>
+<div class="jumbotron img-fluid mt-1">
+  <div class="row">
+    <div class="col-lg-10 offset-lg-1">
+      <h1><%= fa_icon "fort-awesome", text: "School Event" %></h1>
+      <h2 class="text-white"><%= @event.title %></h2>
+      <p class="lead"><%= sanitize @event.description %></p>
+      <div class="card-deck">
+        <div class="card text-white ">
+           <div class="card-body">
+             <h5 class="card-title">Start time</h5>
+             <p class="card-text"><%= @event.start_time.strftime("%I:%M%p on %a %d %b %Y") %></p>
+           </div>
+         </div>
+         <div class="card text-white">
+           <div class="card-body">
+             <h5 class="card-title">End Time</h5>
+             <p class="card-text"><%= @event.end_time.strftime("%I:%M%p on %a %d %b %Y") %></p>
+           </div>
+         </div>
+      </div>
+      <hr>
+        <%= link_to school_events_path(@school),
+            class: "btn btn-lg btn-outline-primary" do %>
+          <%= fa_icon "arrow-left", text: "Back" %>
+        <% end %>
         <%= link_to edit_school_event_path(@school, @event),
-            class: "btn btn-sm btn-primary" do %>
+            class: "btn btn-lg btn-primary" do %>
           <%= fa_icon "pencil", text: "Edit event" %>
         <% end %>
-      </div>
-    </div><!-- .card -->
-  </div> <!-- .col-md -->
-
-  <div class="col-md-4">
+    </div>
+  </div> <!-- .row -->
+</div> <!-- .jumbotron -->
+<div class="row">
+  <div class="col-lg-8 offset-lg-1">
     <div class="card border-primary my-3">
       <h5 class="card-header">
         <%= fa_icon "comment-o" %>&nbsp;Leave a comment on the event
@@ -45,4 +69,3 @@
     </div>
   </div>
 </div>
-<%= render "modal_dialog" %>
