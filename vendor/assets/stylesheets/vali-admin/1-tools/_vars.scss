@@ -3,7 +3,7 @@
 //-----------------------------------------------------
 
 // Primary font
-$body-font: 'Lato', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+// $body-font: 'Lato', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
 
 //
 // Theme Colors
@@ -11,7 +11,7 @@ $body-font: 'Lato', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helv
 
 $white: #FFF;
 
-// Primary color is the main color of the application which is used 
+// Primary color is the main color of the application which is used
 // for navbar, active links and primary button.
 
 // ------ Primary Colors from google material design color palette ------
@@ -21,7 +21,7 @@ $white: #FFF;
 // Brown : #795548
 // Purple: #673AB7
 
-$primary-color: #009688;
+$primary-color: #DF691A; //#009688;
 
 // Complementry color is used to indecate the loading bar on the top
 // of the page with pace.js plugin

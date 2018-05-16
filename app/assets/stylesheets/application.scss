@@ -7,7 +7,7 @@
 // $success:       #28b62c;
 // $info:          #03a9f4;
 // $warning:       #fbe42c;
-$danger:           #8B0000; //darkred
+// $danger:           #8B0000; //darkred
 // $danger:        #ff4136;
 // $light:         #eeeeee;
 // $dark:          #444444;
@@ -15,10 +15,10 @@ $danger:           #8B0000; //darkred
 //
 // import bootswatch theme scss
 
-@import "bootswatch/solar/variables";
+@import "bootswatch/superhero/variables";
 @import "bootstrap";
-@import "bootswatch/solar/bootswatch";
-// @import "bs_offcanvas";
+@import "bootswatch/superhero/bootswatch";
+@import "bs_offcanvas";
 @import "jquery-ui/core";
 @import "jquery-ui/datepicker";
 @import "jquery-ui/slider";
