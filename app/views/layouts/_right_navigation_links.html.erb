@@ -1,29 +1,68 @@
 <%# add navigation links to this file %>
-<% if user_signed_in? %>
-  <li class="nav-item dropdown">
-    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownProfileLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-      <%= fa_icon "user" %>&nbsp;<%= current_user.name %>
-    </a>
-    <div class="dropdown-menu" aria-labelledby="navbarDropdownProfileLink">
-      <%= link_to 'My Profile Page',   current_user, class: 'dropdown-item' %>
-      <%= link_to 'Edit My Account', edit_user_registration_path, class: 'dropdown-item' %>
-
-    </div>
+<!-- Navbar Right Menu-->
+<ul class="app-nav">
+  <li class="app-search">
+    <input class="app-search__input" type="search" placeholder="Search">
+    <button class="app-search__button"><i class="fa fa-search"></i></button>
   </li>
-  <li class="nav-item">
-    <%= link_to destroy_user_session_path, :method=>'delete', data: {confirm: "Click on confirm if you really want to leave."}, class: 'nav-link' do %>
-    <%= fa_icon "sign-out", text: "Sign out" %> 
-    <% end %>
+  <!--Notification Menu-->
+  <li class="dropdown"><a class="app-nav__item" href="#" data-toggle="dropdown" aria-label="Show notifications"><i class="fa fa-bell-o fa-lg"></i></a>
+    <ul class="app-notification dropdown-menu dropdown-menu-right">
+      <li class="app-notification__title">You have 4 new notifications.</li>
+      <div class="app-notification__content">
+        <li><a class="app-notification__item" href="javascript:;"><span class="app-notification__icon"><span class="fa-stack fa-lg"><i class="fa fa-circle fa-stack-2x text-primary"></i><i class="fa fa-envelope fa-stack-1x fa-inverse"></i></span></span>
+            <div>
+              <p class="app-notification__message">Lisa sent you a mail</p>
+              <p class="app-notification__meta">2 min ago</p>
+            </div></a></li>
+        <li><a class="app-notification__item" href="javascript:;"><span class="app-notification__icon"><span class="fa-stack fa-lg"><i class="fa fa-circle fa-stack-2x text-danger"></i><i class="fa fa-hdd-o fa-stack-1x fa-inverse"></i></span></span>
+            <div>
+              <p class="app-notification__message">Mail server not working</p>
+              <p class="app-notification__meta">5 min ago</p>
+            </div></a></li>
+        <li><a class="app-notification__item" href="javascript:;"><span class="app-notification__icon"><span class="fa-stack fa-lg"><i class="fa fa-circle fa-stack-2x text-success"></i><i class="fa fa-money fa-stack-1x fa-inverse"></i></span></span>
+            <div>
+              <p class="app-notification__message">Transaction complete</p>
+              <p class="app-notification__meta">2 days ago</p>
+            </div></a></li>
+        <div class="app-notification__content">
+          <li><a class="app-notification__item" href="javascript:;"><span class="app-notification__icon"><span class="fa-stack fa-lg"><i class="fa fa-circle fa-stack-2x text-primary"></i><i class="fa fa-envelope fa-stack-1x fa-inverse"></i></span></span>
+              <div>
+                <p class="app-notification__message">Lisa sent you a mail</p>
+                <p class="app-notification__meta">2 min ago</p>
+              </div></a></li>
+          <li><a class="app-notification__item" href="javascript:;"><span class="app-notification__icon"><span class="fa-stack fa-lg"><i class="fa fa-circle fa-stack-2x text-danger"></i><i class="fa fa-hdd-o fa-stack-1x fa-inverse"></i></span></span>
+              <div>
+                <p class="app-notification__message">Mail server not working</p>
+                <p class="app-notification__meta">5 min ago</p>
+              </div></a></li>
+          <li><a class="app-notification__item" href="javascript:;"><span class="app-notification__icon"><span class="fa-stack fa-lg"><i class="fa fa-circle fa-stack-2x text-success"></i><i class="fa fa-money fa-stack-1x fa-inverse"></i></span></span>
+              <div>
+                <p class="app-notification__message">Transaction complete</p>
+                <p class="app-notification__meta">2 days ago</p>
+              </div></a></li>
+        </div>
+      </div>
+      <li class="app-notification__footer"><a href="#">See all notifications.</a></li>
+    </ul>
   </li>
-<% else %>
-  <li class='nav-item'>
-    <%= link_to new_user_session_path, class: 'nav-link' do %>
-      <%= fa_icon "sign-in", text: "Sign in" %>
-    <% end %>
+  <!-- User Menu-->
+  <li class="dropdown"><a class="app-nav__item" href="#" data-toggle="dropdown" aria-label="Open Profile Menu"><i class="fa fa-user fa-lg"></i></a>
+    <ul class="dropdown-menu settings-menu dropdown-menu-right">
+      <li>
+        <%= link_to edit_user_registration_path, class: 'dropdown-item'  do %>
+          <%= fa_icon("cog lg", text: "Edit Profile") %>
+        <% end %>
+      <li>
+        <%= link_to current_user, class: 'dropdown-item' do %>
+        <%= fa_icon("user lg", text: "My profile") %>
+        <% end %>
+      </li>
+      <li>
+        <%= link_to destroy_user_session_path, :method=>'delete', data: {confirm: "Click on confirm if you really want to leave."}, class: 'dropdown-item' do %>
+        <%= fa_icon "sign-out lg", text: "Sign out" %>
+        <% end %>
+      </li>
+    </ul>
   </li>
-  <li class='nav-item'>
-    <%= link_to page_path("create_new_account"), class: 'nav-link' do %>
-      <%= fa_icon "magic", text: "Sign up" %>
-    <% end %>
-  </li>
-<% end %>
+</ul>

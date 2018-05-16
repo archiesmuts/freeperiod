@@ -14,7 +14,12 @@
     </td>
   </tr>
 <% else %>
-    <%= link_to school_path(membership.school), class: "nav-link list-group-item" do  %>
-     <%= fa_icon("university fw", text: "School page") %>
+  <li>
+    <%= link_to school_path(membership.school), class: "app-menu__item" do  %>
+     <%= fa_icon("university fw", class: "app-menu__icon") %>
+     <span class="app-menu__label">
+       &nbsp;My School Page
+     </span>
     <% end %>
+  </li>
 <% end %>

@@ -1,52 +1,5 @@
 <%# add navigation links to this file %>
-<% if user_signed_in? %>
-  <li class='nav-item'>
-    <%= link_to 'About', page_path('about'), class: 'nav-link' %>
-  </li>
-  <li class='nav-item'>
-    <%= link_to 'Background', page_path('background'), class: 'nav-link' %>
-  </li>
-  <li class="nav-item dropdown">
-    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-      Tutorial and Concepts Guide
-    </a>
-    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-      <%= link_to "Tutorial and Concepts Guide", page_path('user_guide'), class: "dropdown-item" %>
-      <a class="dropdown-item" href="#">Another action</a>
-      <div class="dropdown-divider"></div>
-      <a class="dropdown-item" href="#">Something else here</a>
-    </div>
-  </li>
-  <li class="nav-item dropdown">
-    <a class="nav-link dropdown-toggle" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-      Admin Tools
-    </a>
-    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-      <%= link_to "Schools", schools_path, class: "dropdown-item" %>
-      <%= link_to "Users", users_path, class: "dropdown-item" %>
-      <%= link_to "Assessment Types", assessment_types_path, class: "dropdown-item" %>
-      <%= link_to "Assessment Tasks", assessment_tasks_path, class: "dropdown-item" %>
-      <%= link_to 'Subjects', subjects_path, class: "dropdown-item" %>
-      <%= link_to 'Grades', grades_path, class: "dropdown-item" %>
-      <%= link_to 'Courses', courses_path, class: "dropdown-item" %>
-    </div>
-  </li>
-
-<% else %>
-  <li class='nav-item'>
-    <%= link_to 'Background', page_path('background'), class: 'nav-link' %>
-  </li>
-  <li class='nav-item'>
-    <%= link_to 'About', page_path('about'), class: 'nav-link' %>
-  </li>
-  <li class="nav-item dropdown">
-    <a class="nav-link dropdown-toggle" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-      Dropdown link
-    </a>
-    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-      <%= link_to "Schools", schools_path, class: "dropdown-item" %>
-      <%= link_to "Users", users_path, class: "dropdown-item" %>
-      <a class="dropdown-item" href="#">Something else here</a>
-    </div>
-  </li>
-<% end %>
+<%= link_to "freeperiod", root_path, class: "app-header__logo" %>
+<!-- <a class="app-header__logo" href="index.html">freeperiod</a> -->
+<!-- Sidebar toggle button-->
+<a class="app-sidebar__toggle" href="#" data-toggle="sidebar" aria-label="Hide Sidebar"></a>

@@ -2,6 +2,23 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://coffeescript.org/
 jQuery(document).on "turbolinks:load", ->
-  'use strict'
-  $('[data-toggle="offcanvas"]').on 'click', ->
-    $('.row-offcanvas').toggleClass 'active'
+  do ->
+    'use strict'
+    treeviewMenu = $('.app-menu')
+    # Toggle Sidebar
+    $('[data-toggle="sidebar"]').click (event) ->
+      event.preventDefault()
+      $('.app').toggleClass 'sidenav-toggled'
+      return
+    # Activate sidebar treeview toggle
+    $('[data-toggle=\'treeview\']').click (event) ->
+      event.preventDefault()
+      if !$(this).parent().hasClass('is-expanded')
+        treeviewMenu.find('[data-toggle=\'treeview\']').parent().removeClass 'is-expanded'
+      $(this).parent().toggleClass 'is-expanded'
+      return
+    # Set initial active toggle
+    $('[data-toggle=\'treeview.\'].is-expanded').parent().toggleClass 'is-expanded'
+    #Activate bootstrip tooltips
+    $('[data-toggle=\'tooltip\']').tooltip()
+    return

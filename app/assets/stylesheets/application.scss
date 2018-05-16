@@ -18,13 +18,14 @@ $danger:           #8B0000; //darkred
 @import "bootswatch/solar/variables";
 @import "bootstrap";
 @import "bootswatch/solar/bootswatch";
-@import "bs_offcanvas";
+// @import "bs_offcanvas";
 @import "jquery-ui/core";
 @import "jquery-ui/datepicker";
 @import "jquery-ui/slider";
 @import "jquery-ui/theme";
 @import "product";
 @import "trix";
+@import "vali-admin/main";
 @import "font-awesome";
 @import 'freeperiod';
 @import "fields_with_errors";

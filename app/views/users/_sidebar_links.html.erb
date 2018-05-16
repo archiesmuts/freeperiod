@@ -1,13 +1,40 @@
-<a class="nav-link active list-group-item d-flex justify-content-between align-items-center" id="home-tab" data-toggle="pill" href="#home" role="tab" aria-controls="home" aria-selected="true"><span><%= fa_icon("user fw", text: "My Home Page") %></span> <span class="badge badge-primary"><%= fa_icon("lock") %></span></a>
+<li>
+  <a id="home-tab" class="app-menu__item active" href="#home" role="tab" data-toggle="pill" aria-controls="home" aria-selected="true">
+    <%= fa_icon("id-badge lg", class: "app-menu__icon") %>
+    <span class="app-menu__label">
+      My Home Page
+    </span>
+  </a>
+</li>
 <% unless current_user.memberships.empty? %>
-<a class="nav-link list-group-item d-flex justify-content-between align-items-center" id="my-classes-tab" data-toggle="pill" href="#my-classes" role="tab" aria-controls="my-classes" aria-selected="false"><span><%= fa_icon("graduation-cap fw", text: "My Classes") %></span><span class="badge badge-info"><%= current_user.registration_klasses.size %></span></a>
-<a class="nav-link list-group-item d-flex justify-content-between align-items-center" id="my-goals-tab" data-toggle="pill" href="#my-goals" role="tab" aria-controls="my-goals" aria-selected="false"><span><%= fa_icon("star fw", text: "My Goals & Action Plans") %></span><span id="sizeGoals2" class="badge badge-info"></span></a>
-<a class="nav-link list-group-item d-flex justify-content-between align-items-center" id="my-achievements-tab" data-toggle="pill" href="#my-achievements" role="tab" aria-controls="my-achievements" aria-selected="false"><span><%= fa_icon("trophy fw", text: "My Achievements") %></span><span id="sizeAchievements2" class="badge badge-info"></span></a>
-<a class="nav-link list-group-item d-flex justify-content-between align-items-center" id="my-addresses-tab" data-toggle="pill" href="#my-addresses" role="tab" aria-controls="my-adresses" aria-selected="false"><span><%= fa_icon("address-book fw", text: "My Addresses") %></span><span id="sizeAddresses2" class="badge badge-info"></span></a>
+  <li id="my-classes-tab" class="treeview">
+    <a class="app-menu__item" href="#" data-toggle="treeview">
+      <i class="app-menu__icon fa fa-graduation-cap"></i>
+      <span class="app-menu__label"> My Classes</span>
+      <i class="treeview-indicator fa fa-angle-right"></i>
+    </a>
+    <ul class="treeview-menu">
+      <li><a class="treeview-item" href="#my-classes" data-toggle="pill" role="tab" aria-controls="myClasses" aria-selected="false"><%= fa_icon("circle-o", text: " Registration Class") %></a></li>
+      <li><a class="treeview-item" href="#" data-toggle="pill" role="tab" aria-controls="myClasses" aria-selected="false"><%= fa_icon("circle-o", text: "Subject Classes") %></a></li>
+    </ul>
+  </li>
+  <li>
+    <a id="my-achievements-tab" class="app-menu__item" href="#my-achievements" data-toggle="pill" role="tab" aria-controls="my-achievements" aria-selected="false">
+      <i class="app-menu__icon fa fa-trophy"></i>
+      <span class="app-menu__label">
+        My Achievements <span id="sizeAchievements2" class="badge badge-info"></span>
+      </span>
+    </a>
+  </li>
+  <li>
+    <a id="my-addresses-tab" class="app-menu__item" href="#my-addresses"data-toggle="pill" role="tab" aria-controls="my-addresses" aria-selected="false">
+      <i class="app-menu__icon fa fa-address-book"></i>
+      <span class="app-menu__label">
+        My Addresses <span id="sizeAddresses2" class="badge badge-info"></span>
+      </span>
+    </a>
+  </li>
   <% if current_user.memberships.any? %>
     <%= render current_user.memberships %>
   <% end %>
-<% end %>
-<%= link_to edit_user_registration_path, class: "nav-link list-group-item" do %>
-  <%= fa_icon("pencil-square fw", text: "Change my Sign-in details") %>
 <% end %>

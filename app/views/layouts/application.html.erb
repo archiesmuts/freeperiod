@@ -8,15 +8,13 @@
     <%= javascript_include_tag 'application', 'data-turbolinks-track' => 'reload' %>
     <%= csrf_meta_tags %>
   </head>
-  <body>
-    <header class="masthead">
+  <body class="app sidebar-mini rtl">
+    <header class="app-header">
       <%= render 'layouts/navigation' %>
     </header>
-    <div class="container-fluid">
-      <main role="main">
-        <%= yield %>
-      </main>
-    </div>
+    <main class="app-content">
+      <%= yield %>
+    </main>
 
     <footer class="container py-5">
       <div class="row">
