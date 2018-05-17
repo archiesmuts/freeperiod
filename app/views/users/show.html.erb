@@ -18,12 +18,18 @@
       <%= render "tab_content_home" %>
     </div>
 
-    <div class="tab-pane" id="my-classes" role="tabpanel">
-      <%= render "tab_content_my_classes" %>
+    <div class="tab-pane" id="my-registration-class" role="tabpanel">
+      <%= render "tab_content_registration_classes" %>
+    </div>
+    <div class="tab-pane" id="my-subjects" role="tabpanel">
+      <%= render "tab_content_subject_classes" %>
     </div>
 
     <%# if current_user.has_any_role?(:admin, :faculty) %>
       <!-- true -->
+      <div class="tab-pane"  id="my-goals" role="tabpanel" >
+        <%= render "tab_content_goals" %>
+      </div>
 
     <%# if current_user.has_role?(:admin) %>
     <div class="tab-pane"  id="my-achievements" role="tabpanel" >
@@ -32,10 +38,6 @@
     <%# end %>
     <div class="tab-pane"  id="my-addresses" role="tabpanel" >
         <%= render "tab_content_addresses" %>
-    </div>
-
-    <div class="tab-pane"  id="my-goals" role="tabpanel" >
-      <%= render "tab_content_goals" %>
     </div>
   </div>
 <%= render "goals/modal_dialog" %>

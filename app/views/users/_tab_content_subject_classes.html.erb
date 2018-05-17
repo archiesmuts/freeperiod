@@ -1,0 +1,38 @@
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="#">Home</a></li>
+    <li class="breadcrumb-item active" aria-current="page">My Subject Classes</li>
+  </ol>
+</nav>
+
+<div class="jumbotron">
+  <div class="row">
+    <div class="col-xl-10 offset-xl-1">
+      <h1 class="text-white">
+        My Subject Classes&nbsp;
+        <small>
+          <span class="badge badge-info">
+            <%= current_user.registration_klasses.s_klasses.size %>
+          </span>
+        </small>
+      </h1>
+    </div>
+  </div>
+</div>
+<div id="list-registration-klasses">
+  <% if @current_user.registration_klasses.any? %>
+    <div class="row d-flex flex-wrap" id="list-registration-klasses">
+      <%= render @current_user.registration_klasses.s_klasses %>
+    </div>
+    <% else %>
+    <div class="row d-flex flex-wrap">
+      <div class="col-12">
+        <div class="alert alert-info" role="alert">
+          You don't have any classes to list yet. However, below is an example of
+          what it could look like.
+        </div>
+      </div>
+      <%= render "registration_klass_placeholder" %>
+    </div>
+  <% end %>
+</div>

@@ -22,3 +22,16 @@ jQuery(document).on "turbolinks:load", ->
     #Activate bootstrip tooltips
     $('[data-toggle=\'tooltip\']').tooltip()
     return
+
+
+
+      # do (document) ->
+      #   div = document.getElementById('container')
+      #   icon = document.getElementById('icon')
+      #   open = false
+      #   div.addEventListener 'click', ->
+      #     if open
+      #       icon.className = 'fa fa-arrow-down'
+      #     else
+      #       icon.className = 'fa fa-arrow-down open'
+      #     open = !open

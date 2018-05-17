@@ -23,6 +23,6 @@
 //= require bootstrap-sprockets
 //= require trix
 //= require data-confirm-modal
-
+//= require font_awesome5
 //= require turbolinks
 //= require_tree .

@@ -22,7 +22,7 @@ class User < ApplicationRecord
   validates :terms_of_privacy_statement, acceptance: true
   validates_associated :memberships
   validates_associated :registration_klasses
-  
+
   scope :registered_learners, -> {joins(schools: [:registration_klasses])
     .where(memberships: {member: "learner"} )
     .distinct

@@ -1,34 +1,48 @@
 <li>
   <a id="home-tab" class="app-menu__item active" href="#home" role="tab" data-toggle="pill" aria-controls="home" aria-selected="true">
-    <%= fa_icon("id-badge lg", class: "app-menu__icon") %>
+    <%= fa_icon("user fw", class: "app-menu__icon mr-2", type: "regular") %>
     <span class="app-menu__label">
       My Home Page
     </span>
   </a>
 </li>
 <% unless current_user.memberships.empty? %>
-  <li id="my-classes-tab" class="treeview">
-    <a class="app-menu__item" href="#" data-toggle="treeview">
-      <i class="app-menu__icon fa fa-graduation-cap"></i>
-      <span class="app-menu__label"> My Classes</span>
-      <i class="treeview-indicator fa fa-angle-right"></i>
-    </a>
-    <ul class="treeview-menu">
-      <li><a class="treeview-item" href="#my-classes" data-toggle="pill" role="tab" aria-controls="myClasses" aria-selected="false"><%= fa_icon("circle-o", text: " Registration Class") %></a></li>
-      <li><a class="treeview-item" href="#" data-toggle="pill" role="tab" aria-controls="myClasses" aria-selected="false"><%= fa_icon("circle-o", text: "Subject Classes") %></a></li>
-    </ul>
-  </li>
   <li>
-    <a id="my-achievements-tab" class="app-menu__item" href="#my-achievements" data-toggle="pill" role="tab" aria-controls="my-achievements" aria-selected="false">
-      <i class="app-menu__icon fa fa-trophy"></i>
-      <span class="app-menu__label">
-        My Achievements <span id="sizeAchievements2" class="badge badge-info"></span>
+    <a id="my-registration-tab" class="app-menu__item" href="#my-registration-class" data-toggle="pill" role="tab" aria-controls="my-registration-klass" aria-selected="false">
+      <%= fa_icon("id-card-alt fw", class: "app-menu__icon mr-2") %>
+      <span class="app-menu__label d-flex justify">
+        My Registration Class
       </span>
     </a>
   </li>
   <li>
-    <a id="my-addresses-tab" class="app-menu__item" href="#my-addresses"data-toggle="pill" role="tab" aria-controls="my-addresses" aria-selected="false">
-      <i class="app-menu__icon fa fa-address-book"></i>
+    <a id="my-subjects-tab" class="app-menu__item" href="#my-subjects" data-toggle="pill" role="tab" aria-controls="my-subjects" aria-selected="false">
+      <%= fa_icon("graduation-cap fw", class: "app-menu__icon mr-2") %>
+      <span class="app-menu__label">
+        My Subjects <span class="badge badge-info"><%= current_user.registration_klasses.s_klasses.size %></span>
+      </span>
+    </a>
+  </li>
+  <li>
+    <a id="my-goals-tab" class="app-menu__item" href="#my-goals" data-toggle="pill" role="tab" aria-controls="my-goals" aria-selected="false">
+      <%= fa_icon("star fw", class: "app-menu__icon mr-2") %>
+      <span class="app-menu__label">
+        My Goals <span id="sizeGoals1" class="badge badge-info"></span>
+      </span>
+    </a>
+  </li>
+  <li>
+    <a id="my-achievements-tab" class="app-menu__item" href="#my-achievements" data-toggle="pill" role="tab" aria-controls="my-achievements" aria-selected="false">
+      <%= fa_icon("trophy fw", class: "app-menu__icon mr-2") %>
+        <span class="app-menu__label">
+          My Achievements
+          <span id="sizeAchievements2" class="badge badge-info"></span>
+        </span>
+    </a>
+  </li>
+  <li>
+    <a id="my-addresses-tab" class="app-menu__item" href="#my-addresses" data-toggle="pill" role="tab" aria-controls="my-addresses" aria-selected="false">
+      <%= fa_icon("address-book fw", class: "app-menu__icon mr-2") %>
       <span class="app-menu__label">
         My Addresses <span id="sizeAddresses2" class="badge badge-info"></span>
       </span>

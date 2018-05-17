@@ -12,7 +12,8 @@ class RegistrationKlass < ApplicationRecord
   has_many :lesson_plans
   has_many :goals, as: :goalable
   has_many :achievements, as: :achievable
-
+  scope :r_klasses, -> { where(klass_type: "registration_class") }
+  scope :s_klasses, -> { where(klass_type: "subject_class") }
 
   validates :school_id, :course_id, :name, :klass_type, :year, :slug, presence: true
   # TODO add completed_at date and completed boolean that will update completed_at

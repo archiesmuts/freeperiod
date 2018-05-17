@@ -53,6 +53,11 @@ input[readonly].form-control {
 		color: #002b36;
     /* any other styles */
 }
+// rotate the outdent icon to appear as indent
+.flip-icon {
+  transform: rotate(-180deg);
+}
+
 
 hr.style1{
 	border-top: 1px solid darkslategrey;

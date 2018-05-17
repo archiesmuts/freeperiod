@@ -1,17 +1,15 @@
-<div class="mt-1">
-  <nav aria-label="breadcrumb">
-    <ol class="breadcrumb">
-      <li class="breadcrumb-item"><a href="#">Home</a></li>
-      <li class="breadcrumb-item active" aria-current="page">My Registration & Subject Classes</li>
-    </ol>
-  </nav>
-</div>
-<div class="jumbotron mt-1">
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="#">Home</a></li>
+    <li class="breadcrumb-item active" aria-current="page">My Registration Class</li>
+  </ol>
+</nav>
+<div class="jumbotron">
   <div class="row">
     <div class="col-xl-10 offset-xl-1">
       <h1 class="text-white">
-        My Registration and Subject Classes&nbsp;
-        <small><span class="badge badge-info"><%= current_user.registration_klasses.size %></span></small>
+        My Registration Class&nbsp;
+        <small><span class="badge badge-info"><%= current_user.registration_klasses.r_klasses.size %></span></small>
       </h1>
     </div>
   </div>
@@ -19,7 +17,7 @@
 <div id="list-registration-klasses">
   <% if @current_user.registration_klasses.any? %>
     <div class="row d-flex flex-wrap" id="list-registration-klasses">
-      <%= render @current_user.registration_klasses %>
+      <%= render @current_user.registration_klasses.r_klasses %>
     </div>
     <% else %>
     <div class="row d-flex flex-wrap">
