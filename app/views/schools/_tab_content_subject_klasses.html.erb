@@ -1,0 +1,30 @@
+<div class="mt-1">
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item">
+        <a href="#">School home</a>
+      </li>
+      <li class="breadcrumb-item active" aria-current="page">Registration and Subject Classes</li>
+    </ol>
+  </nav>
+</div>
+<div class="jumbotron mt-1">
+  <div class="row">
+    <div class="col-xl-8 offset-xl-1">
+      <h1 class="text-white">Faculty, Administration, Registration and Subject Classes</h1>
+      <hr>
+      <%= link_to school_registration_klasses_path(@school), class: "btn btn-lg btn-primary btn-block-xs" do %>
+      <%= fa_icon("list-alt", text: "Manage Classes & Other") %>
+      <% end %>
+    </div>
+  </div>
+</div> <!-- .jumbotron -->
+
+<div class="card" style="width: 18rem;">
+  <img class="card-img-top" data-src="holder.js/100px130?auto=yes&theme=sky&text=Image" />
+  <div class="card-body">
+    <h5 class="card-title">Class statistics</h5>
+    <p class="card-text">Show statistics on the types of classes and grades in school</p>
+    <a href="#" class="btn btn-primary">Go somewhere</a>
+  </div>
+</div>

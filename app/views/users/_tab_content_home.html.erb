@@ -17,7 +17,6 @@
             <%= current_user.last_name if current_user.last_name %>
           </h1>
           <p class="h4 d-none d-sm-block"><%= fa_icon "envelope" %>&nbsp;<%= current_user.try(:email) %></p>
-
         </div>
         <!-- <img data-src="holder.js/50x50?auto=yes&theme=social&text=User" class="image-fluid mr-3"> -->
         <%= image_tag "placeholder_user.png",

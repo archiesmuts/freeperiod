@@ -1,16 +1,81 @@
 <!-- school sidebar links -->
-<a class="nav-link active list-group-item d-flex justify-content-between align-items-center" id="home-tab" data-toggle="pill" href="#home" role="tab" aria-controls="home" aria-selected="true"><span><%= fa_icon("university fw", text: "School Home") %></span></a>
-<a class="nav-link list-group-item d-flex justify-content-between align-items-center" id="dashboard-tab" data-toggle="pill" href="#dashboard" role="tab" aria-controls="dashboard" aria-selected="false"><span><%= fa_icon("th fw", text: "Dasboard") %></span></a>
-<a class="nav-link list-group-item d-flex justify-content-between align-items-center" id="school-memberships-tab" data-toggle="pill" href="#school-memberships" role="tab" aria-controls="school-memberships" aria-selected="false"><span><%= fa_icon("users fw", text: "Membership Registrations") %></span><span id="sizeMemberships2" class="badge badge-info"><%= @school.memberships.size %></span></a>
-<a class="nav-link list-group-item d-flex justify-content-between align-items-center" id="school-registration-klasses-tab" data-toggle="pill" href="#school-registration-klasses" role="tab" aria-controls="school-registration-klasses" aria-selected="false"><span><%= fa_icon("fw graduation-cap", text: "Faculty, Administration & Classes") %></span></a>
-<a class="nav-link list-group-item d-flex justify-content-between align-items-center" id="school-achievements-tab" data-toggle="pill" href="#school-achievements" role="tab" aria-controls="school-achievements" aria-selected="false"><span><%= fa_icon("trophy fw", text: "School Achievements") %></span><span id="sizeAchievements2" class="badge badge-info"></span></a>
-<a class="nav-link list-group-item d-flex justify-content-between align-items-center" id="school-goals-tab" data-toggle="pill" href="#school-goals" role="tab" aria-controls="school-goals" aria-selected="false"><span><%= fa_icon("fw star", text: "Goals and Action Plans") %></span><span id="sizeGoals2" class="badge badge-info"></span></a>
-<a class="nav-link list-group-item d-flex justify-content-between align-items-center" id="school-events-tab" data-toggle="pill" href="#school-events" role="tab" aria-controls="school-events" aria-selected="false"><span><%= fa_icon("fw fort-awesome", text: "Upcoming School Events") %></span><span class="badge badge-info"><%= @school.events.newer_than(Time.now).size %></span></a>
-<a class="nav-link list-group-item d-flex justify-content-between align-items-center" id="school-fees-tab" data-toggle="pill" href="#school-fees" role="tab" aria-controls="school-fees" aria-selected="false"><span><%= fa_icon("fw money", text: "School Fees") %></span></a>
-<a class="nav-link list-group-item d-flex justify-content-between align-items-center" href="#"><span><%= fa_icon("fw home", text: "Houses (Coming soon)") %></a>
-<a class="nav-link list-group-item d-flex justify-content-between align-items-center" href="#"><span><%= fa_icon("fw flag-checkered", text: "Sports (Coming soon)") %></a>
-<a class="nav-link list-group-item d-flex justify-content-between align-items-center" href="#"><span><%= fa_icon("fw magic", text: "Cultural (Coming soon)") %></a>
-<%= link_to current_user, class: "nav-link list-group-item", aria: {selected: false}  do %>
-  <%= fa_icon "fw smile-o", text: "My personal page" %>
-<% end %>
-<!-- school sidebar links -->
+<li>
+  <a id="home-tab" class="app-menu__item active" href="#home" role="tab" data-toggle="pill" aria-controls="home" aria-selected="true">
+    <%= fa_icon("university fw",class: "app-menu__icon mr-2") %>
+    <span class="app-menu__label">
+      School Home
+    </span>
+  </a>
+</li>
+<li>
+  <a class="app-menu__item" id="dashboard-tab" data-toggle="pill" href="#dashboard" role="tab" aria-controls="dashboard" aria-selected="false">
+    <%= fa_icon("tachometer-alt fw", class: "app-menu__icon mr-2") %>
+    <span class="app-menu__label">
+      Dashboard
+    </span>
+  </a>
+</li>
+<li>
+  <a class="app-menu__item" id="school-memberships-tab" data-toggle="pill" href="#school-memberships" role="tab" aria-controls="school-memberships" aria-selected="false">
+    <%= fa_icon("users fw", class: "app-menu__icon mr-2") %>
+    <span class="app-menu__label">
+      Memberships&nbsp;<span id="sizeMemberships2" class="badge badge-info"><%= @school.memberships.size %></span>
+    </span>
+  </a>
+</li>
+<li>
+  <a class="app-menu__item" id="school-registration-klasses-tab" data-toggle="pill" href="#school-registration-klasses" role="tab" aria-controls="school-registration-klasses" aria-selected="false">
+    <%= fa_icon("id-card-alt fw", class: "app-menu__icon mr-2") %>
+    <span class="app-menu__label">
+      Registration Classes
+    </span>
+  </a>
+</li>
+<li>
+  <a class="app-menu__item" id="school-subject-klasses-tab" data-toggle="pill" href="#school-subject-klasses" role="tab" aria-controls="school-subject-klasses" aria-selected="false">
+    <%= fa_icon("graduation-cap fw", class: "app-menu__icon mr-2") %>
+    <span class="app-menu__label">
+      Subject Classes
+    </span>
+  </a>
+</li>
+<li>
+  <a class="app-menu__item" id="school-goals-tab" data-toggle="pill" href="#school-goals" role="tab" aria-controls="school-goals" aria-selected="false">
+    <%= fa_icon("star fw", class: "app-menu__icon mr-2") %>
+    <span class="app-menu__label">
+      Goals & Action Plans&nbsp;<span id="sizeGoals2" class="badge badge-info"></span>
+    </span>
+  </a>
+</li>
+<li>
+  <a class="app-menu__item" id="school-achievements-tab" data-toggle="pill" href="#school-achievements" role="tab" aria-controls="school-achievements" aria-selected="false">
+    <%= fa_icon("trophy fw", class: "app-menu__icon mr-2") %>
+    <span class="app-menu__label">
+      School Achievements&nbsp;<span id="sizeAchievements2" class="badge badge-info"></span>
+    </span>
+  </a>
+</li>
+<li>
+  <a class="app-menu__item" id="school-events-tab" data-toggle="pill" href="#school-events" role="tab" aria-controls="school-events" aria-selected="false">
+    <%= fa_icon("fort-awesome", class: "app-menu__icon mr-2", type: "brand") %>
+    <span class="app-menu__label">
+      Upcoming Events&nbsp;<span class="badge badge-info"><%= @school.events.newer_than(Time.now).size %></span>
+    </span>
+  </a>
+</li>
+<li>
+  <a class="app-menu__item" id="school-fees-tab" data-toggle="pill" href="#school-fees" role="tab" aria-controls="school-fees" aria-selected="false">
+    <%= fa_icon("money-bill-alt fw", class: "app-menu__icon mr-2") %>
+    <span class="app-menu__label">
+      School Fees
+    </span>
+  </a>
+</li>
+<li>
+  <%= link_to current_user, class: "app-menu__item", aria: {selected: false}  do %>
+    <%= fa_icon "fw smile", class: "app-menu__icon mr-2"%>
+    <span class="app-menu__label">
+      My page
+    </span>
+  <% end %>
+</li>

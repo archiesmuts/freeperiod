@@ -1,4 +1,4 @@
-<div class="jumbotron img-fluid mt-1" id="school-jumbotron">
+<div class="jumbotron img-fluid" id="school-jumbotron">
   <div class="row">
       <div class="col-2 hide-xs">
         <div class="card">
@@ -9,7 +9,7 @@
         <h1><%= @school.name %></h1>
         <p>This is an example to show the potential of an offcanvas layout pattern in Bootstrap. Try some responsive-range viewport sizes to see it in action.</p>
         <%= link_to edit_school_path(@school), class: "btn btn-lg btn-primary btn-block-xs" do %>
-          <%= fa_icon("pencil", text: "Edit details") %>
+          <%= fa_icon("pencil-alt", text: "Edit details") %>
         <% end %>
       </div>
   </div> <!-- .row -->

@@ -1,26 +1,29 @@
 <% content_for :title do %>Calendar of Events <% end %>
-<div class="mt-1">
-  <nav aria-label="breadcrumb">
-    <ol class="breadcrumb">
-      <li class="breadcrumb-item">
-        <%= link_to @school do %>
-          <%= fa_icon "arrow-left", text: "School home" %>&nbsp;
-        <% end %>
-      </li>
-      <li class="breadcrumb-item active" aria-current="page">School Events Calendar</li>
-    </ol>
-  </nav>
+<div class="row">
+  <div class="col-md-8 offset-md-2 mt-2">
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+          <%= link_to @school do %>
+            <%= fa_icon "arrow-left", text: "School home" %>&nbsp;
+          <% end %>
+        </li>
+        <li class="breadcrumb-item active" aria-current="page">School Events Calendar</li>
+      </ol>
+    </nav>
+  </div>
 </div>
+
 <div class="row">
   <div class="col-md-8 col-lg-6 col-xl-6 offset-xl-2">
     <h1 >
-    Upcoming School Events&nbsp;<small><span class="badge badge-info"><%= @school.events.newer_than(1.day.ago).size %></small></span>
+      Upcoming School Events&nbsp;<small><span class="badge badge-info"><%= @school.events.newer_than(1.day.ago).size %></small></span>
     </h1>
   </div>
   <div class="col-md-4 col-lg-2 col-xl-2">
     <%= link_to new_school_event_path(@school),
       class: "btn btn-lg btn-primary btn-block-xs" do %>
-      <%= fa_icon "calendar-plus-o", text: "Create an Event" %>
+      <%= fa_icon "calendar-plus", text: "Create an Event", type: "regular" %>
     <% end %>
   </div>
 </div>

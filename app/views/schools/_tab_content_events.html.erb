@@ -1,21 +1,19 @@
-<div class="mt-1">
-  <nav aria-label="breadcrumb">
-    <ol class="breadcrumb">
-      <li class="breadcrumb-item">
-        <a href="#">School home</a>
-      </li>
-      <li class="breadcrumb-item active" aria-current="page">School Events</li>
-    </ol>
-  </nav>
-</div>
-<div class="jumbotron mt-1">
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item">
+      <a href="#">School home</a>
+    </li>
+    <li class="breadcrumb-item active" aria-current="page">School Events</li>
+  </ol>
+</nav>
+<div class="jumbotron">
   <div class="col-xl-10 offset-xl-1">
-    <h1 class="text-white"><%= fa_icon("fw fort-awesome", text: "Upcoming School Events") %>
+    <h1><%= fa_icon("fw fort-awesome", text: "Upcoming School Events", type: "brand") %>
       &nbsp;<small><span class="badge badge-info"><%= @school.events.newer_than(Time.now).size %></span></small> </h1>
     <p>This is a template for a simple marketing or informational website. It includes a large callout called a jumbotron and three supporting pieces of content. Use it as a starting point to create something more unique.</p>
     <hr>
     <%= link_to school_events_path(@school), class: "btn btn-lg btn-primary" do %>
-      <%= fa_icon("calendar", text: "View and Add Events") %>
+      <%= fa_icon("calendar-plus", text: "View and Add Events") %>
     <% end %>
   </div>
 </div>

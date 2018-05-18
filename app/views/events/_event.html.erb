@@ -2,9 +2,9 @@
   <div  class="card border-primary mb-3">
     <div class="card-body">
       <h5 class="card-title text-info">
-        <%= fa_icon "fort-awesome" %>&nbsp;<%= event.title %>
+        <%= fa_icon "fort-awesome", type: "brand" %>&nbsp;<%= event.title %>
       </h5>
-      <p class="card-text text-white"><%= event.description.truncate(300)  %></p>
+      <p class="card-text text-white"><%= sanitize event.description.truncate(300)  %></p>
       <p class="card-text text-white">
         <% if event.start_weekday == event.end_weekday %>
         <%= event.start_time.strftime("%I:%M%p") %>&nbsp;to
@@ -15,7 +15,7 @@
         <% end %>
       </p>
       <p class="card-text text-info">
-        <%= fa_icon("comment-o", text:"Comments") %>&nbsp;
+        <%= fa_icon("comments", text:"Comments") %>&nbsp;
         <span class="badge badge-info"><%= event.comments.size %></span>
       </p>
     </div>

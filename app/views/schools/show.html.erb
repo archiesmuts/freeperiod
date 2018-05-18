@@ -1,49 +1,55 @@
 <% content_for :title do %>School Home<% end %>
 <!-- school show view  -->
 <!-- TODO add a tagline for Achievements Goals etc. -->
-<div class="row row-offcanvas row-offcanvas-right pt-2">
-  <div class="col-12 col-md-9">
-    <div class="float-right d-md-none">
-      <button type="button" class="btn btn-primary btn-sm" data-toggle="offcanvas">
-        <%= fa_icon("th-list") %>
-      </button>
+<div class="app-sidebar__overlay" data-toggle="sidebar"></div>
+<aside class="app-sidebar">
+  <div class="app-sidebar__user">
+    <img class="app-sidebar__user-avatar" src="https://s3.amazonaws.com/uifaces/faces/twitter/jsa/48.jpg" alt="User Image">
+    <div>
+      <p class="app-sidebar__user-name"><%= current_user.name %></p>
+      <p class="app-sidebar__user-designation">Faculty</p>
     </div>
-    <!-- Tab panes -->
-    <div class="tab-content">
-      <div class="tab-pane fade show active" id="home" role="tabpanel">
-        <%= render "tab_content_home" %>
-      </div>
-
-      <div class="tab-pane fade" id="dashboard" role="tabpanel">
-        <%= render "tab_content_dashboard" %>
-      </div>
-
-      <div class="tab-pane fade" id="school-memberships" role="tabpanel">
-        <%= render "tab_content_memberships" %>
-      </div>
-
-      <div class="tab-pane fade" id="school-registration-klasses" role="tabpanel">
-        <%= render "tab_content_registration_klasses" %>
-      </div>
-
-      <div class="tab-pane fade" id="school-achievements" role="tabpanel">
-        <%= render "tab_content_achievements" %>
-      </div>
-      <div class="tab-pane fade" id="school-goals" role="tabpanel">
-        <%= render "tab_content_goals" %>
-      </div>
-      <div class="tab-pane fade" id="school-events" role="tabpanel">
-        <%= render "tab_content_events" %>
-      </div>
-      <div class="tab-pane fade" id="school-fees" role="tabpanel">
-        <%= render "tab_content_fees" %>
-      </div>
-    </div> <!-- .tab-content -->
   </div>
-  <div id="sidebar" class="col-6 col-md-3 sidebar-offcanvas pt-1 nav flex-column nav-pills" role="tablist" aria-orientation="vertical" role="tablist" aria-orientation="vertical">
+  <ul class="app-menu nav flex-column nav-pills">
     <%= render "sidebar_links" %>
+  </ul>
+</aside>
+    <!-- Tab panes -->
+<div class="tab-content">
+  <div class="tab-pane fade show active" id="home" role="tabpanel">
+    <%= render "tab_content_home" %>
   </div>
-</div> <!-- .row -->
+
+  <div class="tab-pane fade" id="dashboard" role="tabpanel">
+    <%= render "tab_content_dashboard" %>
+  </div>
+
+  <div class="tab-pane fade" id="school-memberships" role="tabpanel">
+    <%= render "tab_content_memberships" %>
+  </div>
+
+  <div class="tab-pane fade" id="school-registration-klasses" role="tabpanel">
+    <%= render "tab_content_registration_klasses" %>
+  </div>
+
+  <div class="tab-pane fade" id="school-subject-klasses" role="tabpanel">
+    <%= render "tab_content_subject_klasses" %>
+  </div>
+
+  <div class="tab-pane fade" id="school-achievements" role="tabpanel">
+    <%= render "tab_content_achievements" %>
+  </div>
+  <div class="tab-pane fade" id="school-goals" role="tabpanel">
+    <%= render "tab_content_goals" %>
+  </div>
+  <div class="tab-pane fade" id="school-events" role="tabpanel">
+    <%= render "tab_content_events" %>
+  </div>
+  <div class="tab-pane fade" id="school-fees" role="tabpanel">
+    <%= render "tab_content_fees" %>
+  </div>
+</div> <!-- .tab-content -->
+
 
 
 <!-- modals  -->
