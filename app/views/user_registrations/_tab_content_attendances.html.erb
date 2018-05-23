@@ -35,10 +35,9 @@
 </div><!--.jumbotron -->
 
 <!-- list attendances here -->
+<div id="list-attendances" class="row d-flex flex-wrap">
 <% if @user_registration.attendances.any? %>
-  <div id="list-attendances" class="row d-flex flex-wrap">
     <%= render "attendances/attendances", attendable: @user_registration %>
-  </div>
 <% else %>
   <ul class="list-group">
     <li class="list-group-item list-group-item-action no-attendances-to-list">
@@ -46,3 +45,4 @@
     </li>
   </ul>
 <% end %>
+</div>

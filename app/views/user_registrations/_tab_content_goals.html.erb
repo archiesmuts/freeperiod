@@ -36,12 +36,10 @@
   </div>
 </div>
 
-<% if @user_registration.goals.any? %>
-  <div class="row d-flex flex-wrap" id="list-goals">
-    <%= render "goals/goals", goalable: @user_registration %>
-  </div>
-<% else %>
-  <div class="row d-flex flex-wrap">
-    <%= render "goals/goal_placeholder" %>
-  </div>
-<% end %>
+<div class="row d-flex flex-wrap" id="list-goals">
+  <% if @user_registration.goals.any? %>
+      <%= render "goals/goals", goalable: @user_registration %>
+  <% else %>
+      <%= render "goals/goal_placeholder" %>
+  <% end %>
+</div>

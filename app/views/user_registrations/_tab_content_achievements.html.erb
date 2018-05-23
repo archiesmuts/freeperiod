@@ -38,12 +38,10 @@
   </div>
 </div>
 
+<div id="list-achievements" class="row d-flex flex-wrap">
   <% if @user_registration.achievements.any? %>
-  <div id="list-achievements" class="row d-flex flex-wrap">
     <%= render "achievements/achievements", achievable: @user_registration %>
-  </div>
   <% else %>
-    <div class="row d-flex flex-wrap">
-      <%= render "achievements/achievement_placeholder" %>
-    </div>
+    <%= render "achievements/achievement_placeholder" %>
   <% end %>
+</div>
