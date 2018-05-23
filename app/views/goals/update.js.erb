@@ -14,10 +14,10 @@ var el = $('.edit_goal');
 
 <% else %>
 
-$('#list-goals').append('<%= j render @goal %>');
-//prefix polym (polymorphic) to id to allow existing li to be hidden on update
-$("#polym_goal_<%= @goal.id %>").hide().fadeIn(1000);
-$("#goal_<%= @goal.id %>").detach();//this will hide existing users/card
+$("#goal_<%= @goal.id %>").fadeOut(700, function() {
+  this.remove();
+  $('#list-goals').append('<%= j render @goal %>');
+})
 $('#goal-dialog').modal("hide");
 $("#list-goals").sizeGoals();
 

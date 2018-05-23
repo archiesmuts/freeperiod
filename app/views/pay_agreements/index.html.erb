@@ -1,18 +1,18 @@
 <% content_for :title do %>fp Fee Pay Agreements<% end %>
-<div class="mt-2">
-  <nav aria-label="breadcrumb">
-    <ol class="breadcrumb breadcrumb-color">
-      <li class="breadcrumb-item">
-        <%= link_to [@fee.school, @fee, ] do %>
-          <%= fa_icon("arrow-left", text: "School Fee") %>
-        <% end %>
-      </li>
-      <li class="breadcrumb-item active" aria-current="page"><%= @fee.year.strftime("%Y") %> Pay Agreements</li>
-    </ol>
-  </nav>
-</div>
 <div class="row">
   <div class="col-lg-10 offset-lg-1">
+    <div class="mt-2">
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb breadcrumb-color">
+          <li class="breadcrumb-item">
+            <%= link_to [@fee.school, @fee, ] do %>
+              <%= fa_icon("arrow-left", text: "School Fee:") %>&nbsp;<%= @fee.name.truncate(30) %>
+            <% end %>
+          </li>
+          <li class="breadcrumb-item active" aria-current="page"><%= @fee.year.strftime("%Y") %> Pay Agreements</li>
+        </ol>
+      </nav>
+    </div>
     <h1><%= @fee.year.strftime("%Y") %> Pay Agreements&nbsp;<small><span class="badge badge-info"><%= @fee.pay_agreements.size %></span></small></h1>
     <h2 class="h3">
       Approved School Fee:&nbsp;
@@ -32,9 +32,10 @@
           <th scope="col"><%= fa_icon("user-circle", text: "Learner") %></th>
           <th scope="col"><span class="badge badge-warning">d</span></th>
           <th scope="col">Agreed Fee</th>
-          <th scope="col">Discount</th>
+          <th scope="col">Discount %</th>
+          <th scope="col">Discount R</th>
           <th scope="col">Comment</th>
-          <th colspan="3"></th>
+          <th scope="col">Actions</th>
         </tr>
       </thead>
 
@@ -45,10 +46,21 @@
             <td><span class="badge badge-warning"><%= pay_agreement.discounted? ? "d" : "" %></span></td>
             <td><%= number_to_currency(pay_agreement.agreed_school_fee, precision: 2, unit: "R") %></td>
             <td><%= number_to_percentage(pay_agreement.discount_in_percent, precision: 2) %></td>
-            <td><%= pay_agreement.comment.truncate(30) if pay_agreement.comment %></td>
-            <td><%= link_to [pay_agreement.fee, pay_agreement], class: "btn btn-sm btn-primary" do %><%= fa_icon("angle-double-right", text: "Show", right: true) %>  <% end %></td>
-            <td><%= link_to edit_fee_pay_agreement_path(pay_agreement.fee, pay_agreement), class: "btn btn-sm btn-outline-primary" do %><%= fa_icon("pencil", text: "Edit") %>  <% end %></td>
-            <td><%= link_to [pay_agreement.fee, pay_agreement], class: "btn btn-sm btn-danger", method: :delete, data: { confirm: 'Are you sure?' } do %><%= fa_icon("trash", text: "Delete") %><% end %></td>
+            <td><%= number_to_currency(pay_agreement.discount_amount, precision: 2, unit: "R") %></td>
+            <td></td>
+            <td>
+              <div class="dropdown">
+                <button class="btn btn-link dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  <%= fa_icon("ellipsis-h lg") %>
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                  <%= pay_agreement.comment.truncate(30) if pay_agreement.comment %>
+                  <%= link_to [pay_agreement.fee, pay_agreement], class: "btn btn-link dropdown-item" do %><%= fa_icon("angle-double-right", text: "Show", right: true) %>  <% end %>
+                  <%= link_to edit_fee_pay_agreement_path(pay_agreement.fee, pay_agreement), class: "btn btn-link dropdown-item" do %><%= fa_icon("pencil-alt", text: "Edit") %>  <% end %>
+                  <%= link_to [pay_agreement.fee, pay_agreement], class: "btn btn-link dropdown-item", method: :delete, data: { confirm: 'Are you sure?' } do %><%= fa_icon("trash", text: "Delete") %><% end %>
+                </div>
+              </div>
+            </td>
           </tr>
         <% end %>
       </tbody>

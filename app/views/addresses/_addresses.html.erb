@@ -1,5 +1,6 @@
 <% addressable.addresses.each do |address| %>
-  <div class="card text-white bg-dark border-info" id="<%= dom_id(address) %>">
+<div class="col-md-6"  id="<%= dom_id(address) %>">
+  <div class="card text-white bg-dark border-info">
     <div class="card-header">
       <%= address.address_type.humanize %>&nbsp;Address
     </div>
@@ -28,4 +29,5 @@
       </div>
     </div>
   </div>
+</div>
 <% end %>

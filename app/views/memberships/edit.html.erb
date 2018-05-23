@@ -1,6 +1,21 @@
 <% content_for :title do %>fp - Edit Registration<% end %>
-<div class="row d-flex justify-content-xl-center">
-  <div class="col-xl-7">
+<div class="app-sidebar__overlay" data-toggle="sidebar"></div>
+<aside class="app-sidebar">
+  <%= render "sidebar_user" %>
+  <ul class="app-menu nav flex-column nav-pills">
+    <li>
+      <a class="app-menu__item active" id="membership-home-tab" data-toggle="pill" href="#" role="tab" aria-controls="membership-home" aria-selected="true">
+        <%= fa_icon("id-card", class: "app-menu__icon mr-2") %>
+        <span class="app-menu__label">
+          Membership Home
+        </span>
+      </a>
+    </li>
+  </ul>
+</aside>
+    <!-- Tab panes -->
+<div class="tab-content">
+  <div class="tab-pane fade show active" id="edit-form" role="tabpanel">
     <div class="card border-primary mt-2">
       <div class="card-body text-white">
         <h4 class="card-title">

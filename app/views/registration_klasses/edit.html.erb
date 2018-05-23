@@ -1,3 +1,18 @@
+
+<div class="app-sidebar__overlay" data-toggle="sidebar"></div>
+<aside class="app-sidebar">
+  <%= render "sidebar_user" %>
+  <ul class="app-menu nav flex-column nav-pills">
+    <li>
+      <a class="app-menu__item active" id="class-home-tab" data-toggle="pill" href="#" role="tab" aria-controls="class-home" aria-selected="true">
+        <%= fa_icon("graduation-cap fw", class: "app-menu__icon mr-2") %>
+        <span class="app-menu__label">
+        <%= @registration_klass.course_name.truncate(35) %>
+        </span>
+      </a>
+    </li>
+  </ul>
+</aside>
 <div class="container mt-2">
   <h1>Editing class or faculty details</h1>
   <%= render 'edit_form', registration_klass: @registration_klass %>

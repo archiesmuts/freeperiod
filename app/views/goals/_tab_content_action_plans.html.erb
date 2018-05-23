@@ -1,36 +1,27 @@
-<div class="mt-1">
-  <nav aria-label="breadcrumb">
-    <ol class="breadcrumb ">
-      <li class="breadcrumb-item">
-        <%= link_generator(@goal) %>
-      </li>
-      <li class="breadcrumb-item">
-        <a href="#"><%= show_name_display(@goal) %></a>
-      </li>
-      <li class="breadcrumb-item active" aria-current="page">To Do's & Action Plans</li>
-    </ol>
-  </nav>
-</div>
-<div class="jumbotron mt-1">
-  <div class="row">
-    <div class="col-lg-6 offset-xl-1">
-      <h1 class="h2">My&nbsp;<%= show_name_display(@goal) %>&nbsp;and Action Plans</h1>
-      <p class="text-primary h5"><%= fa_icon("star") %>&nbsp;<%= @goal.name %></p>
-    </div>
-    <div class="col-lg-5">
-      <div class="alert alert-very-dark">
-        <h5>
-          <span class="text-success"><%= fa_icon("calendar-check-o", text: "Completed actions") %></span>
-          <span class="badge badge-success" id="sizeCompleted"></span>
-        </h5>
-      </div>
-      <p>The things you need <strong>Todo</strong> to achieve this goal.</p>
-    </div>
+<div class="app-title" aria-label="breadcrumb">
+  <div>
+    <h1 class="h2">
+      <%= fa_icon("star") %>&nbsp;<%= show_name_display(@goal) %>
+      and Action Plans
+    </h1>
+    <p>Monitor, Evaluate and Improve</p>
   </div>
+  <ul class="app-breadcrumb breadcrumb">
+    <li class="breadcrumb-item">
+      <%= link_generator(@goal) %>
+    </li>
+    <li class="breadcrumb-item">
+      <a href="#"><%= show_name_display(@goal) %></a>
+    </li>
+    <li class="breadcrumb-item active" aria-current="page">ToDo's & Action Plans</li>
+  </ul>
 </div>
 
+<h1 class="h2">Action Plans</h1>
+<p class="text-primary h5"><%= fa_icon("star") %>&nbsp;<%= @goal.name %></p>
+<hr>
 <div class="row">
-  <div class="col-sm col-lg col-xl-10 offset-xl-1 ">
+  <div class="col-md-10">
     <!-- card action plan -->
     <div class="card border-success mb-3">
       <div class="card-header">
@@ -38,9 +29,10 @@
           <%= fa_icon("check-square-o", text: "Todo's") %>&nbsp;
           <span class="badge badge-info" id="sizeTasks"></span>&nbsp;
           and <%= fa_icon("calendar-check-o", text: "Action Plans") %>&nbsp;
-          <span class="badge badge-success" id="sizeActionPlans"></span>
+          <span class="badge badge-success" id="sizeActionPlans"></span>&nbsp;
+          <small>Completed&nbsp;<span class="badge badge-success" id="sizeCompleted"></small>
         </h4>
-        <p class=" lead text-info">Things you need to do to achieve your goal.</p>
+        <p class="lead text-info">Things you need to do to achieve your goal.</p>
       </div><!-- .card-header -->
       <div class="card-body">
         <div class="row">

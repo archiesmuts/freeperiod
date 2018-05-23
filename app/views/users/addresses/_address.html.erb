@@ -1,8 +1,9 @@
-  <div class="card text-white bg-dark address-card" id="polym_<%= dom_id(address) %>">
+<div class="col-md-6"  id="<%= dom_id(address) %>">
+  <div class="card text-white bg-dark border-info address-card" >
+    <div class="card-header">
+      <%= @address.address_type.humanize %>&nbsp;Address
+    </div>
     <div class="card-body">
-      <div class="card-header">
-        <%= @address.address_type.humanize %>&nbsp;Address
-      </div>
       <h4 class="card-title"><%= @address.address %></h4>
       <p class="card-text">Postal address</p>
       <p class="card-text">Telephone number</p>
@@ -13,16 +14,17 @@
         <div class="col-sm-6">
           <%= link_to [@address.addressable, @address], remote: true, method: :delete,
               remote: true, data: { confirm: 'Are you sure you want do delete this?', toggle: "tooltip" },
-              class: "delete-address btn btn-sm btn-danger btn-block-xs", title: "Deleting address" do %>
+              class: "delete-address btn btn-danger btn-block-xs", title: "Deleting address" do %>
             <%= fa_icon("trash", text: "Delete") %>
           <% end %>
         </div>
         <div class="col-sm-6">
           <%= link_to edit_polymorphic_path([@address.addressable, @address]),
-            remote: true, class: "btn btn-sm btn-primary btn-block-xs" do %>
+            remote: true, class: "btn btn-primary btn-block-xs" do %>
             <%= fa_icon("pencil-alt", text: "Edit Address") %>
           <% end %>
         </div>
       </div>
     </div>
   </div>
+</div>

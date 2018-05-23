@@ -1,0 +1,36 @@
+<div class="app-title" aria-label="breadcrumb">
+  <div>
+    <h1 class="h2"><%= fa_icon("map-marker", text: "Contact Details") %></h1>
+    <p>Start a beautiful journey here</p>
+  </div>
+  <ul class="app-breadcrumb breadcrumb">
+    <li class="breadcrumb-item"><a href="#"><%= fa_icon("home lg", text: "School Home") %></a></li>
+    <li class="breadcrumb-item active" aria-current="page">Our Contact Details</li>
+  </ul>
+</div>
+
+<div class="jumbotron">
+  <div class="row">
+    <div class="col-xl-10 offset-xl-1">
+      <h1>
+        Our Contact Details&nbsp;
+        <small><span id="sizeAddresses1" class="badge badge-info"></span></small>
+      </h1>
+      <h2 class="h5"><%= fa_icon("address-card") %>&nbsp;Work Address</h2>
+      <hr>
+      <%= link_to new_user_address_path(current_user),
+        remote: true, class: "btn btn-lg btn-primary btn-block-xs" do %>
+        <%= fa_icon("plus-square", text: "Add an Address") %>
+      <% end %>
+    </div>
+  </div>
+</div>
+<div id="list-addresses" class="card-deck">
+  <% if current_user.addresses.any? %>
+    <%= render "addresses/addresses", addressable: @school %>
+  <% else %>
+    <li class="list-group-item list-group-item-info no-addresses-to-list">
+      No addresses recorded yet.
+    </li>
+  <% end %>
+</div>

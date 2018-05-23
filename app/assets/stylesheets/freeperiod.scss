@@ -53,12 +53,37 @@ input[readonly].form-control {
 		color: #002b36;
     /* any other styles */
 }
-// rotate the outdent icon to appear as indent
-.flip-icon {
+// rotate the outdent icon to appear as indent on application navbar
+.flip-icon-180 {
   transform: rotate(-180deg);
+}
+.flip-icon-90 {
+	transform: rotate(-90deg);
+}
+// breadcrumb-item links color on hover
+.breadcrumb-item > a {
+  &:hover, &:focus {
+    text-decoration: none;
+    color: #ebebeb;
+    font-weight: bolder;
+  }
+}
+
+.btn-link {
+  &:hover, &:focus {
+    text-decoration: none;
+    color: #ebebeb;
+    font-weight: bolder;
+  }
+  color: #5bc0de;
+}
+
+.breadcrumb-item > a {
+  color: #5bc0de;
 }
 
 
+// hr styles
 hr.style1{
 	border-top: 1px solid darkslategrey;
 }

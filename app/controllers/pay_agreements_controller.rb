@@ -3,6 +3,7 @@ class PayAgreementsController < ApplicationController
   before_action :set_fee, only: [:index, :new, :create, :show, :edit, :update, :destroy]
   before_action :set_pay_agreement, only: [:show, :edit, :update, :destroy]
 
+  layout "application_alt"
   # GET /pay_agreements
   # GET /pay_agreements.json
   def index

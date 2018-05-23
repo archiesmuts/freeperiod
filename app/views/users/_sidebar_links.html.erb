@@ -1,7 +1,7 @@
 <!-- user sidebar links -->
 <li>
   <a id="home-tab" class="app-menu__item active" href="#home" role="tab" data-toggle="pill" aria-controls="home" aria-selected="true">
-    <%= fa_icon("user fw", class: "app-menu__icon mr-2", type: "regular") %>
+    <%= fa_icon("user-graduate lg", class: "app-menu__icon mr-2") %>
     <span class="app-menu__label">
       My Home Page
     </span>
@@ -10,20 +10,13 @@
 <% unless current_user.memberships.empty? %>
   <li>
     <a id="my-registration-tab" class="app-menu__item" href="#my-registration-class" data-toggle="pill" role="tab" aria-controls="my-registration-klass" aria-selected="false">
-      <%= fa_icon("id-card-alt fw", class: "app-menu__icon mr-2") %>
-      <span class="app-menu__label d-flex justify">
-        My Registration Class
-      </span>
-    </a>
-  </li>
-  <li>
-    <a id="my-subjects-tab" class="app-menu__item" href="#my-subjects" data-toggle="pill" role="tab" aria-controls="my-subjects" aria-selected="false">
       <%= fa_icon("graduation-cap fw", class: "app-menu__icon mr-2") %>
       <span class="app-menu__label">
-        My Subjects <span class="badge badge-info"><%= current_user.registration_klasses.s_klasses.size %></span>
+        My Classes&nbsp;<span class="badge badge-info"><%= current_user.registration_klasses.s_klasses.size %></span>
       </span>
     </a>
   </li>
+
   <li>
     <a id="my-goals-tab" class="app-menu__item" href="#my-goals" data-toggle="pill" role="tab" aria-controls="my-goals" aria-selected="false">
       <%= fa_icon("star fw", class: "app-menu__icon mr-2") %>

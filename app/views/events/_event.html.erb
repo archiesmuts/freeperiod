@@ -1,8 +1,11 @@
-<div class="col-sm-6" id="event-card-<%= event.id %>">
+<div class="col-sm-6 event-card" id="<%= dom_id(event) %>" >
   <div  class="card border-primary mb-3">
+    <div class="card-header">
+      <%= fa_icon "fort-awesome", text: "Event", type: "brand" %>
+    </div>
     <div class="card-body">
       <h5 class="card-title text-info">
-        <%= fa_icon "fort-awesome", type: "brand" %>&nbsp;<%= event.title %>
+        <%= event.title %>
       </h5>
       <p class="card-text text-white"><%= sanitize event.description.truncate(300)  %></p>
       <p class="card-text text-white">
@@ -22,9 +25,9 @@
     <div class="card-footer">
       <div class="row">
         <div class="col col-md-4">
-          <%= link_to [event.school, event], method: :delete,
+          <%= link_to [event.school, event], method: :delete, remote: true,
           data: { confirm: 'Click on "Confirm" if want turn this event into cosmic dust.' },
-          class: "btn btn-danger btn-block-xs" do %>
+          class: "btn btn-danger btn-block-xs delete-event" do %>
           <%= fa_icon "trash", text: "Delete" %>
           <% end %>
         </div>

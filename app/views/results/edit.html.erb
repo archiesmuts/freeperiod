@@ -1,5 +1,19 @@
+<div class="app-sidebar__overlay" data-toggle="sidebar"></div>
+<aside class="app-sidebar">
+  <%= render "sidebar_user" %>
+  <ul class="app-menu nav flex-column nav-pills">
+    <li>
+      <a class="app-menu__item active" id="edit-result-home-tab" data-toggle="pill" href="#" role="tab" aria-controls="-result" aria-selected="true">
+        <%= fa_icon("edit fw", class: "app-menu__icon mr-2") %>
+        <span class="app-menu__label">
+          Edit Result
+        </span>
+      </a>
+    </li>
+  </ul>
+</aside>
 <div class="row mt-3">
-  <div class="col-xl-6 offset-xl-3">
+  <div class="col-xl-8 offset-xl-1">
     <h1>Editing Individual Result</h1>
     <div class="card text-white bg-dark mb-3">
       <div class="card-header"><%= @result.assessment.name.truncate(60) %></div>

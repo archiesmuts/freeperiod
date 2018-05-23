@@ -15,9 +15,9 @@ var el = $('.new_address');
 <% else %>
 
 $('#list-addresses').append('<%= j render @address %>');
-$("#address-<%= @address.id %>").hide().fadeIn(1000);
+$("#<%= dom_id(@address) %>").hide().fadeIn(1000);
 $("#list-addresses").sizeAddresses();
-$("#no-addresses-to-list").detach();
+$("#address-placeholder").detach();
 $("#address_address").val('');
 $('#address-dialog').modal("hide");
 

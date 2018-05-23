@@ -14,11 +14,11 @@ var el = $('.edit_attendance');
 
 <% else %>
 
-$(".attendance-<%= @attendance.id %>").detach();
-$(".ureg-attendance-<%= @attendance.id %>").detach();
-$('#list-attendances').append('<%= j render @attendance %>');
-$('#attendance-dialog').modal("hide");
-$("#attendance-<%= @attendance.id %>").fadeIn(1000);
+  $("#attendance_<%= @attendance.id %>").fadeOut(700, function() {
+    this.remove();
+    $('#list-attendances')prepend('<%= j render @attendance %>');
+  })
+  $('#attendance-dialog').modal("hide");
 
 // Clear form
 el.find('input:text,text_area').val('');

@@ -1,3 +1,18 @@
+<div class="app-title" aria-label="breadcrumb">
+  <div>
+    <h1 class="h2"><%= fa_icon("map-signs", text: "Teacher's Guide") %></h1>
+    <p>Monitor, Evaluate and Improve</p>
+  </div>
+  <ul class="app-breadcrumb breadcrumb">
+    <li class="breadcrumb-item">
+      <%= link_to [@lesson_plan.registration_klass, @assessment.lesson_plan] do %>
+        Lesson Plan:&nbsp;(<%= @lesson_plan.registration_klass.course_name %>)
+      <% end %>
+    </li>
+    <li class="breadcrumb-item">Assessment</li>
+    <li class="breadcrumb-item active" aria-current="page">Teacher's Guide</li>
+  </ul>
+</div>
 <div class="jumbotron">
   <div class="row">
     <div class="col-12 col-lg-8 offset-lg-2">

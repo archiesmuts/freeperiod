@@ -13,12 +13,12 @@ var el = $('.new_goal');
   el.find('.errors').html(errors);
 
 <% else %>
-
+$('#goal-placeholder').detach();
+// $('#list_addresses').append('<%#= j render partial: "addresses/address", locals: {address: @address} %>');
 $('#list-goals').append('<%= j render @goal %>');
 $("#<%= dom_id(@goal) %>").hide().fadeIn(1000);
+
 $("#list-goals").sizeGoals();
-$('#sizeUserGoals').sizeGoals();
-$(".no-goals-to-list").detach();
 $("#goal_name").val('');
 $("#goal_deadline").val('');
 $('#goal-dialog').modal("hide");

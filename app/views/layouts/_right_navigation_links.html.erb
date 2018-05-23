@@ -47,20 +47,22 @@
     </ul>
   </li>
   <!-- User Menu-->
-  <li class="dropdown"><a class="app-nav__item" href="#" data-toggle="dropdown" aria-label="Open Profile Menu"><%= fa_icon("user lg") %></a>
+  <li class="dropdown"><a class="app-nav__item" href="#" data-toggle="dropdown" aria-label="Open Profile Menu"><%= fa_icon("user-graduate lg") %></a>
     <ul class="dropdown-menu settings-menu dropdown-menu-right">
       <li>
-        <%= link_to edit_user_registration_path, class: 'dropdown-item'  do %>
-          <%= fa_icon("cog lg", text: "Edit Profile") %>
-        <% end %>
-      <li>
         <%= link_to current_user, class: 'dropdown-item' do %>
-        <%= fa_icon("user lg", text: "My profile") %>
+        <%= fa_icon("user-graduate", text: "My profile") %>
         <% end %>
       </li>
       <li>
+        <%= link_to edit_user_registration_path, class: 'dropdown-item'  do %>
+          <%= fa_icon("user-cog", text: "Edit Profile") %>
+        <% end %>
+      </li>
+
+      <li>
         <%= link_to destroy_user_session_path, :method=>'delete', data: {confirm: "Click on confirm if you really want to leave."}, class: 'dropdown-item' do %>
-        <%= fa_icon "sign-out-alt lg", text: "Sign out" %>
+        <%= fa_icon "sign-out-alt", text: "Sign out" %>
         <% end %>
       </li>
     </ul>

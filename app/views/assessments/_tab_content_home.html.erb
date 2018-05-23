@@ -1,21 +1,27 @@
-<div class="mt-1">
-  <nav aria-label="breadcrumb">
-    <ol class="breadcrumb">
-      <li class="breadcrumb-item">
-        <%= link_to [@lesson_plan.registration_klass, @assessment.lesson_plan] do %>
-          <%= fa_icon "arrow-left", text: "Lesson Plan" %>&nbsp;(<%= @lesson_plan.registration_klass.course_name %>)
-        <% end %>
-      </li>
-      <li class="breadcrumb-item active" aria-current="page">Assessment</li>
-    </ol>
-  </nav>
+<!-- tab_content_home -->
+<div class="app-title" aria-label="breadcrumb">
+  <div>
+    <h1 class="h2"><%= fa_icon("check-square", text: "Assessment") %>
+      &nbsp;- <%= @lesson_plan.registration_klass.course_name %>
+    </h1>
+    <p>Monitor, Evaluate and Improve</p>
+  </div>
+  <ul class="app-breadcrumb breadcrumb">
+    <li class="breadcrumb-item">
+      <%= link_to [@lesson_plan.registration_klass, @assessment.lesson_plan] do %>
+        Lesson Plan:&nbsp;(<%= @lesson_plan.registration_klass.course_name %>)
+      <% end %>
+    </li>
+    <li class="breadcrumb-item active" aria-current="page">Assessment</li>
+  </ul>
 </div>
+
 <div class="jumbotron">
   <div class="row">
     <div class="col-xl-10 offset-xl-1">
-      <h1 class="h3 text-white"><%= fa_icon("check-square") %>&nbsp;<%= @assessment.name %></h1>
-      <h2 class="h4 text-info">Assessment - <%= @lesson_plan.registration_klass.course_name %></h2>
-      <h3 class="h4"></h3>
+      <h1 class="h3 text-white">Assessment</h1>
+      <h2 class="h4 text-info"><%= fa_icon("align-left xs") %>&nbsp;<%= @assessment.name %></h2>
+      <h3 class="h4"><%= @lesson_plan.registration_klass.course_name %></h3>
       <p class="h5">
         <span class="badge badge-secondary">Type: <%= @assessment.assessment_type.name %></span>&nbsp;
         <span class="badge badge-secondary">Task: <%= @assessment.assessment_task.name %></span>
@@ -27,13 +33,13 @@
         </dd>
 
         <dt class="col-sm-4">Assessment Value:</dt>
-        <dd class="col-sm-8 text-white">
-          <%= @assessment.value %>
+        <dd class="col-sm-8">
+          <span class="badge badge-info"><%= @assessment.value %></span>
         </dd>
 
         <dt class="col-sm-4">Sum of questions:</dt>
         <dd class="col-sm-8 text-white">
-          <span id="totalValue"></span>
+          <span id="totalValue" class="badge badge-success"></span>
         </dd>
 
         <dt class="col-sm-4">Number of questions:</dt>
@@ -44,23 +50,28 @@
       </dl>
 
       <div class="row">
-        <div class="col-sm-6">
+        <div class="col-sm-8">
+          <%= link_to [@lesson_plan.registration_klass, @assessment.lesson_plan],
+            class: "btn btn-lg btn-outline-primary" do %>
+            <%= fa_icon("arrow-left", text: "Back") %>
+          <% end %>
+
           <%= link_to edit_lesson_plan_assessment_path(@assessment.lesson_plan, @assessment),
             class: "btn btn-lg btn-primary btn-block-xs" do %>
             <%= fa_icon "edit", text: "Edit assessment" %>
           <% end %>
         </div>
-        <div class="col-sm-6">
+        <div class="col-sm-4">
           <%= link_to new_assessment_part_path(@assessment), remote: true,
             class: "btn btn-lg btn-success btn-block-xs" do %>
-            <%= fa_icon "plus-square" %>&nbsp;Add a question
+            <%= fa_icon "plus-square", text: "Add a question" %>
           <% end %>
         </div>
       </div>
       <!-- .row inner -->
       <hr class="style4 my-2">
       <p class="h3">
-        Assessment questions&nbsp;<small><span class="badge badge-info" id="sizeParts2"></span></small>&nbsp;
+        Questions&nbsp;<small><span class="badge badge-info" id="sizeParts2"></span></small>&nbsp;
         <a class="btn btn-sm btn-outline-info"  href="#list-parts" role="button"  aria-controls="list-parts">
           <%= fa_icon("angle-double-down") %>
         </a>

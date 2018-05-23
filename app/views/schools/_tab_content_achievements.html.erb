@@ -1,18 +1,20 @@
-<nav aria-label="breadcrumb">
-  <ol class="breadcrumb">
-    <li class="breadcrumb-item">
-      <a href="#">School home</a>
-    </li>
+<div class="app-title" aria-label="breadcrumb">
+  <div>
+    <h1 class="h2"><%= fa_icon("trophy", text: "Our Achievements") %></h1>
+    <p>Start a beautiful journey here</p>
+  </div>
+  <ul class="app-breadcrumb breadcrumb">
+    <li class="breadcrumb-item"><a href="#"><%= fa_icon("home lg", text: "School Home") %></a></li>
     <li class="breadcrumb-item active" aria-current="page">School Achievements</li>
-  </ol>
-</nav>
-
+  </ul>
+</div>
 <div class="jumbotron">
   <div class="col-xl-10 offset-xl-1">
-    <h1 class="text-white"><%= fa_icon("trophy", text: "Celebrating our achievements") %>&nbsp;
+    <h1>
+      Celebrating our achievements&nbsp;
       <small><span class="badge badge-info" id="sizeAchievements1"></span></small>
     </h1>
-    <p class="lead">Celebrate our achievements together as a school...</p>
+    <p class="lead">Celebrate our achievements together ...</p>
     <hr>
     <%= link_to new_school_achievement_path(@school), remote: true, class: "btn btn-lg btn-primary btn-block-xs" do %>
       <%= fa_icon("plus", text: "Add an Achievement") %>

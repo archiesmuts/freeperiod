@@ -1,28 +1,30 @@
-<div class="mt-1">
-  <nav aria-label="breadcrumb">
-    <ol class="breadcrumb">
-      <li class="breadcrumb-item">
-        <%= link_to [@lesson_plan.registration_klass, @assessment.lesson_plan] do %>
-          <%= fa_icon "arrow-left", text: "Lesson Plan" %>&nbsp;-&nbsp;<%= @lesson_plan.registration_klass.course_name %>
-        <% end %>
-      </li>
-      <li class="breadcrumb-item"><a href="#">Assessment</a></li>
-      <li class="breadcrumb-item active" aria-current="page">Results</li>
-    </ol>
-  </nav>
+<!-- tab_content_results -->
+<div class="app-title" aria-label="breadcrumb">
+  <div>
+    <h1 class="h2"><%= fa_icon("chart-bar", text: "Results", type: "regular") %>
+      &nbsp;- <%= @lesson_plan.registration_klass.course_name %>
+    </h1>
+    <p>Monitor, Evaluate and Improve</p>
+  </div>
+  <ul class="app-breadcrumb breadcrumb">
+    <li class="breadcrumb-item">
+      <%= link_to [@lesson_plan.registration_klass, @assessment.lesson_plan] do %>
+        Lesson Plan:&nbsp;(<%= @lesson_plan.registration_klass.course_name %>)
+      <% end %>
+    </li>
+    <li class="breadcrumb-item">Assessment</li>
+
+    <li class="breadcrumb-item active" aria-current="page">Results</li>
+  </ul>
 </div>
+
 <div class="jumbotron jumbotron-bg-rain">
   <div class="row">
     <div class=" col-xl-10 offset-xl-1">
-      <h1 class="h2"><%= fa_icon("check-circle-o", text: "Results") %></h1>
-      <h2 class="h4 text-white"><%= fa_icon("check-square", text: "Assessment:") %>&nbsp;<%= @assessment.name %></h2>
-      <h3 class="h5 text-info">Lesson Plan: <%= @assessment.lesson_plan_name %>&nbsp;(<%= @assessment.lesson_plan.registration_klass.course_name %>) </h3>
+      <h1 class="h2">Learner Results <small><span class="badge badge-info" id="sizeResults1"></span></small></h1>
+      <h2 class="h4 text-info"><%= fa_icon("align-left xs") %>&nbsp;<%= @assessment.name %></h2>
 
       <hr class="style4 my-2">
-      <p class="h4">
-        <%= fa_icon("check-square", text: "Individual Results") %>&nbsp;
-        <span class="badge badge-info" id="sizeResults1"></span>
-      </p>
     </div>
   </div>
 </div>

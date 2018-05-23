@@ -1,22 +1,24 @@
-<div class="mt-1">
-  <nav aria-label="breadcrumb">
-    <ol class="breadcrumb">
-      <li class="breadcrumb-item">
-        <%= link_to school_registration_klasses_path(@registration_klass.school) do %>
-          <%= fa_icon "arrow-left", text: "Registration and Subject Classes Index" %>
-        <% end %>
-      </li>
-      <li class="breadcrumb-item active">
-        <a href="#"><%= @registration_klass.course_name %> - <%= @registration_klass.year.strftime("%Y") %></a>
-      </li>
-      <li class="breadcrumb-item active" aria-current="page">Class Achievements</li>
-    </ol>
-  </nav>
+<div class="app-title" aria-label="breadcrumb">
+  <div>
+    <h1 class="h2"><%= fa_icon("trophy", text: "Class Achievements") %></h1>
+    <p>Monitor, Evaluate and Improve</p>
+  </div>
+  <ul class="app-breadcrumb breadcrumb">
+    <li class="breadcrumb-item">
+      <%= link_to "Registration and Subject Classes Index", school_registration_klasses_path(@registration_klass.school) %>
+    </li>
+    <li class="breadcrumb-item">
+      <a href="#"><%= @registration_klass.course_name %> - <%= @registration_klass.year.strftime("%Y") %></a>
+    </li>
+    <li class="breadcrumb-item active" aria-current="page">
+      Achievements
+    </li>
+  </ul>
 </div>
 <div class="jumbotron jumbo-bg">
   <div class="row">
     <div class="col-12 col-xl-10 offset-xl-1">
-      <h1 class="h2 text-white"><%= fa_icon("trophy", text: "Celebrating Our Achievements") %>&nbsp;
+      <h1 class="h2 text-white">Celebrating Our Achievements&nbsp;
         <small><span class="badge badge-info" id="sizeClassAchievements1"></span></small>
       </h1>
       <h2 class="h3 text-info"><%= @registration_klass.name %></h2>
@@ -26,13 +28,13 @@
         Remember to celebrate both <strong>big</strong> and <strong>small</strong> achievements.
         You know when you have those <em>"Yes. I did it!"</em> moments? List all of those here.
       </p>
-      <%= link_to new_user_achievement_path(current_user), remote: true, class: "btn btn-lg btn-primary btn-block-xs" do %>
+      <%= link_to new_registration_klass_achievement_path(@registration_klass), remote: true, class: "btn btn-lg btn-primary btn-block-xs" do %>
       <%= fa_icon("plus-square", text: "Add an Achievement") %>
       <% end %>
     </div>
   </div>
 </div>
-
+<!-- FIXME investigate why first achievement element created does not render but subsequent ones do -->
 <% if @registration_klass.achievements.any? %>
   <div class="row d-flex" id="list-achievements">
     <%= render "achievements/achievements", achievable: @registration_klass %>

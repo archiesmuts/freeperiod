@@ -3,7 +3,7 @@
   <div class="card border-primary mb-3 scale">
     <div class="card-header">Day Absent</div>
     <div class="card-body">
-        <h4 class="card-title"><%= fa_icon "calendar-minus-o" %>&nbsp; <%= attendance.date.strftime("%d %b %Y") %></h4>
+        <h4 class="card-title"><%= fa_icon "calendar-minus", type: "regular" %>&nbsp; <%= attendance.date.strftime("%d %b %Y") %></h4>
         <p class="card-text"><%= attendance.comment %></p>
     </div> <!-- .card-body -->
     <div class="card-footer">
@@ -18,7 +18,7 @@
         <div class="col">
           <%= link_to edit_polymorphic_path([attendance.attendable, attendance]),
               remote: true, class: "btn btn-sm btn-primary  btn-block-xs" do %>
-            <%= fa_icon "pencil", text: "Edit" %>
+            <%= fa_icon "edit", text: "Edit" %>
           <% end %>
         </div>
       </div>

@@ -1,23 +1,30 @@
-<div class="mt-1">
-  <nav aria-label="breadcrumb">
-    <ol class="breadcrumb">
-      <li class="breadcrumb-item">
-        <%= link_to school_registration_klass_path(@registration_klass.school, @registration_klass) do %>
-          <%= fa_icon "arrow-left" %>&nbsp;<%= @lesson_plan.registration_klass.course_name %>
-        <% end %>
-      </li>
-      <li class="breadcrumb-item"><a href="#">Lesson Plan</a></li>
-      <li class="breadcrumb-item active" aria-current="page">Assessments</li>
-    </ol>
-  </nav>
+<!-- tab_content_assessments-->
+<div class="app-title" aria-label="breadcrumb">
+  <div>
+    <h1 class="h2">
+      <%= fa_icon("check-square", text: "Assessments") %>
+      &nbsp;-&nbsp;<small><%= @registration_klass.course_name %></small>
+    </h1>
+    <p>Monitor, Evaluate and Improve</p>
+  </div>
+  <ul class="app-breadcrumb breadcrumb">
+    <li class="breadcrumb-item">
+      <%= link_to school_registration_klass_path(@registration_klass.school, @registration_klass) do %>
+        <%= @lesson_plan.registration_klass.course_name %>
+      <% end %>
+    </li>
+    <li class="breadcrumb-item"><a href="#">Lesson Plan</a></li>
+    <li class="breadcrumb-item active" aria-current="page">Assessments</li>
+  </ul>
 </div>
+
 <div class="jumbotron">
   <div class="row">
     <div class="col-12 col-xl-10 offset-xl-1">
     <h1>Assessments&nbsp;<small><span class="badge badge-info" id="sizeAssessments1"></span></small></h1>
-    <h2 class="h3 text-white"><%= fa_icon("book") %>&nbsp;<%= @lesson_plan.name %></h2>
-    <h3 class="h4 text-info"><%= @lesson_plan.registration_klass.name %></h3>
-    <h4><%= @lesson_plan.registration_klass.course_name %></h4>
+    <h2 class="h3 text-info"><%= @lesson_plan.name %></h2>
+    <h3 class="h4"><%= @lesson_plan.registration_klass.name %></h3>
+    <h5><%= @lesson_plan.registration_klass.course_name %></h5>
     <p>some more text</p>
     <hr>
     <%= link_to new_lesson_plan_assessment_path(@lesson_plan), remote: true, class: "btn btn-lg btn-primary" do %>

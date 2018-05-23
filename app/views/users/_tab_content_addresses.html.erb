@@ -1,19 +1,27 @@
-<div class="mt-1">
-  <nav aria-label="breadcrumb">
-    <ol class="breadcrumb">
-      <li class="breadcrumb-item"><a href="#">Home</a></li>
-      <li class="breadcrumb-item active" aria-current="page">My Addresses</li>
-    </ol>
-  </nav>
+<div class="app-title" aria-label="breadcrumb">
+  <div>
+    <h1 class="h2"><%= fa_icon("address-card", text: "My Addresses") %></h1>
+    <p>Monitor, Evaluate and Improve</p>
+  </div>
+  <ul class="app-breadcrumb breadcrumb">
+    <li class="breadcrumb-item"><a href="#"><%= fa_icon("home lg", text: "Home") %></a></li>
+    <li class="breadcrumb-item active" aria-current="page">My Addresses</li>
+  </ul>
 </div>
-<div class="jumbotron mt-1">
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="#">Home</a></li>
+    <li class="breadcrumb-item active" aria-current="page">My Addresses</li>
+  </ol>
+</nav>
+<div class="jumbotron">
   <div class="row">
     <div class="col-xl-10 offset-xl-1">
       <h1 class="text-white">
         My Addresses&nbsp;
         <small><span id="sizeAddresses1" class="badge badge-info"></span></small>
       </h1>
-      <h2 class="h5"><%= fa_icon("address-card") %>&nbsp;Home and Work Addresses</h2>
+      <h2 class="h5">Home and Work Addresses</h2>
       <hr>
       <%= link_to new_user_address_path(current_user),
         remote: true, class: "btn btn-lg btn-primary btn-block-xs" do %>
@@ -22,12 +30,12 @@
     </div>
   </div>
 </div>
-<div id="list-addresses" class="card-deck">
-  <% if current_user.addresses.any? %>
+<% if current_user.addresses.any? %>
+  <div id="list-addresses" class="row d-flex flex-wrap">
     <%= render "addresses/addresses", addressable: @user %>
-  <% else %>
-    <li class="list-group-item list-group-item-info no-addresses-to-list">
-      No addresses recorded yet.
-    </li>
+  </div>
+<% else %>
+  <div class="row d-flex flex-wrap">
+    <%= render "addresses/address_placeholder" %>
+  </div>
   <% end %>
-</div>

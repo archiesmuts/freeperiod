@@ -1,9 +1,13 @@
-<nav aria-label="breadcrumb">
-  <ol class="breadcrumb">
-    <li class="breadcrumb-item"><a href="#">Home</a></li>
-    <li class="breadcrumb-item active" aria-current="page">My Personal Achievements</li>
-  </ol>
-</nav>
+<div class="app-title" aria-label="breadcrumb">
+  <div>
+    <h1 class="h2"><%= fa_icon("trophy", text: "My Achievements") %></h1>
+    <p>Monitor, Evaluate and Improve</p>
+  </div>
+  <ul class="app-breadcrumb breadcrumb">
+    <li class="breadcrumb-item"><a href="#"><%= fa_icon("home lg", text: "Home") %></a></li>
+    <li class="breadcrumb-item active" aria-current="page">My Achievements</li>
+  </ul>
+</div>
 
 <div class="jumbotron">
   <div class="row">
@@ -11,9 +15,7 @@
       <h1 class="text-white">Celebrating my achievements&nbsp;
         <small><span class="badge badge-info" id="sizeAchievements1"></span></small>
       </h1>
-      <h2 class="h5">
-        <%= fa_icon("trophy", text: "My Personal Achievements") %>
-      </h2>
+
       <p class="text-white">
         Remember to celebrate both <strong>big</strong> and <strong>small</strong> achievements.
         You know when you have those <em>"Yes. I did it!"</em> moments? List all of those here.

@@ -1,6 +1,6 @@
 <!-- achievements/achievement -->
 <% achievable.achievements.each do |achievement| %>
-<div class="col-sm-4" id="<%= dom_id(achievement) %>">
+<div class="col-sm-4 update" id="<%= dom_id(achievement) %>">
   <div class="card border-success text-white bg-dark mb-1">
     <div class="card-header">
       Achievement
@@ -22,7 +22,7 @@
         <div class="col-sm-8">
           <%= link_to edit_polymorphic_path([achievement.achievable, achievement]),
               remote: true, class: "btn btn-primary btn-block" do %>
-              <%= fa_icon("pencil-alt", text: "Edit") %>
+              <%= fa_icon("edit", text: "Edit") %>
             <% end %>
         </div>
       </div>

@@ -1,5 +1,41 @@
-<a class="nav-link active list-group-item" id="goal-home-tab" data-toggle="pill" href="#goal-home" role="tab" aria-controls="goal-home" aria-selected="true"><%= fa_icon("fw star-o") %>&nbsp;Goal Home</a>
-<a class="nav-link list-group-item d-flex justify-content-between align-items-center" id="goal-action-plans-tab" data-toggle="pill" href="#goal-action-plans" role="tab" aria-controls="goal-action-plans" aria-selected="false"><span><%= fa_icon("calendar-check-o fw", text: "Todo's & Action plans") %></span><span id="sizeTotalGoalActionPlans" class="badge badge-info"></span></a>
-<a class="nav-link list-group-item" id="about-goals-tab" data-toggle="pill" href="#about-goals" role="tab" aria-controls="about-goals" aria-selected="false"><%= fa_icon("question-circle fw", text: "What are Goals & Action Plans?") %></a>
-<a class="nav-link list-group-item" id="defining-goals-tab" data-toggle="pill" href="#defining-goals" role="tab" aria-controls="defining-goals" aria-selected="false"><%= fa_icon("question-circle fw", text: "Defining your Goals") %></a>
-<a class="nav-link list-group-item" id="smart-goals-tab" data-toggle="pill" href="#smart-goals" role="tab" aria-controls="smart-goals" aria-selected="false"><%= fa_icon("question-circle fw", text: "S.M.A.R.T. Goals") %></a>
+<!-- goals sidebar_links -->
+<li>
+  <a class="app-menu__item active" id="goal-home-tab" data-toggle="pill" href="#goal-home" role="tab" aria-controls="goal-home" aria-selected="true">
+    <%= fa_icon("fw star", class: "app-menu__icon mr-2") %>
+    <span class="app-menu__label">
+      Goal Home
+    </span>
+  </a>
+</li>
+<li>
+  <a class="app-menu__item" id="goal-action-plans-tab" data-toggle="pill" href="#goal-action-plans" role="tab" aria-controls="goal-action-plans" aria-selected="false">
+    <%= fa_icon("check fw", class: "app-menu__icon mr-2") %>
+    <span class="app-menu__label">
+      Todo's & Action plans&nbsp;<span id="sizeActionPlans" class="badge badge-info"></span>
+    </span>
+  </a>
+</li>
+<li>
+  <a class="app-menu__item" id="about-goals-tab" data-toggle="pill" href="#about-goals" role="tab" aria-controls="about-goals" aria-selected="false">
+    <%= fa_icon("question-circle fw", class: "app-menu__icon mr-2") %>
+    <span class="app-menu__label">
+      What are Goals?
+    </span>
+  </a>
+</li>
+<li>
+  <a class="app-menu__item" id="defining-goals-tab" data-toggle="pill" href="#defining-goals" role="tab" aria-controls="defining-goals" aria-selected="false">
+    <%= fa_icon("question-circle fw", class: "app-menu__icon mr-2") %>
+    <span class="app-menu__label">
+      Defining your Goals
+    </span>
+  </a>
+</li>
+<li>
+  <a class="app-menu__item" id="smart-goals-tab" data-toggle="pill" href="#smart-goals" role="tab" aria-controls="smart-goals" aria-selected="false">
+    <%= fa_icon("question-circle fw", class: "app-menu__icon mr-2") %>
+    <span class="app-menu__label">
+      S.M.A.R.T. Goals
+    </span>
+  </a>
+</li>

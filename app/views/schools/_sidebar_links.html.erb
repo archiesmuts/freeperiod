@@ -24,7 +24,7 @@
   </a>
 </li>
 <li>
-  <a class="app-menu__item" id="school-registration-klasses-tab" data-toggle="pill" href="#school-registration-klasses" role="tab" aria-controls="school-registration-klasses" aria-selected="false">
+  <a class="app-menu__item" id="school-registration-classes-tab" data-toggle="pill" href="#school-registration-classes" role="tab" aria-controls="school-registration-classes" aria-selected="false">
     <%= fa_icon("id-card-alt fw", class: "app-menu__icon mr-2") %>
     <span class="app-menu__label">
       Registration Classes
@@ -32,7 +32,7 @@
   </a>
 </li>
 <li>
-  <a class="app-menu__item" id="school-subject-klasses-tab" data-toggle="pill" href="#school-subject-klasses" role="tab" aria-controls="school-subject-klasses" aria-selected="false">
+  <a class="app-menu__item" id="school-subject-classes-tab" data-toggle="pill" href="#school-subject-classes" role="tab" aria-controls="school-subject-classes" aria-selected="false">
     <%= fa_icon("graduation-cap fw", class: "app-menu__icon mr-2") %>
     <span class="app-menu__label">
       Subject Classes
@@ -43,7 +43,7 @@
   <a class="app-menu__item" id="school-goals-tab" data-toggle="pill" href="#school-goals" role="tab" aria-controls="school-goals" aria-selected="false">
     <%= fa_icon("star fw", class: "app-menu__icon mr-2") %>
     <span class="app-menu__label">
-      Goals & Action Plans&nbsp;<span id="sizeGoals2" class="badge badge-info"></span>
+      Our Goals&nbsp;<span id="sizeGoals2" class="badge badge-info"></span>
     </span>
   </a>
 </li>
@@ -51,7 +51,7 @@
   <a class="app-menu__item" id="school-achievements-tab" data-toggle="pill" href="#school-achievements" role="tab" aria-controls="school-achievements" aria-selected="false">
     <%= fa_icon("trophy fw", class: "app-menu__icon mr-2") %>
     <span class="app-menu__label">
-      School Achievements&nbsp;<span id="sizeAchievements2" class="badge badge-info"></span>
+      Our Achievements&nbsp;<span id="sizeAchievements2" class="badge badge-info"></span>
     </span>
   </a>
 </li>
@@ -71,6 +71,16 @@
     </span>
   </a>
 </li>
+
+<li>
+  <a class="app-menu__item" id="school-addresses-tab" href="#school-addresses" data-toggle="pill" role="tab" aria-controls="school-addresses" aria-selected="false">
+    <%= fa_icon("map-marker fw", class: "app-menu__icon mr-2") %>
+    <span class="app-menu__label">
+      Contact details <span id="sizeAddresses2" class="badge badge-info"></span>
+    </span>
+  </a>
+</li>
+
 <li>
   <%= link_to current_user, class: "app-menu__item", aria: {selected: false}  do %>
     <%= fa_icon "fw smile", class: "app-menu__icon mr-2"%>

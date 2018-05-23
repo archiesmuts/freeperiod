@@ -14,12 +14,10 @@ var el = $('.new_registration_klass');
 
 <% else %>
 
-$('#list-registration-klasses').prepend('<%= j render @registration_klass %>');
-$("#registration-klass-<%= @registration_klass.id %>").hide().fadeIn(1000);
-$('#registration-klass-dialog').modal("hide");
-$('.nothing_to_list').detach();
 $('.registration-klass-placeholder').detach();
-$('#registration_klass_name').focus();
+$('#list-registration-klasses').prepend('<%= j render @registration_klass %>');
+$("#<%= dom_id(@registration_klass) %>").hide().fadeIn(1000);
+$('#registration-klass-dialog').modal("hide");
 
 // Clear form
 el.find('input:text,text_area').val('');

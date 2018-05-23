@@ -1,23 +1,25 @@
-<div class="mt-1">
-  <nav aria-label="breadcrumb">
-    <ol class="breadcrumb">
-      <li class="breadcrumb-item">
-        <%= link_to school_registration_klasses_path(@registration_klass.school) do %>
-          <%= fa_icon "arrow-left", text: "Registration and Subject Classes Index" %>
-        <% end %>
-      </li>
-      <li class="breadcrumb-item active">
-        <a href="#"><%= @registration_klass.course_name %> - <%= @registration_klass.year.strftime("%Y") %></a>
-      </li>
-      <li class="breadcrumb-item active" aria-current="page">Teacher's Guide</li>
-    </ol>
-  </nav>
+<div class="app-title" aria-label="breadcrumb">
+  <div>
+    <h1 class="h2"><%= fa_icon("map-signs", text: "Teacher's Guide") %></h1>
+    <p>Monitor, Evaluate and Improve</p>
+  </div>
+  <ul class="app-breadcrumb breadcrumb">
+    <li class="breadcrumb-item">
+      <%= link_to "Registration and Subject Classes Index", school_registration_klasses_path(@registration_klass.school) %>
+    </li>
+    <li class="breadcrumb-item">
+      <a href="#"><%= @registration_klass.course_name %> - <%= @registration_klass.year.strftime("%Y") %></a>
+    </li>
+    <li class="breadcrumb-item active" aria-current="page">
+      Teacher's Guide
+    </li>
+  </ul>
 </div>
 <div class="jumbotron mt-1">
   <div class="row">
     <div class="col-12 col-xl-10 offset-xl-1">
-
-      <h1>What is possible?</h1>
+      <!-- TODO update techer's guide -->
+      <h1>Update soon!</h1>
     </div>
   </div>
 </div>

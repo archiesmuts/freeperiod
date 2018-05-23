@@ -1,14 +1,21 @@
-<div class="mt-1">
-  <nav aria-label="breadcrumb">
-    <ol class="breadcrumb">
-      <li class="breadcrumb-item">
-        <%= link_to school_registration_klass_path(@registration_klass.school, @registration_klass) do %>
-          <%= fa_icon("arrow-left") %>&nbsp;<%= @registration_klass.course_name %>
-        <% end %>
-      </li>
-      <li class="breadcrumb-item active" aria-current="page"><%= @user_registration.registration_klass.klass_type.titleize %>&nbsp;Registration Card</li>
-    </ol>
-  </nav>
+<!-- tab_content_home -->
+<div class="app-title" aria-label="breadcrumb">
+  <div>
+    <h1 class="h2"><%= fa_icon("id-card", text: "Individual Registration") %>
+      &nbsp;- <small><%= @registration_klass.course_name %></small>
+    </h1>
+    <p>Monitor, Evaluate and Improve</p>
+  </div>
+  <ul class="app-breadcrumb breadcrumb">
+    <li class="breadcrumb-item">
+      <%= link_to school_registration_klass_path(@registration_klass.school, @registration_klass) do %>
+        <%= @registration_klass.course_name %>
+      <% end %>
+    </li>
+    <li class="breadcrumb-item active" aria-current="page">
+      <%= @user_registration.registration_klass.klass_type.titleize %>&nbsp;Registration Card
+    </li>
+  </ul>
 </div>
 <div class="jumbotron">
   <div class="row">
@@ -33,9 +40,15 @@
             </p>
             <p><span id="user-role">Check:&nbsp;<%= user_role_check(@user_registration) %></span></p>
             <hr>
+            <!-- TODO add permission access here for teacher only -->
+            <%= link_to school_registration_klass_path(@registration_klass.school,
+              @registration_klass), class: "btn btn-lg btn-outline-primary" do %>
+              <%= fa_icon("arrow-left", text: "Back") %>
+            <% end %>
+
             <%= link_to edit_registration_klass_user_registration_path(@user_registration.registration_klass, @user_registration),
                 remote: true, class: "btn btn-lg btn-primary btn-block-xs" do %>
-                  <%= fa_icon("pencil", text: "Edit registration") %>
+                  <%= fa_icon("edit", text: "Edit registration") %>
                 <% end %>
         </div>
         <!-- .media-body -->

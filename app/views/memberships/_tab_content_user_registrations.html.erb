@@ -1,19 +1,16 @@
-<div class="mt-1">
-  <nav aria-label="breadcrumb">
-    <ol class="breadcrumb">
-      <li class="breadcrumb-item">
-        <%= link_to  school_memberships_path(@membership.school) do %>
-          <%= fa_icon "arrow-left", text: "Membership Administration" %>
-        <% end %>
-      </li>
-      <li class="breadcrumb-item"><a href="#">Membership Registration Card</a></li>
-      <li class="breadcrumb-item active" aria-current="page">Class Registrations</li>
-    </ol>
-  </nav>
+<div class="app-title" aria-label="breadcrumb">
+  <div>
+    <h1 class="h2"><%= fa_icon("id-card", text: "Class Registrations") %></h1>
+    <p>Monitor, Evaluate and Improve</p>
+  </div>
+  <ul class="app-breadcrumb breadcrumb">
+    <li class="breadcrumb-item"><a href="#">Membership Registration Card</a></li>
+    <li class="breadcrumb-item active" aria-current="page">Class Registrations</li>
+  </ul>
 </div>
 <div class="row">
   <div class="col-12 col-xl-10 offset-xl-1">
-    <h1 class="text-white">Class/Team/House Registrations</h1>
+    <h1 class="text-white">Class, Team, House Registrations</h1>
   </div>
 </div>
 <div class="row">

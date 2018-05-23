@@ -7,8 +7,8 @@
     <div class="card-body">
       <h5 class="card-title"><%= part.name %></h5>
       <p class="card-text"><%= part.description %></p>
-      <p class="card-text">
-        <span class="badge badge-info"><span class="partValue"><%= part.value %></span>/<span class="totalValue"></span></span>
+      <p class="card-text lead">
+        <span class="partValue badge badge-success"><%= part.value %></span>/<span class="totalValue badge badge-info"><%= @assessment.value %></span>
       </p>
     </div>
     <div class="card-footer">
@@ -23,7 +23,7 @@
         <div class="col-md-6">
           <%= link_to edit_assessment_part_path(part.assessment, part), remote: true,
             class: "btn btn-primary btn-block" do %>
-          <%= fa_icon "pencil", text: "Edit question" %>
+          <%= fa_icon "edit", text: "Edit question" %>
           <% end %>
         </div>
       </div>

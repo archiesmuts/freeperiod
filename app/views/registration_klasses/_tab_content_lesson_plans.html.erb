@@ -1,22 +1,25 @@
-<div class="mt-1">
-  <nav aria-label="breadcrumb">
-    <ol class="breadcrumb">
-      <li class="breadcrumb-item">
-        <%= link_to school_registration_klasses_path(@registration_klass.school) do %>
-          <%= fa_icon "arrow-left", text: "Registration and Subject Classes Index" %>
-        <% end %>
-      </li>
-      <li class="breadcrumb-item active">
-        <a href="#"><%= @registration_klass.course_name %> - <%= @registration_klass.year.strftime("%Y") %></a>
-      </li>
-      <li class="breadcrumb-item active" aria-current="page">Lesson Plans</li>
-    </ol>
-  </nav>
+<!-- tab tab_content_lesson_plans -->
+<div class="app-title" aria-label="breadcrumb">
+  <div>
+    <h1 class="h2"><%= fa_icon("graduation-cap", text: "Registration Classes") %></h1>
+    <p>Monitor, Evaluate and Improve</p>
+  </div>
+  <ul class="app-breadcrumb breadcrumb">
+    <li class="breadcrumb-item">
+      <%= link_to "Registration and Subject Classes Index", school_registration_klasses_path(@registration_klass.school) %>
+    </li>
+    <li class="breadcrumb-item">
+      <a href="#"><%= @registration_klass.course_name %> - <%= @registration_klass.year.strftime("%Y") %></a>
+    </li>
+    <li class="breadcrumb-item active" aria-current="page">
+      Lesson Plans
+    </li>
+  </ul>
 </div>
 <div class="jumbotron mt-1 jumbo-bg">
   <div class="row">
     <div class="col-12 col-xl-10 offset-xl-1">
-      <h1 class="h2 text-white"><%= fa_icon("book", text: "Lesson Plans") %>&nbsp;<small><span class="badge badge-info" id="sizeLessonPlans1"></span></small></h1>
+      <h1 class="h2 text-white">Lesson Plans&nbsp;<small><span class="badge badge-info" id="sizeLessonPlans1"></span></small></h1>
       <h2 class="h3 text-info"><%= @registration_klass.name %></h2>
       <h3 class="h4"><%= @registration_klass.course_name %> - <%= @registration_klass.year.strftime("%Y") %></h3>
       <p>
@@ -29,8 +32,8 @@
         <% end %>
     </div>
   </div>
-
 </div>
+<!-- .jumbotron  -->
 <div class="row d-flex" id="list-lesson-plans">
   <% if @registration_klass.lesson_plans.any? %>
     <%= render @registration_klass.lesson_plans %>

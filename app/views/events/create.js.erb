@@ -15,7 +15,7 @@ var el = $('.new_event');
 <% else %>
 
 $('#list-events').prepend('<%= j render @event %>');
-$("#event-<%= @event.id %>").hide().fadeIn(1000);
+$("#event_<%= @event.id %>").hide().fadeIn(1000);
 $('#event-dialog').modal("hide");
 $('#no-events-to-list').detach();
 

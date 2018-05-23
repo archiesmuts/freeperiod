@@ -1,13 +1,16 @@
 <% goalable.goals.each do |goal| %>
 <div class="col-sm-4 goal-card" id="<%= dom_id(goal) %>">
     <div class="card border-primary mb-3 scale">
+      <div class="card-header">
+        Goal
+      </div>
       <div class="card-body">
-        <h4 class="card-title text-primary"><%= fa_icon("star") %>&nbsp;<%= goal.name.truncate(65) %></h4>
+        <h4 class="card-title text-primary"><%= goal.name.truncate(65) %></h4>
           <p class="card-text">
-            <strong><%= fa_icon("calendar-check-o", text: "Deadline:") %></strong>&nbsp;
+            <strong><%= fa_icon("calendar-check", text: "Deadline:", type: "regular") %></strong>&nbsp;
             <span class="text-info"><%= goal.deadline.strftime("%d %b %Y") if goal.deadline %></span>
           </p>
-          <p class="card-text"><strong><%= fa_icon("question-circle-o", text: "Status:") %></strong>&nbsp;
+          <p class="card-text"><strong><%= fa_icon("question-circle", text: "Status:", type: "regular") %></strong>&nbsp;
             <span class="text-info"><%= goal.achieved.humanize %></span>
           </p>
           <% if goal.yes? %>

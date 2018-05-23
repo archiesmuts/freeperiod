@@ -14,8 +14,12 @@ var el = $('.edit_event');
 
 <% else %>
 
-$('#event-dialog').modal("hide");
-
+  $("#event_<%= @event.id %>").fadeOut(700, function() {
+    this.remove();
+    $('#list-events').append('<%= j render @event %>');
+  })
+  $('#event-dialog').modal("hide");
+  $('#list-events').sizeEvents()
 
 // Clear form
 el.find('input:text,text_area').val('');

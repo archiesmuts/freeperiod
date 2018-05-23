@@ -32,15 +32,22 @@
           <% end %>
       </td>
       <td>
-        <%= link_to membership, class: "btn btn-sm btn-primary" do %>
-          <%= fa_icon("id-card", text: "Show", right: true) %>
-        <%end %>
-
-        <%= link_to [membership.user, membership], method: :delete, remote: true,
-          data: { confirm: 'Caution! Clicking on confirm will permanently delete this record.' },
-          class: "btn btn-sm btn-danger delete-membership"  do %>
-          <%= fa_icon("trash", text: "Delete") %>
-        <% end %>
+        <div class="dropdown">
+          <button class="btn btn-link dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <%= fa_icon("ellipsis-h lg") %>
+          </button>
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <%= link_to membership, class: "btn btn-link dropdown-item" do %>
+              <%= fa_icon("id-card", text: "Show", right: true) %>
+            <%end %>
+            <%= link_to [membership.user, membership], method: :delete, remote: true,
+            data: { confirm: 'Caution! Clicking on confirm will permanently delete this record and all corresponding data',
+            verify: 'YES', verify_text: 'Type "YES" to confirm'},
+              class: "btn btn btn-link dropdown-item delete-membership"  do %>
+              <%= fa_icon("trash", text: "Delete") %>
+            <% end %>
+          </div>
+        </div>
       </td>
     </tr>
   <% else %>

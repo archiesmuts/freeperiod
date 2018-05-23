@@ -1,0 +1,39 @@
+<div class="app-title" aria-label="breadcrumb">
+  <div>
+    <h1 class="h2"><%= fa_icon("comments", text: "Comments") %></h1>
+    <p>Monitor, Evaluate and Improve</p>
+  </div>
+  <ul class="app-breadcrumb breadcrumb">
+    <li class="breadcrumb-item">
+      <%= link_to [@assessment.lesson_plan, @result.assessment] do %>
+        Assessment
+      <% end %>
+    </li>
+    <li class="breadcrumb-item">Learner Result</li>
+
+    <li class="breadcrumb-item active" aria-current="page">Comments</li>
+  </ul>
+</div>
+<div class="jumbotron">
+  <div class="row">
+    <div class="col-md-6 offset-lg-1">
+      <h1>
+        Comments&nbsp;<small><span id="sizeComments2" class="badge badge-info"></span></small>
+      </h1>
+
+      <% if @result.comments.any? %>
+        <ul id="list-comments" class="list-group">
+          <%= render "comments/comments", commentable: @result %>
+        </ul>
+      <% else %>
+        <ul class="list-group no-comments-to-list">
+          <li class="list-group-item list-group-item-info">
+            Nobody has commented yet.
+          </li>
+        </ul>
+      <% end %>
+      <hr>
+      <div class="my-3"><%= render "comments/form", commentable: @result %></div>
+    </div>
+  </div>
+</div>

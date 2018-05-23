@@ -1,6 +1,24 @@
-<a class="nav-link active list-group-item" id="assessment-home-tab" data-toggle="pill" href="#assessment-home" role="tab" aria-controls="assessment-home" aria-selected="true"><%= fa_icon("check-square fw", text: "Assessment Home") %></a>
-<a class="nav-link list-group-item d-flex justify-content-between align-items-center" id="assessment-results-tab" data-toggle="pill" href="#assessment-results" role="tab" aria-controls="" aria-selected="false"><span><%= fa_icon("check-circle-o fw", text: "Results") %></span><span id="sizeResults2" class="badge badge-info"></span></a>
-<a class="nav-link list-group-item d-flex justify-content-between align-items-center" id="assessment-teachers-guide-tab" data-toggle="pill" href="#assessment-teachers-guide" role="tab" aria-controls="" aria-selected="false"><span><%= fa_icon("map-signs fw", text: "Teacher's Guide") %></span></a>
-<%= link_to current_user, class: "nav-link list-group-item", aria: {selected: false}  do %>
-  <%= fa_icon "fw smile-o", text: "My page" %>
-<% end %>
+<li>
+  <a class="app-menu__item active" id="assessment-home-tab" data-toggle="pill" href="#assessment-home" role="tab" aria-controls="lesson-plan-home" aria-selected="true">
+    <%= fa_icon("check-square fw", class: "app-menu__icon mr-2") %>
+    <span class="app-menu__label">
+      Assessment Home
+    </span>
+  </a>
+</li>
+<li>
+  <a class="app-menu__item" id="assessment-results-tab" data-toggle="pill" href="#assessment-results" role="tab" aria-controls="" aria-selected="false">
+    <%= fa_icon("chart-bar fw", class: "app-menu__icon mr-2", type: "regular") %>
+    <span class="app-menu__label">
+      Results&nbsp;<span id="sizeResults2" class="badge badge-info"></span>
+    </span>
+  </a>
+</li>
+<li>
+  <a class="app-menu__item" id="assessment-teachers-guide-tab" data-toggle="pill" href="#assessment-teachers-guide" role="tab" aria-controls="" aria-selected="false">
+    <%= fa_icon("map-signs fw", class: "app-menu__icon mr-2") %>
+    <span class="app-menu__label">
+      Teacher's Guide
+    </span>
+  </a>
+</li>

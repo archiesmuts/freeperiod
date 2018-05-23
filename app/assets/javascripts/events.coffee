@@ -37,6 +37,11 @@ clearCalendar = ->
   # In case delete doesn't work.
   $('#event_calendar').html ''
 
+jQuery.fn.sizeEvents = ->
+  size_events = $("#list-events").find(".event-card").length
+  $("#sizeEvents1").text size_events
+  $("#sizeEvents2").text size_events
+
 jQuery(document).on 'turbolinks:load', eventCalendar
 jQuery(document).on 'turbolinks:before-cache', clearCalendar
 
@@ -67,3 +72,5 @@ jQuery(document).on "turbolinks:load", ->
       $('#event_end_time').data('DateTimePicker').minDate e.date
     $('#event_end_time').on 'dp.change', (e) ->
       $('#event_start_time').data('DateTimePicker').maxDate e.date
+
+  $('#list-parts').sizeEvents()

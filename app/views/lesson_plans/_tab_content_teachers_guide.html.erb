@@ -1,15 +1,18 @@
-<div class="mt-1">
-  <nav aria-label="breadcrumb">
-    <ol class="breadcrumb">
-      <li class="breadcrumb-item">
-        <%= link_to school_registration_klass_path(@registration_klass.school, @registration_klass) do %>
-          <%= fa_icon "arrow-left" %>&nbsp;<%= @lesson_plan.registration_klass.course_name %>
-        <% end %>
-      </li>
-      <li class="breadcrumb-item"><a href="#">Lesson Plan</a></li>
-      <li class="breadcrumb-item active" aria-current="page">Teacher's Guide</li>
-    </ol>
-  </nav>
+<!-- tab_content_assessments-->
+<div class="app-title" aria-label="breadcrumb">
+  <div>
+    <h1 class="h2"><%= fa_icon("map-signs", text: "Teacher's Guide") %></h1>
+    <p>Monitor, Evaluate and Improve</p>
+  </div>
+  <ul class="app-breadcrumb breadcrumb">
+    <li class="breadcrumb-item">
+      <%= link_to school_registration_klass_path(@registration_klass.school, @registration_klass) do %>
+        <%= @lesson_plan.registration_klass.course_name %>
+      <% end %>
+    </li>
+    <li class="breadcrumb-item"><a href="#">Lesson Plan</a></li>
+    <li class="breadcrumb-item active" aria-current="page">Teacher's Guide</li>
+  </ul>
 </div>
 <div class="jumbotron">
   <div class="row">

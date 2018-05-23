@@ -1,15 +1,9 @@
-<% content_for :title do %>School Home<% end %>
+<% content_for :title do %>fp School Home<% end %>
 <!-- school show view  -->
 <!-- TODO add a tagline for Achievements Goals etc. -->
 <div class="app-sidebar__overlay" data-toggle="sidebar"></div>
 <aside class="app-sidebar">
-  <div class="app-sidebar__user">
-    <img class="app-sidebar__user-avatar" src="https://s3.amazonaws.com/uifaces/faces/twitter/jsa/48.jpg" alt="User Image">
-    <div>
-      <p class="app-sidebar__user-name"><%= current_user.name %></p>
-      <p class="app-sidebar__user-designation">Faculty</p>
-    </div>
-  </div>
+  <%= render "sidebar_user" %>
   <ul class="app-menu nav flex-column nav-pills">
     <%= render "sidebar_links" %>
   </ul>
@@ -28,11 +22,11 @@
     <%= render "tab_content_memberships" %>
   </div>
 
-  <div class="tab-pane fade" id="school-registration-klasses" role="tabpanel">
+  <div class="tab-pane fade" id="school-registration-classes" role="tabpanel">
     <%= render "tab_content_registration_klasses" %>
   </div>
 
-  <div class="tab-pane fade" id="school-subject-klasses" role="tabpanel">
+  <div class="tab-pane fade" id="school-subject-classes" role="tabpanel">
     <%= render "tab_content_subject_klasses" %>
   </div>
 
@@ -48,12 +42,14 @@
   <div class="tab-pane fade" id="school-fees" role="tabpanel">
     <%= render "tab_content_fees" %>
   </div>
+  <div class="tab-pane fade" id="school-addresses" role="tabpanel">
+    <%= render "tab_content_addresses" %>
+  </div>
 </div> <!-- .tab-content -->
-
-
 
 <!-- modals  -->
 <%= render "achievements/modal_dialog" %>
 <%= render "goals/modal_dialog" %>
 <%= render "registration_klasses/modal_dialog" %>
 <%= render "fees/modal_dialog" %>
+<%= render "addresses/modal_dialog" %>

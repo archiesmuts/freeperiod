@@ -15,7 +15,7 @@ var el = $('.edit_result');
 <% else %>
 
 $('#result-dialog').modal("hide");
-$("#result-<%= @result.id %>").fadeOut(700, function() {
+$("#result_<%= @result.id %>").fadeOut(700, function() {
   this.remove();
   $('#list-results').append('<%= j render @result %>');
 })

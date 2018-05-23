@@ -1,21 +1,33 @@
-<nav aria-label="breadcrumb">
-  <ol class="breadcrumb">
-    <li class="breadcrumb-item"><a href="#">Home</a></li>
-    <li class="breadcrumb-item active" aria-current="page">My Registration Class</li>
-  </ol>
-</nav>
+<div class="app-title" aria-label="breadcrumb">
+  <div>
+    <h1 class="h2"><%= fa_icon("graduation-cap", text: "My Classes") %></h1>
+    <p>Monitor, Evaluate and Improve</p>
+  </div>
+  <ul class="app-breadcrumb breadcrumb">
+    <li class="breadcrumb-item"><a href="#"><%= fa_icon("home lg", text: "Home") %></a></li>
+    <li class="breadcrumb-item active" aria-current="page">My Classes</li>
+  </ul>
+</div>
+
 <div class="jumbotron">
   <div class="row">
     <div class="col-xl-10 offset-xl-1">
       <h1 class="text-white">
-        My Registration Class&nbsp;
-        <small><span class="badge badge-info"><%= current_user.registration_klasses.r_klasses.size %></span></small>
+        My Registration and Subject Classes
       </h1>
+      <h2>Subject Classes
+        <small>
+          <span class="badge badge-info"><%= current_user.registration_klasses.s_klasses.size %></span>
+      </small>
+      </h2>
     </div>
   </div>
 </div>
-<div id="list-registration-klasses">
+<div>
   <% if @current_user.registration_klasses.any? %>
+    <div class="row d-flex flex-wrap" id="list-subject-klasses">
+      <%= render @current_user.registration_klasses.s_klasses %>
+    </div>
     <div class="row d-flex flex-wrap" id="list-registration-klasses">
       <%= render @current_user.registration_klasses.r_klasses %>
     </div>

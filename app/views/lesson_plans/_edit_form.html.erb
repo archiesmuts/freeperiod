@@ -28,8 +28,10 @@
       </label>
     <% end %>
   </div>
-  <%= link_to [@lesson_plan.registration_klass, @lesson_plan], class: "btn btn-outline-primary" do %>
+  <p>Description</p>
+  <p><%= render "lorem_ipsum_1p" %></p>
+  <%= link_to [@lesson_plan.registration_klass, @lesson_plan], class: "btn btn-lg btn-outline-primary" do %>
     <%= fa_icon("times", text: "Cancel") %>
   <% end %>
-  <%= form.submit "Save lesson plan", class: "btn btn-primary" %>
+  <%= form.submit "Save lesson plan", class: "btn btn-lg btn-primary" %>
 <% end %>

@@ -1,11 +1,13 @@
-<nav aria-label="breadcrumb">
-  <ol class="breadcrumb">
-    <li class="breadcrumb-item">
-      <a href="#">School home</a>
-    </li>
+<div class="app-title" aria-label="breadcrumb">
+  <div>
+    <h1 class="h2"><%= fa_icon("tachometer-alt", text: "Dashboard") %></h1>
+    <p>Monitor, Evaluate and Improve</p>
+  </div>
+  <ul class="app-breadcrumb breadcrumb">
+    <li class="breadcrumb-item"><a href="#"><%= fa_icon("home lg", text: "School Home") %></a></li>
     <li class="breadcrumb-item active" aria-current="page">Dashboard</li>
-  </ol>
-</nav>
+  </ul>
+</div>
 <h1>Dashboard</h1>
 <section class="row text-center placeholders">
   <div class="col-6 col-sm-3 placeholder">

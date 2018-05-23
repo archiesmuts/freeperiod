@@ -14,10 +14,9 @@ var el = $('.edit_achievement');
 
 <% else %>
 
-$('#list-achievements').append('<%= j render @achievement %>');
-//prefix polym (polymorphic) to id to allow existing li to be hidden on update
-$("#achievement_<%= @achievement.id %>").detach();
-$("#polym_achievement_<%= @achievement.id %>").hide().fadeIn(1000);//this will hide existing polymorphic assoc/col or card
+$("#<%= dom_id(@achievement) %>").detach();
+$('#list-achievements').prepend('<%= j render @achievement %>');
+$("#<%= dom_id(@achievement) %>").hide().fadeIn(1000);
 $('#achievement-dialog').modal("hide");
 
 // Clear form

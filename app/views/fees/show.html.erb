@@ -1,53 +1,57 @@
 <% content_for :title do %>fp School Fee - <%= @fee.year.strftime("%Y") %><% end %>
-<div class="mt-2">
-  <nav aria-label="breadcrumb">
-    <ol class="breadcrumb">
-      <li class="breadcrumb-item">
-        <%= link_to @school  do %>
-          <%= fa_icon("arrow-left", text: "School home") %>
-        <% end %>
-      </li>
-      <li class="breadcrumb-item">
-        <%= link_to "School Fees Index", school_fees_path(@school) %>
-      </li>
-      <li class="breadcrumb-item active" aria-current="page"><%= @fee.year.strftime("%Y") %> School Fee</li>
-    </ol>
-  </nav>
-</div>
-<div class="jumbotron">
-  <div class="row">
-    <div class="col-lg-7 offset-lg-3">
-      <h1><%= @fee.year.strftime("%Y") %>&nbsp;School Fee</h1>
-      <h2 class="text-white">
-        <%= fa_icon("money") %>&nbsp;<%= number_to_currency(@fee.amount, precision: 2, unit: "R") %>
-      </h2>
-      <h3>
-        <%= fa_icon "files-o", text: "Pay Agreements" %>&nbsp;
-        <span class="badge badge-info" id="payAgreementsSize"><%= @fee.pay_agreements.size %></span>
+<div class="row">
+  <div class="col-xl-10 offset-1 mt-1">
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+          <%= link_to @school  do %>
+            <%= fa_icon("arrow-left", text: "School home") %>
+          <% end %>
+        </li>
+        <li class="breadcrumb-item">
+          <%= link_to "School Fees Index", school_fees_path(@school) %>
+        </li>
+        <li class="breadcrumb-item active" aria-current="page"><%= @fee.year.strftime("%Y") %> School Fee</li>
+      </ol>
+    </nav>
+  <div class="jumbotron">
+    <div class="row">
+      <div class="col-lg-7 offset-lg-2">
+        <h1><%= @fee.year.strftime("%Y") %>&nbsp;School Fee</h1>
+        <h2 class="text-info">
+          <%= number_to_currency(@fee.amount, precision: 2, unit: "R") %>
+        </h2>
+        <h3>
+          <%= fa_icon "file-alt", text: "Pay Agreements", type: "regular" %>&nbsp;
+          <span class="badge badge-info" id="payAgreementsSize"><%= @fee.pay_agreements.size %></span>
+        </h3>
         <%= link_to  fee_pay_agreements_path(@fee),
           class: "btn btn-success btn-block-xs" do %>
-          <%= fa_icon("list", text: "Manage") %>
-        <% end %>
-      </h3>
-      <p class="text-info">
-        <%= fa_icon("info-circle", text: "Create Pay Agreements by assigning learners to this school fee. Click on 'Edit details'") %>
-      </p>
-
-      <h4><%= fa_icon("comment", text: "Comment") %></h4>
-      <p>Insert comment here</p>
-      <hr>
-      <div class="my-2">
-        <%= link_to school_fees_path(@school),
-          class: "btn btn-lg btn-outline-primary btn-block-xs" do %>
-          <%= fa_icon("arrow-left", text: "Back") %>
+          <%= fa_icon("project-diagram", text: "Manage Agreements") %>
         <% end %>
 
-        <%= link_to edit_school_fee_path(@fee.school, @fee), class: "btn btn-lg btn-primary btn-block-xs" do %>
-          <%= fa_icon "pencil-square", text: "Edit details" %>
-        <% end %>
+        <p class="text-info">
+          <%= fa_icon("info-circle", text: "Create Pay Agreements by assigning learners to this school fee. Click on 'Edit details'") %>
+        </p>
+
+        <h4><%= fa_icon("comment", text: "Comment") %></h4>
+        <p>Insert comment here</p>
+        <hr>
+        <div class="my-2">
+          <%= link_to school_fees_path(@school),
+            class: "btn btn-lg btn-outline-primary btn-block-xs" do %>
+            <%= fa_icon("arrow-left", text: "Back") %>
+          <% end %>
+
+          <%= link_to edit_school_fee_path(@fee.school, @fee), class: "btn btn-lg btn-primary btn-block-xs" do %>
+            <%= fa_icon "pencil-alt", text: "Edit details" %>
+          <% end %>
+        </div>
       </div>
     </div>
+    <!-- .row -->
   </div>
-  <!-- .row -->
+  <!-- .jumbotron  -->
+  </div>
 </div>
 <!-- .jumbotron -->

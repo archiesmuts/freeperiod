@@ -53,4 +53,7 @@ $(document).on "turbolinks:load", ->
   # Left navigation_links toggle sidebar hide - rotate outdent icon 180 and back
   # see layouts/left_navigation_links
   $('.app-sidebar__toggle').click ->
-    $('#outdentIcon').toggleClass 'flip-icon'
+    $('#outdentIcon').toggleClass 'flip-icon-180'
+
+  $('#invitation').click ->
+    $('#chevronDown').toggleClass 'flip-icon-90'

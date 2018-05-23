@@ -1,17 +1,19 @@
-<nav aria-label="breadcrumb">
-  <ol class="breadcrumb">
-    <li class="breadcrumb-item">
-      <a href="#">School home</a>
-    </li>
+<div class="app-title" aria-label="breadcrumb">
+  <div>
+    <h1 class="h2"><%= fa_icon("star", text: "Goals and Action Plans") %></h1>
+    <p>Setting Goals that are Specific, Measurable, Achieveable, Realistic and Timely.</p>
+  </div>
+  <ul class="app-breadcrumb breadcrumb">
+    <li class="breadcrumb-item"><a href="#"><%= fa_icon("home lg", text: "School Home") %></a></li>
     <li class="breadcrumb-item active" aria-current="page">School Goals and Action Plans</li>
-  </ol>
-</nav>
+  </ul>
+</div>
 <div class="jumbotron">
   <div class="col-xl-10 offset-xl-1">
-    <h1 class="text-white"><%= fa_icon("star", text: "Our Goals and Action Plans") %>&nbsp;
+    <h1>Our Goals and Action Plans
       <small><span class="badge badge-info" id="sizeGoals1"></span></small>
     </h1>
-    <p class="lead">Say something about creating goals</p>
+    <p class="lead">Setting goals in each area of life will ensure a more balanced life as we begin to examine and change the fundamentals of everyday living.</p>
     <hr>
     <%= link_to new_school_goal_path(@school), remote: true, class: "btn btn-lg btn-primary btn-block-xs" do %>
       <%= fa_icon("plus", text: "Add a School Goal") %>

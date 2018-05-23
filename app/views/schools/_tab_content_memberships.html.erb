@@ -1,27 +1,29 @@
-<nav aria-label="breadcrumb">
-  <ol class="breadcrumb ">
-    <li class="breadcrumb-item">
-      <a href="#">School home</a>
-    </li>
+<div class="app-title" aria-label="breadcrumb">
+  <div>
+    <h1 class="h2"><%= fa_icon("users", text: "School Memberships") %></h1>
+    <p>Our children are our future</p>
+  </div>
+  <ul class="app-breadcrumb breadcrumb">
+    <li class="breadcrumb-item"><a href="#"><%= fa_icon("home lg", text: "School Home") %></a></li>
     <li class="breadcrumb-item active" aria-current="page">School Memberships</li>
-  </ol>
-</nav>
+  </ul>
+</div>
 <div class="jumbotron">
   <div class="row">
     <div class="col-xl-10 offset-xl-1">
-      <h1><%= fa_icon("users", text: "Member Registrations") %>&nbsp;<span class="badge badge-info"><%= @school.users.size %></span></h1>
+      <h1>Member Registrations&nbsp;<small><span class="badge badge-info"><%= @school.users.size %></span></small></h1>
       <hr>
     </div>
   </div>
   <div class="row">
     <div class="col-xl-5 offset-xl-1">
       <%= link_to school_memberships_path(@school), class: "btn btn-lg btn-primary" do %>
-        <%= fa_icon("users", text: "Manage School Memberships") %>
+        <%= fa_icon("users-cog", text: "Manage School Memberships") %>
       <% end %>
     </div>
     <div class="col-xl-5">
-      <button type="button" class="btn btn-lg btn-info btn-block" data-toggle="collapse" data-target="#collapseInvitationForm" aria-expanded="false" aria-controls="collapseInvitationForm">
-        <%= fa_icon("chevron-down", text: "Invite people to register", right: true) %>
+      <button type="button" id="invitation" class="btn btn-lg btn-info btn-block" data-toggle="collapse" data-target="#collapseInvitationForm" aria-expanded="false" aria-controls="collapseInvitationForm">
+        Invite people to register&nbsp;<%= fa_icon("chevron-circle-down", id: "chevronDown") %>
       </button>
       <div class="collapse mt-2" id="collapseInvitationForm">
         <div class="card text-white bg-success">

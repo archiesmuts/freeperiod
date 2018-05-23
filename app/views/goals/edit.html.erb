@@ -1,8 +1,20 @@
-<div class="container d-flex justify-content-center pt-3">
-  <div class="card border-primary mb-3" style="width: 50rem;">
-    <div class="card-body text-white">
-      <h4 class="card-title"><%= fa_icon("tasks", text: "Editing your goal") %></h4>
-      <%= render 'edit_form', goal: @goal %>
-    </div>
+<div class="app-sidebar__overlay" data-toggle="sidebar"></div>
+<aside class="app-sidebar">
+  <%= render "sidebar_user" %>
+  <ul class="app-menu nav flex-column nav-pills">
+    <li>
+      <a class="app-menu__item active" id="edit-goal-tab" data-toggle="pill" href="#" role="tab" aria-controls="edit-goal" aria-selected="true">
+        <%= fa_icon("fw edit", class: "app-menu__icon mr-2") %>
+        <span class="app-menu__label">
+          Edit Goal
+        </span>
+      </a>
+    </li>
+  </ul>
+</aside>
+<div class="row">
+  <div class="col-md-10 offset-xl-1">
+    <h1>Editing your goal</h1>
+    <%= render 'edit_form', goal: @goal %>
   </div>
 </div>

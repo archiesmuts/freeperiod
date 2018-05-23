@@ -1,0 +1,5 @@
+$(".delete-event").bind('ajax:success', function() {
+  $(this).parents('div.event-card').fadeOut(500, function(){
+  	$(this).remove();
+  });
+});

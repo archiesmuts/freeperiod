@@ -1,6 +1,6 @@
 <!-- registration_klass/achievement -->
-<div class="col-sm-4 achievement-card" id="polym_<%= dom_id(achievement) %>">
-  <div  class="card text-white bg-dark mb-1 mr-1">
+<div class="col-sm-4" id="<%= dom_id(achievement) %>">
+  <div  class="card text-white border-success bg-dark mb-1 mr-1">
     <div class="card-header">
       Achievement
     </div>
@@ -14,14 +14,14 @@
         <div class="col-sm-6">
           <%= link_to [achievement.achievable, achievement], remote: true, method: :delete,
           data: { confirm: 'Are you sure?', toggle: "tooltip" },
-          class: "delete-achievement btn btn-sm btn-block-xs btn-danger", title: "Delete" do %>
-          <%= fa_icon("trash") %>
+          class: "delete-achievement btn btn-danger btn-block-xs", title: "Delete" do %>
+          <%= fa_icon("trash", text: "Delete") %>
           <% end %>
         </div>
         <div class="col-md-6">
           <%= link_to edit_polymorphic_path([achievement.achievable, achievement]),
-            remote: true, class: "btn btn-sm btn-block-xs btn-success" do %>
-            <%= fa_icon("pencil", text: "Edit") %>
+            remote: true, class: "btn btn-block btn-primary" do %>
+            <%= fa_icon("edit", text: "Edit") %>
           <% end %>
         </div>
       </div>

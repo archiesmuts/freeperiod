@@ -1,83 +1,108 @@
-<div class="mt-1">
-  <nav aria-label="breadcrumb">
-    <ol class="breadcrumb ">
-      <li class="breadcrumb-item">
-        <%= link_generator(@goal) %>
-      </li>
-      <li class="breadcrumb-item active" aria-current="page"><%= show_name_display(@goal) %></li>
-    </ol>
-  </nav>
+<div class="app-title" aria-label="breadcrumb">
+  <div>
+    <h1 class="h2">
+      <%= fa_icon("star") %>&nbsp;<%= show_name_display(@goal) %>
+    </h1>
+    <p>Monitor, Evaluate and Improve</p>
+  </div>
+  <ul class="app-breadcrumb breadcrumb">
+    <li class="breadcrumb-item">
+      <%= link_generator(@goal) %>
+    </li>
+    <li class="breadcrumb-item active" aria-current="page">
+      <%= show_name_display(@goal) %>
+    </li>
+  </ul>
 </div>
-<div class="jumbotron mt-1">
-  <div class="row">
-    <div class="col-sm">
-      <h1>
-        <%= show_name_display(@goal) %>
-      </h1>
-      <h2 class="h4 text-primary">
-        <%= fa_icon("star") %>&nbsp;<%= @goal.name %>
-      </h2>
-      <hr>
-      <p class="mt-2">
-        <div class="row">
-          <div class="col-md col-lg-6">
-            <%= link_to edit_polymorphic_path([@goalable, @goal]), class: "btn btn-lg btn-primary btn-block" do %>
-              <%= fa_icon("pencil", text: "Edit your goal") %>
-            <% end %>
-          </div>
-          <div class="col-md col-lg-6">
-            <button type="button" class="btn btn-lg btn-success btn-block disabled">
-              <%= fa_icon("calendar-check-o", text: "Action Plans") %>&nbsp;
-              <span class="badge badge-light" id="sizeTotalActionPlans"></span>
-            </button>
-          </div>
-        </div>
-      </p>
-      <p class="d-flex justify-content-center">
-        <a class="btn btn-lg btn-info btn-block-xs" href="#goal-comments-section" role="button">
-          <%= fa_icon("comments", text: "View Comments") %>&nbsp;
-          <span class="badge badge-light" id="sizeGoalComments"></span>&nbsp;
-          <%= fa_icon("angle-double-down") %>
-        </a>
-      </p>
 
+<div class="row">
+  <div class="col-12 mb-2">
+    <h1><%= show_name_display(@goal) %></h1>
+    <h2 class="h4 text-primary"><%= @goal.name %></h2>
+    <hr>
+    <div class="row">
+      <div class="col-md-4">
+        <%= link_to edit_polymorphic_path([@goalable, @goal]), class: "btn btn-lg btn-primary btn-block" do %>
+          <%= fa_icon("edit", text: "Edit your goal") %>
+        <% end %>
+      </div>
+      <div class="col-md-4">
+        <button type="button" class="btn btn-lg btn-outline-info" disabled>
+          <%= fa_icon("check", text: "Action Plans") %>&nbsp;
+          <span class="badge badge-light" id="sizeActionPlans"></span>
+        </button>
+        <button type="button" id="doTheShuffle" class="btn btn-lg btn-outline-info">
+          <%= fa_icon("dice", id: "dice") %>
+        </button>
+      </div>
     </div>
-    <div class="col-sm">
-      <p>
-        <strong>This goal must be completed by:</strong><br>
-        <spam class="text-white"><%= @goal.deadline.strftime("%d %b %Y") if @goal.deadline %></spam>
+  </div>
+</div>
+
+<div id="shuffle" class="d-flex align-content-stretch flex-wrap mt-2 shuffle">
+  <div class="card border-primary ml-1 mt-1">
+    <div class="card-body">
+      <h5 class="card-title">Complete by:</h5>
+       <p class="card-text" >
+         <%= @goal.deadline.strftime("%d %b %Y") if @goal.deadline %>
+       </p>
+    </div>
+  </div>
+  <div class="card border-primary ml-1 mt-1">
+    <div class="card-body">
+      <h5 class="card-title">Is this goal achievable?</h5>
+      <p class="card-text">
+        <%= @goal.achievability.humanize %>
       </p>
-      <p>
-        <strong>Is this goal achievable?</strong><br>
-        <span class="text-white"><%= @goal.achievability.humanize %></span>
+    </div>
+  </div>
+  <div class="card border-primary ml-1 mt-1">
+      <div class="card-body">
+        <h5 class="card-title">
+          How will you know if you succeeded?
+        </h5>
+          <p class="card-text">
+            <%= @goal.measurement ? @goal.measurement : "¯\\_(ツ)_/¯ " %>
+          </p>
+      </div>
+    </div>
+  <div class="card border-primary ml-1 mt-1">
+    <div class="card-body">
+      <h5 class="card-title">Who is reponsible?</h5>
+      <p class="card-text">
+        <%= @goal.person_responsible ? @goal.person_responsible : " (Ͼ˳Ͽ)..!!! "%>
       </p>
-      <p>
-        <strong>How will you know if you succeeded?</strong><br>
-        <span class="text-white"><%= @goal.measurement ? @goal.measurement : "¯\\_(ツ)_/¯ " %></span>
+    </div>
+  </div>
+  <div class="card border-primary ml-1 mt-1">
+    <div class="card-body">
+      <h5 class="card-title">Was this goal achieved? </h5>
+        <p class="card-text">
+          <%= @goal.achieved.humanize %>
+        </p>
+    </div>
+  </div>
+  <div class="card border-info ml-1 mt-1">
+    <div class="card-body">
+      <h5>Last updated: </h5>
+      <p class="card-text">
+        <em><%= time_ago_in_words(@goal.updated_at) %>&nbsp;ago</em>
       </p>
-      <p>
-        <strong>Who is reponsible?</strong><br>
-        <span class="text-white"><%= @goal.person_responsible ? @goal.person_responsible : " (Ͼ˳Ͽ)..!!! "%></span>
-      </p>
-      <p>
-        <strong>Was this goal achieved?</strong><br>
-        <span class="text-white"><%= @goal.achieved.humanize %></span>
-      </p>
-      <p>
-        <strong>Date completed:</strong><br>
-        <span class="text-white">
-          <%= @goal.completed_at ? @goal.completed_at.strftime("%d %b %Y") : "Working on it... (-.-)Zzz..."  %>
-        </span>
-      </p>
-      <p>
-        <strong>Last updated:</strong><br>
-        <span class="text-white"><em><%= time_ago_in_words(@goal.updated_at) %>&nbsp;ago</em></span>
+    </div>
+  </div>
+  <div class="card border-success ml-1 mt-1">
+    <div class="card-body">
+      <h5>Date completed:</h5>
+      <p class="card-text">
+        <%= @goal.completed_at ? @goal.completed_at.strftime("%d %b %Y") : "Working on it... (-.-)Zzz..."  %>
       </p>
     </div>
   </div>
 </div>
 <div class="row">
-  <div class="col-sm col-lg-8">
+  <div class="col-md-10 col-lg-6">
+    <hr>
     <%= render "tab_content_comments" %>
   </div>
 </div>
+  <!-- .col -->

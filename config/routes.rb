@@ -48,6 +48,7 @@ Rails.application.routes.draw do
     resources :user_registrations
     resources :lesson_plans
     resources :goals, module: :registration_klasses
+    resources :achievements, module: :registration_klasses
   end
 
   resources :lesson_plans do

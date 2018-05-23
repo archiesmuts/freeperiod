@@ -1,32 +1,43 @@
-<div class="mt-1">
-  <nav aria-label="breadcrumb">
-    <ol class="breadcrumb">
-      <li class="breadcrumb-item">
-        <%= link_to school_registration_klass_path(@registration_klass.school, @registration_klass) do %>
-          <%= fa_icon "arrow-left" %>&nbsp;<%= @lesson_plan.registration_klass.course_name %>
-        <% end %>
-      </li>
-      <li class="breadcrumb-item active" aria-current="page">Lesson Plan</li>
-    </ol>
-  </nav>
+<!-- tab_content_home -->
+<div class="app-title" aria-label="breadcrumb">
+  <div>
+    <h1 class="h2">
+      <%= fa_icon("book-open", text: "Lesson Plan") %>
+      &nbsp;-&nbsp;<small><%= @registration_klass.course_name %></small>
+    </h1>
+    <p>Monitor, Evaluate and Improve</p>
+  </div>
+  <ul class="app-breadcrumb breadcrumb">
+    <li class="breadcrumb-item">
+      <%= link_to school_registration_klass_path(@registration_klass.school, @registration_klass) do %>
+        <%= @lesson_plan.registration_klass.course_name %>
+      <% end %>
+    </li>
+    <li class="breadcrumb-item active" aria-current="page">Lesson Plan</li>
+  </ul>
 </div>
+
 <div class="jumbotron">
   <div class="row">
     <div class="col-xl-10 offset-xl-1">
-      <h1><%= fa_icon("book") %>&nbsp;Lesson Plan</h1>
-      <h2 class="h3 text-white"><%= @lesson_plan.name %></h2>
+      <h1>Lesson Plan</h1>
+      <h2 class="h3 text-primary"><%= @lesson_plan.name %></h2>
       <h3 class="h4"><%= @lesson_plan.registration_klass.name %></h3>
       <h4 class="h5 text-info"><%= @lesson_plan.registration_klass.course_name %></h4>
       <hr>
+      <%= link_to school_registration_klass_path(@registration_klass.school, @registration_klass),
+        class: "btn btn-lg btn-outline-primary" do %>
+        <%= fa_icon("arrow-left", text: "Back") %>
+      <% end %>
       <%= link_to edit_registration_klass_lesson_plan_path(@lesson_plan.registration_klass, @lesson_plan),
         class: "btn btn-lg btn-primary" do %>
-        <%= fa_icon "pencil-square-o" %>&nbsp;Edit Lesson Plan
+        <%= fa_icon "edit" %>&nbsp;Edit Lesson Plan
       <% end %>
     </div>
   </div>
 </div>
 <div class="row">
-  <div class="col-xl-8 offset-xl-2">
+  <div class="col-xl-8">
     <p class="card-text">
       Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas sed ipsum lectus. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Donec ultricies, felis a suscipit sagittis, quam mi posuere ligula, et posuere odio augue sit amet urna. Curabitur ultrices consectetur tellus, at mollis ex pellentesque eu. Maecenas laoreet, ligula ac efficitur gravida, ligula purus aliquet ante, ut feugiat augue augue in lectus. In cursus est ac quam hendrerit gravida. Phasellus ullamcorper elit eget tincidunt aliquam. Pellentesque viverra sapien sed lacus rutrum ornare. Cras vel tellus sagittis, gravida turpis eu, hendrerit erat. Etiam sodales nisl nisl, eu congue elit rutrum in. Maecenas lacinia ullamcorper ligula nec feugiat. Praesent non efficitur enim, vitae consectetur ligula.
     </p>

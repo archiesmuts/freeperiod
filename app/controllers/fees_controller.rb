@@ -3,6 +3,7 @@ class FeesController < ApplicationController
   before_action :set_school, only: [:index, :new, :create, :show, :edit, :update, :destroy]
   before_action :set_fee, only: [:show, :edit, :update, :destroy]
 
+  layout "application_alt"
   # GET /fees
   # GET /fees.json
   def index

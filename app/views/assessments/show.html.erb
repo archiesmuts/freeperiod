@@ -1,30 +1,27 @@
 <% content_for :title do %>fp - Assessment Home<% end %>
 <!-- school show view  -->
-<div class="row row-offcanvas row-offcanvas-right pt-2">
-  <div class="col-12 col-md-9">
-    <p class="float-right d-md-none">
-      <button type="button" class="btn btn-primary btn-sm" data-toggle="offcanvas">
-        <%= fa_icon("th-list") %>
-      </button>
-    </p>
-    <!-- Tab panes -->
-    <div class="tab-content">
-      <div class="tab-pane fade show active" id="assessment-home" role="tabpanel">
-        <%= render "tab_content_home" %>
-      </div>
-
-      <div class="tab-pane fade" id="assessment-results" role="tabpanel">
-        <%= render "tab_content_results" %>
-      </div>
-      <div class="tab-pane fade" id="assessment-teachers-guide" role="tabpanel">
-        <%= render "tab_content_teachers_guide" %>
-      </div>
-    </div> <!-- .tab-content -->
-  </div>
-  <div id="sidebar" class="col-6 col-md-3 sidebar-offcanvas pt-1 nav flex-column nav-pills" role="tablist" aria-orientation="vertical" role="tablist" aria-orientation="vertical">
+<div class="app-sidebar__overlay" data-toggle="sidebar"></div>
+<aside class="app-sidebar">
+  <%= render "sidebar_user" %>
+  <ul class="app-menu nav flex-column nav-pills">
     <%= render "sidebar_links" %>
+  </ul>
+</aside>
+<!-- Tab panes -->
+<div class="tab-content">
+  <div class="tab-pane fade show active" id="assessment-home" role="tabpanel">
+    <%= render "tab_content_home" %>
   </div>
-</div> <!-- .row -->
+
+  <div class="tab-pane fade" id="assessment-results" role="tabpanel">
+    <%= render "tab_content_results" %>
+  </div>
+  <div class="tab-pane fade" id="assessment-teachers-guide" role="tabpanel">
+    <%= render "tab_content_teachers_guide" %>
+  </div>
+</div>
+<!-- .tab-content -->
+
 
 <%= render "assessments/modal_dialog" %>
 <!-- modal forms parts-->
