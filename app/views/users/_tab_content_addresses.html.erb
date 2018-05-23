@@ -30,12 +30,10 @@
     </div>
   </div>
 </div>
+<div id="list-addresses" class="row d-flex flex-wrap">
 <% if current_user.addresses.any? %>
-  <div id="list-addresses" class="row d-flex flex-wrap">
     <%= render "addresses/addresses", addressable: @user %>
-  </div>
 <% else %>
-  <div class="row d-flex flex-wrap">
-    <%= render "addresses/address_placeholder" %>
-  </div>
+  <%= render "addresses/address_placeholder" %>
   <% end %>
+</div>

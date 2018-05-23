@@ -2,7 +2,7 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://coffeescript.org/
 jQuery.fn.sizeAchievements = ->
-  size_achievements = $("#list-achievements").children().length
+  size_achievements = $("#list-achievements").children(".achievement-card").length
   $("#sizeAchievements1").text size_achievements
   $("#sizeAchievements2").text size_achievements
 

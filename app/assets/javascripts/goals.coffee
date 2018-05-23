@@ -2,7 +2,7 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://coffeescript.org/
 jQuery.fn.sizeGoals = ->
-  size_goals = $("#list-goals").children().length
+  size_goals = $("#list-goals").children(".goal-card").length
   $("#sizeGoals1").text size_goals
   $("#sizeGoals2").text size_goals
 

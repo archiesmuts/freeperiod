@@ -2,7 +2,7 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://coffeescript.org/
 jQuery.fn.sizeAddresses = ->
-  size_addresses = $("#list-addresses").children().length
+  size_addresses = $("#list-addresses").children(".address-card").length
   $("#sizeAddresses1").text size_addresses
   $("#sizeAddresses2").text size_addresses
 
