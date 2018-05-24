@@ -1,75 +1,86 @@
 <!-- Event show page -->
-<% content_for :title do %>fp School Event<% end %>
-<div class="row">
-  <div class="col-lg-10 offset-lg-1">
-    <div class="mt-2">
-      <nav aria-label="breadcrumb">
-        <ol class="breadcrumb ">
-          <li class="breadcrumb-item">
-            <%= link_to school_events_path(@school) do %>
-              <%= fa_icon("arrow-left", text: "Events Calendar") %>
-            <% end %>
-          </li>
-          <li class="breadcrumb-item active" aria-current="page">School Event</li>
-        </ol>
-      </nav>
-    </div>
-    <div class="jumbotron img-fluid">
-      <h1><%= fa_icon "fort-awesome", text: "School Event", type: "brand" %></h1>
-      <div class="row">
-        <div class="col-md-7">
-          <h2><%= @event.title %></h2>
-          <p class="lead"><%= sanitize @event.description %></p>
-          <div class="card text-white bg-info mb-1">
-            <div class="card-body">
-              <h5 class="card-title">
-                Start time: <%= @event.start_time.strftime("%I:%M%p on %a %d %b %Y") %>
-              </h5>
-            </div>
-          </div>
-           <!-- .card -->
-          <div class="card text-white bg-info mb-1">
-            <div class="card-body">
-             <h5 class="card-title">
-               End Time: <%= @event.end_time.strftime("%I:%M%p on %a %d %b %Y") %>
-             </h5>
-            </div>
-          </div>
-          <!-- .card -->
-        </div>
-        <div class="col-md-5">
-          <div class="card border-primary my-3">
-            <h5 class="card-header">
-              <%= fa_icon "comments", text: "Leave a comment on the event" %>
-            </h5>
-            <div class="card-body">
-              <%= render "comments/form", commentable: @event %>
-              <!-- list comments here -->
-              <ul id="list-comments" class="list-group">
-                <% if @event.comments.any? %>
-                  <%= render "comments/comments", commentable: @event%>
-                <% else %>
-                  <p>
-                    <li class="list-group-item list-group-item-info no-comments-to-list">
-                      Nobody has commented yet.
-                    </li>
-                  </p>
-                <% end %>
-              </ul>
-            </div>
-          </div>
+<% content_for :title do %>Event Page <% end %>
+<div class="app-sidebar__overlay" data-toggle="sidebar"></div>
+<aside class="app-sidebar">
+  <%= render "sidebar_user" %>
+  <ul class="app-menu nav flex-column nav-pills">
+    <li>
+      <a class="app-menu__item active" id="edit-goal-tab" data-toggle="pill" href="#" role="tab" aria-controls="edit-goal" aria-selected="true">
+        <%= fa_icon("fw fort-awesome", class: "app-menu__icon mr-2", type: "brand") %>
+        <span class="app-menu__label">
+          Event Page
+        </span>
+      </a>
+    </li>
+  </ul>
+</aside>
+<div class="app-title" aria-label="breadcrumb">
+  <div>
+    <h1 class="h2"><%= fa_icon("fort-awesome", text: "What's happening?", type: "brand") %></h1>
+    <p>Part of the journey is having fun</p>
+  </div>
+  <ul class="app-breadcrumb breadcrumb">
+    <li class="breadcrumb-item">
+      <%= link_to school_events_path(@school) do %>
+        <%= fa_icon("arrow-left", text: "Events Calendar") %>
+      <% end %>
+    </li>
+    <li class="breadcrumb-item active" aria-current="page">School Event Page</li>
+  </ul>
+</div>
+
+<div class="jumbotron img-fluid">
+  <h1><%= fa_icon "fort-awesome", text: "School Event", type: "brand" %></h1>
+  <div class="row">
+    <div class="col-md-7">
+      <h2><%= @event.title %></h2>
+      <p class="lead"><%= sanitize @event.description %></p>
+      <div class="card text-white bg-info mb-1">
+        <div class="card-body">
+          <h5 class="card-title">
+            Start time: <%= @event.start_time.strftime("%I:%M%p on %a %d %b %Y") %>
+          </h5>
         </div>
       </div>
-      <!-- .row -->
-      <%= link_to school_events_path(@school), class: "btn btn-lg btn-outline-primary" do %>
-        <%= fa_icon "arrow-left", text: "Back" %>
-      <% end %>
-      <%= link_to edit_school_event_path(@school, @event), class: "btn btn-lg btn-primary" do %>
-        <%= fa_icon "pencil-alt", text: "Edit event" %>
-      <% end %>
+       <!-- .card -->
+      <div class="card text-white bg-info mb-1">
+        <div class="card-body">
+         <h5 class="card-title">
+           End Time: <%= @event.end_time.strftime("%I:%M%p on %a %d %b %Y") %>
+         </h5>
+        </div>
+      </div>
+      <!-- .card -->
     </div>
-    <!-- .jumbotron -->
+    <div class="col-md-5">
+      <div class="card border-primary my-3">
+        <h5 class="card-header">
+          <%= fa_icon "comments", text: "Leave a comment on the event" %>
+        </h5>
+        <div class="card-body">
+          <%= render "comments/form", commentable: @event %>
+          <!-- list comments here -->
+          <ul id="list-comments" class="list-group">
+            <% if @event.comments.any? %>
+              <%= render "comments/comments", commentable: @event%>
+            <% else %>
+              <p>
+                <li class="list-group-item list-group-item-info no-comments-to-list">
+                  Nobody has commented yet.
+                </li>
+              </p>
+            <% end %>
+          </ul>
+        </div>
+      </div>
+    </div>
   </div>
-  <!-- .col -->
+  <!-- .row -->
+  <%= link_to school_events_path(@school), class: "btn btn-lg btn-outline-primary" do %>
+    <%= fa_icon "arrow-left", text: "Back" %>
+  <% end %>
+  <%= link_to edit_school_event_path(@school, @event), class: "btn btn-lg btn-primary" do %>
+    <%= fa_icon "pencil-alt", text: "Edit event" %>
+  <% end %>
 </div>
-<!-- .row -->
+<!-- .jumbotron -->

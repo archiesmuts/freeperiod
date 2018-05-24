@@ -1,11 +1,10 @@
 <% goalable.goals.each do |goal| %>
-<div class="col-sm-4 goal-card" id="<%= dom_id(goal) %>">
-    <div class="card border-primary mb-3 scale">
+    <div class="card border-primary mb-1 mr-1 scale goal-card" style="width: 19rem; id="<%= dom_id(goal) %>">
       <div class="card-header">
         Goal
       </div>
       <div class="card-body">
-        <h4 class="card-title text-primary"><%= goal.name.truncate(65) %></h4>
+        <h5 class="card-title text-primary"><%= goal.name.truncate(65) %></h5>
           <p class="card-text">
             <strong><%= fa_icon("calendar-check", text: "Deadline:", type: "regular") %></strong>&nbsp;
             <span class="text-info"><%= goal.deadline.strftime("%d %b %Y") if goal.deadline %></span>
@@ -18,10 +17,10 @@
               <span class="text-info"><%= goal.completed_at.strftime("%d %b %Y") if goal.completed_at %></span>
             </p>
           <% end %>
-          <h5 class="card-sub-title">
+          <hp class="card-text lead">
             <span class="text-white"><%= fa_icon("check-circle", text: "Action Plans") %></span>&nbsp;
             <span class="badge badge-info"><%= goal.action_plans.size %></span>&nbsp;
-          </h5>
+          </hp>
           <p class="card-text text-muted">
             <small>Last updated&nbsp;<%= time_ago_in_words(goal.updated_at) %>&nbsp;ago</small>
           </p>
@@ -38,11 +37,10 @@
           <div class="col-sm-6">
             <%= link_to polymorphic_path([goal.goalable, goal]),
               class: "btn btn-primary btn-block" do %>
-              <%= fa_icon("angle-double-right", text: "Show") %>
+              <%= fa_icon("expand", text: "Show") %>
             <% end %>
           </div>
         </div>
       </div>
     </div>
-</div>
 <% end %>

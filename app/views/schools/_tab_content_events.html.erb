@@ -10,26 +10,30 @@
 </div>
 <div class="jumbotron">
   <div class="col-xl-10 offset-xl-1">
+    <!-- FIXME fix calculation of number ovents new vs old -->
     <h1>
       Upcoming School Events&nbsp;
-      <small><span class="badge badge-info"><%= @school.events.newer_than(Time.now).size %></span></small>
+      <small><span id="sizeEvents1" class="badge badge-info"><%= @school.events.newer_than(Time.now).size %></span></small>
     </h1>
+    <h2>
+      Older events within the last month
+      &nbsp;<small><span id="sizeEvents3" class="badge badge-info"></span></small>
+    </h2>
     <p>This is a template for a simple marketing or informational website. It includes a large callout called a jumbotron and three supporting pieces of content. Use it as a starting point to create something more unique.</p>
     <hr>
-    <%= link_to school_events_path(@school), class: "btn btn-lg btn-primary" do %>
-      <%= fa_icon("calendar-plus", text: "View and Add Events") %>
+    <%= link_to new_school_event_path(@school), remote: true, class: "btn btn-lg btn-primary" do %>
+      <%= fa_icon("plus", text: "Add an Event") %>
+    <% end %>
+    <%= link_to school_events_path(@school), class: "btn btn-lg btn-success" do %>
+      <%= fa_icon("calendar-plus", text: "View Calendar") %>
     <% end %>
   </div>
 </div>
 
+<div  id="list-events" class="d-flex flex-wrap justify-content-start align-items-stretch">
 <% if @school.events.any? %>
-  <div class="row d-flex flex-wrap" id="list-goals">
     <%= render @school.events.newer_than(1.month.ago) %>
-  </div>
 <% else %>
-  <ul class="list-group">
-    <li class="list-group-item list-group-item-active no-goals-to-list">
-      Nothing to list
-    </li>
-  </ul>
+  <%= render "events/event-placeholder" %>
 <% end %>
+</div>

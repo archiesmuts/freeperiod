@@ -8,6 +8,7 @@
     <li class="breadcrumb-item active" aria-current="page">School Achievements</li>
   </ul>
 </div>
+
 <div class="jumbotron">
   <div class="col-xl-10 offset-xl-1">
     <h1>
@@ -22,12 +23,10 @@
   </div>
 </div>
 
-<div class="row d-flex flex-wrap" id="list-achievements">
+<div class="d-flex flex-wrap justify-content-start align-items-stretch" id="list-achievements">
   <% if @school.achievements.any? %>
     <%= render "achievements/achievements", achievable: @school %>
   <% else %>
-    <li class="list-group-item list-group-item-info no-achievements-to-list">
-      Nothing to list. Complete the form below
-    </li>
+    <%= render "achievements/achievement_placeholder" %>
   <% end %>
 </div> <!-- .card-deck -->

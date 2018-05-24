@@ -1,34 +1,51 @@
 <% content_for :title do %>Calendar of Events <% end %>
-<div class="row">
-  <div class="col-md-8 offset-md-2 mt-2">
-    <nav aria-label="breadcrumb">
-      <ol class="breadcrumb">
-        <li class="breadcrumb-item">
-          <%= link_to @school do %>
-            <%= fa_icon "arrow-left", text: "School home" %>&nbsp;
-          <% end %>
-        </li>
-        <li class="breadcrumb-item active" aria-current="page">School Events Calendar</li>
-      </ol>
-    </nav>
+<div class="app-sidebar__overlay" data-toggle="sidebar"></div>
+<aside class="app-sidebar">
+  <%= render "sidebar_user" %>
+  <ul class="app-menu nav flex-column nav-pills">
+    <li>
+      <a class="app-menu__item active" id="edit-goal-tab" data-toggle="pill" href="#" role="tab" aria-controls="edit-goal" aria-selected="true">
+        <%= fa_icon("fw fort-awesome", class: "app-menu__icon mr-2", type: "brand") %>
+        <span class="app-menu__label">
+          Schedule Events
+        </span>
+      </a>
+    </li>
+  </ul>
+</aside>
+<div class="app-title" aria-label="breadcrumb">
+  <div>
+    <h1 class="h2"><%= fa_icon("fort-awesome", text: "What's happening?", type: "brand") %></h1>
+    <p>Part of the journey is having fun</p>
   </div>
+  <ul class="app-breadcrumb breadcrumb">
+    <li class="breadcrumb-item">
+      <%= link_to @school do %>
+        <%= fa_icon("university lg", text: "School Home") %>
+      <% end %>
+    </li>
+    <li class="breadcrumb-item active" aria-current="page">School Events Calendar</li>
+  </ul>
 </div>
 
 <div class="row">
-  <div class="col-md-8 col-lg-6 col-xl-6 offset-xl-2">
+  <div class="col-md-10 offset-xl-1">
     <h1 >
-      Upcoming School Events&nbsp;<small><span class="badge badge-info"><%= @school.events.newer_than(1.day.ago).size %></small></span>
+      All School Events&nbsp;<small><span class="badge badge-info"><%= @school.events.size %></small></span>
     </h1>
-  </div>
-  <div class="col-md-4 col-lg-2 col-xl-2">
+
+    <%= link_to @school, class: "btn btn-lg btn-outline-primary" do %>
+      <%= fa_icon("arrow-left", text: "Back") %>
+    <% end %>
     <%= link_to new_school_event_path(@school),
-      class: "btn btn-lg btn-primary btn-block-xs" do %>
+      class: "btn btn-lg btn-primary" do %>
       <%= fa_icon "calendar-plus", text: "Create an Event", type: "regular" %>
     <% end %>
   </div>
 </div>
+<hr>
 <div class="row">
-  <div class="col-xl-8 offset-xl-2">
+  <div class="col-xl-10  offset-xl-1">
     <div id="event_calendar" class="py-2"> </div>
   </div>
 </div>

@@ -21,9 +21,13 @@
     <h2 class="h4 text-primary"><%= @goal.name %></h2>
     <hr>
     <div class="row">
-      <div class="col-md-4">
-        <%= link_to edit_polymorphic_path([@goalable, @goal]), class: "btn btn-lg btn-primary btn-block" do %>
-          <%= fa_icon("edit", text: "Edit your goal") %>
+      <div class="col-md-6">
+        <%= link_to polymorphic_path(@goalable), class: "btn btn-lg btn-outline-primary" do %>
+          <%= fa_icon("arrow-left", text: "Back") %>
+        <% end %>
+
+        <%= link_to edit_polymorphic_path([@goalable, @goal]), class: "btn btn-lg btn-primary" do %>
+          <%= fa_icon("edit", text: "Edit Goal") %>
         <% end %>
       </div>
       <div class="col-md-4">
@@ -40,7 +44,7 @@
 </div>
 
 <div id="shuffle" class="d-flex align-content-stretch flex-wrap mt-2 shuffle">
-  <div class="card border-primary ml-1 mt-1">
+  <div class="card border-primary mr-1 mt-1">
     <div class="card-body">
       <h5 class="card-title">Complete by:</h5>
        <p class="card-text" >
@@ -48,7 +52,7 @@
        </p>
     </div>
   </div>
-  <div class="card border-primary ml-1 mt-1">
+  <div class="card border-primary mr-1 mt-1">
     <div class="card-body">
       <h5 class="card-title">Is this goal achievable?</h5>
       <p class="card-text">
@@ -56,7 +60,7 @@
       </p>
     </div>
   </div>
-  <div class="card border-primary ml-1 mt-1">
+  <div class="card border-primary mr-1 mt-1">
       <div class="card-body">
         <h5 class="card-title">
           How will you know if you succeeded?
@@ -66,7 +70,7 @@
           </p>
       </div>
     </div>
-  <div class="card border-primary ml-1 mt-1">
+  <div class="card border-primary mr-1 mt-1">
     <div class="card-body">
       <h5 class="card-title">Who is reponsible?</h5>
       <p class="card-text">
@@ -74,7 +78,7 @@
       </p>
     </div>
   </div>
-  <div class="card border-primary ml-1 mt-1">
+  <div class="card border-primary mr-1 mt-1">
     <div class="card-body">
       <h5 class="card-title">Was this goal achieved? </h5>
         <p class="card-text">
@@ -82,7 +86,7 @@
         </p>
     </div>
   </div>
-  <div class="card border-info ml-1 mt-1">
+  <div class="card border-info mr-1 mt-1">
     <div class="card-body">
       <h5>Last updated: </h5>
       <p class="card-text">
@@ -90,7 +94,7 @@
       </p>
     </div>
   </div>
-  <div class="card border-success ml-1 mt-1">
+  <div class="card border-success mr-1 mt-1">
     <div class="card-body">
       <h5>Date completed:</h5>
       <p class="card-text">

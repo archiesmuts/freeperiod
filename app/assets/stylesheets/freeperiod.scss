@@ -240,9 +240,10 @@ hr.style18:before {
 }
 // scale cards on hover
 .scale:hover {
-  -webkit-transform:scale(1.02);
-  -ms--transform:scale(1.02);
-  transform:scale(1.02);
+  -webkit-transform:scale(1.05);
+  -ms--transform:scale(1.05);
+  transform:scale(1.05);
+	z-index: 1000;
 }
 
 .breadcrumb-dark-color, .alert-very-dark {

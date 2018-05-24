@@ -25,20 +25,13 @@
 </li>
 <li>
   <a class="app-menu__item" id="school-registration-classes-tab" data-toggle="pill" href="#school-registration-classes" role="tab" aria-controls="school-registration-classes" aria-selected="false">
-    <%= fa_icon("id-card-alt fw", class: "app-menu__icon mr-2") %>
-    <span class="app-menu__label">
-      Registration Classes
-    </span>
-  </a>
-</li>
-<li>
-  <a class="app-menu__item" id="school-subject-classes-tab" data-toggle="pill" href="#school-subject-classes" role="tab" aria-controls="school-subject-classes" aria-selected="false">
     <%= fa_icon("graduation-cap fw", class: "app-menu__icon mr-2") %>
     <span class="app-menu__label">
-      Subject Classes
+      Classes
     </span>
   </a>
 </li>
+
 <li>
   <a class="app-menu__item" id="school-goals-tab" data-toggle="pill" href="#school-goals" role="tab" aria-controls="school-goals" aria-selected="false">
     <%= fa_icon("star fw", class: "app-menu__icon mr-2") %>
@@ -59,7 +52,7 @@
   <a class="app-menu__item" id="school-events-tab" data-toggle="pill" href="#school-events" role="tab" aria-controls="school-events" aria-selected="false">
     <%= fa_icon("fort-awesome", class: "app-menu__icon mr-2", type: "brand") %>
     <span class="app-menu__label">
-      Upcoming Events&nbsp;<span class="badge badge-info"><%= @school.events.newer_than(Time.now).size %></span>
+      Upcoming Events&nbsp;<span id="sizeEvents2" class="badge badge-info"></span>
     </span>
   </a>
 </li>

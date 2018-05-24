@@ -37,10 +37,14 @@ clearCalendar = ->
   # In case delete doesn't work.
   $('#event_calendar').html ''
 
-jQuery.fn.sizeEvents = ->
-  size_events = $("#list-events").find(".event-card").length
+jQuery.fn.sizeNewEvents = ->
+  size_events = $("#list-events").children(".event-card").length
   $("#sizeEvents1").text size_events
   $("#sizeEvents2").text size_events
+
+jQuery.fn.sizeOldEvents = ->
+  size_events_old = $("#list-events").children(".event-old").length
+  $("#sizeEvents3").text size_events_old
 
 jQuery(document).on 'turbolinks:load', eventCalendar
 jQuery(document).on 'turbolinks:before-cache', clearCalendar
@@ -61,16 +65,19 @@ jQuery(document).on "turbolinks:load", ->
 
   $('#event-dialog').on 'shown.bs.modal', ->
     $('#event_title').focus()
-    $('#event_start_time').datetimepicker
+    $('.event_start_time').datetimepicker
       sideBySide: true,
       format: "YYYY-MM-DD hh:mm a"
-    $('#event_end_time').datetimepicker
+    $('.event_end_time').datetimepicker
       useCurrent: false,
       format: "YYYY-MM-DD hh:mm a",
       sideBySide: true
-    $('#event_start_time').on 'dp.change', (e) ->
-      $('#event_end_time').data('DateTimePicker').minDate e.date
-    $('#event_end_time').on 'dp.change', (e) ->
-      $('#event_start_time').data('DateTimePicker').maxDate e.date
+    $('.event_start_time').on 'dp.change', (e) ->
+      $('.event_end_time').data('DateTimePicker').minDate e.date
+    $('.event_end_time').on 'dp.change', (e) ->
+      $('.event_start_time').data('DateTimePicker').maxDate e.date
 
-  $('#list-parts').sizeEvents()
+    $('.event_description').trix
+
+  $('#list-events').sizeNewEvents()
+  $('#list-events').sizeOldEvents()

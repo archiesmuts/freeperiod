@@ -1,0 +1,34 @@
+<div  class="card border-primary mr-1 mb-1" style="width: 19rem;" id="event-placeholder" >
+  <div class="card-header">
+    <%= fa_icon "fort-awesome", text: "Event", type: "brand" %>
+  </div>
+  <div class="card-body">
+    <h5 class="card-title text-info">
+      A Fabulous Event
+    </h5>
+    <p class="card-text">The circus is in town.</p>
+    <p class="card-text">
+      ٩(̾●̮̮̃̾•̃̾)۶٩(̾●̮̮̃̾•̃̾)۶٩(̾●̮̮̃̾•̃̾)۶٩(̾●̮̮̃̾•̃̾)۶٩(̾●̮̮̃̾•̃̾)۶٩(̾●̮̮̃̾•̃̾)۶
+    </p>
+    <p class="card-text text-info">
+      <%= fa_icon("comments", text:"Comments") %>&nbsp;
+      <span class="badge badge-info">20</span>
+    </p>
+  </div>
+  <div class="card-footer">
+    <div class="row">
+      <div class="col col-md-4">
+        <%= link_to "#", method: :delete,
+        data: { confirm: 'Click on "Confirm" if want turn this event into cosmic dust.' },
+        class: "btn btn-danger btn-block-xs" do %>
+        <%= fa_icon "trash", text: "Delete" %>
+        <% end %>
+      </div>
+      <div class="col-md-8">
+        <%= link_to "#", class: "btn btn-primary btn-block" do %>
+          <%= fa_icon "crosshairs", text: "Show more .." %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

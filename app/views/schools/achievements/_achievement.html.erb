@@ -1,30 +1,28 @@
 <!-- schools/achievement -->
-<div  id="<%= dom_id(achievement) %>" class="col-sm-4 achievement-card">
-  <div class="card text-white border-success bg-dark mb-1">
-    <div class="card-header">
-      School Achievement
-    </div>
-    <div class="card-body">
-      <h4 class="card-title"><%= achievement.title %></h4>
-      <h6 class="cad-subtitle"><%= achievement.date.strftime("%d %b %Y") %></h6>
-      <p class="card-text"><%= achievement.description %></p>
-    </div>
-    <div class="card-footer">
+<div class="card text-white border-success bg-dark mr-1 mb-1 achievement-card" style="width: 19rem;" id="<%= dom_id(achievement) %>">
+  <div class="card-header">
+    School Achievement
+  </div>
+  <div class="card-body">
+    <h4 class="card-title"><%= achievement.title %></h4>
+    <h6 class="cad-subtitle"><%= achievement.date.strftime("%d %b %Y") %></h6>
+    <p class="card-text"><%= achievement.description %></p>
+  </div>
+  <div class="card-footer">
+    <div class="row">
       <div class="row">
-        <div class="row">
-          <div class="col-sm-4">
-            <%= link_to [achievement.achievable, achievement], remote: true, method: :delete,
-                data: { confirm: 'Are you sure you want do delete this?', toggle: "tooltip" },
-                class: "delete-achievement btn btn-danger btn-block-xs", title: "Deleting Achievement" do %>
-              <%= fa_icon("trash", text: "Delete") %>
-            <% end %>
-          </div>
-          <div class="col-sm-8">
-            <%= link_to edit_polymorphic_path([achievement.achievable, achievement]),
-              remote: true, class: "btn btn-primary btn-block" do %>
-              <%= fa_icon("edit", text: "Edit") %>
-            <% end %>
-          </div>
+        <div class="col-sm-4">
+          <%= link_to [achievement.achievable, achievement], remote: true, method: :delete,
+              data: { confirm: 'Are you sure you want do delete this?', toggle: "tooltip" },
+              class: "delete-achievement btn btn-danger btn-block-xs", title: "Deleting Achievement" do %>
+            <%= fa_icon("trash", text: "Delete") %>
+          <% end %>
+        </div>
+        <div class="col-sm-8">
+          <%= link_to edit_polymorphic_path([achievement.achievable, achievement]),
+            remote: true, class: "btn btn-primary btn-block" do %>
+            <%= fa_icon("edit", text: "Edit") %>
+          <% end %>
         </div>
       </div>
     </div>
