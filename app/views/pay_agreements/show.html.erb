@@ -1,56 +1,73 @@
 <% content_for :title do %>fp Learner Pay Agreement<% end %>
-<div class="mt-2">
-  <nav aria-label="breadcrumb">
-    <ol class="breadcrumb breadcrumb-color">
-      <li class="breadcrumb-item">
-        <%= link_to fee_pay_agreements_path(@pay_agreement.fee) do %>
-          <%= fa_icon("arrow-left", text: "List of Pay Agreements") %>
-        <% end %>
-      </li>
-      <li class="breadcrumb-item active" aria-current="page"><%= @pay_agreement.fee.year.strftime("%Y") %> Fee Pay Agreement</li>
-    </ol>
-  </nav>
+<div class="app-sidebar__overlay" data-toggle="sidebar"></div>
+<aside class="app-sidebar">
+  <%= render "sidebar_user" %>
+  <ul class="app-menu nav flex-column nav-pills">
+    <li>
+      <a class="app-menu__item active" id="pay-agreement-tab" data-toggle="pill" href="#" role="tab" aria-controls="pay-agreement" aria-selected="true">
+        <%= fa_icon("fw fort-awesome", class: "app-menu__icon mr-2", type: "brand") %>
+        <span class="app-menu__label">
+          Pay Agreement - <%= @fee.year.strftime("%Y") %>
+        </span>
+      </a>
+    </li>
+  </ul>
+</aside>
+<div class="app-title" aria-label="breadcrumb">
+  <div>
+    <h1 class="h2"><%= fa_icon("money-bill", text: "An Investment") %></h1>
+    <p>Part of the journey is having fun</p>
+  </div>
+  <ul class="app-breadcrumb breadcrumb">
+    <li class="breadcrumb-item">
+      <%= link_to "List of Pay Agreements", fee_pay_agreements_path(@pay_agreement.fee) %>
+    </li>
+    <li class="breadcrumb-item active" aria-current="page"><%= @pay_agreement.fee.year.strftime("%Y") %> Fee Pay Agreement</li>
+  </ul>
 </div>
-<div class="jumbotron">
-  <div class="row">
-    <div class="col-lg-8 offset-lg-3">
-      <h1 class="text-white"><%= fa_icon("user-circle") %>&nbsp;<%= @pay_agreement.user_registration.user_name %></h1>
-      <h2>
-        <%= fa_icon("file-text", text: "Pay Agreement") %>&nbsp;
-        <small><span class="badge badge-light"><%= @pay_agreement.fee.year.strftime("%Y") %></span></small>
-      </h2>
-      <hr>
-      <dl class="row">
-        <dt class="col-sm-5 h4">Approved School Fee</dt>
-        <dd class="col-sm-7 h4">
-          <span class="badge badge-primary">
-            <%= number_to_currency(@pay_agreement.approved_school_fee, precision: 2, unit: "R") %>
-          </span>
-        </dd>
 
-        <dt class="col-sm-5 h4">Discount % and R</dt>
-        <dd class="col-sm-5 h4">
-          <span class="badge badge-warning"><%= number_to_percentage(@pay_agreement.discount_in_percent, precision: 2) %></span> &nbsp;
-          <span class="badge badge-warning"><%= number_to_currency(@pay_agreement.discount_amount, precision: 2, unit: "R") %></span>
-        </dd>
+<div class="row">
+  <div class="col-lg-8 offset-lg-1">
+    <h1 class="h2">
+      <%= @pay_agreement.fee.year.strftime("%Y") %>&nbsp;Pay Agreement
+    </h1>
+    <h2 class="h3 text-info">
+      <%= fa_icon("user-circle") %>&nbsp;<%= @pay_agreement.user_registration.user_name %>
+    </h2>
+    <p class="lead">
+      <%= @pay_agreement.fee.name %>
+    </p>
+    <hr>
+    <dl class="row">
+      <dt class="col-sm-5 h4">Approved School Fee</dt>
+      <dd class="col-sm-7 h4">
+        <%= number_to_currency(@pay_agreement.approved_school_fee, precision: 2, unit: "R") %>
+      </dd>
 
-        <dt class="col-sm-5 h4">Agreed Amount</dt>
-        <dd class="col-sm-7 h4">
-          <span class="badge badge-success">
-            <%= number_to_currency(@pay_agreement.agreed_school_fee, precision: 2, unit: "R") %>
-          </span>
-        </dd>
-      </dl>
-      <p class="h4">Comment:</p>
-      <p class="text-white"><%= @pay_agreement.comment %></p>
-      <hr>
-      <%= link_to fee_pay_agreements_path(@pay_agreement.fee), class: "btn btn-lg btn-outline-primary" do %>
-        <%= fa_icon("arrow-left", text: "Back") %>
-      <% end %>
-      <%= link_to edit_fee_pay_agreement_path(@pay_agreement.fee, @pay_agreement),
-        class: "btn btn-lg btn-primary" do %>
-        <%= fa_icon("pencil", text: "Edit Agreement") %>
-      <% end %>
-    </div>
+      <dt class="col-sm-5 h4">Discount Percentage</dt>
+      <dd class="col-sm-5 h4">
+        <%= number_to_percentage(@pay_agreement.discount_in_percent, precision: 2) %>
+      </dd>
+
+      <dt class="col-sm-5 h4">Discount Amount</dt>
+      <dd class="col-sm-5 h4">
+        <%= number_to_currency(@pay_agreement.discount_amount, precision: 2, unit: "R") %>
+      </dd>
+
+      <dt class="col-sm-5 h4">Agreed Amount</dt>
+      <dd class="col-sm-7 h4 text-info">
+        <%= number_to_currency(@pay_agreement.agreed_school_fee, precision: 2, unit: "R") %>
+      </dd>
+    </dl>
+    <p class="h4">Comment:</p>
+    <p><%= @pay_agreement.comment %></p>
+    <hr>
+    <%= link_to fee_pay_agreements_path(@pay_agreement.fee), class: "btn btn-lg btn-outline-primary" do %>
+      <%= fa_icon("arrow-left", text: "Back") %>
+    <% end %>
+    <%= link_to edit_fee_pay_agreement_path(@pay_agreement.fee, @pay_agreement),
+      class: "btn btn-lg btn-primary" do %>
+      <%= fa_icon("edit", text: "Edit Agreement") %>
+    <% end %>
   </div>
 </div>

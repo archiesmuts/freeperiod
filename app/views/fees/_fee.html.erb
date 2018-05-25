@@ -1,14 +1,14 @@
-<div class="col-sm-3" id="<%= dom_id(fee) %>">
-  <div class="card border-primary">
-    <div class="card-body">
-      <div class="row">
-        <div class="col-5">
-          <span class="text-info"><%= fee.year.strftime("%Y") %></span>
-        </div>
-        <div class="col-7">
-          <span class="text-white"><%= number_to_currency(fee.amount, precision: 2, unit: "R") %></span>
-        </div>
-      </div>
-    </div>
+<div class="card border-primary mr-1" id="<%= dom_id(fee) %>" style="width: 19rem;">
+  <div class="card-header">
+    School Fee&nbsp;<%= fee.year.strftime("%Y") %>
+  </div>
+  <div class="card-body">
+    <h5 class="card-title"><%= fee.name %></h5>
+    <h5 class="card-subtitle text-info"><%= number_to_currency(fee.amount, precision: 2, unit: "R") %></h5>
+  </div>
+  <div class="card-footer">
+    <%= link_to [fee.school, fee], class: "btn btn-primary" do %>
+      <%= fa_icon("expand", text: "Show") %>
+    <% end %>
   </div>
 </div>

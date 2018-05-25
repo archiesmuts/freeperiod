@@ -18,7 +18,7 @@
   </div>
   <hr>
   <div class="form-group row">
-    <label for="approvedFee" class="col-sm-4 col-form-label">Approved  School Fee</label>
+    <label for="approvedFee" class="col-sm-3 col-form-label">Approved  School Fee</label>
     <div class="col-sm-4">
       <div class="input-group mb-3">
         <div class="input-group-prepend">
@@ -30,8 +30,8 @@
   </div>
 
   <div class="form-group row">
-    <%= form.label :discount_in_percent, class: "col-sm-4 col-form-label "%>
-    <div class="col-sm-3">
+    <%= form.label :discount_in_percent, class: "col-sm-3 col-form-label "%>
+    <div class="col-sm-2">
       <div class="input-group mb-3">
         <%= form.number_field :discount_in_percent, step: :any, id: :pay_agreement_discount, class: "form-control pay_agreement_discount"%>
         <div class="input-group-append">
@@ -40,27 +40,27 @@
       </div>
     </div>
     <div class="col-sm-3">
-      <button type="button" class="btn btn-outline-light" disabled>
-        R <span id="discountAmount"></span>
+      <button type="button" class="btn btn-success" id="calculateDiscount">
+        <%= fa_icon("calculator", text: "Calculate") %>
       </button>
     </div>
   </div>
   <div class="row">
-    <div class="col-sm-3">
-      <button type="button" class="btn btn-success" id="calculateDiscount">
-        <%= fa_icon("calculator", text: "Calculate fee") %>
-      </button>
-    </div>
-    <div class="col-sm-9">
-      <button type="button" class="btn btn-outline-light" disabled>
+    <div class="col-sm-8 offset-lg-3">
+      <button type="button" class="btn btn-secondary" disabled>
         Discounted Fee: R <span id="discountedFee"></span>
+      </button>
+      <button type="button" class="btn btn-secondary" disabled>
+        Discount: R <span id="discountAmount"></span>
       </button>
     </div>
   </div>
 
-  <div class="form-group mt-2">
-    <%= form.label :comment %>
-    <%= form.text_area :comment, id: :pay_agreement_comment, class: "form-control ." %>
+  <div class="form-group row mt-2">
+    <%= form.label :comment, class: "col-sm-3 col-form-label " %>
+    <div class="col-sm-6">
+      <%= form.text_area :comment, id: :pay_agreement_comment, class: "form-control ." %>
+    </div>
   </div>
   <div class="actions">
     <%= link_to [@pay_agreement.fee, @pay_agreement], class: "btn btn-lg btn-outline-primary btn-block-xs"  do %>

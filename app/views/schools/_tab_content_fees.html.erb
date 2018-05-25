@@ -5,7 +5,7 @@
   </div>
   <ul class="app-breadcrumb breadcrumb">
     <li class="breadcrumb-item"><a href="#"><%= fa_icon("home lg", text: "School Home") %></a></li>
-    <li class="breadcrumb-item active" aria-current="page">Past and Future Events</li>
+    <li class="breadcrumb-item active" aria-current="page">School Fees</li>
   </ul>
 </div>
 <div class="jumbotron mt-1">
@@ -19,14 +19,10 @@
   </div>
 </div>
 
-<% if @school.fees.any? %>
-  <div class="row d-flex flex-wrap" id="list-fees">
+<div class="d-flex flex-wrap justify-content-start align-items-stretch" id="list-fees">
+  <% if @school.fees.any? %>
     <%= render @school.fees %>
-  </div>
-<% else %>
-  <ul class="list-group">
-    <li class="list-group-item list-group-item-active no-fees-to-list">
-      Nothing to list
-    </li>
-  </ul>
-<% end %>
+  <% else %>
+    <%= render "fees/fee_placeholder" %>
+  <% end %>
+</div>

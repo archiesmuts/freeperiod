@@ -1,6 +1,16 @@
-<%= form_with(model: [@school, Fee.new], id: :new_fee, class: :new_fee) do |form| %>
+<%= form_with(model: [@school, Fee.new], local: true, id: :new_fee, class: :new_fee) do |form| %>
 
-  <div class="errors"></div>
+<% if fee.errors.any? %>
+  <div id="error_explanation">
+    <h2><%= pluralize(fee.errors.count, "error") %> prohibited this fee from being saved:</h2>
+
+    <ul>
+    <% fee.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+    </ul>
+  </div>
+<% end %>
 
   <div class="form-group">
     <%= form.label :name %>
@@ -35,21 +45,11 @@
     </div>
   </div>
 
-  <div class="modal-footer">
-    <button type="button" class="btn btn-outline-primary" data-dismiss="modal" id="createFee">Cancel</button>
-    <%= form.submit class: "btn btn-primary" %>
+  <div class="actions">
+    <%= link_to school_fees_path(@school),
+      class: "btn btn-lg btn-outline-primary" do %>
+        <%= fa_icon("arrow-left", text: "Back") %>
+      <% end %>
+    <%= form.submit class: "btn btn-lg btn-primary" %>
   </div>
 <% end %>
-<!--
-<%# if fee.errors.any? %>
-  <div id="error_explanation">
-    <h2><%#= pluralize(fee.errors.count, "error") %> prohibited this fee from being saved:</h2>
-
-    <ul>
-    <%# fee.errors.full_messages.each do |message| %>
-      <li><%#= message %></li>
-    <%# end %>
-    </ul>
-  </div>
-<%# end %>
--->

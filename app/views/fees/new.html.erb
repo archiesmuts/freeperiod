@@ -1,5 +1,21 @@
-<h1>New Fee</h1>
-
-<%= render 'form', fee: @fee %>
-
-<%= link_to 'Back', fees_path %>
+<% content_for :title do %>fp New School Fee<% end %>
+<div class="app-sidebar__overlay" data-toggle="sidebar"></div>
+<aside class="app-sidebar">
+  <%= render "sidebar_user" %>
+  <ul class="app-menu nav flex-column nav-pills">
+    <li>
+      <a class="app-menu__item active" id="school-fee-tab" data-toggle="pill" href="#" role="tab" aria-controls="school-fee" aria-selected="true">
+        <%= fa_icon("money-bill-alt", class: "app-menu__icon mr-2", type: "regular") %>
+        <span class="app-menu__label">
+          New School Fee
+        </span>
+      </a>
+    </li>
+  </ul>
+</aside>
+<div class="row">
+  <div class="col-md-8 offset-xl-1">
+    <h1>New Fee</h1>
+    <%= render 'new_form', fee: @fee %>
+  </div>
+</div>

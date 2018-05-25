@@ -1,24 +1,44 @@
 <% content_for :title do %>fp School Fees<% end %>
-<div class="mt-2">
-  <nav aria-label="breadcrumb">
-    <ol class="breadcrumb">
-      <li class="breadcrumb-item">
-        <%= link_to @school  do %>
-          <%= fa_icon("arrow-left", text: "School home") %>
-        <% end %>
-      </li>
-      <li class="breadcrumb-item active" aria-current="page">School Fees Administration</li>
-    </ol>
-  </nav>
+<div class="app-sidebar__overlay" data-toggle="sidebar"></div>
+<aside class="app-sidebar">
+  <%= render "sidebar_user" %>
+  <ul class="app-menu nav flex-column nav-pills">
+    <li>
+      <a class="app-menu__item active" id="edit-goal-tab" data-toggle="pill" href="#" role="tab" aria-controls="edit-goal" aria-selected="true">
+        <%= fa_icon("fw fort-awesome", class: "app-menu__icon mr-2", type: "brand") %>
+        <span class="app-menu__label">
+          Schedule Events
+        </span>
+      </a>
+    </li>
+  </ul>
+</aside>
+<div class="app-title" aria-label="breadcrumb">
+  <div>
+    <h1 class="h2"><%= fa_icon("money-bill", text: "An Investment") %></h1>
+    <p>Part of the journey is having fun</p>
+  </div>
+  <ul class="app-breadcrumb breadcrumb">
+    <li class="breadcrumb-item">
+      <%= link_to @school do %>
+        <%= fa_icon("university lg", text: "School Home") %>
+      <% end %>
+    </li>
+    <li class="breadcrumb-item active" aria-current="page">School Fees Administration</li>
+  </ul>
 </div>
+
 <!-- nav.breadcrumb -->
 <div class="row">
-  <div class="col-lg-8 offset-lg-2">
+  <div class="col-lg-10 offset-xl-1">
     <h1>School Fees Administration</h1>
     <h2 class="h4">Create & Manage Individual Learner Pay Agreements</h2>
     <div class="mb-2">
+      <%= link_to @school, class: "btn btn-lg btn-outline-primary" do %>
+        <%= fa_icon("arrow-left", text: "Back") %>
+      <% end %>
       <%= link_to new_school_fee_path(@school),
-        remote: true, class: "btn btn-lg btn-primary" do %>
+        class: "btn btn-lg btn-primary" do %>
         <%= fa_icon("plus", text: "Create a New School Fee") %>
       <% end %>
     </div>
@@ -27,8 +47,9 @@
         <tr>
           <th>Year</th>
           <th>Amount</th>
+          <th>Name</th>
           <th class="text-center">Pay Agreements</th>
-          <th class="text-center"><span class="badge badge-warning">D</span>iscounted</th>
+          <th class="text-center"><span class="badge badge-warning">d</span>&nbsp;Discounted</th>
           <th>Actions</th>
         </tr>
       </thead>
@@ -37,19 +58,20 @@
         <tr>
           <td scope="col"><%= fee.year.strftime("%Y") %></td>
           <td><%= number_to_currency(fee.amount, precision: 2, unit: "R") %></td>
+          <td><%= fee.name %></td>
           <td class="text-center"><span class="badge badge-info"><%= fee.pay_agreements.size %></span></td>
-          <td class="text-center"><span class="badge badge-light"><%= fee.pay_agreements.discounted.size %></span></td>
+          <td class="text-center"><span class="badge badge-warning"><%= fee.pay_agreements.discounted.size %></span></td>
           <td>
-            <div class="dropdown">
+            <div class="btn-group dropup">
               <button class="btn btn-link dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <%= fa_icon("ellipsis-h lg") %>
               </button>
               <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                 <%= link_to [fee.school, fee], class: "btn btn-link dropdown-item"  do %>
-                  <%= fa_icon("angle-double-right", text: "Show", right: true) %>
+                  <%= fa_icon("expand", text: "Show", right: true) %>
                 <% end %>
                 <%= link_to edit_school_fee_path(fee.school, fee), class: "btn btn-link dropdown-item" do %>
-                  <%= fa_icon("pencil-alt", text: "Edit") %>
+                  <%= fa_icon("edit", text: "Edit") %>
                 <% end %>
                 <%= link_to [@school, @fee], method: :delete, remote: true,
                   data: { confirm: 'Caution! Clicking on confirm will permanently delete this fee and all corresponding pay agreements',
