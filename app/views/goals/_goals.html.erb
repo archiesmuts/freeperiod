@@ -1,5 +1,5 @@
 <% goalable.goals.each do |goal| %>
-    <div class="card border-primary mb-1 mr-1 scale goal-card" style="width: 19rem; id="<%= dom_id(goal) %>">
+    <div class="card border-primary mb-1 mr-1 scale goal-card" style="width: 21rem; id="<%= dom_id(goal) %>">
       <div class="card-header">
         Goal
       </div>
@@ -26,20 +26,17 @@
           </p>
       </div>
       <div class="card-footer">
-        <div class="row">
-          <div class="col-sm-6">
+        <div class="btn-group" role="group">
             <%= link_to [goal.goalable, goal], method: :delete,  remote: true,
               data: { confirm: 'Warning! If you delete this goal all action plans will also be deleted!'},
-              class: "btn btn-danger btn-block-xs delete-goal" do %>
+              class: "btn btn-danger delete-goal" do %>
                 <%= fa_icon("trash-alt", text: "Delete", style: "regular") %>
             <% end %>
-          </div>
-          <div class="col-sm-6">
+
             <%= link_to polymorphic_path([goal.goalable, goal]),
-              class: "btn btn-primary btn-block" do %>
+              class: "btn btn-primary" do %>
               <%= fa_icon("expand", text: "Show") %>
             <% end %>
-          </div>
         </div>
       </div>
     </div>

@@ -34,7 +34,7 @@
   </div>
 </div>
 <!-- .jumbotron  -->
-<div class="row d-flex" id="list-lesson-plans">
+<div class="row d-flex flex-wrap align-items-stretch" id="list-lesson-plans">
   <% if @registration_klass.lesson_plans.any? %>
     <%= render @registration_klass.lesson_plans %>
   <% else %>

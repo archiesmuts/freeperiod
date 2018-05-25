@@ -41,27 +41,30 @@
       <hr>
       <div class="row mb-2">
         <div class="col-lg-6">
+          <div class="btn-group" role="group">
+
           <%= link_to school_registration_klasses_path(@registration_klass.school),
-            class: "btn btn-lg btn-outline-primary" do %>
+            data: {toggle: "tooltip"}, title: "Back to class list", class: "btn btn-lg btn-outline-primary" do %>
             <%= fa_icon("arrow-left", text: "Back") %>
           <% end %>
 
             <% unless @registration_klass.school_faculty? %>
               <%= link_to edit_school_registration_klass_path(@registration_klass.school, @registration_klass),
-                class: "btn btn-lg btn-primary btn-block-xs" do %>
+                data: {toggle: "tooltip"}, title: "Edit class and/or Add Learners", class: "btn btn-lg btn-primary" do %>
                 <%= fa_icon "pencil-alt", text: "Edit class" %>
               <% end %>
             <% else %>
               <%= link_to select_faculty_school_registration_klass_path(@registration_klass.school, @registration_klass),
-                class: "btn btn-lg btn-secondary btn-block-xs" do %>
-                <%= fa_icon "pencil-square", text: "Edit / Select Faculty" %>
+                data: {toggle: "tooltip"}, title: "Edit and/or Add faculty members", class: "btn btn-lg btn-secondary " do %>
+                <%= fa_icon "pencil-square", text: "Edit faculty" %>
               <% end %>
             <% end %>
+          </div>
         </div>
         <div class="col-lg-6">
           <%= link_to new_registration_klass_user_registration_path(@registration_klass), remote: true,
-            class: "btn btn-lg btn-outline-primary btn-block-xs"  do %>
-            <%= fa_icon("plus", text: "Add a teacher") %>
+            data: {toggle: "tooltip"}, title: "Add another teacher", class: "btn btn-lg btn-outline-primary btn-block-xs"  do %>
+            <%= fa_icon("plus", text: "Add teacher") %>
           <% end %>
         </div>
       </div>
