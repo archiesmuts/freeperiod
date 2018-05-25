@@ -1,6 +1,6 @@
 <div class="app-title" aria-label="breadcrumb">
   <div>
-    <h1 class="h2"><%= fa_icon("trophy", text: "Class Achievements") %></h1>
+    <h1 class="h2"><%= fa_icon("trophy", text: "Celebrating Our Achievements") %></h1>
     <p>Monitor, Evaluate and Improve</p>
   </div>
   <ul class="app-breadcrumb breadcrumb">
@@ -18,7 +18,7 @@
 <div class="jumbotron jumbo-bg">
   <div class="row">
     <div class="col-12 col-xl-10 offset-xl-1">
-      <h1 class="h2 text-white">Celebrating Our Achievements&nbsp;
+      <h1 class="h2 text-white">Class Achievements&nbsp;
         <small><span class="badge badge-info" id="sizeClassAchievements1"></span></small>
       </h1>
       <h2 class="h3 text-info"><%= @registration_klass.name %></h2>
@@ -35,12 +35,10 @@
   </div>
 </div>
 <!-- FIXME investigate why first achievement element created does not render but subsequent ones do -->
-<% if @registration_klass.achievements.any? %>
-  <div class="row d-flex" id="list-achievements">
-    <%= render "achievements/achievements", achievable: @registration_klass %>
-  </div>
-<% else %>
-  <div class="row d-flex">
-    <%= render "achievements/achievement_placeholder" %>
-  </div>
-<% end %>
+<div class="d-flex flex-wrap justify-content-start align-items-stretch" id="list-achievements">
+  <% if @registration_klass.achievements.any? %>
+      <%= render "achievements/achievements", achievable: @registration_klass %>
+  <% else %>
+      <%= render "achievements/achievement_placeholder" %>
+  <% end %>
+</div>

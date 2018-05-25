@@ -1,10 +1,12 @@
-<li id="<%= dom_id(comment) %>" class="list-group-item" >
-    <span class="text-white"><%= comment.comment %></span><br>
+<li id="<%= dom_id(comment) %>" class="list-group-item list-group-item-action border" >
+    <span><%= comment.comment %></span><br>
     <small>
-      <%= fa_icon "comment" %>&nbsp;
-      <em>
-        <%= comment.user.name %>&nbsp;
-        -&nbsp;<%= time_ago_in_words(comment.created_at) %>&nbsp;ago.
-      </em>
+      <span class="text-info">
+        <%= fa_icon "comment" %>&nbsp;
+        <em>
+          <%= comment.user.name %>&nbsp;
+          -&nbsp;<%= time_ago_in_words(comment.created_at) %>&nbsp;ago.
+        </em>
+    </span>
     </small>
 </li>

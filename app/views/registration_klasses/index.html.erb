@@ -31,11 +31,13 @@
 <div class="row">
   <div class="col-md-8 col-xl-7 offset-xl-1">
     <h1>Faculty, Registration and Subject Classes</h1>
-    <p class="py-2">
+      <%= link_to @school, class: "btn btn-lg btn-outline-primary" do %>
+        <%= fa_icon("arrow-left", text: "Back") %>
+      <% end %>
+
       <%= link_to new_school_registration_klass_path(@school), class: "btn btn-lg btn-primary btn-block-xs" do %>
       <%= fa_icon("plus", text: "Add a New Class") %>
       <% end %>
-    </p>
   </div>
     <div class="col-md-4">
       <form class="form-inline">
@@ -48,7 +50,7 @@
 </div>
 <!-- .row -->
 <div class="row">
-  <div class="col-xl-10 offset-xl-1">
+  <div class="col-xl-10 offset-xl-1 mt-2">
     <table class="table table-bordered table-hover">
       <thead class="bg-dark">
         <tr>

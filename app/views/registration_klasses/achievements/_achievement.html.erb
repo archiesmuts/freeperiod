@@ -15,7 +15,7 @@
           <%= link_to [achievement.achievable, achievement], remote: true, method: :delete,
           data: { confirm: 'Are you sure?', toggle: "tooltip" },
           class: "delete-achievement btn btn-danger btn-block-xs", title: "Delete" do %>
-          <%= fa_icon("trash", text: "Delete") %>
+          <%= fa_icon("trash-alt", text: "Delete", style: "regular") %>
           <% end %>
         </div>
         <div class="col-md-6">

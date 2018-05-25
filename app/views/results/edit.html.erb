@@ -12,14 +12,12 @@
     </li>
   </ul>
 </aside>
-<div class="row mt-3">
-  <div class="col-xl-8 offset-xl-1">
+
+
+<div class="row">
+  <div class="col-xl-8 offset-xl-1 mt-3">
     <h1>Editing Individual Result</h1>
-    <div class="card text-white bg-dark mb-3">
-      <div class="card-header"><%= @result.assessment.name.truncate(60) %></div>
-      <div class="card-body">
-        <%= render 'edit_form', result: @result %>
-      </div>
-    </div>
+    <hr>
+    <%= render 'edit_form', result: @result %>
   </div>
 </div>

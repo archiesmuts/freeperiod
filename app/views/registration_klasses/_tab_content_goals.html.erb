@@ -1,6 +1,6 @@
 <div class="app-title" aria-label="breadcrumb">
   <div>
-    <h1 class="h2"><%= fa_icon("star", text: "Class Goals") %></h1>
+    <h1 class="h2"><%= fa_icon("star", text: "Achieving Our Goals Together") %></h1>
     <p>Monitor, Evaluate and Improve</p>
   </div>
   <ul class="app-breadcrumb breadcrumb">
@@ -18,7 +18,7 @@
 <div class="jumbotron">
   <div class="row">
     <div class="col-12 col-xl-10 offset-xl-1">
-      <h1 class="h2 text-white">Achieving Our Goals Together&nbsp;<small><span class="badge badge-info" id="sizeClassGoals"></span></small></h1>
+      <h1 class="h2 text-white">Class Goals&nbsp;<small><span class="badge badge-info" id="sizeGoals1"></span></small></h1>
       <h2 class="h3 text-info"><%= @registration_klass.name %></h2>
       <h3 class="h4"><%= @registration_klass.course_name %> - <%= @registration_klass.year.strftime("%Y") %></h3>
       <hr>
@@ -31,7 +31,7 @@
 </div>
 
 <% if @registration_klass.goals.any? %>
-  <div class="row d-flex" id="list-goals">
+  <div class="d-flex flex-wrap align-items-stretch p-1" id="list-goals">
     <%= render "goals/goals", goalable: @registration_klass %>
   </div>
 <% else %>

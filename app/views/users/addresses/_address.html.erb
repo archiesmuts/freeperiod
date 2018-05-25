@@ -15,13 +15,13 @@
           <%= link_to [@address.addressable, @address], remote: true, method: :delete,
               remote: true, data: { confirm: 'Are you sure you want do delete this?', toggle: "tooltip" },
               class: "delete-address btn btn-danger btn-block-xs", title: "Deleting address" do %>
-            <%= fa_icon("trash", text: "Delete") %>
+            <%= fa_icon("trash-alt", text: "Delete", style: "regular") %>
           <% end %>
         </div>
         <div class="col-sm-6">
           <%= link_to edit_polymorphic_path([@address.addressable, @address]),
             remote: true, class: "btn btn-primary btn-block-xs" do %>
-            <%= fa_icon("pencil-alt", text: "Edit Address") %>
+            <%= fa_icon("edit", text: "Edit Address") %>
           <% end %>
         </div>
       </div>

@@ -1,4 +1,4 @@
-<div class="col-sm-6 lesson-plan-card" id="<%= dom_id(lesson_plan) %>">
+<div class="col-sm-4 lesson-plan-card" id="<%= dom_id(lesson_plan) %>">
   <div class="card border-primary mb-3 scale">
     <div class="card-header">
       Lesson Plan - <%= lesson_plan.registration_klass.course_name %>
@@ -27,13 +27,13 @@
               confirm: 'Warning! This action is destructive. It will also delete all associated data etc.',
               verify: 'YES', verify_text: 'Type "YES" to confirm'},
               remote: true, class: "btn btn-danger delete-lesson-plan" do %>
-            <%= fa_icon("trash", text: "Delete") %>
+            <%= fa_icon("trash-alt", text: "Delete", style: "regular") %>
           <% end %>
         </div>
         <div class="col-5">
           <%= link_to [lesson_plan.registration_klass, lesson_plan],
-            class: "btn btn-primary btn-block"  do %>
-              Show&nbsp;<%= fa_icon("angle-double-right")%>
+            class: "btn btn-primary btn-block" do %>
+              <%= fa_icon("expand", text: "Show")%>
           <% end %>
         </div>
       </div>
