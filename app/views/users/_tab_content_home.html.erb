@@ -1,4 +1,4 @@
-<div class="jumbotron">
+<div class="jumbotron bg-user-jumbotron">
   <div class="row">
     <div class="d-none d-lg-block col-lg-2 offset-lg-1">
       <% unless current_user.memberships.empty? %>
@@ -37,6 +37,7 @@
   </div>
 
 </div> <!-- .jumbotron -->
+
 <div class="row">
   <div class="col-lg-10 offset-lg-1" id="create-school-account">
     <% if current_user.memberships.empty? %>

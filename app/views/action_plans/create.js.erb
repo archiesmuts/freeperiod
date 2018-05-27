@@ -15,14 +15,13 @@ var el = $('.new_action_plan');
 <% else %>
 
 $('#list-action-plans').append('<%= j render @action_plan %>');
-$("#action_plan_<%= @action_plan.id %>").hide().fadeIn(1000);
+$("<%= dom_id(@action_plan) %>").hide().fadeIn(1000);
 $('#list-action-plans').sizeTasks();
-$('#list-action-plans').sizeActionPlans();
+$('#list-action-plans').sizeActions();
 $("#list-action-plans").sizeCompleted();
-$("#list-action-plans").sizeTotalActionPlans();
 $('#action-plan-dialog').modal('hide');
 $('.no-action-plans-to-list').detach();
-
+$('#list-action-plans').focus();
 
 // Clear form
 el.find('input:text,text_area,number,select').val('');

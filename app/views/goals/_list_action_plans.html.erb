@@ -2,8 +2,9 @@
   <% if @goal.action_plans.any? %>
     <%= render @goal.action_plans %>
   <% else %>
-    <li class="list-group-item list-group-item-info no-action-plans-to-list">
-      <%= fa_icon("minus-square", text: "No tasks or action plans to list") %>
+    <li class="list-group-item no-action-plans-to-list">
+      <hr class="dotted">
+      <%= fa_icon("minus-square", text: "No todo's or action plans to list") %>
     </li>
   <% end %>
 </ul>

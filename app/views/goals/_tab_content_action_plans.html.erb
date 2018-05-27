@@ -2,7 +2,7 @@
   <div>
     <h1 class="h2">
       <%= fa_icon("star") %>&nbsp;<%= show_name_display(@goal) %>
-      and Action Plans
+      and <%= fa_icon("calendar-check", text: "Action Plans") %>
     </h1>
     <p>Monitor, Evaluate and Improve</p>
   </div>
@@ -17,40 +17,40 @@
   </ul>
 </div>
 
-<h1 class="h2">Action Plans</h1>
-<p class="text-primary h5"><%= fa_icon("star") %>&nbsp;<%= @goal.name %></p>
+<h1 class="h2">
+  ToDo's&nbsp;<small><span class="badge badge-info" id="sizeTasks"></span></small>&nbsp;
+  and Action Plans&nbsp;<small><span class="badge badge-success" id="sizeActionPlans1"></span></small>
+</h1>
+<p class="lead text-info">The things you need to do to achieve your goal</p>
+<p class="text-primary h5"><%= @goal.name %></p>
 <hr>
 <div class="row">
-  <div class="col-md-10">
+  <div class="col-xl-10">
     <!-- card action plan -->
-    <div class="card border-success mb-3">
+    <div class="card text-white bg-dark mb-3">
       <div class="card-header">
-        <h4 class="text-white">
-          <%= fa_icon("check-square-o", text: "Todo's") %>&nbsp;
-          <span class="badge badge-info" id="sizeTasks"></span>&nbsp;
-          and <%= fa_icon("calendar-check-o", text: "Action Plans") %>&nbsp;
-          <span class="badge badge-success" id="sizeActionPlans"></span>&nbsp;
-          <small>Completed&nbsp;<span class="badge badge-success" id="sizeCompleted"></small>
+        <h4 class="card-title">
+          Completed Actions&nbsp;<span class="badge badge-success" id="sizeCompleted">
         </h4>
-        <p class="lead text-info">Things you need to do to achieve your goal.</p>
       </div><!-- .card-header -->
       <div class="card-body">
         <div class="row">
-          <div class="col-sm-9">
+          <div class="col-lg-9">
             <p class="card-text text-white">
-              Add&nbsp;<%= fa_icon "check-square-o", text: "Todo's" %>&nbsp;
-              and turn them into&nbsp;<%= fa_icon("calendar-check-o", text: "Action Plans") %>
+              Add&nbsp;<%= fa_icon "check-square", text: "Todo's" %>&nbsp;
+              and turn them into&nbsp;<%= fa_icon("calendar-check", text: "Action Plans", type: "regular") %>
             </p>
           </div>
-          <div class="col-sm-3">
-            <%= link_to new_goal_action_plan_path(@goal), remote: true, class: "btn btn-primary btn-block" do %>
-            <%= fa_icon "plus-square" %>&nbsp;Add a Todo
+          <div class="col-lg-3">
+            <%= link_to new_goal_action_plan_path(@goal), remote: true,
+            class: "btn btn-primary" do %>
+            <%= fa_icon "plus-square", text: "Add a Todo" %>
             <% end %>
           </div>
         </div> <!-- .row -->
         <p class="card-text text-info">
-          <%= fa_icon("arrows", text: "Click & Drag items up or down in the list in order of importance.") %><br />
-          <%= fa_icon("pencil-square-o", text: "Click on Edit to turn Todo into Action Plan") %>
+          <%= fa_icon("arrows-alt ", text: "Click & Drag items up or down in the list in order of importance.") %><br />
+          <%= fa_icon("edit", text: "Click on Edit to turn Todo into Action Plan") %>
         </p>
       </div><!-- .card-body-->
       <%= render "list_action_plans" %>

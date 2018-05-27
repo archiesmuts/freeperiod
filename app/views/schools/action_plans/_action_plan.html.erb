@@ -1,5 +1,6 @@
 <!-- schools/action_plans  -->
 <li id="<%= dom_id(action_plan) %>" class="list-group-item">
+  <hr class="dotted">
   <!-- add class dom_id to hide action_plan after update. see update.js -->
   <div class="row">
     <div class="col-sm-1">
@@ -16,27 +17,33 @@
         <% end %>
       <% end %>
     </div>
-    <div class="col-sm-9">
-      <span class="text-success"><%= action_to_do_span(action_plan) %>&nbsp;
-      <%= action_plan.what %></span>
+    <div class="col-lg-8">
+      <span>
+        <%= action_to_do_span(action_plan) %>&nbsp;
+        <%= action_plan.what %>
+      </span>
       <br>
       <small>
+        <span class="text-info">
         <%= fa_icon("calendar") %>&nbsp;<em>Complete by&nbsp;
         <%= action_plan.when_date ? action_plan.when_date.strftime("%d %b %Y") : "-" %></em>&nbsp;
         <%= fa_icon("user") %>&nbsp;<em><%= action_plan.who ? action_plan.who : "-"  %></em>
+        </span>
       </small>
     </div>
-    <div class="col-sm-2">
-      <%= link_to edit_goal_action_plan_path(action_plan.goal, action_plan), remote: true,
-          class: "badge badge-primary",
-          data: {toggle: "tooltip", placement: "left" }, title: "Edit" do %>
-        <%= fa_icon("pencil") %>
-      <% end %>
-      <%= link_to [action_plan.goal, action_plan], method: :delete, remote: true,
-        data: {toggle: "tooltip", placement: "left", confirm: 'Are you sure you want to delete this action plan?' },
-        title: "Deleting Action Plan", class: "badge badge-danger delete-action-plan" do %>
-          <%= fa_icon("trash-alt", style: "regular") %>
+    <div class="col-lg-3">
+      <div class="btn-group" role="group">
+        <%= link_to [action_plan.goal, action_plan], method: :delete, remote: true,
+        data: {toggle: "tooltip", placement: "top", confirm: 'Are you sure you want to delete this action plan?' },
+        title: "Delete Action Plan", class: "btn btn-sm btn-danger delete-action-plan" do %>
+        <%= fa_icon("trash-alt", text: "Delete", type: "regular") %>
         <% end %>
+        <%= link_to edit_goal_action_plan_path(action_plan.goal, action_plan), remote: true,
+            class: "btn btn-sm btn-primary",
+            data: {toggle: "tooltip", placement: "right" }, title: "Edit" do %>
+          <%= fa_icon("edit", text: "Edit") %>
+        <% end %>
+      </div>
     </div>
   </div>
 </li>

@@ -84,20 +84,20 @@ input[readonly].form-control {
 
 
 // hr styles
-hr.style1{
+hr.solid {
 	border-top: 1px solid darkslategrey;
 }
 
 
-hr.style2 {
+hr.double {
 	border-top: 3px double #8c8b8b;
 }
 
-hr.style3 {
+hr.dashed {
 	border-top: 1px dashed #8c8b8b;
 }
 
-hr.style4 {
+hr.dotted {
 	border-top: 1px dotted #8c8b8b;
 }
 

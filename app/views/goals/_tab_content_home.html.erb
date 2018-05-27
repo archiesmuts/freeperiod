@@ -22,18 +22,20 @@
     <hr>
     <div class="row">
       <div class="col-md-6">
-        <%= link_to polymorphic_path(@goalable), class: "btn btn-lg btn-outline-primary" do %>
-          <%= fa_icon("arrow-left", text: "Back") %>
-        <% end %>
+        <div class="btn-group" role="group">
+          <%= link_to polymorphic_path(@goalable), class: "btn btn-lg btn-outline-primary" do %>
+            <%= fa_icon("arrow-left", text: "Back") %>
+          <% end %>
 
-        <%= link_to edit_polymorphic_path([@goalable, @goal]), class: "btn btn-lg btn-primary" do %>
-          <%= fa_icon("edit", text: "Edit Goal") %>
-        <% end %>
+          <%= link_to edit_polymorphic_path([@goalable, @goal]), class: "btn btn-lg btn-primary" do %>
+            <%= fa_icon("edit", text: "Edit Goal") %>
+          <% end %>
+        </div>
       </div>
       <div class="col-md-4">
         <button type="button" class="btn btn-lg btn-outline-info" disabled>
           <%= fa_icon("check", text: "Action Plans") %>&nbsp;
-          <span class="badge badge-light" id="sizeActionPlans"></span>
+          <span class="badge badge-light" id="sizeActionPlans3"></span>
         </button>
         <button type="button" id="doTheShuffle" class="btn btn-lg btn-outline-info">
           <%= fa_icon("dice", id: "dice") %>
