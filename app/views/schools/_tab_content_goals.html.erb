@@ -1,6 +1,9 @@
 <div class="app-title" aria-label="breadcrumb">
   <div>
-    <h1 class="h2"><%= fa_icon("star", text: "Goals and Action Plans") %></h1>
+    <h1 class="h2">
+      <%= fa_icon("star", text: "Our Goals and Action Plans") %>&nbsp;
+      <small><span class="badge badge-info" id="sizeGoals1"></span></small>
+    </h1>
     <p>Setting Goals that are Specific, Measurable, Achieveable, Realistic and Timely.</p>
   </div>
   <ul class="app-breadcrumb breadcrumb">
@@ -8,21 +11,34 @@
     <li class="breadcrumb-item active" aria-current="page">School Goals and Action Plans</li>
   </ul>
 </div>
-<div class="jumbotron">
-  <div class="col-xl-10 offset-xl-1">
-    <h1>Our Goals and Action Plans
-      <small><span class="badge badge-info" id="sizeGoals1"></span></small>
-    </h1>
-    <p class="lead">Setting goals in each area of life will ensure a more balanced life as we begin to examine and change the fundamentals of everyday living.</p>
-    <hr>
-    <%= link_to new_school_goal_path(@school), remote: true, class: "btn btn-lg btn-primary btn-block-xs" do %>
-      <%= fa_icon("plus", text: "Add a School Goal") %>
-    <% end %>
-  </div>
-</div>
+<p class="lead">Setting goals in each area of life will ensure a more balanced life as we begin to examine and change the fundamentals of everyday living.</p>
 
 <div class="d-flex align-items-stretch flex-wrap p-1" id="list-goals">
   <% if @school.goals.any? %>
+  <div class="card border-success mb-1 mr-1 scale" style="width: 21rem;">
+    <div class="card-header">
+      Create a New Goal
+    </div>
+    <div class="card-body">
+      <h4 class="card-title ">
+        Our Goals and Action Plans&nbsp;
+        <small>
+          <span id="sizeGoals1" class="badge badge-info"></span>
+        </small>
+      </h4>
+      <h5 class="card-subtitle">
+        Achieve something by setting a goal with clear action plans.
+      </h5>
+      <p class="card-text text-info">
+        Set Goals that are Specific, Measurable, Achieveable, Realistic and Timely.
+      </p>
+    </div>
+    <div class="card-footer">
+      <%= link_to new_school_goal_path(@school), remote: true, class: "btn btn-lg btn-success btn-block" do %>
+        <%= fa_icon("plus", text: "Add a School Goal") %>
+      <% end %>
+    </div>
+  </div>
     <%= render "goals/goals", goalable: @school %>
   <% else %>
     <%= render "goals/goal_placeholder" %>

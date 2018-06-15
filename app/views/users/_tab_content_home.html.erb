@@ -1,42 +1,32 @@
-<div class="jumbotron bg-user-jumbotron">
-  <div class="row">
-    <div class="d-none d-lg-block col-lg-2 offset-lg-1">
-      <% unless current_user.memberships.empty? %>
-        <div class="card mb-1">
-          <% if current_user.schools.any? %>
-          <%= render current_user.schools %>
-          <% end %>
+<div class="app-title" aria-label="breadcrumb">
+  <div>
+    <div class="media">
+      <%= image_tag "placeholder_user.png",
+        size: "45x45",
+        alt: "Headshot",
+        id: "headshot",
+        class: "rounded-circle image-fluid mr-3" %>
+      <div class="media-body">
+        <h2 class="mt-0">
+          <%= current_user.first_name if current_user.first_name %>
+          <%= current_user.last_name if current_user.last_name %>
+        </h2>
       </div>
-      <% end %>
-    </div><!-- .col-->
-    <div class="col-lg-8">
-      <div class="media">
-        <div class="media-body">
-          <h1 class="mt-0 mb-1 text-info">
-            <%= current_user.first_name if current_user.first_name %>
-            <%= current_user.last_name if current_user.last_name %>
-          </h1>
-          <p class="h4 d-none d-sm-block"><%= fa_icon "envelope" %>&nbsp;<%= current_user.try(:email) %></p>
-        </div>
-        <!-- <img data-src="holder.js/50x50?auto=yes&theme=social&text=User" class="image-fluid mr-3"> -->
-        <%= image_tag "placeholder_user.png",
-          size: "100x100",
-          alt: "Headshot",
-          id: "headshot",
-          class: "image-fluid ml-3" %>
-      </div>
-      <p class="d-block d-sm-none lead"><%= fa_icon "envelope" %>&nbsp;<%= current_user.try(:email) %></p>
-    </div> <!-- .col -->
-  </div> <!-- .row home-card -->
-  <div class="row">
-    <div class="col-lg-10 offset-lg-1">
-      <p>
-        Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
-      </p>
     </div>
+    <p><%= current_user.try(:email) %></p>
   </div>
+  <ul class="app-breadcrumb breadcrumb">
+    <li class="breadcrumb-item active" aria-current="page"><%= fa_icon("home lg", text: "Home") %></li>
+  </ul>
+</div>
 
-</div> <!-- .jumbotron -->
+<div class="row">
+  <div class="col-lg-10 offset-lg-1">
+    <p>
+      Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
+    </p>
+  </div>
+</div>
 
 <div class="row">
   <div class="col-lg-10 offset-lg-1" id="create-school-account">

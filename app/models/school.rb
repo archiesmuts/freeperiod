@@ -24,3 +24,9 @@ class School < ApplicationRecord
   end
 
 end
+
+# additional fields
+# Emis No, Province
+# Sector (independent or public)
+# Phase (Primary, Secondary, Combined, Intermediate)
+# Specialization (Agriculture, Arts, Drama, Music, Ballet, Commercial, Technical)

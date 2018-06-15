@@ -1,7 +1,7 @@
 <% goalable.goals.each do |goal| %>
     <div class="card border-primary mb-1 mr-1 scale goal-card" style="width: 21rem; id="<%= dom_id(goal) %>">
       <div class="card-header">
-        Goal
+        Goal & Action plans
       </div>
       <div class="card-body">
         <h5 class="card-title text-primary"><%= goal.name.truncate(65) %></h5>
@@ -17,10 +17,10 @@
               <span class="text-info"><%= goal.completed_at.strftime("%d %b %Y") if goal.completed_at %></span>
             </p>
           <% end %>
-          <hp class="card-text lead">
+          <p class="card-text lead">
             <span class="text-white"><%= fa_icon("check-circle", text: "Action Plans") %></span>&nbsp;
             <span class="badge badge-info"><%= goal.action_plans.size %></span>&nbsp;
-          </hp>
+          </p>
           <p class="card-text text-muted">
             <small>Last updated&nbsp;<%= time_ago_in_words(goal.updated_at) %>&nbsp;ago</small>
           </p>
