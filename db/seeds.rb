@@ -22,116 +22,9 @@
 # RegistrationKlass.destroy_all
 # UserRegistration.destroy_all
 
-# 10.times do
-#   User.create do |test_user|
-#     test_user.first_name = Faker::Name.first_name
-#     test_user.last_name = Faker::Name.last_name
-#     test_user.email = Faker::Internet.safe_email
-#     test_user.password = 'password1234'
-#     test_user.password_confirmation = 'password1234'
-#     test_user.slug = "#{test_user.first_name.downcase}-#{test_user.last_name.downcase}"
-#     test_user.confirmed_at = Faker::Time.between(1.day.ago, Date.today, :all)
-#   end
-# end
-#
-# user_one = User.create(
-#   first_name: "Archie",
-#   last_name: "Smuts",
-#   email: "archiesmuts@gmail.com",
-#   password: 'archiesmuts',
-#   password_confirmation: 'archiesmuts',
-#   slug: "archie-smuts",
-#   confirmed_at: Faker::Time.between(1.day.ago, Date.today, :all)
-#   )
-#   user_two = User.create(
-#     first_name: "Harry",
-#     last_name: "Potter",
-#     email: "harrypotter@gmail.com",
-#     password: 'harrypotter',
-#     password_confirmation: 'harrypotter',
-#     slug: "harry-potter",
-#     confirmed_at: Faker::Time.between(1.day.ago, Date.today, :all)
-#     )
-#
-# school_one = School.create(name: "Hello World School for Programmers", slug: "hello-world-school-for-programmers")
-# school_one.memberships.create(user: user_one, member: 1)
-# user_one.add_role(:account_owner, school_one)
-#
-# school_two = School.create(name: "Hogwarts School for Wizards", slug: "hogwarts-school-for-wizards")
-# school_two.memberships.create(user: user_two, member: 1)
-# user_two.add_role(:account_owner, school_two)
-school_one = School.where(name: "Hello World School for Programmers")
-school_two = School.where(name: "Hogwarts School for Wizards")
-
-def adduser(email, password, first_name, last_name, slug)
-  @user = User.invite!(:email => email, :slug => slug) do |u|
-    u.skip_invitation = true
-  end
-  token = @user.instance_variable_get(:@raw_invitation_token)
-  User.accept_invitation!(:invitation_token => token,
-                          :password => password,
-                          :password_confirmation => password,
-                          :first_name => first_name,
-                          :last_name => last_name,
-                          :slug => slug)
-
-  puts "Created User #{email} with password #{password}"
-  @user
-end
 
 
 
-10.times do
-  User.create do
-    user =  adduser(
-        Faker::Internet.safe_email,
-        "password1234",
-        "#{Faker::Name.first_name}-1t",
-        Faker::Name.last_name,
-        Faker::Internet.slug
-        )
-      school_one.users << user
-    end
-end
-
-30.times do
-  User.create do
-    user =  adduser(
-        Faker::Internet.safe_email,
-        "password1234",
-        "#{Faker::Name.first_name}-2l",
-        Faker::Name.last_name,
-        Faker::Internet.slug
-        )
-      school_two.users << user
-    end
-end
-
-10.times do
-  User.create do
-    user =  adduser(
-        Faker::Internet.safe_email,
-        "password1234",
-        "#{Faker::Name.first_name}-2t",
-        Faker::Name.last_name,
-        Faker::Internet.slug
-        )
-      school_two.users << user
-    end
-end
-
-# adding users to existing school.
-# school = School.friendly.find("school-of-space-travel")
-# Seeding invitable model without sending invitation emails
-
-
-
-# school  = School.friendly.find("school-of-space-travel")
-# Role.where(name: "account_owner")
-# users = User.joins(:roles).where(roles: {name: "account_owner"})
-# users.each do |user|
-#   user.remove_role("account_owner", school)
-# end
 
 # Grade.create([
 #   {name: "Grade 1", slug: "grade-1"},
@@ -204,20 +97,30 @@ end
 # subject_list.each do |subject|
 #   Subject.create( :name => subject[0], :slug => subject[1] )
 # end
-# higher_grades = Grade.limit(6).offset(6)
+# higher_grades = Grade.offset(7).limit(6)
 
 # grade_10 = Grade.friendly.find("grade-10")
 # grade_11 = Grade.friendly.find("grade-11")
 # grade_12 = Grade.friendly.find("grade-12")
 
 # subjects = Subject.where.not(name: "Registration")
-# registration = Subject.where(name: "Registration")
+# registrations = Subject.where(name: "Registration")
+# Course.destroy_all
 # grades = Grade.all
-# grades.each do |grade|
-#   grade.courses.create(name: "#{grade.name} Registration", grade_id: grade.id, subject_type: 1)
+# grades.each do |grade, subjects|
+#   subjects = Subject.where(name: "Registration")
+#   subjects.each do |subject|
+#     grade.courses.create(name: "#{grade.name} Registration", grade_id: grade.id, subject_id: subject.id, subject_type: 1)
+#   end
 # end
 
-
+# higher_grades = Grade.offset(7).limit(6)
+# higher_grades.each do |grade, subjects|
+#   subjects = Subject.where.not(name: "Registration")
+#   subjects.each do |subject|
+#     grade.courses.create(name: "#{grade.name} #{subject.name}", grade_id: grade.id, subject_id: subject.id, subject_type: 1)
+#   end
+# end
 #create subject classes
 # subjects.each do |subject|
 #   higher_grades = Grade.limit(6).offset(6)
@@ -253,3 +156,115 @@ end
 #   {name: "Final Project", slug: "final-project", assessment_type_id: summative.id },
 #   {name: "Examination", slug: "examination", assessment_type_id: summative.id }
 #   ])
+
+# adding users, schools and memberships
+Membership.destroy_all
+User.destroy_all
+School.destroy_all
+
+# first user/account account_owner for first school
+archie = User.create(
+  first_name: "Archie",
+  last_name: "Smuts",
+  email: "archiesmuts@gmail.com",
+  password: 'archiesmuts',
+  password_confirmation: 'archiesmuts',
+  slug: "archie-smuts",
+  confirmed_at: Faker::Time.between(1.day.ago, Date.today, :all)
+)
+# first user/account account_owner for second school
+harry = User.create(
+  first_name: "Harry",
+  last_name: "Potter",
+  email: "harrypotter@gmail.com",
+  password: 'harrypotter',
+  password_confirmation: 'harrypotter',
+  slug: "harry-potter",
+  confirmed_at: Faker::Time.between(1.day.ago, Date.today, :all)
+)
+# first school
+programmers_school = School.create(name: "Hello World School for Programmers", slug: "hello-world-school-for-programmers")
+# programmers_school.save!
+programmers_school.memberships.create(user: archie, member: 1)
+archie.add_role(:account_owner, programmers_school)
+
+# second school
+wizards_school = School.create(name: "Hogwarts School for Wizards", slug: "hogwarts-school-for-wizards")
+# wizards_school.save!
+wizards_school.memberships.create(user: harry, member: 1)
+harry.add_role(:account_owner, wizards_school)
+
+# send invivitaion to users for each of the schools respectively
+def adduser(email, password, first_name, last_name, slug)
+  @user = User.invite!(:email => email, :slug => slug) do |u|
+    u.skip_invitation = true
+  end
+  token = @user.instance_variable_get(:@raw_invitation_token)
+  User.accept_invitation!(:invitation_token => token,
+                          :password => password,
+                          :password_confirmation => password,
+                          :first_name => first_name,
+                          :last_name => last_name,
+                          :slug => slug)
+
+  puts "Created User #{email} with password #{password}"
+  @user
+end
+
+programmers = programmers_school.users
+wizards = wizards_school.users
+
+##### adding 30 learners to school - p = programmer, l = learner
+30.times do
+  User.create do
+    user =  adduser(
+      Faker::Internet.safe_email,
+      "password1234",
+      "#{Faker::Name.first_name}-pl",
+      Faker::Name.last_name,
+      "#{Faker::Name.first_name}-pl-#{Faker::Name.last_name.downcase}".downcase
+    )
+    programmers << user
+  end
+end
+##### adding 10 teachers to hello world school - p = programmer, t = teacher
+10.times do
+  User.create do
+    user =  adduser(
+      Faker::Internet.safe_email,
+      "password1234",
+      "#{Faker::Name.first_name}-pt",
+      Faker::Name.last_name,
+      "#{Faker::Name.first_name.downcase}-pt-#{Faker::Name.last_name.downcase}".downcase
+    )
+    programmers << user
+  end
+end
+
+### adding 10 teachers to wizards_school w = wizards, t = teacher
+10.times do
+  User.create do
+    user =  adduser(
+      Faker::Internet.safe_email,
+      "password1234",
+      "#{Faker::Name.first_name}-wt",
+      Faker::Name.last_name,
+      "#{Faker::Name.first_name}-wt-#{Faker::Name.last_name}".downcase
+    )
+    wizards << user
+  end
+end
+
+### add 30 learners to wizards_school w = wizards, l = learner
+30.times do
+  User.create do
+    user =  adduser(
+      Faker::Internet.safe_email,
+      "password1234",
+      "#{Faker::Name.first_name}-wl",
+      Faker::Name.last_name,
+      "#{Faker::Name.first_name}-wl-#{Faker::Name.last_name}".downcase
+    )
+    wizards << user
+  end
+end

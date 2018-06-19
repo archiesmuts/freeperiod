@@ -34,6 +34,6 @@
 <% if @school.events.any? %>
     <%= render @school.events.newer_than(1.month.ago) %>
 <% else %>
-  <%= render "events/event-placeholder" %>
+  <%= render "events/event_placeholder" %>
 <% end %>
 </div>

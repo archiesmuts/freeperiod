@@ -4,7 +4,7 @@ class Schools::MembershipsController < ApplicationController
   before_action :set_school
 
   layout "application_alt"
-  
+
   def index
     memberships = @school.memberships.all
     membership = Membership.new
