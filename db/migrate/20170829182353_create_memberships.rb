@@ -4,8 +4,10 @@ class CreateMemberships < ActiveRecord::Migration[5.1]
       t.uuid :user_id, foreign_key: true
       t.uuid :school_id, foreign_key: true
       t.integer :member, null: false, default: 0
+      t.jsonb :profile, null: false, default: '{}'
 
       t.timestamps
     end
+    add_index  :memberships, :profile, using: :gin
   end
 end

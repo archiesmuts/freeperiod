@@ -2,7 +2,7 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://coffeescript.org/
 jQuery.fn.countDaysAbsent = ->
-  number_days = $("#list-attendances").children().length
+  number_days = $("#list-attendances").children(".attendance-card").length
   $("#daysAbsent1").text number_days
   $("#daysAbsent2").text number_days
 

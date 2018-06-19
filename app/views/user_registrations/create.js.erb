@@ -15,9 +15,9 @@ var el = $('.new_user_registration');
 <% else %>
 
 $('#list-user-registrations').prepend('<%= j render @user_registration %>');
-$("#user-registration-<%= @user_registration.id %>").hide().fadeIn(1000);
+$("#<%= dom_id(@user_registration) %>").hide().fadeIn(1000);
 $('#user-registration-dialog').modal('hide');
-$('.no-user-registrations-to-list').detach();
+$('.user_registration_placeholder').detach();
 <% if @user_registration.teacher? %>
   $('#user-type').html("<span class='badge badge-info'>Teacher</span>");
 <% elsif @user_registration.substitute_teacher? %>

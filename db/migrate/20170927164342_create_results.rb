@@ -4,6 +4,7 @@ class CreateResults < ActiveRecord::Migration[5.1]
       t.uuid :user_registration_id
       t.uuid :assessment_id
       t.decimal :student_score, default: 0
+      t.integer :version, null: false, default: 0
       t.text :teacher_comment
 
       t.timestamps

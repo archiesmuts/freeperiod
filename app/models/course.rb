@@ -24,8 +24,10 @@ class Course < ApplicationRecord
   def grade_name
     self.grade.name
   end
+  
   def should_generate_new_friendly_id?
     name_changed?
   end
 
 end
+# Sector (independent or public)

@@ -1,15 +1,11 @@
-
-    <!-- TODO redesign to view people in cards with their head pics and key demographic details -->
-
-  <div id="list-user-registrations" class="row d-flex align-content-stretch flex-wrap mt-1">
-    <% if @registration_klass.user_registrations.any? %>
-      <%= render @registration_klass.user_registrations %>
-    <% else %>
-      <li class="list-group-item list-group-item-action list-group-item-info no-user-registrations-to-list">
-        <%= render "no_people_to_list" %>
-      </li>
-    <% end %>
-  </div>
+<div id="list-user-registrations" class="row d-flex align-content-stretch flex-wrap mt-1">
+  <% if @registration_klass.user_registrations.any? %>
+    <%= render @registration_klass.user_registrations %>
+  <% else %>
+    <%= render "user_registrations/user_registration_placeholder" %>
+  <% end %>
+</div>
+  <!-- TODO redesign to view people in cards with their head pics and key demographic details -->
   <!-- <div>
     <%#= link_to new_registration_klass_user_registration_path(@registration_klass), remote: true, class: "btn btn-sm btn-primary" do %>
       <%#= fa_icon "user-plus" %>&nbsp;Add a Learner/Teacher

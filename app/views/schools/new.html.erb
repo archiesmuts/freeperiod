@@ -1,6 +1,23 @@
-  <div class="row mt-3">
-    <div class="col-md-5 offset-md-3 jumbotron-bg-aztec p-3">
-      <h1>New School Account</h1>
-      <%= render 'form', school: @school, class: "btn btn-primary" %>
-    </div>
+<% content_for :title do %>fp New School Account<% end %>
+<!-- Sidebar menu-->
+<div class="app-sidebar__overlay" data-toggle="sidebar"></div>
+<aside class="app-sidebar">
+  <%= render "sidebar_user" %>
+  <ul class="app-menu nav flex-column nav-pills">
+    <li>
+      <a id="home-tab" class="app-menu__item active" href="#home" role="tab" data-toggle="pill" aria-controls="home" aria-selected="true">
+        <%= fa_icon("university lg", class: "app-menu__icon mr-2") %>
+        <span class="app-menu__label">
+          New School Account
+        </span>
+      </a>
+    </li>
+  </ul>
+</aside>
+
+<div class="row mt-3">
+  <div class="col-md-8 offset-md-1 p-3">
+    <h1>New School Account</h1>
+    <%= render 'form', school: @school, class: "btn btn-primary" %>
   </div>
+</div>

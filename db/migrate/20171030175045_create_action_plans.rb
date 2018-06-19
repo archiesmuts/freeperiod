@@ -6,6 +6,7 @@ class CreateActionPlans < ActiveRecord::Migration[5.1]
       t.string :who
       t.date :when_date
       t.boolean :completed, default: false, null: false
+      t.boolean :discarded, default: false, null: false
       t.integer :position
       t.string :slug, null: false, unique: true
 

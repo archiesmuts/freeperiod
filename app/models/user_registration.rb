@@ -13,11 +13,9 @@ class UserRegistration < ApplicationRecord
   has_many :goals,-> { order "deadline ASC" }, as: :goalable
   has_many :achievements, -> { order('date DESC') }, as: :achievable
 
-
-
   # scope :for_this_klass, -> { where(field: true)   }
   validates :user_id, :registration_klass_id, :user_type, presence: true
-  validates_uniqueness_of :user_id, scope: :registration_klass_id, message: "already exists"
+  validates_uniqueness_of :user_id, scope: :registration_klass_id, message: "already exists."
   validates :completed, inclusion: { in: [true, false] }
 
   scope :learners, -> { where(user_type: "learner") }
@@ -41,7 +39,10 @@ class UserRegistration < ApplicationRecord
   def registration_klass_year
     self.registration_klass.try(:year)
   end
-
+  # TODO need validation for when a user is added to more than registration class, i.e. where klass_type == registration_class
+  # def home_room
+  #   self.registration_klass.where(klass_type: "registration_class")
+  # end
   def school
     self.registration_klass.school
   end

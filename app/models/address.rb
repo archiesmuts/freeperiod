@@ -7,7 +7,8 @@ class Address < ApplicationRecord
 
   enum address_type: {
     home: 0,
-    work: 1
+    work: 1,
+    postal: 2
   }
 
 end

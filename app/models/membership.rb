@@ -5,7 +5,7 @@ class Membership < ApplicationRecord
   belongs_to :user, inverse_of: :memberships
   belongs_to :school, inverse_of: :memberships
 
-  validates_uniqueness_of :user_id, scope: :school_id, message: "membership already exists"
+  validates_uniqueness_of :user_id, scope: :school_id, message: "membership already exists."
   validates :user_id, :school_id, :member, presence: true
   attribute :email, :string
   attribute :slug, :string
@@ -22,8 +22,8 @@ class Membership < ApplicationRecord
     learner: 3,
     parent_or_guardian: 4,
     friend_of_school: 5,
-    account_owner: 1,
-    school_admin: 6
+    school_admin: 6,
+    account_owner: 1
   }
 
   # enum permission:  {
@@ -49,4 +49,6 @@ class Membership < ApplicationRecord
   def user_name=(slug)
     self.user = User.where(slug: slug).take if slug.present?
   end
+  # TODO add date started when user first enrolled
+  # TODO add date completed if user leaves school
 end

@@ -6,8 +6,11 @@ class CreatePayAgreements < ActiveRecord::Migration[5.1]
       t.decimal :discount, default: 0, null: false
       t.text :comment
       t.string :slug, null: false, unique: true
+      t.integer :version, null: false, default: 0
+      t.jsonb :details, null: false, default: '{}'
 
       t.timestamps
     end
+    add_index  :pay_agreements, :details, using: :gin
   end
 end

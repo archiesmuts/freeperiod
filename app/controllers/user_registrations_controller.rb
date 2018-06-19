@@ -27,7 +27,7 @@ class UserRegistrationsController < ApplicationController
   # POST /user_registrations.json
   def create
     @user_registration = @registration_klass.user_registrations.build(user_registration_params)
-
+    # TODO add assignment of roles
     respond_to do |format|
       if @user_registration.save
         format.html { redirect_to [@registration_klass, @user_registration], notice: 'Registration was successfully created.' }

@@ -1,24 +1,28 @@
-<h1>Welcome <%= @user.first_name %>!</h1>
-<h2>Start by first creating your <span class="badge badge-primary">School Account.</span></h2>
-<h3>Remember this!</h3>
+<h1>
+  Welcome <%= @user.first_name %>!<br>
+  <small>Congratulations, your registration was successful.</small>
+</h1>
+<h2 class="h3">The next step is to create your School Account.</h2>
+
 <p class="lead">
-  When you create your <span class="badge badge-primary">School Account</span>
-  you will automatically be assigned the <span class="badge badge-secondary">role</span>
-  of <span class="badge badge-info">Account owner.</span> This role can later be
-  assigned to one or more other people should you so wish.
+  When you create your <span class="badge badge-secondary">School Account</span> you will automatically be assigned the
+  <span class="badge badge-secondary">role</span>
+  of <span class="badge badge-secondary">Account owner.</span> This role can later be
+  assigned to one or more other people should wish too.
 </p>
 <p class="lead">
-  What is important is that as <span class="badge badge-info">Account owner</span>
-  you have <span class="badge badge-success">full access permission</span> to all
+  What is important is that as <span class="badge badge-secondary">Account owner</span>
+  you have <span class="badge badge-secondary">full access permission</span> to all
   the pages on your site.
 </p>
 <p class="lead">
-  As <span class="badge badge-info">Account owner</span> you will be responsible
-  to assign specfic <span class="badge badge-secondary">roles</span> to teachers,
-  learners, parents and school administrators respectively.
+  You will be responsible to assign specific
+  <span class="badge badge-secondary">roles</span> to teachers,
+   learners, parents and school administrators and other people respectively.
   Each <span class="badge badge-secondary">role</span> will have its own
-  specific <span class="badge badge-success">access permissions</span>.
+  specific <span class="badge badge-secondary">access permissions</span>.
 </p>
+<p class="lead">More on this later. Go ahead and create your school account.</p>
 <hr>
 <div class="my-2">
   <%= link_to new_school_path,

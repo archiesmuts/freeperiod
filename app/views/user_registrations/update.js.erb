@@ -14,9 +14,9 @@ var el = $('.edit_user_registration');
 
 <% else %>
 
+$("#<%= dom_id(@user_registration) %>")detach();
 $('#list-user-registrations').prepend('<%= j render @user_registration %>');
-$("#user-registration-<%= @user_registration.id %>").hide().fadeIn(1000);
-$("#user-registration-card-<%= @user_registration.id %>").hide().fadeIn(1000);
+$("#<%= dom_id(@user_registration) %>").hide().fadeIn(1000);
 $('#user-registration-dialog').modal("hide");
 <% if @user_registration.teacher? %>
   $('#user-type').text("Teacher");

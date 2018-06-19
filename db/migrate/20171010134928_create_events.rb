@@ -7,8 +7,11 @@ class CreateEvents < ActiveRecord::Migration[5.1]
       t.datetime :start_time
       t.datetime :end_time
       t.string :slug, null: false, unique: true
+      t.integer :version, null: false, default: 0
+      t.jsonb :details, null: false, default: '{}'
 
       t.timestamps
     end
+    add_index  :events, :details, using: :gin
   end
 end
