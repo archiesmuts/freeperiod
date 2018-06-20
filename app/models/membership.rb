@@ -25,7 +25,26 @@ class Membership < ApplicationRecord
     school_admin: 6,
     account_owner: 1
   }
-
+  # setup different levels of roles for permisions
+  enum basic_role: {
+    not_defined: 0,
+    learner: 1,
+    parent: 2,
+    friend: 3,
+    staff: 4
+  }
+  enum staff_role: {
+    none: 0,
+    educator: 1,
+    admin: 2,
+    management: 3,
+    account_owner: 4
+  }
+  enum account_role: {
+    none: 0,
+    admin: 1,
+    account_owner: 2
+  }
   # enum permission:  {
   #   readonly: 0,
   #   admin: 1,

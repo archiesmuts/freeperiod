@@ -72,7 +72,6 @@ class MembershipsController < ApplicationController
   # DELETE /memberships/1
   # DELETE /memberships/1.json
   def destroy
-    # TODO check how to remove roles when membership is deleted
     user = @membership.user
     school = @membership.school
     user_roles = user.roles

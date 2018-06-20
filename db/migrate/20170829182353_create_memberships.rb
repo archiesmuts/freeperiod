@@ -4,6 +4,7 @@ class CreateMemberships < ActiveRecord::Migration[5.1]
       t.uuid :user_id, foreign_key: true
       t.uuid :school_id, foreign_key: true
       t.integer :member, null: false, default: 0
+      t.string :slug, null: false, unique: true
       t.jsonb :profile, null: false, default: '{}'
 
       t.timestamps

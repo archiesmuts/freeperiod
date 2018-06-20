@@ -16,7 +16,6 @@ class RegistrationKlass < ApplicationRecord
   scope :s_klasses, -> { where(klass_type: "subject_class") }
 
   validates :school_id, :course_id, :name, :klass_type, :year, :slug, presence: true
-  # TODO add completed_at date and completed boolean that will update completed_at
 
   enum klass_type: {
     subject_class: 0,
