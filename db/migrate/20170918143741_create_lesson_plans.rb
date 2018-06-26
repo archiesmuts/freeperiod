@@ -9,6 +9,6 @@ class CreateLessonPlans < ActiveRecord::Migration[5.1]
 
       t.timestamps
     end
-    add_index  :courses, :details, using: :gin
+    add_index  :lesson_plans, :details, using: :gin
   end
 end
