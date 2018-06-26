@@ -8,7 +8,7 @@ class CreateAssessments < ActiveRecord::Migration[5.1]
       t.uuid :lesson_plan_id, foreign_key: true
       t.uuid :assessment_type_id, foreign_key: true
       t.uuid :assessment_task_id, foreign_key: true
-      t.string :slug, null: false, unique: true
+      t.string :slug, null: false, unique: true, index: true
 
       t.timestamps
     end

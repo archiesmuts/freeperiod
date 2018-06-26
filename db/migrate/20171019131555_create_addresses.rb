@@ -5,7 +5,7 @@ class CreateAddresses < ActiveRecord::Migration[5.1]
       t.integer :address_type, null: false, default: 0
       t.uuid :addressable_id, foreign_key: true, index: true
       t.string :addressable_type, index: true
-      t.string :slug, null: false, unique: true
+      t.string :slug, null: false, unique: true, index: true
 
       t.timestamps
     end

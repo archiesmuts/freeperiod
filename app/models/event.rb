@@ -8,9 +8,18 @@ class Event < ApplicationRecord
 
   scope :newer_than, ->(date) { where('start_time > ?', date).order("start_time") }
 
-  validates :school_id, :title, :description, :start_time, :end_time, :slug, presence: true
-  validate :start_time_cannot_be_in_the_past, :end_time_must_be_greater_than_start_time
+  validates :school_id, :title, :description, :start_time, :end_time, :details,
+            :slug, :version, presence: true
+  validate :start_time_cannot_be_in_the_past,
+            :end_time_must_be_greater_than_start_time
 
+  enum version: {
+    draft: 0,
+    final: 1
+  }
+
+  jsonb_accessor :details,
+    celebrations: string
 
   def school_name
     school.name if school.present?

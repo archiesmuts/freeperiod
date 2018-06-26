@@ -13,7 +13,7 @@ class User < ApplicationRecord
   has_many :schools, through: :memberships
   has_many :user_registrations
   has_many :registration_klasses, through: :user_registrations
-  has_many :comments, -> { order('created_at DESC') }, as: :commentable
+  has_many :comments, -> { order('created_at DESC') }, inverse_of: :user
   has_many :addresses, as: :addressable
   has_many :goals, -> { order('deadline ASC') },  as: :goalable
   has_many :achievements, -> { order('date DESC') }, as: :achievable
@@ -38,8 +38,8 @@ class User < ApplicationRecord
   # end
   def slug_candidates
     [
-      [:name ],
-      [:name, :email],
+      [:name_reversed ],
+      [:name_reversed, :email],
     ]
   end
 

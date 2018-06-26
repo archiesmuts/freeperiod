@@ -13,6 +13,9 @@ class Course < ApplicationRecord
     registration: 1
   }
 
+  jsonb_accessor :details,
+    sector: :string
+
   def course_description
     "#{grade_name} - #{subject_name} - #{name}"
   end
@@ -24,10 +27,9 @@ class Course < ApplicationRecord
   def grade_name
     self.grade.name
   end
-  
+
   def should_generate_new_friendly_id?
     name_changed?
   end
 
 end
-# Sector (independent or public)

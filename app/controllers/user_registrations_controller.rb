@@ -81,6 +81,7 @@ class UserRegistrationsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_registration_params
       params.require(:user_registration).permit(:registration_klass_id, :user_id,
-                      :user_type, :completed, :completed_at)
+                      :completed, :completed_at,
+                      { details: [:user_type, player_info: []] } )
     end
 end

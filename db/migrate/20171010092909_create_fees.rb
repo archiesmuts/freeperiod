@@ -5,7 +5,7 @@ class CreateFees < ActiveRecord::Migration[5.1]
       t.string :name
       t.date :year
       t.decimal :amount
-      t.string :slug, null: false, unique: true
+      t.string :slug, null: false, unique: true, index: true
       t.integer :version, null: false, default: 0
       t.jsonb :details, null: false, default: '{}'
 

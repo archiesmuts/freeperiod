@@ -8,7 +8,7 @@ class CreateActionPlans < ActiveRecord::Migration[5.1]
       t.boolean :completed, default: false, null: false
       t.boolean :discarded, default: false, null: false
       t.integer :position
-      t.string :slug, null: false, unique: true
+      t.string :slug, null: false, unique: true, index: true
 
       t.timestamps
     end

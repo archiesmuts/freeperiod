@@ -6,7 +6,7 @@ class CreateRegistrationKlasses < ActiveRecord::Migration[5.1]
       t.uuid :course_id, foreign_key: true
       t.date :year
       t.integer :klass_type, null: false, default: 0
-      t.string :slug, null: false, unique: true
+      t.string :slug, null: false, unique: true, index: true
 
       t.timestamps
     end

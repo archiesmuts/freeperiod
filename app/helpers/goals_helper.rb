@@ -1,5 +1,4 @@
 module GoalsHelper
-  # TODO Include links in helper file
   # link generator for back button @goalable in a nested resource context
   def link_generator(goal)
     parent_class = goal.goalable.class.to_s

@@ -49,16 +49,16 @@ class MembershipsController < ApplicationController
         case @membership.member.to_sym
           when :account_owner
             user.add_role("account_owner", school)
-          when :school_admin
-            user.add_role("school_admin", school)
+          when :administrator
+            user.add_role("admin", school)
           when :educator
             user.add_role("educator", school)
           when :learner
             user.add_role("learner", school)
           when :parent_or_guardian
-            user.add_role("parent_or_guardian", school)
+            user.add_role("parent", school)
           when :friend_of_school
-            user.add_role("friend_of_school", school)
+            user.add_role("friend", school)
         end
         format.html { redirect_to @membership, notice: 'School registration was successfully updated.' }
         format.json { render :show, status: :ok, location: @membership }
@@ -72,7 +72,6 @@ class MembershipsController < ApplicationController
   # DELETE /memberships/1
   # DELETE /memberships/1.json
   def destroy
-    # TODO check how to remove roles when membership is deleted
     user = @membership.user
     school = @membership.school
     user_roles = user.roles
@@ -83,19 +82,7 @@ class MembershipsController < ApplicationController
       format.json { head :no_content }
     end
   end
-  # def edit_multiple
-  #   @memberships = Membership.find(params[:membership_ids])
-  # end
-  #
-  # def update_multiple
-  #   @memberships = membership.update(params[:memberships].keys, params[:memberships].values)
-  #   @memberships.reject! { |p| p.errors.empty? }
-  #   if @memberships.empty?
-  #     redirect_to school_memberships_path(@school)
-  #   else
-  #     render "edit_multiple"
-  #   end
-  # end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_membership
@@ -104,15 +91,7 @@ class MembershipsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def membership_params
-      params.require(:membership).permit(:user_id, :school_id, :member, :school_name, :user_name,)
+      params.require(:membership).permit(:user_id, :school_id, :member, :school_name,
+        :user_name, :slug, details: [:date_enrolled, :date_completed, current_grades:[]])
     end
 end
-# if @membership.account_owner?
-# user.add_role("account_owner", school)
-# elsif @membership.educator?
-# user.add_role("educator", school)
-# elsif @membership.parent_or_guardian?
-# user.add_role("parent_or_guardian", school)
-# elsif @membership.friend_of_school?
-# user.add_role("friend_of_school, school")
-# end

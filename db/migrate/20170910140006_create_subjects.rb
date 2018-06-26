@@ -3,7 +3,7 @@ class CreateSubjects < ActiveRecord::Migration[5.1]
     create_table :subjects, id: :uuid do |t|
       t.string :name
       t.text   :description
-      t.string :slug, null: false, unique: true
+      t.string :slug, null: false, unique: true, index: true
       t.jsonb :details, null: false, default: '{}'
 
       t.timestamps

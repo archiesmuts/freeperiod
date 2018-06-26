@@ -6,6 +6,9 @@ class Subject < ApplicationRecord
   has_many :grades, through: :courses
   validates :name, :slug, presence: true
 
+  jsonb_accessor :details,
+    subject_no: :string
+
   def should_generate_new_friendly_id?
     name_changed?
   end

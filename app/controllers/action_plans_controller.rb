@@ -86,6 +86,7 @@ class ActionPlansController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def action_plan_params
-      params.require(:action_plan).permit(:goal_id, :what, :who, :when_date, :completed, :slug)
+      params.require(:action_plan).permit(:goal_id, :what, :who, :when_date,
+        :completed, :discarded, :slug)
     end
 end

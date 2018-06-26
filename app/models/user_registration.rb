@@ -3,8 +3,10 @@ class UserRegistration < ApplicationRecord
   extend FriendlyId
   friendly_id :slug_candidates, use: :slugged
   after_update :set_completed_at
-  belongs_to :user
-  belongs_to :registration_klass
+
+  belongs_to :user, inverse_of: :user_registrations
+  belongs_to :registration_klass, inverse_of: :user_registrations
+
   has_many :results, inverse_of: :user_registration
   has_many :assessments, through: :results
   has_many :pay_agreements, inverse_of: :user_registration
@@ -14,22 +16,17 @@ class UserRegistration < ApplicationRecord
   has_many :achievements, -> { order('date DESC') }, as: :achievable
 
   # scope :for_this_klass, -> { where(field: true)   }
-  validates :user_id, :registration_klass_id, :user_type, presence: true
+  validates :user_id, :registration_klass_id, presence: true
   validates_uniqueness_of :user_id, scope: :registration_klass_id, message: "already exists."
   validates :completed, inclusion: { in: [true, false] }
 
-  scope :learners, -> { where(user_type: "learner") }
-  scope :learner_and_active, -> { learners.where(completed: false) }
+  jsonb_accessor :details,
+    user_type: [:string, default: "Learner"],
+    player_info: [:string, array: true, default: ["No info yet"]]
 
-  enum user_type: {
-    learner: 0,
-    teacher: 1,
-    substitute_teacher: 2
-  }
+  scope :learners, -> { details_where(user_type: "Learner") }
+  scope :active_learners, -> { learners.where(completed: false) }
 
-  # def self.registered_user
-  #   user
-  # end
   def user_name
     self.user.try(:full_name)
   end

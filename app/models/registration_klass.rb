@@ -5,25 +5,22 @@ class RegistrationKlass < ApplicationRecord
 
   belongs_to :school, inverse_of: :registration_klasses
   belongs_to :course, inverse_of: :registration_klasses
-  has_many :user_registrations
-  has_many :teachers, -> {where(user_type: ['teacher','substitute_teacher'] )}, class_name: "UserRegistration"
-  has_many :learners, -> {where(user_type: "learner" )}, class_name: "UserRegistration"
+  has_many :user_registrations, inverse_of: :registration_klass
   has_many :users, through: :user_registrations
-  has_many :lesson_plans
+  has_many :lesson_plans, inverse_of: :registration_klass
   has_many :goals, as: :goalable
   has_many :achievements, as: :achievable
-  scope :r_klasses, -> { where(klass_type: "registration_class") }
-  scope :s_klasses, -> { where(klass_type: "subject_class") }
+  # has_many :teachers, -> {where(user_type: ['teacher','substitute_teacher'] )}, class_name: "UserRegistration"
+  # has_many :learners, -> {where(user_type: "learner" )}, class_name: "UserRegistration"
+  scope :reg_classes, -> { data_where(group_type: "Registration Class") }
+  scope :subj_classes, -> { data_where(group_type: "Subject Class") }
 
-  validates :school_id, :course_id, :name, :klass_type, :year, :slug, presence: true
-  # TODO add completed_at date and completed boolean that will update completed_at
-
-  enum klass_type: {
-    subject_class: 0,
-    registration_class: 1,
-    school_faculty: 2,
-    school_admin: 3
-  }
+  validates :school_id, :course_id, :name, :data, :year, :slug, presence: true
+  # TODO add more items to data
+  jsonb_accessor :data,
+    group_type: [:string, default: "Registration Class"],
+    sport_type: :string,
+    more_information: :string
 
   def should_generate_new_friendly_id?
     name_changed?

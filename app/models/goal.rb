@@ -9,7 +9,7 @@ class Goal < ApplicationRecord
   has_many :completed_items, -> { where(completed: true)}, class_name: "ActionPlan"
   has_many :comments, -> { order('created_at DESC') }, as: :commentable
 
-  validates :name, :deadline, :slug, :achievability, :achieved, presence: true
+  validates :name, :deadline, :slug, :achievability, :achieved, :visibility, presence: true
   validates :measurement, :person_responsible, presence: true, on: :update
   validates :completed_at, presence: true, on: :update, if: :goal_achieved?
 
@@ -24,7 +24,10 @@ class Goal < ApplicationRecord
     sadly_no: 1,
     yes: 2
   }
-
+  enum visibility: {
+    public: 0,
+    private: 1,
+  }
   def goal_achieved?
     achieved == "yes"
   end

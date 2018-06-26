@@ -81,7 +81,7 @@ class PayAgreementsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def pay_agreement_params
-
-      params.require(:pay_agreement).permit(:fee_id, :user_registration_id, :discount, :discount_in_percent, :comment, :slug)
+      params.require(:pay_agreement).permit(:fee_id, :user_registration_id,
+        :discount, :discount_in_percent, :comment, :slug, :version, { details: [:information]})
     end
 end

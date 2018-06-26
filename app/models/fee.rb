@@ -7,7 +7,15 @@ class Fee < ApplicationRecord
   has_many :pay_agreements, inverse_of: :fee
   has_many :user_registrations, through: :pay_agreements
 
-  validates :school_id, :name, :year, :amount, :slug, presence: true
+  validates :school_id, :name, :year, :amount, :version, :details, :slug, presence: true
+
+  jsonb_accessor :details,
+    notes: :string
+
+  enum version: {
+    draft: 0,
+    final: 1
+  }
 
   def fee_and_school_name
     "#{name} #{school_name}"

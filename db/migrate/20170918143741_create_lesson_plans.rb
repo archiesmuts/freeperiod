@@ -3,12 +3,12 @@ class CreateLessonPlans < ActiveRecord::Migration[5.1]
     create_table :lesson_plans, id: :uuid do |t|
       t.string :name
       t.uuid :registration_klass_id, foreign_key: true
-      t.integer :term, null: false, default: 0
-      t.string :slug, null: false, unique: true
+      t.string :slug, null: false, unique: true, index: true
       t.text :description
-      t.text :assessment_details
-      
+      t.jsonb :details, null: false, default: '{}'
+
       t.timestamps
     end
+    add_index  :courses, :details, using: :gin
   end
 end

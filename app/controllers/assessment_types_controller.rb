@@ -69,6 +69,6 @@ class AssessmentTypesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def assessment_type_params
-      params.require(:assessment_type).permit(:name, :slug)
+      params.require(:assessment_type).permit(:name, :description, :slug)
     end
 end

@@ -18,10 +18,6 @@ class Schools::MembershipsController < ApplicationController
     membership.school = @school
     respond_to do |format|
       if membership.save
-        # user = membership.user
-        # if @membership.account_owner?
-        #   user.add_role(:account_owner, @school)
-        # end
         # TODO send email notification of school id users is already active or registered
         format.html { redirect_to school_path(@school), notice: 'Invitation was successfully sent.' }
         format.json { render :show, status: :created, location: membership }
