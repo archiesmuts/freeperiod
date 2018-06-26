@@ -2,7 +2,7 @@ class Membership < ApplicationRecord
   include ActiveModel::Dirty
   resourcify
   extend FriendlyId
-  friendly_id :user_name, use: :slugged
+  friendly_id :slug_candidates, use: :slugged
 
   before_validation :set_school_id, if: :email?
   belongs_to :user, inverse_of: :memberships
@@ -57,8 +57,15 @@ class Membership < ApplicationRecord
     self.user = User.where(slug: slug).take if slug.present?
   end
 
+  def slug_candidates
+    [
+      [:user_name ],
+      [:user_name, :school_short_name],
+    ]
+  end
+
   # def should_generate_new_friendly_id?
-  #   user_name_changed?
+  #   user_id_changed?
   # end
 end
 # TODO move assignment of roles from contoller to model

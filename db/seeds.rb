@@ -186,13 +186,13 @@
 # first school
   programmers_school = School.create(name: "Hello World School for Programmers", slug: "hello-world-school-for-programmers")
   # programmers_school.save!
-  programmers_school.memberships.create(user: archie, member: 1)
+  programmers_school.memberships.create(user: archie, primary_role: 1, slug: "smuts-archie")
   archie.add_role(:account_owner, programmers_school)
 
 # second school
   wizards_school = School.create(name: "Hogwarts School for Wizards", slug: "hogwarts-school-for-wizards")
   # wizards_school.save!
-  wizards_school.memberships.create(user: harry, member: 1)
+  wizards_school.memberships.create(user: harry, primary_role: 1, slug: "potter-harry")
   harry.add_role(:account_owner, wizards_school)
 
 # define method to send invitaion to users for each of the schools respectively
