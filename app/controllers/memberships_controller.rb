@@ -5,7 +5,7 @@ class MembershipsController < ApplicationController
   # GET /memberships
   # GET /memberships.json
   def index
-    @memberships = Membership.order("created_at DESC")
+    @memberships = Membership.order("slug ASC")
   end
 
   # GET /memberships/1
@@ -42,11 +42,11 @@ class MembershipsController < ApplicationController
   def update
     user = @membership.user
     school = @membership.school
-    current_member = @membership.member.to_sym
+    current_member = @membership.primary_role.to_sym
     respond_to do |format|
       if @membership.update(membership_params)
         user.remove_role(current_member, school)
-        case @membership.member.to_sym
+        case @membership.primary_role.to_sym
           when :account_owner
             user.add_role("account_owner", school)
           when :administrator
@@ -86,12 +86,12 @@ class MembershipsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_membership
-      @membership = Membership.find(params[:id])
+      @membership = Membership.friendly.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def membership_params
-      params.require(:membership).permit(:user_id, :school_id, :member, :school_name,
+      params.require(:membership).permit(:user_id, :school_id, :primary_role, :school_name,
         :user_name, :slug, details: [:date_enrolled, :date_completed, current_grades:[]])
     end
 end

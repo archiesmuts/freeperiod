@@ -19,7 +19,7 @@ class Event < ApplicationRecord
   }
 
   jsonb_accessor :details,
-    celebrations: string
+    celebrations: :string
 
   def school_name
     school.name if school.present?

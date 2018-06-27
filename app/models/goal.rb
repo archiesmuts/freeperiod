@@ -25,8 +25,8 @@ class Goal < ApplicationRecord
     yes: 2
   }
   enum version: {
-    public: 0,
-    private: 1,
+    open: 0,
+    closed: 1,
   }
   def goal_achieved?
     achieved == "yes"

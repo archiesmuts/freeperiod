@@ -164,7 +164,7 @@ ActiveRecord::Schema.define(version: 2017_11_06_140826) do
     t.string "name"
     t.date "deadline"
     t.integer "achievability", default: 0, null: false
-    t.integer "visibility", default: 0, null: false
+    t.integer "version", default: 0, null: false
     t.string "measurement"
     t.string "person_responsible"
     t.integer "achieved", default: 0, null: false

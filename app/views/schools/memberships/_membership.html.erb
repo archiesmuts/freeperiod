@@ -20,7 +20,7 @@
 
       <td>
         <% unless membership.user.roles.empty? %>
-        <span class="badge badge-info"><%= membership.member.humanize %></span>
+        <span class="badge badge-info"><%= membership.primary_role.humanize %></span>
         <% else %>
           <span class="badge badge-warning">No role assigned</span>
         <% end %>

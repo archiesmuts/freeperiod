@@ -31,7 +31,7 @@
               <h2 class="h4">
                 <%= fa_icon "university" %>&nbsp;<%= @membership.school.name if @membership.school %>
               </h2>
-              <p class="lead">Role: <span class="badge badge-info"><%= @membership.member.humanize %></span></p>
+              <p class="lead">Role: <span class="badge badge-info"><%= @membership.primary_role.humanize %></span></p>
 
               <!-- TODO add options for grade registration etc. -->
               <p class="lead text-white">Currently registered for Grade <span class="badge badge-secondary">9</span> Todo </p>

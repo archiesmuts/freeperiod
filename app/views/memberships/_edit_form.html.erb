@@ -23,10 +23,10 @@
       <%= f.text_field :school_name, id: :membership_school_name, class: "form-control", readonly: "readonly"  %>
     </div>
     <p class="font-weight-bold">Specify the role for this person .</p>
-    <% Membership.members.keys.map do |member| %>
+    <% Membership.primary_roles.keys.map do |primary_role| %>
       <label class="form-check-label form-check-inline">
-        <%= f.radio_button :member, member, class: "form-check-input" %>
-        <span class="form-check-label"><%= member.humanize %></span>
+        <%= f.radio_button :primary_role, primary_role, class: "form-check-input" %>
+        <span class="form-check-label"><%= primary_role.humanize %></span>
       </label>
     <% end %>
     <div class="alert alert-warning" id="alert-account-owner" role="alert">

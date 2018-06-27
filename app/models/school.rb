@@ -3,7 +3,7 @@ class School < ApplicationRecord
   extend FriendlyId
   friendly_id :name, use: :slugged
 
-  has_many :memberships, inverse_of: :school, dependent: :destroy
+  has_many :memberships, -> { order("slug")}, inverse_of: :school, dependent: :destroy
   has_many :users, -> { order("last_name, first_name")}, through: :memberships
   has_many :registration_klasses, -> { includes(:course).order("year DESC").limit(50).order("courses.name ASC") }, inverse_of: :school
   has_many :user_registrations, through: :registration_klasses
