@@ -5,7 +5,7 @@ class CreateLessonPlans < ActiveRecord::Migration[5.1]
       t.uuid :registration_klass_id, foreign_key: true
       t.string :slug, null: false, unique: true, index: true
       t.text :description
-      t.jsonb :details, null: false, default: '{}'
+      t.jsonb :details, null: false, default: {}
 
       t.timestamps
     end

@@ -80,6 +80,6 @@ class GoalsController < ApplicationController
     def goal_params
       params.require(:goal).permit(:name, :deadline, :achievability,
         :measurement, :person_responsible, :achieved, :completed_at,
-        :visibility, :slug)
+        :version, :slug)
     end
 end

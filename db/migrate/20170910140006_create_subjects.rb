@@ -4,7 +4,7 @@ class CreateSubjects < ActiveRecord::Migration[5.1]
       t.string :name
       t.text   :description
       t.string :slug, null: false, unique: true, index: true
-      t.jsonb :details, null: false, default: '{}'
+      t.jsonb :details, null: false, default: {}
 
       t.timestamps
     end

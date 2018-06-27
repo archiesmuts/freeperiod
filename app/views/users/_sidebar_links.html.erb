@@ -12,7 +12,7 @@
     <a id="my-registration-tab" class="app-menu__item" href="#my-registration-class" data-toggle="pill" role="tab" aria-controls="my-registration-klass" aria-selected="false">
       <%= fa_icon("graduation-cap fw", class: "app-menu__icon mr-2") %>
       <span class="app-menu__label">
-        My Classes&nbsp;<span class="badge badge-info"><%= current_user.registration_klasses.s_klasses.size %></span>
+        My Classes&nbsp;<span class="badge badge-info"><%= current_user.registration_klasses.subj_classes.size %></span>
       </span>
     </a>
   </li>

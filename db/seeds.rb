@@ -113,48 +113,48 @@
   end
 
 # setup assessment types
-  # AssessmentType.create([
-  #   {name: "Diagnostic",
-  #     description: "Lorem Ipsum is simply dummy text of the
-  #     printing and typesetting industry. Lorem Ipsum has been the industry's
-  #     standard dummy text ever since the 1500s, when an unknown printer took
-  #     a galley of type and scrambled it to make a type specimen book.",
-  #     slug: "diagnostic"},
-  #   {name: "Formative", description: "Lorem Ipsum is simply dummy text of the
-  #     printing and typesetting industry. Lorem Ipsum has been the industry's
-  #     standard dummy text ever since the 1500s, when an unknown printer took
-  #     a galley of type and scrambled it to make a type specimen book.",
-  #     slug: "formative"},
-  #   {name: "Summative", description: "Lorem Ipsum is simply dummy text of the
-  #     printing and typesetting industry. Lorem Ipsum has been the industry's
-  #     standard dummy text ever since the 1500s, when an unknown printer took
-  #     a galley of type and scrambled it to make a type specimen book.",
-  #     slug: "summative"},
-  #   {name: "Norm-referenced tests", description: "Lorem Ipsum is simply dummy
-  #     text of the printing and typesetting industry. Lorem Ipsum has been
-  #     the industry's standard dummy text ever since the 1500s, when an unknown
-  #     printer took a galley of type and scrambled it to make a type
-  #     specimen book.",
-  #     slug: "norm-referenced-tests"},
-  #     {name: "Criterion-referenced tests", description: "Lorem Ipsum is simply dummy
-  #       text of the printing and typesetting industry. Lorem Ipsum has been
-  #       the industry's standard dummy text ever since the 1500s, when an unknown
-  #       printer took a galley of type and scrambled it to make a type
-  #       specimen book.",
-  #       slug: "criterion-referenced-tests"}
-  # ])
-  # formative = AssessmentType.find_by(name: "Formative")
-  # summative = AssessmentType.find_by(name: "Summative")
+  AssessmentType.create([
+    {name: "Diagnostic",
+      description: "Lorem Ipsum is simply dummy text of the
+      printing and typesetting industry. Lorem Ipsum has been the industry's
+      standard dummy text ever since the 1500s, when an unknown printer took
+      a galley of type and scrambled it to make a type specimen book.",
+      slug: "diagnostic"},
+    {name: "Formative", description: "Lorem Ipsum is simply dummy text of the
+      printing and typesetting industry. Lorem Ipsum has been the industry's
+      standard dummy text ever since the 1500s, when an unknown printer took
+      a galley of type and scrambled it to make a type specimen book.",
+      slug: "formative"},
+    {name: "Summative", description: "Lorem Ipsum is simply dummy text of the
+      printing and typesetting industry. Lorem Ipsum has been the industry's
+      standard dummy text ever since the 1500s, when an unknown printer took
+      a galley of type and scrambled it to make a type specimen book.",
+      slug: "summative"},
+    {name: "Norm-referenced tests", description: "Lorem Ipsum is simply dummy
+      text of the printing and typesetting industry. Lorem Ipsum has been
+      the industry's standard dummy text ever since the 1500s, when an unknown
+      printer took a galley of type and scrambled it to make a type
+      specimen book.",
+      slug: "norm-referenced-tests"},
+      {name: "Criterion-referenced tests", description: "Lorem Ipsum is simply dummy
+        text of the printing and typesetting industry. Lorem Ipsum has been
+        the industry's standard dummy text ever since the 1500s, when an unknown
+        printer took a galley of type and scrambled it to make a type
+        specimen book.",
+        slug: "criterion-referenced-tests"}
+  ])
+  formative = AssessmentType.find_by(name: "Formative")
+  summative = AssessmentType.find_by(name: "Summative")
 
 # setup assessment tasks
-  # AssessmentTask.create([
-    # {name: "Test", slug: "test", assessment_type_id: formative.id },
-    # {name: "Project", slug: "project", assessment_type_id: formative.id },
-    # {name: "Practical Task", slug: "practical-task", assessment_type_id: formative.id },
-    # {name: "Investigation", slug: "investigation", assessment_type_id: formative.id },
-    # {name: "Final Project", slug: "final-project", assessment_type_id: summative.id },
-    # {name: "Examination", slug: "examination", assessment_type_id: summative.id }
-    # ])
+  AssessmentTask.create([
+    {name: "Test", slug: "test", assessment_type_id: formative.id },
+    {name: "Project", slug: "project", assessment_type_id: formative.id },
+    {name: "Practical Task", slug: "practical-task", assessment_type_id: formative.id },
+    {name: "Investigation", slug: "investigation", assessment_type_id: formative.id },
+    {name: "Final Project", slug: "final-project", assessment_type_id: summative.id },
+    {name: "Examination", slug: "examination", assessment_type_id: summative.id }
+    ])
 
 # adding users, schools and memberships
   # Membership.destroy_all

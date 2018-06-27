@@ -4,8 +4,8 @@ class CreateSchools < ActiveRecord::Migration[5.1]
       t.string :name
       t.text :description
       t.string :slug, null: false, unique: true, index: true
-      t.jsonb :prospectus, null: false, default: '{}'
-      t.jsonb :preferences, null: false, default: '{}'
+      t.jsonb :prospectus, null: false, default: {}
+      t.jsonb :preferences, null: false, default: {}
 
       t.timestamps
 

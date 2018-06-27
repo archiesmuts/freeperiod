@@ -6,7 +6,7 @@ class CreateUserRegistrations < ActiveRecord::Migration[5.1]
       t.boolean :completed, null: false, default: false
       t.date :completed_at
       t.string :slug, null: false, unique: true, index: true
-      t.jsonb :details, null: false, default: '{}'
+      t.jsonb :details, null: false, default: {}
 
       t.timestamps
     end

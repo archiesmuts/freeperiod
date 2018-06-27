@@ -83,6 +83,7 @@ class RegistrationKlassesController < ApplicationController
     def registration_klass_params
       params.require(:registration_klass).permit(:name, :school_id,
         :course_id, :year, :tipe, :course_name, :slug,
-        { data: [:group_type, :sport_type, :more_information] }, { user_ids: [] })
+        { data: [:group_type, :sport_type, :more_information] },
+        { user_ids: [] })
     end
 end

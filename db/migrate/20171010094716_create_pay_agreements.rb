@@ -7,7 +7,7 @@ class CreatePayAgreements < ActiveRecord::Migration[5.1]
       t.text :comment
       t.string :slug, null: false, unique: true, index: true
       t.integer :version, null: false, default: 0
-      t.jsonb :details, null: false, default: '{}'
+      t.jsonb :details, null: false, default: {}
 
       t.timestamps
     end

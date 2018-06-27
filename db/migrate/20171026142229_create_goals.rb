@@ -4,7 +4,7 @@ class CreateGoals < ActiveRecord::Migration[5.1]
       t.string :name
       t.date :deadline
       t.integer :achievability, null: false, default: 0
-      t.integer :visibility, null: false, default: 0
+      t.integer :version, null: false, default: 0
       t.string :measurement
       t.string :person_responsible
       t.integer :achieved, null: false, default: 0

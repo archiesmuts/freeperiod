@@ -24,7 +24,7 @@ class Goal < ApplicationRecord
     sadly_no: 1,
     yes: 2
   }
-  enum visibility: {
+  enum version: {
     public: 0,
     private: 1,
   }
