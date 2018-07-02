@@ -32,12 +32,13 @@
                 </ul>
               </div>
             <% end %>
-            <% Membership.members.keys.map do |member| %>
+            <% Membership.primary_roles.keys.map do |primary_role| %>
               <label class="form-check-inline">
-                <%= f.radio_button :member, member, class: "form-check-input" %>
-                <span class="form-check-label"><%= member.humanize %></span>
+                <%= f.radio_button :primary_role, primary_role, class: "form-check-input" %>
+                <span class="form-check-label"><%= primary_role.humanize %></span>
               </label>
             <% end %>
+
           <% end %>
           <hr class="style2">
         <% end %>

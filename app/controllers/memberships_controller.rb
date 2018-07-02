@@ -92,6 +92,7 @@ class MembershipsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def membership_params
       params.require(:membership).permit(:user_id, :school_id, :primary_role, :school_name,
-        :user_name, :slug, details: [:date_enrolled, :date_completed, current_grades:[]])
+        :user_name, :slug,
+        { details: [:date_enrolled, :date_completed, :current_grades, :other_roles] })
     end
 end

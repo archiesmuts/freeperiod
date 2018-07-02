@@ -39,34 +39,34 @@
   </div>
 </div>
 
-<%= form_with scope: :membership, url: edit_multiple_school_memberships_path(@school), method: :post,  local: true  do %>
-  <div class="d-flex justify-content-center">
+<%#= form_with scope: :membership, url: edit_multiple_school_memberships_path(@school), method: :post,  local: true  do %>
+  <!-- <div class="d-flex justify-content-center">
     <p class="text-info">
       <button type="button" class="btn btn-outline-info" disabled>
-        <%= fa_icon("check-square", text: "Select and edit up to 5 records at a time.") %>
+        <%#= fa_icon("check-square", text: "Select and edit up to 5 records at a time.") %>
       </button>
       &nbsp;
-      <%= submit_tag "Edit Selected Records ", class: "btn btn-primary" %>
+      <%#= submit_tag "Edit Selected Records ", class: "btn btn-primary" %>
       &nbsp;
       <button class="btn btn-sm btn-info" type="button" data-toggle="collapse" data-target="#collapseEditTip" aria-expanded="false" aria-controls="collapseEditTip">
-        <%= fa_icon("info", text: "Tip") %>
+        <%#= fa_icon("info", text: "Tip") %>
       </button>
     </p>
-  </div>
-  <div class="collapse" id="collapseEditTip">
+  </div> -->
+  <!-- <div class="collapse" id="collapseEditTip">
     <div class="d-flex justify-content-center">
       <div class="card text-white bg-info w-50">
         <div class="card-body">
           <p class="card-text">
             When selecting records further down the page,
-            click on the <span class="badge badge-light"><%= fa_icon("angle-up") %></span> "Up to
+            click on the <span class="badge badge-light"><%#= fa_icon("angle-up") %></span> "Up to
             the Top - Arrow" button to quickly jump to the top of the page. The button will appear
             in the bottom-right corner of the page
           </p>
         </div>
       </div>
     </div>
-  </div>
+  </div> -->
   <div class="row">
     <div class="col-xl-10 offset-xl-1">
       <table class="table">
@@ -74,7 +74,7 @@
           <tr>
             <th></th>
             <th>Name and Email</th>
-            <th><%= fa_icon("check-square") %></th>
+            <th><%#= fa_icon("check-square") %></th>
             <th>Role</th>
             <th>Confirmed</th>
             <th colspan="2">Actions</th>
@@ -86,6 +86,6 @@
       </table>
     </div>
   </div>
-<% end %>
+<%# end %>
 
 <%#= render "modal_dialog" %>

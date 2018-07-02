@@ -22,7 +22,7 @@
       <%= f.label :school_name, "Name of your school" %>
       <%= f.text_field :school_name, id: :membership_school_name, class: "form-control", readonly: "readonly"  %>
     </div>
-    <p class="font-weight-bold">Specify the role for this person .</p>
+    <p class="font-weight-bold">Specify the primary role for this person .</p>
     <% Membership.primary_roles.keys.map do |primary_role| %>
       <label class="form-check-label form-check-inline">
         <%= f.radio_button :primary_role, primary_role, class: "form-check-input" %>
@@ -30,24 +30,34 @@
       </label>
     <% end %>
     <div class="alert alert-warning" id="alert-account-owner" role="alert">
-      <strong>Note!</strong> Assigning the "Account owner" role will provide ALL ACCESS to this person"
+      <strong>Security Warning!</strong> Assigning the "Account owner" role will provide ALL ACCESS to this person"
     </div>
-    <p class="font-weight-bold mt-2">Indicate the current Grade for this person</p>
+    <div class="membership-details my-2">
+      <%= f.fields_for :details, OpenStruct.new(@membership.details) do |d| %>
+          <div class="form-group">
+            <%= d.label :other_roles, "Specify any other roles that this person may have (separated by comma)." %>
+            <%= d.text_field :other_roles, class: "form-control" %>
+          </div>
+          <div class="form-group">
+            <%= d.label :current_grades, "Indicate current grade or grades (separated by comma)." %>
+            <%= d.text_field :current_grades, class: "form-control" %>
+          </div>
+        <div class="form-row">
+          <div class="form-group col-sm-3">
+            <%= fa_icon("calendar") %>&nbsp;<%= d.label :date_enrolled, "Date First Enrolled" %>
+            <%= d.text_field :date_enrolled, class: "form-control datetimepicker-membership" %>
+          </div>
+          <div class="form-group col-sm-3">
+            <%= fa_icon("calendar") %>&nbsp;<%= d.label :date_completed, "Date Exited School" %>
+            <%= d.text_field :date_completed, class: "form-control datetimepicker-membership" %>
+          </div>
+        </div>
+      <% end %>
+    </div>
 
-    <div class="form-check form-check-inline">
-      <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
-      <label class="form-check-label" for="inlineRadio1">Grade 8</label>
-    </div>
-    <div class="form-check form-check-inline">
-      <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2" checked>
-      <label class="form-check-label" for="inlineRadio2">Grade 9</label>
-    </div>
-    <div class="form-check form-check-inline">
-      <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio3" value="option3">
-      <label class="form-check-label" for="inlineRadio3">Grade 10</label>
-    </div>
+
     <hr>
-    <div class="actions my-2">
+    <div class="btn-group my-2">
       <%= link_to @membership, class: "btn btn-lg btn-outline-primary btn-block-xs" do %>
         <%= fa_icon("times", text: "Cancel") %>
       <% end %>

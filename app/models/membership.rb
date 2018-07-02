@@ -9,7 +9,7 @@ class Membership < ApplicationRecord
   belongs_to :school, inverse_of: :memberships
 
   validates_uniqueness_of :user_id, scope: :school_id, message: "membership already exists."
-  validates :user_id, :school_id, :primary_role, :profile, presence: true
+  validates :user_id, :school_id, :primary_role, :details, presence: true
   attribute :email, :string
   attribute :slug, :string
 
@@ -29,11 +29,11 @@ class Membership < ApplicationRecord
     account_owner: 6
   }
 
-  jsonb_accessor :profile,
+  jsonb_accessor :details,
     date_enrolled: :datetime,
     date_completed: :datetime,
-    current_grades: [:string, array: true, default: []],
-    other_roles: [:string, array: true, default: []]
+    current_grades: :string,
+    other_roles: :string
 
     # search_tags: [:string, array: true, default: []] #useful when having to add user to classes etc.
 

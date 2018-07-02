@@ -11,8 +11,12 @@ jQuery(document).on "turbolinks:load", ->
   $('.membership_user_name').hide()
   $('#alert-account-owner').hide()
 
-  $('[name="membership[member]"]').on 'click', ->
+  $('[name="membership[primary_role]"]').on 'click', ->
     if $(this).val() == 'account_owner'
       $('#alert-account-owner').show()
     else
       $('#alert-account-owner').hide()
+
+  $('.datetimepicker-membership').datetimepicker
+    viewMode: 'months',
+    format: "YYYY-MM-DD"

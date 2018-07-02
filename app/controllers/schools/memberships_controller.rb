@@ -43,16 +43,16 @@ class Schools::MembershipsController < ApplicationController
       case membership.member.to_sym
         when :account_owner
           user.add_role("account_owner", school)
-        when :school_admin
-          user.add_role("school_admin", school)
+        when :admin
+          user.add_role("admin", school)
         when :educator
           user.add_role("educator", school)
         when :learner
           user.add_role("learner", school)
         when :parent_or_guardian
-          user.add_role("parent_or_guardian", school)
+          user.add_role("parent", school)
         when :friend_of_school
-          user.add_role("friend_of_school", school)
+          user.add_role("friend", school)
       end
     end
     respond_to do |format|
