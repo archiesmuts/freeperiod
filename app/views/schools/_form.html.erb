@@ -16,12 +16,49 @@
     <%= form.label :name %>
     <%= form.text_field :name, id: :school_name, class: "form-control", placeholder: "Full name of your school" %>
   </div>
+  <div class="form-group">
+    <%= form.label :description %>
+    <%= form.text_area :description, id: :school_description, class: "form-control", placeholder: "Describe your school" %>
+  </div>
+  <div class="school-details my-2">
+    <%= form.fields_for :prospectus, OpenStruct.new(@school.prospectus) do |p| %>
+      <div class="form-group">
+        <%= p.label :emis_no, "EMIS Number" %>
+        <%= p.text_field :emis_no, class: "form-control" %>
+      </div>
+      <div class="form-group">
+        <%= p.label :sector, "In which sector does the school operate?" %>
+        <%= p.text_field :sector, class: "form-control" %>
+      </div>
+      <div class="form-group">
+        <%= p.label :phase, "In which phase does the school operate?" %>
+        <%= p.text_field :phase, class: "form-control" %>
+      </div>
+      <div class="form-group">
+        <%= p.label :specialization, "List any specialization" %>
+        <%= p.text_field :specialization, class: "form-control" %>
+      </div>
+      <div class="form-group">
+        <%= p.label :sport, "List all sports on offer" %>
+        <%= p.text_field :sport, class: "form-control" %>
+      </div>
+
+    <% end %>
+  </div>
+  <div class="school-preferences pb-2">
+    <%= form.fields_for :preferences, OpenStruct.new(@school.preferences) do |p| %>
+      <div class="form-group">
+        <%= p.label :no_of_terms, "Number of Terms" %>
+        <%= p.number_field :no_of_terms, class: "form-control" %>
+      </div>
+    <% end %>
+  </div>
 
   <div class="actions">
     <%= link_to current_user, class: "btn btn-lg btn-outline-primary" do %>
       <%= fa_icon("times", text: "Cancel") %>
     <% end %>
-    <%= form.submit "Create Account",  class: "btn btn-lg btn-primary" %>
+    <%= form.submit "Save",  class: "btn btn-lg btn-primary" %>
 
   </div>
 <% end %>
