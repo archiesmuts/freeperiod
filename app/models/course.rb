@@ -10,7 +10,9 @@ class Course < ApplicationRecord
 
   enum subject_type: {
     subject: 0,
-    registration: 1
+    registration: 1,
+    sport: 2,
+    extracurricular: 3
   }
 
   jsonb_accessor :details,
