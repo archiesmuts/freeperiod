@@ -15,7 +15,7 @@ class School < ApplicationRecord
 
   validates :name, :slug, presence: true
   validates :name, uniqueness: true
-  validates_associated :memberships
+  # validates_associated :memberships # this caused a membership invalid error 
   validates_associated :registration_klasses
   # validates :name, unique: true
 
@@ -23,12 +23,11 @@ class School < ApplicationRecord
     emis_no: :string,
     sector: :string,
     phase: :string,
-    specialization: [:string, array: true, default: []],
-    sport: [:string, array: true, default: []]
+    specialization: :string,
+    sport: :string
 
   jsonb_accessor :preferences,
     no_of_terms: :integer
-
 
   def should_generate_new_friendly_id?
     name_changed?

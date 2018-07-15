@@ -3,7 +3,7 @@
   <ol class="breadcrumb">
     <li class="breadcrumb-item">
       <%= link_to @school  do %>
-      <%= fa_icon("arrow-left", text: "School home") %>
+        <%= fa_icon("arrow-left", text: "School home") %>
       <% end %>
     </li>
     <li class="breadcrumb-item active" aria-current="page">School Membership Administration</li>
@@ -19,16 +19,22 @@
         <small><span class="badge badge-info"><%= @school.memberships.size %></span></small>
       </h1>
       <p class="lead">
-        This list includes Educators, Learners, Parents/Guardians and Other (e.g. SGB members) people that will have
-        some sort of role in the sall the people that were invited and confirmed.
+        This list should include Educators, Other staff(not educators), Learners, Parents/Guardians,
+        SGB members and PTA members. SGB members may also include other people that do not fall
+        into any of the aforementioned categories. We can group those as "Friends of school".
       </p>
       <div class="row">
-        <div class="col-sm-6">
+        <div class="col-sm-4">
+          <%= link_to @school, class: "btn btn-lg btn-primary"  do %>
+            <%= fa_icon("arrow-left", text: "Back") %>
+          <% end %>
+        </div>
+        <div class="col-sm-4">
           <a class="btn btn-info" data-toggle="collapse" href="#collapseRegistrationHelp" aria-expanded="false" aria-controls="collapseRegistrationHelp">
             <%= fa_icon("info-circle", text: "Registration Guide") %>
           </a>
         </div>
-          <div class="col-sm-6">
+          <div class="col-sm-4">
             <form class="form-inline my-2 my-lg-0">
               <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
               <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>

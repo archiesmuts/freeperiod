@@ -22,10 +22,10 @@ class Membership < ApplicationRecord
   enum primary_role: {
     not_defined: 0,
     educator: 1,
+    staff: 5,
     learner: 2,
     parent_or_guardian: 3,
     friend_of_school: 4,
-    administrator: 5,
     account_owner: 6
   }
 

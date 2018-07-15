@@ -42,23 +42,25 @@ class MembershipsController < ApplicationController
   def update
     user = @membership.user
     school = @membership.school
-    current_member = @membership.primary_role.to_sym
+    current_role = @membership.primary_role.to_sym
     respond_to do |format|
       if @membership.update(membership_params)
-        user.remove_role(current_member, school)
-        case @membership.primary_role.to_sym
-          when :account_owner
-            user.add_role("account_owner", school)
-          when :administrator
-            user.add_role("admin", school)
-          when :educator
-            user.add_role("educator", school)
-          when :learner
-            user.add_role("learner", school)
-          when :parent_or_guardian
-            user.add_role("parent", school)
-          when :friend_of_school
-            user.add_role("friend", school)
+        if @membership.primary_role_changed?
+          user.remove_role(current_role, school)
+          case @membership.primary_role.to_sym
+            when :account_owner
+              user.add_role("account_owner", school)
+            when :staff
+              user.add_role("staff", school)
+            when :educator
+              user.add_role("educator", school)
+            when :learner
+              user.add_role("learner", school)
+            when :parent_or_guardian
+              user.add_role("parent", school)
+            when :friend_of_school
+              user.add_role("friend", school)
+          end
         end
         format.html { redirect_to @membership, notice: 'School registration was successfully updated.' }
         format.json { render :show, status: :ok, location: @membership }

@@ -6,7 +6,7 @@ class Schools::MembershipsController < ApplicationController
   layout "application_alt"
 
   def index
-    memberships = @school.memberships.all
+    memberships = @school.memberships.includes(:users, :schools).order("slug")
     membership = Membership.new
     # TODO add slug containing user.last_name_reversed for orderinf the index view
   end
@@ -39,20 +39,22 @@ class Schools::MembershipsController < ApplicationController
       school = membership.school
       user = membership.user
       current_member = membership.member.to_sym
-      user.remove_role(current_member, school)
-      case membership.member.to_sym
-        when :account_owner
-          user.add_role("account_owner", school)
-        when :admin
-          user.add_role("admin", school)
-        when :educator
-          user.add_role("educator", school)
-        when :learner
-          user.add_role("learner", school)
-        when :parent_or_guardian
-          user.add_role("parent", school)
-        when :friend_of_school
-          user.add_role("friend", school)
+      if @membership.primary_role_changed?
+        user.remove_role(current_member, school)
+        case membership.member.to_sym
+          when :account_owner
+            user.add_role("account_owner", school)
+          when :staff
+            user.add_role("staff", school)
+          when :educator
+            user.add_role("educator", school)
+          when :learner
+            user.add_role("learner", school)
+          when :parent_or_guardian
+            user.add_role("parent", school)
+          when :friend_of_school
+            user.add_role("friend", school)
+        end
       end
     end
     respond_to do |format|

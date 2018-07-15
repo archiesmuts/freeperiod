@@ -34,7 +34,7 @@
             <!-- current_grades  and other_roles-->
             <div class="row">
               <div class="col">
-                Current Grades:
+                Current Grade/s:<br>
                 <% unless @membership.current_grades.blank? %>
                   <% @membership.current_grades.split(",").each do |grade| %>
                     <span class="badge badge-secondary"><%= grade %></span>&nbsp;
@@ -42,11 +42,13 @@
                 <% end %>
               </div>
               <div class="col">
-                Other Roles:
+                Other Roles:<br>
                 <% unless @membership.other_roles.blank? %>
                   <% @membership.other_roles.split(",").each do |other_role| %>
                     <span class="badge badge-secondary"><%= other_role %></span>&nbsp;
                   <% end %>
+                  <% else %>
+                    <span class="badge badge-secondary">None</span>
                 <% end %>
               </div>
             <!-- end current_grades and other_roles -->
@@ -61,7 +63,7 @@
               <div class="col">
                 Date Exited School: &nbsp;
                 <span class="badge badge-secondary">
-                  <%= @membership.date_completed.blank? ? "Still enrolled" : @membership.date_completed.strftime("%d %b %Y") %>
+                  <%= @membership.date_completed.blank? ? "Enrolled" : @membership.date_completed.strftime("%d %b %Y") %>
                 </span>
               </div>
               <!-- end enrollment -->
@@ -119,7 +121,7 @@
         <%= fa_icon "arrow-left", text: "Back" %>
         <% end %>
       <%= link_to edit_membership_path(@membership), class: "btn btn-lg btn-primary" do %>
-        <%= fa_icon "pencil-alt", text: "Edit registration" %>
+        <%= fa_icon "edit", text: "Edit registration" %>
       <% end %>
     </div>
   </div>

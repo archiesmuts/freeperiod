@@ -9,8 +9,8 @@ class User < ApplicationRecord
   before_create :generate_uuid, unless: :slug?
   extend FriendlyId
   friendly_id :slug_candidates, use: :slugged
-  has_many :memberships, inverse_of: :user, dependent: :destroy
-  has_many :schools, through: :memberships
+  has_many :memberships, -> { order('created_at DESC') }, inverse_of: :user, dependent: :destroy
+  has_many :schools, -> { order('created_at DESC') }, through: :memberships
   has_many :user_registrations
   has_many :registration_klasses, through: :user_registrations
   has_many :comments, -> { order('created_at DESC') }, inverse_of: :user
@@ -20,22 +20,9 @@ class User < ApplicationRecord
 
   validates :first_name, :last_name, :slug, presence: true
   validates :terms_of_privacy_statement, acceptance: true
-  validates_associated :memberships
+  # validates_associated :memberships
   validates_associated :registration_klasses
 
-  scope :registered_learners, -> {joins(schools: [:registration_klasses])
-    .where(memberships: {member: "learner"} )
-    .distinct
-    .order("users.last_name ASC, users.first_name ASC")}
-
-  scope :registered_teachers, -> { joins(schools: [:registration_klasses])
-    .where(memberships: {member: "educator"})
-    .distinct
-    .order("users.last_name ASC, users.first_name ASC")}
-
-  # def school_id
-  #   school_ids.first
-  # end
   def slug_candidates
     [
       [:name_reversed ],
