@@ -1,5 +1,6 @@
 <!-- registration_klass edit form -->
 <%= form_with(model: [@registration_klass.school, @registration_klass], id: :edit_registration_klass, class: :edit_registration_klass, local: true) do |form| %>
+  <!-- error messages  -->
   <div class="row">
     <div class="col">
       <% if @registration_klass.errors.any? %>
@@ -14,18 +15,9 @@
       <% end %>
     </div>
   </div> <!-- first .row -->
+  <!-- start of form fields -->
   <div class="row">
     <div class="col-md">
-       <div class="form-group">
-        <%= form.label :klass_type, "Is this a Subject/Registration Class or Team?", class: "form-label" %><br>
-        <% RegistrationKlass.klass_types.keys.map do |klass_type| %>
-          <label class="form-check-inline">
-            <%= form.radio_button :klass_type, klass_type, class: "form-check-input" %>
-            <span class="form-check-label"><%= klass_type.humanize %></span>
-          </label>
-        <% end %>
-      </div>
-
       <div class="form-group">
         <%= form.label :name, "Class name" %>
         <%= form.text_field :name, id: :registration_klass_name, class: "form-control", required: true %>
@@ -50,7 +42,7 @@
             prompt: { year: 'Select year' },
             class: "form-control" %>
       </div>
-      <div class="actions">
+      <div class="btn-group">
         <%= link_to [@registration_klass.school, @registration_klass ],
             class: "btn btn-lg btn-outline-primary" do %>
             <%= fa_icon("times", text: "Cancel") %>
@@ -61,10 +53,9 @@
     <div class="col-md">
       <div class="form-group">
       <h4 class="text-white"><%= form.label :user_id, "Select Learners for this class", class: "form-label" %></h4>
-            <!-- TODO create a scope to select users who are members of this school -->
             <!-- TODO how to filter users to shorten the lookup list on checkbox -->
         <div class="collection-check-boxes">
-          <%= form.collection_check_boxes :user_ids, User.registered_learners, :id, :full_name do |b| %>
+          <%= form.collection_check_boxes :user_ids, User.with_role(:learner, @registration_klass.school ), :id, :full_name do |b| %>
           <label class="form-check">
             <%= b.check_box class: "form-check-input" %>
             <span class="form-check-label"><%= b.label %></span>

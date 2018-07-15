@@ -7,7 +7,7 @@
     </span>
   </a>
 </li>
-<% if @registration_klass.subject_class? %>
+<%# if @registration_klass.subject_class? %>
 <li>
   <a class="app-menu__item" id="lesson-plans-tab" data-toggle="pill" href="#lesson-plans" role="tab" aria-controls="lesson_plans" aria-selected="false">
     <%= fa_icon("book", class: "app-menu__icon mr-2") %>
@@ -16,7 +16,7 @@
     </span>
   </a>
 </li>
-<% end %>
+<%# end %>
 <li>
   <a class="app-menu__item" id="class-achievements-tab" data-toggle="pill" href="#class-achievements" role="tab" aria-controls="" aria-selected="false">
     <%= fa_icon("trophy", class: "app-menu__icon mr-2") %>

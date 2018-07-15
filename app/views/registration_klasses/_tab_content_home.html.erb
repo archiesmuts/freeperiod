@@ -2,15 +2,13 @@
 <div class="app-title" aria-label="breadcrumb">
   <div>
     <h1 class="h2">
-      <% if @registration_klass.klass_type == "subject_class" %>
-        <%= fa_icon("graduation-cap") %>
-        &nbsp;<%= @registration_klass.course_name %>
-        &nbsp;Class
-      <% else %>
+      <%# if @registration_klass.klass_type == "subject_class" %>
+
+      <%# else %>
       <%= fa_icon("graduation-cap") %>
         &nbsp;<%= @registration_klass.course_name %>
         &nbsp;Class
-      <% end %>
+      <%# end %>
     </h1>
     <p>Monitor, Evaluate and Improve</p>
   </div>
@@ -35,7 +33,7 @@
       <h2 class="h4">&nbsp;<%= @registration_klass.course_name %> - <%= @registration_klass.year.strftime("%Y") %></h2>
       <h3 class="h4 text-white">
         <%= fa_icon "users", text: "Learners" %>&nbsp;
-        <span class="badge badge-success"><%= @registration_klass.learners.size %></span>
+        <span class="badge badge-success"><%#= @registration_klass.learners.size %></span>
       </h3>
       <p class="lead text-info">Note. You can also add learners by clicking on the "Edit" button</p>
       <hr>
@@ -48,17 +46,17 @@
             <%= fa_icon("arrow-left", text: "Back") %>
           <% end %>
 
-            <% unless @registration_klass.school_faculty? %>
+            <%# unless @registration_klass.school_faculty? %>
               <%= link_to edit_school_registration_klass_path(@registration_klass.school, @registration_klass),
                 data: {toggle: "tooltip"}, title: "Edit class and/or Add Learners", class: "btn btn-lg btn-primary" do %>
-                <%= fa_icon "pencil-alt", text: "Edit class" %>
+                <%= fa_icon "pencil-alt", text: "Edit" %>
               <% end %>
-            <% else %>
+            <%# else %>
               <%= link_to select_faculty_school_registration_klass_path(@registration_klass.school, @registration_klass),
                 data: {toggle: "tooltip"}, title: "Edit and/or Add faculty members", class: "btn btn-lg btn-secondary " do %>
                 <%= fa_icon "pencil-square", text: "Edit faculty" %>
               <% end %>
-            <% end %>
+            <%# end %>
           </div>
         </div>
         <div class="col-lg-6">

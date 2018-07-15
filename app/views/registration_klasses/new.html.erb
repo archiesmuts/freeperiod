@@ -1,3 +1,5 @@
+<% content_for :title do %>fp New Group<% end %>
+
 <div class="app-sidebar__overlay" data-toggle="sidebar"></div>
 <aside class="app-sidebar">
   <%= render "sidebar_user" %>
@@ -6,18 +8,22 @@
       <a class="app-menu__item active" id="class-home-tab" data-toggle="pill" href="#" role="tab" aria-controls="class-home" aria-selected="true">
         <%= fa_icon("chalkboard-teacher", class: "app-menu__icon mr-2") %>
         <span class="app-menu__label">
-          Add a new class
+          Add a new group list
         </span>
       </a>
     </li>
   </ul>
 </aside>
-<div class="row">
-  <div class="col-md-10 offset-md-1">
-    <h1>New Class, School Faculty or Administration </h1>
-    <%= render 'new_form', registration_klass: @registration_klass %>
- <!-- TODO  add description/notes of the type of class to form -->
-  </div>
+  <div class="row">
+    <div class="col-xl-10">
+      <h1>New Group List</h1>
+      <p class="lead">
+        Your group could be one of the following, i.e. Registration Class,
+        Subject Class, Faculty, Administration, Sport Team, PTA or SGB.<br>
+      </p>
+      <%= render 'new_form', registration_klass: @registration_klass %>
+      <!-- TODO  add description/notes of the type of class to form -->
+    </div>
   </div>
 
 </div>

@@ -14,23 +14,26 @@
     </div>
   </div> <!-- first .row -->
   <div class="row">
-    <div class="col-md">
-       <div class="form-group">
-        <%= form.label :klass_type, "Is this a Subject Class or a Registration Class?", class: "form-label" %><br>
-        <% RegistrationKlass.klass_types.keys.map do |klass_type| %>
-          <label class="form-check-inline">
-            <%= form.radio_button :klass_type, klass_type, class: "form-check-input" %>
-            <span class="form-check-label"><%= klass_type.humanize %></span>
-          </label>
-        <% end %>
-      </div>
-
+    <div class="col-sm-7 col-lg-8">
       <div class="form-group">
-        <%= form.label :name, "Class name" %>
+        <%= form.label :name, "Name of Class, Team or Group" %>
         <%= form.text_field :name, id: :registration_klass_name, class: "form-control", required: true %>
-        <small id="classNameHelp" class="form-text text-info">Unique Name of Class.</small>
+        <small id="classNameHelp" class="form-text text-info">Unique Name of Class/Group</small>
       </div>
-
+      <p>
+        Select type of group.
+        <%= render "group_type_selection" %>
+      </p>
+      <%= form.fields_for :data, OpenStruct.new(@registration_klass.data) do |d| %>
+        <div class="form-group">
+          <%= d.label :group_type, "The type of Group, i.e. class, team etc." %>
+          <%= d.text_field :group_type, class: "form-control" %>
+        </div>
+        <div class="form-group">
+          <%= d.label :sport_type, "Indicate the type of sport" %>
+          <%= d.text_field :sport_type, class: "form-control" %>
+        </div>
+      <% end %>
       <div class="form-group">
         <%= form.label :course_name, "Grade and Subject Name" %>
         <%= form.text_field :course_name, data: { autocomplete_source: school_courses_path },
@@ -43,33 +46,40 @@
       <div class="form-group">
         <%= form.label :year, "Academic Year" %>
         <%= form.date_select :year,
-            selected: Date.today,
-            discard_day: true, discard_month: true,
-            end_year: Date.today.year,
-            prompt: { year: 'Select year' },
-            class: "form-control" %>
+          selected: Date.today,
+          discard_day: true, discard_month: true,
+          end_year: Date.today.year,
+          prompt: { year: 'Select year' },
+          class: "form-control" %>
       </div>
-      <div class="actions">
-        <%= link_to school_registration_klasses_path(@school), class: "btn btn-lg btn-outline-warning" do %>
-          <%= fa_icon("times", text: "Cancel") %>
-        <% end %>
-        <%= form.submit "Save Class/Team", class: "btn btn-lg btn-primary" %>
+
+      <%= form.fields_for :data, OpenStruct.new(@registration_klass.data) do |d| %>
+        <div class="form-group">
+          <%= d.label :more_information, "More information" %>
+          <%= d.text_area :more_information, class: "form-control" %>
+        </div>
+      <% end %>
+      <div class="d-none d-sm-block">
+        <div class="btn-group">
+          <%= link_to school_registration_klasses_path(@school), class: "btn btn-lg btn-outline-primary" do %>
+            <%= fa_icon("times", text: "Cancel") %>
+          <% end %>
+          <%= form.submit "Save Class/Team", class: "btn btn-lg btn-primary" %>
+        </div>
       </div>
     </div>
-    <div class="col-md" id="list_teachers_check_boxes">
-      <h4 class="text-white">Select the teachers for your School Faculty</h4>
+    <div class="col-sm-5 col-lg-4" id="list_teachers_check_boxes">
+      <h4 class="text-white">Select teachers</h4>
         <div class="form-check">
           <input class="form-check-input" type="checkbox" value="" id="checkAll">
           <label class="form-check-label" for="checkAll">
-            Click to Select All
+            Select All
           </label>
         </div>
         <hr>
       <div class="form-group">
-            <!-- TODO create a scope to select users who are members of this school -->
-            <!-- TODO how to filter users to shorten the lookup list on checkbox -->
         <div class="collection-check-boxes">
-          <%= form.collection_check_boxes :user_ids, User.registered_teachers, :id, :full_name do |b| %>
+          <%= form.collection_check_boxes :user_ids, User.with_role(:educator, @school), :id, :full_name do |b| %>
           <label class="form-check">
             <%= b.check_box class: "form-check-input box" %>
             <span class="form-check-label"><%= b.label %></span>
@@ -77,22 +87,37 @@
           <% end %>
         </div>
       </div>
+      <div class=" d-block d-sm-none">
+        <div class="btn-group">
+          <%= link_to school_registration_klasses_path(@school), class: "btn btn-lg btn-outline-primary" do %>
+            <%= fa_icon("times", text: "Cancel") %>
+          <% end %>
+          <%= form.submit "Save Class/Team", class: "btn btn-lg btn-primary" %>
+        </div>
+      </div>
     </div>
-    <div class="col-md" id="list_teachers_radio_buttons">
-      <h4 class="text-white"> Select the Teacher for this class</h4>
-      <p class="text-info">You will be able to add the Learners or Substitue Teacher later.</p>
+    <div class="col-sm-5 col-lg-4" id="list_teachers_radio_buttons">
+      <h4 class="text-white"> Select Teacher</h4>
+      <p class="text-info">You will be able to add the Learners or Substitute Teacher later.</p>
       <div class="form-group">
         <h5><%= form.label :user_id, "Names of Teachers", class: "form-label" %></h5>
-            <!-- TODO create a scope to select users who are members of this school -->
             <!-- TODO how to filter users to shorten the lookup list on checkbox -->
         <div class="collection-check-boxes">
-          <%= form.collection_radio_buttons :user_ids, User.registered_teachers, :id, :full_name do |b| %>
+          <%= form.collection_radio_buttons :user_ids, User.with_role(:educator, @school), :id, :full_name do |b| %>
           <label class="form-check">
             <%= b.radio_button class: "form-check-input" %>
             <span class="form-check-label"><%= b.label %></span>
           </label>
           <% end %>
         </div>
+      </div>
+      <div class="d-block d-sm-none">
+        <div class="btn-group">
+        <%= link_to school_registration_klasses_path(@school), class: "btn btn-lg btn-outline-primary" do %>
+          <%= fa_icon("times", text: "Cancel") %>
+        <% end %>
+        <%= form.submit "Save Class/Team", class: "btn btn-lg btn-primary" %>
+      </div>
       </div>
     </div>
   </div>

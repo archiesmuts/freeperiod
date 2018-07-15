@@ -21,13 +21,27 @@ jQuery(document).on "turbolinks:load", ->
 
   $('#list_teachers_check_boxes').hide()
 
-  $('[name="registration_klass[klass_type]"]').on 'click', ->
-    if jQuery(this).val() == 'school_faculty'
-      $('#list_teachers_radio_buttons').hide()
-      $('#list_teachers_check_boxes').show()
-    else
+  $('[name="group-type"]').on 'click', ->
+    if $(this).is('#registration')
+      value = $(this).val()
+      $("#registration_klass_data_group_type").val(value)
       $('#list_teachers_radio_buttons').show()
       $('#list_teachers_check_boxes').hide()
+    else if $(this).is('#subject')
+      value = $(this).val()
+      $("#registration_klass_data_group_type").val(value)
+      $('#list_teachers_radio_buttons').show()
+      $('#list_teachers_check_boxes').hide()
+    else if $(this).is('#faculty')
+      value = $(this).val()
+      $("#registration_klass_data_group_type").val(value)
+      $('#list_teachers_radio_buttons').hide()
+      $('#list_teachers_check_boxes').show()
+    else if $(this).is('#admin')
+      value = $(this).val()
+      $("#registration_klass_data_group_type").val(value)
+      $('#list_teachers_check_boxes').show()
+      $('#list_teachers_radio_buttons').hide()
 
   $('#checkAll').click ->
     $('.box').prop 'checked', $(this).prop('checked')

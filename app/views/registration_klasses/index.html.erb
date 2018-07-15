@@ -1,4 +1,4 @@
-<% content_for :title do %>fp List of Classes<% end %>
+<% content_for :title do %>fp Classes and Teams<% end %>
 <div class="app-sidebar__overlay" data-toggle="sidebar"></div>
 <aside class="app-sidebar">
   <%= render "sidebar_user" %>
@@ -7,12 +7,13 @@
       <a class="app-menu__item active" id="class-home-tab" data-toggle="pill" href="#" role="tab" aria-controls="class-home" aria-selected="true">
         <%= fa_icon("cogs", class: "app-menu__icon mr-2") %>
         <span class="app-menu__label">
-         Manage classes
+         Manage group lists
         </span>
       </a>
     </li>
   </ul>
 </aside>
+<!-- .nav.breadcrumb -->
 <div class="app-title" aria-label="breadcrumb">
   <div>
     <h1 class="h2"><%= fa_icon("chalkboard-teacher", text: "Faculty, Registration and Subject Classes") %></h1>
@@ -27,77 +28,94 @@
     </li>
   </ul>
 </div>
-<!-- .nav.breadcrumb -->
-<div class="row">
-  <div class="col-md-8">
-    <h1 class="h2">Faculty, Registration and Subject Classes</h1>
-      <%= link_to @school, class: "btn btn-lg btn-outline-primary" do %>
-        <%= fa_icon("arrow-left", text: "Back") %>
-      <% end %>
-
-      <%= link_to new_school_registration_klass_path(@school), class: "btn btn-lg btn-primary" do %>
-      <%= fa_icon("plus", text: "Add a New Class") %>
-      <% end %>
-  </div>
-  <div class="col-md-4">
-    <form class="form-inline">
-      <div class="form-group">
-        <input class="form-control my-2 mr-sm-2" type="search" placeholder="Type to filter list" aria-label="Search">
-        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-      </div>
-    </form>
-  </div>
-</div>
+<!-- end .nav.breadcrumb -->
+<h1 class="h2">Groups of Classes and Teams</h1>
 <!-- .row -->
+<% if @school.registration_klasses.any? %>
+  <div class="row">
+    <div class="col-md-8">
+      <div class="btn-group">
+        <%= link_to @school, class: "btn btn-lg btn-outline-primary" do %>
+          <%= fa_icon("arrow-left", text: "Back") %>
+        <% end %>
 
-<table class="table table-bordered table-hover mt-3">
-  <thead class="bg-dark">
-    <tr>
-      <th scope="col">Faculty, Administration & Class</th>
-      <th scope="col">Registration Type</th>
-      <th scope="col" class="text-center"><%= fa_icon("users") %></th>
-      <th scope="col">Grade & Subject</th>
-      <th scope="col">Year</th>
-      <th scope="col">Actions</th>
-    </tr>
-  </thead>
-  <tbody id="list-registration-klasses">
-    <% @school.registration_klasses.each do |registration_klass| %>
+        <%= link_to new_school_registration_klass_path(@school), class: "btn btn-lg btn-primary" do %>
+        <%= fa_icon("plus", text: "Add a New Group") %>
+        <% end %>
+    </div>
+    </div>
+    <div class="col-md-4">
+      <form class="form-inline">
+        <div class="form-group">
+          <input class="form-control my-2 mr-sm-2" type="search" placeholder="Type to filter list" aria-label="Search">
+          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <table class="table table-bordered table-hover mt-3">
+    <thead class="bg-dark">
       <tr>
-        <th scope="row"><%= registration_klass.name %></th>
-        <td><%= registration_klass.klass_type.humanize %></td>
-        <td class="text-center"><%= registration_klass.learners.size %></td>
-        <td><%= registration_klass.course.name %></td>
-        <td><%= registration_klass.year.strftime("%Y") %></td>
-        <td>
-          <div class="dropdown">
-            <button class="btn btn-link dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              <%= fa_icon("ellipsis-h lg") %>
-            </button>
-            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-              <%= link_to [registration_klass.school, registration_klass], class: "btn btn-link dropdown-item" do %>
-                <%= fa_icon("id-card", text: "Show") %>
-              <% end %>
-              <%= link_to  [registration_klass.school, registration_klass],
-                method: :delete,
-                data: { title: 'Are you sure you want to delete this record?',
-                        confirm: 'Warning! This action is destructive. It will also delete all associated data etc.',
-                        verify: 'YES', verify_text: 'Type "YES" to confirm'},
-                class: "btn btn btn-link dropdown-item" do %>
-                <%= fa_icon("trash", text: "Delete") %>
-              <% end %>
-
-            </div>
-          </div>
-
-
-
-        </td>
+        <th scope="col">Faculty, Administration & Class</th>
+        <th scope="col">Registration Type</th>
+        <th scope="col" class="text-center"><%= fa_icon("users") %></th>
+        <th scope="col">Grade & Subject</th>
+        <th scope="col">Year</th>
+        <th scope="col">Actions</th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
-<!-- table -->
+    </thead>
+    <tbody id="list-registration-klasses">
+      <% @school.registration_klasses.each do |registration_klass| %>
+        <tr>
+          <th scope="row"><%= registration_klass.name %></th>
+          <td><%#= registration_klass.klass_type.humanize %></td>
+          <td class="text-center"><%#= registration_klass.learners.size %></td>
+          <td><%= registration_klass.course.name %></td>
+          <td><%= registration_klass.year.strftime("%Y") %></td>
+          <td>
+            <div class="dropdown">
+              <button class="btn btn-link dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <%= fa_icon("ellipsis-h lg") %>
+              </button>
+              <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <%= link_to [registration_klass.school, registration_klass], class: "btn btn-link dropdown-item" do %>
+                  <%= fa_icon("id-card", text: "Show") %>
+                <% end %>
+                <%= link_to edit_school_registration_klass_path(registration_klass.school, registration_klass), class: "btn btn-link dropdown-item" do %>
+                  <%= fa_icon("edit", text: "Edit") %>
+                <% end %>
+                <%= link_to  [registration_klass.school, registration_klass],
+                  method: :delete,
+                  data: { title: 'Are you sure you want to delete this record?',
+                  confirm: 'Warning! This action is destructive. It will also delete all associated data etc.',
+                  verify: 'YES', verify_text: 'If you are sure type "YES" and then click on "Confirm" to delete the record.'},
+                  class: "btn btn btn-link dropdown-item" do %>
+                  <%= fa_icon("trash", text: "Delete") %>
+                <% end %>
+              </div>
+            </div>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <!-- table -->
+  <% else %>
+    <div class="row">
+      <div class="col-md-8">
+        <p class="lead">You have a clean slate. Go ahead and create a new group list</p>
+        <div class="btn-group">
+          <%= link_to @school, class: "btn btn-lg btn-outline-primary" do %>
+            <%= fa_icon("arrow-left", text: "Back") %>
+          <% end %>
+          <%= link_to new_school_registration_klass_path(@school), class: "btn btn-lg btn-primary" do %>
+            <%= fa_icon("plus", text: "Add a New Group") %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+<% end %>
 <!-- modal dialog for creating registration classes -->
 <!-- form via modal_dialog  -->
 <%= render "modal_dialog" %>

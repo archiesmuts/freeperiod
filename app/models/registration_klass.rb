@@ -1,4 +1,4 @@
-class RegistrationKlass < ApplicationRecord
+  class RegistrationKlass < ApplicationRecord
   resourcify
   extend FriendlyId
   friendly_id :name, use: :slugged
@@ -18,10 +18,10 @@ class RegistrationKlass < ApplicationRecord
   validates :school_id, :course_id, :name, :data, :year, :slug, presence: true
   # TODO add more items to data
   jsonb_accessor :data,
-    group_type: [:string, default: "Registration Class"],
+    group_type:   [:string, default: "Registration Class"],
     sport_type: :string,
     more_information: :string
-
+    # TODO add preferences to show/hide recording of attendances
   def should_generate_new_friendly_id?
     name_changed?
   end
@@ -33,4 +33,8 @@ class RegistrationKlass < ApplicationRecord
   def course_name=(name)
     self.course = Course.where(name: name).take if name.present?
   end
+
+  # def grade
+  #   self.course.grade_name
+  # end
 end
