@@ -20,24 +20,19 @@
         </p>
     </div>
     <div class="card-footer">
-      <div class="row">
-        <div class="col-7">
-          <%= link_to [lesson_plan.registration_klass, lesson_plan], method: :delete,
-            data: { title: 'Are you sure you want to delete this lesson plan?',
-              confirm: 'Warning! This action is destructive. It will also delete all associated data etc.',
-              verify: 'YES', verify_text: 'Type "YES" to confirm'},
-              remote: true, class: "btn btn-danger delete-lesson-plan" do %>
-            <%= fa_icon("trash-alt", text: "Delete", style: "regular") %>
-          <% end %>
-        </div>
-        <div class="col-5">
-          <%= link_to [lesson_plan.registration_klass, lesson_plan],
-            class: "btn btn-primary btn-block" do %>
-              <%= fa_icon("expand", text: "Show")%>
-          <% end %>
-        </div>
+      <div class="btn-group">
+        <%= link_to [lesson_plan.registration_klass, lesson_plan], method: :delete,
+          data: { title: 'Are you sure you want to delete this lesson plan?',
+            confirm: 'Warning! This action is destructive. It will also delete all associated data etc.',
+            verify: 'YES', verify_text: 'Type "YES" to confirm'},
+            remote: true, class: "btn btn-danger delete-lesson-plan" do %>
+          <%= fa_icon("trash-alt", text: "Delete", style: "regular") %>
+        <% end %>
+        <%= link_to [lesson_plan.registration_klass, lesson_plan],
+          class: "btn btn-primary btn-block" do %>
+            <%= fa_icon("expand", text: "Show")%>
+        <% end %>
       </div>
-
     </div>
   </div>
 </div>
