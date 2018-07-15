@@ -1,6 +1,6 @@
 class UserRegistrationsController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_registration_klass, only: [:new, :create, :show]
+  before_action :set_registration_klass, only: [:new, :create, :update, :show]
   before_action :set_registration, only: [:show, :edit, :update, :destroy]
 
   # GET /user_registrations
@@ -82,6 +82,6 @@ class UserRegistrationsController < ApplicationController
     def user_registration_params
       params.require(:user_registration).permit(:registration_klass_id, :user_id,
                       :completed, :completed_at,
-                      { details: [:user_type, player_info: []] } )
+                      { details: [:general_info, :player_info] } )
     end
 end

@@ -1,7 +1,13 @@
-<% if @user_registration.teacher? %>
-  Teacher
-<% elsif @user_registration.substitute_teacher? %>
-  Substitute teacher
+<% if @user_registration.user.has_role? "educator",  @user_registration.school %>
+  <% if @user_registration.registration_klass.course_name.downcase.include? "sport" %>
+    Coaching staff
+    <% else %>
+    Teacher
+  <% end %>
 <% else %>
-  Learner
+  <% if @user_registration.registration_klass.course_name.downcase.include? "sport" %>
+    Player
+    <% else %>
+    Learner
+  <% end %>
 <% end %>

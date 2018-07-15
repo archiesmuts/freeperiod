@@ -5,11 +5,12 @@
         <img class="align-self-start mr-3" data-src="holder.js/80x80?auto=yes&theme=sky&text=logo" alt="headshot">
         <div class="media-body">
           <h5 class="mt-0"><%= user_registration.user_name %></h5>
-              <% unless user_registration.user.roles.empty? %>
-                <%= user_type(user_registration.user) %>
-              <% else %>
-                <span class="badge badge-warning">No roles assigned</span>
-              <% end %>
+          <% if user_registration.user.has_role? :learner, user_registration.school %>
+            Player
+            <% elsif user_registration.user.has_role? :educator, user_registration.school%>
+            Coaching staff
+          <% end %>
+
           <!-- FIXME FIX user_type method in user_helper.erb -->
         </div>
       </div><!-- .media -->
@@ -17,20 +18,16 @@
     <!--TODO add view role check if user is eductaor  -->
     <!-- if user is educator of this class can view footer -->
     <div class="card-footer">
-      <div class="row">
-        <div class="col">
-          <%= link_to [user_registration.registration_klass, user_registration], method: :delete, remote: true,
-          data: { confirm: 'CAUTION! Are you sure you want to delete this record? Click on "Confirm" to delete.' },
-          class: "btn btn-sm btn-danger delete-user-registration" do %>
-          <%= fa_icon("user-times", text: "Remove") %>
-          <% end %>
-        </div>
-        <div class="col">
-          <%= link_to [user_registration.registration_klass, user_registration],
-            class: "btn btn-sm btn-primary btn-block" do %>
-            <%= fa_icon("expand", text: "Show") %>
-          <% end %>
-        </div>
+      <div class="btn-group">
+        <%= link_to [user_registration.registration_klass, user_registration], method: :delete, remote: true,
+        data: { confirm: 'CAUTION! Are you sure you want to delete this record? Click on "Confirm" to delete.' },
+        class: "btn btn-sm btn-danger delete-user-registration" do %>
+        <%= fa_icon("user-times", text: "Remove") %>
+        <% end %>
+        <%= link_to [user_registration.registration_klass, user_registration],
+          class: "btn btn-sm btn-primary btn-block" do %>
+          <%= fa_icon("expand", text: "Show") %>
+        <% end %>
       </div>
     </div>
   </div><!-- .card-->

@@ -13,7 +13,7 @@
       <% end %>
     </li>
     <li class="breadcrumb-item active" aria-current="page">
-      <%= @user_registration.registration_klass.klass_type.titleize %>&nbsp;Registration Card
+      <%= @user_registration.registration_klass.group_type %>&nbsp;Registration Card
     </li>
   </ul>
 </div>
@@ -22,38 +22,42 @@
     <div class="col-xl-10 offset-xl-1">
       <div class="media">
         <div class="media-body">
-            <h1 class="h2 mt-0 mb-1"> <%= @user_registration.user_name %></h1>
-            <h2 class="h3 text-info">
-              <%= @user_registration.registration_klass_name %>
-            </h2>
-            <h3 class="h4">
-              <%= @user_registration.registration_klass.course_name %>&nbsp;
-              <span class="badge badge-dark"><%= @user_registration.registration_klass.year.strftime("%Y") %></span>
-            </h3>
-            <p>
-              <span id="user-type" class="badge badge-info"><%= render "user_type_display" %></span>&nbsp;
-              <span class="badge badge-light"><%= @user_registration.completed ? "Completed on" : "Active" %>&nbsp;
-                <% if @user_registration.completed == true %>
-                  <%= @user_registration.completed_at.strftime("%d-%b-%Y") %>
-                <% end %>
-              </span>
-            </p>
-            <p><span id="user-role">Check:&nbsp;<%= user_role_check(@user_registration) %></span></p>
-            <hr>
-            <!-- TODO add permission access here for teacher only -->
+          <h1 class="h2 mt-0 mb-1"> <%= @user_registration.user_name %></h1>
+          <h2 class="h3 text-info">
+            <%= @user_registration.registration_klass_name %>
+          </h2>
+          <h3 class="h4">
+            <%= @user_registration.registration_klass.course_name %>&nbsp;
+            <span class="badge badge-dark"><%= @user_registration.registration_klass.year.strftime("%Y") %></span>
+          </h3>
+          <p>
+            <span id="user-type" class="badge badge-info"><%= render "user_type_display" %></span>&nbsp;
+            <span class="badge badge-light"><%= @user_registration.completed ? "Completed on" : "Active registration" %>&nbsp;
+              <% if @user_registration.completed == true %>
+                <%= @user_registration.completed_at.strftime("%d-%b-%Y") %>
+              <% end %>
+            </span>
+          </p>
+          <p>
+            General Info: <%= @user_registration.general_info %><br>
+            Player Info: <%= @user_registration.player_info %>
+          </p>
+          <hr>
+          <!-- TODO add permission access here for teacher only -->
+          <div class="btn-group">
             <%= link_to school_registration_klass_path(@registration_klass.school,
               @registration_klass), class: "btn btn-lg btn-outline-primary" do %>
               <%= fa_icon("arrow-left", text: "Back") %>
             <% end %>
-
             <%= link_to edit_registration_klass_user_registration_path(@user_registration.registration_klass, @user_registration),
-                remote: true, class: "btn btn-lg btn-primary btn-block-xs" do %>
-                  <%= fa_icon("edit", text: "Edit registration") %>
-                <% end %>
+              class: "btn btn-lg btn-primary btn-block-xs" do %>
+                <%= fa_icon("edit", text: "Edit registration") %>
+            <% end %>
+          </div>
         </div>
         <!-- .media-body -->
-          <img class="ml-3" data-src="holder.js/120x120?auto=yes&theme=sky&text=headshot" />
-        </div>
+        <img class="ml-3" data-src="holder.js/120x120?auto=yes&theme=sky&text=headshot" />
+      </div>
         <!-- .jumbotron.media -->
     </div>
   </div>

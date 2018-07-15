@@ -18,25 +18,6 @@ $("#<%= dom_id(@user_registration) %>")detach();
 $('#list-user-registrations').prepend('<%= j render @user_registration %>');
 $("#<%= dom_id(@user_registration) %>").hide().fadeIn(1000);
 $('#user-registration-dialog').modal("hide");
-<% if @user_registration.teacher? %>
-  $('#user-type').text("Teacher");
-<% elsif @user_registration.substitute_teacher? %>
-    $('#user-type').text("Substitute teacher");
-<% else %>
-  $('#user-type').text("Learner");
-<% end %>
-//
-// if ($("#user-type:contains('Teacher')") && $("#user-role:contains('educator')")) {
-//   $("#user-role-type-mismatch-alert").hide();
-//   }
-// if $("#user-type:contains('Substitute teacher')") && $("#user-role:contains('educator')")) {
-//   $("#user-role-type-mismatch-alert").hide();
-//   }
-// if ($("#user-type:contains('Learner')") && $("#user-role:contains('learner')")) {
-//   $("#user-role-type-mismatch-alert").hide();
-// }
-// else
-//   $("#user-role-type-mismatch-alert").show();
 
 // Clear form
 el.find('input:text,text_area').val('');

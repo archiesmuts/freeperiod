@@ -15,17 +15,16 @@ class UserRegistration < ApplicationRecord
   has_many :goals,-> { order "deadline ASC" }, as: :goalable
   has_many :achievements, -> { order('date DESC') }, as: :achievable
 
-  # scope :for_this_klass, -> { where(field: true)   }
   validates :user_id, :registration_klass_id, presence: true
   validates_uniqueness_of :user_id, scope: :registration_klass_id, message: "already exists."
   validates :completed, inclusion: { in: [true, false] }
 
   jsonb_accessor :details,
-    user_type: [:string, default: "Learner"],
-    player_info: [:string, array: true, default: ["No info yet"]]
+    general_info: :string,
+    player_info: :string
 
-  scope :learners, -> { details_where(user_type: "Learner") }
-  scope :active_learners, -> { learners.where(completed: false) }
+  # scope :learners, -> { details_where(user_type: "Learner") }
+  # scope :active_learners, -> { learners.where(completed: false) }
 
   def user_name
     self.user.try(:full_name)
@@ -40,6 +39,7 @@ class UserRegistration < ApplicationRecord
   # def home_room
   #   self.registration_klass.where(klass_type: "registration_class")
   # end
+
   def school
     self.registration_klass.school
   end

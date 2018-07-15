@@ -8,7 +8,7 @@
   </a>
 </li>
 
-<% if @registration_klass.subject_class? %>
+<% if @registration_klass.group_type != "Registration Class" %>
 <li>
   <a class="app-menu__item" id="user-reg-goals-tab" data-toggle="pill" href="#user-reg-goals" role="tab" aria-controls="" aria-selected="false">
     <%= fa_icon("star fw", class: "app-menu__icon mr-2") %>
@@ -27,7 +27,7 @@
 </li>
 <% end %>
 
-<% if @registration_klass.registration_class? %>
+<% if @registration_klass.group_type == "Registration Class" %>
 <li>
   <a class="app-menu__item" id="user-reg-attendances-tab" data-toggle="pill" href="#user-reg-attendances" role="tab" aria-controls="" aria-selected="false">
     <%= fa_icon("calendar-minus fw", class: "app-menu__icon mr-2", type: "regular") %>
@@ -37,7 +37,7 @@
   </a>
 </li>
 <% end %>
-<% if @registration_klass.school_faculty? %>
+<% if @registration_klass.group_type == "Faculty" %>
 <li>
   <a class="app-menu__item" id="user-reg-goals-tab" data-toggle="pill" href="#user-reg-goals" role="tab" aria-controls="" aria-selected="false">
     <%= fa_icon("calendar-check-o fw", class: "app-menu__icon mr-2") %>

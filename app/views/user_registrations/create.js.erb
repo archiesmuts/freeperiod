@@ -18,13 +18,6 @@ $('#list-user-registrations').prepend('<%= j render @user_registration %>');
 $("#<%= dom_id(@user_registration) %>").hide().fadeIn(1000);
 $('#user-registration-dialog').modal('hide');
 $('.user_registration_placeholder').detach();
-<% if @user_registration.teacher? %>
-  $('#user-type').html("<span class='badge badge-info'>Teacher</span>");
-<% elsif @user_registration.substitute_teacher? %>
-    $('#user-type').html("<span class='badge badge-info'>Substitute teacher</span>");
-<% else %>
-  $('#user-type').html("<span class='badge badge-info'>Learner</span>");
-<% end %>
 
 // Clear form
 el.find('input:text,text_area').val('');
